@@ -40,44 +40,44 @@ const Index = () => {
   const features = [
     {
       icon: Play,
-      title: "Imagens Nítidas 4K",
-      description: "Desfrute de imagens cristalinas em qualquer ambiente",
+      title: "Imágenes Nítidas 4K",
+      description: "Disfruta de imágenes cristalinas en cualquier ambiente",
     },
     {
       icon: Volume2,
-      title: "Som Envolvente",
-      description: "Alto-falantes integrados com áudio de alta qualidade",
+      title: "Sonido Envolvente",
+      description: "Altavoces integrados con audio de alta calidad",
     },
     {
       icon: Wifi,
-      title: "Conectividade Total",
-      description: "WiFi, Bluetooth, HDMI, USB e muito mais",
+      title: "Conectividad Total",
+      description: "WiFi, Bluetooth, HDMI, USB y mucho más",
     },
     {
       icon: Smartphone,
-      title: "Compatível com Todos Dispositivos",
-      description: "Conecte smartphone, laptop, console e TV box",
+      title: "Compatible con Todos los Dispositivos",
+      description: "Conecta smartphone, laptop, consola y TV box",
     },
   ];
 
   const testimonials = [
     {
-      name: "Maria Silva",
+      name: "María Rodríguez",
       rating: 5,
-      comment: "Incrível! Transformou minha sala em um cinema. A qualidade de imagem é excepcional e a instalação foi super fácil.",
-      date: "Há 2 dias",
+      comment: "¡Increíble! Transformó mi sala en un cine. La calidad de imagen es excepcional y la instalación fue súper fácil.",
+      date: "Hace 2 días",
     },
     {
-      name: "João Santos",
+      name: "Carlos Gómez",
       rating: 5,
-      comment: "Melhor compra que fiz esse ano! O som é ótimo e a conectividade com meu celular é perfeita. Recomendo muito!",
-      date: "Há 1 semana",
+      comment: "¡Mejor compra que hice este año! El sonido es excelente y la conectividad con mi celular es perfecta. ¡Lo recomiendo mucho!",
+      date: "Hace 1 semana",
     },
     {
-      name: "Ana Costa",
+      name: "Ana López",
       rating: 5,
-      comment: "Produto de qualidade profissional! Uso para reuniões de trabalho e também para assistir filmes. Vale cada centavo.",
-      date: "Há 2 semanas",
+      comment: "¡Producto de calidad profesional! Lo uso para reuniones de trabajo y también para ver películas. Vale cada peso.",
+      date: "Hace 2 semanas",
     },
   ];
 
@@ -89,15 +89,15 @@ const Index = () => {
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
             <div className="flex items-center gap-2">
               <Truck className="w-4 h-4" />
-              <span>Frete Grátis</span>
+              <span>Envío Gratis</span>
             </div>
             <div className="flex items-center gap-2">
               <CreditCard className="w-4 h-4" />
-              <span>Pague na Entrega</span>
+              <span>Pago Contra Entrega</span>
             </div>
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4" />
-              <span>Garantia de 30 Dias</span>
+              <span>Garantía de 30 Días</span>
             </div>
           </div>
         </div>
@@ -145,38 +145,38 @@ const Index = () => {
                 ))}
               </div>
               <span className="text-sm font-medium text-muted-foreground">
-                (200+ avaliações)
+                (200+ reseñas)
               </span>
             </div>
 
             <h1 className="text-4xl font-bold mb-4 text-foreground leading-tight">
-              PROJETOR VEVSHAO A10 + PRESENTE
+              PROYECTOR VEVSHAO A10 + REGALO
               <Badge className="ml-3 bg-primary text-primary-foreground text-sm px-3 py-1 animate-pulse-glow">
-                COMPRE 1 E LEVE OUTRO GRÁTIS
+                COMPRE 1 Y LLEVA OTRO GRATIS
               </Badge>
             </h1>
 
             <p className="text-lg text-muted-foreground mb-6">
-              Transforme qualquer espaço em um cinema com conectividade completa e som envolvente.
+              Transforma cualquier espacio en un cine con conectividad completa y sonido envolvente.
             </p>
 
             <div className="mb-6 p-6 rounded-xl bg-primary/5 border-2 border-primary/20">
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-5xl font-bold text-primary">R$ 129,00</span>
-                <span className="text-2xl text-muted-foreground line-through">R$ 399,00</span>
+                <span className="text-5xl font-bold text-primary">$129.000</span>
+                <span className="text-2xl text-muted-foreground line-through">$399.000</span>
               </div>
               <div className="flex items-center gap-2 text-success">
                 <Zap className="w-5 h-5" />
-                <span className="font-semibold">Economize 68% hoje!</span>
+                <span className="font-semibold">¡Ahorra 68% hoy!</span>
               </div>
             </div>
 
             {/* Benefits List */}
             <div className="space-y-3 mb-6">
               {[
-                "Desfruta imagens nítidas em qualquer habitação",
-                "Experimenta sonido envolvente sem altavoces extra",
-                "Conecta dispositivos facilmente com múltiplas opções",
+                "Disfruta imágenes nítidas en cualquier habitación",
+                "Experimenta sonido envolvente sin altavoces extra",
+                "Conecta dispositivos fácilmente con múltiples opciones",
                 "Proyecta con claridad incluso con luz ambiental",
               ].map((benefit, idx) => (
                 <div key={idx} className="flex items-center gap-3">
@@ -190,7 +190,7 @@ const Index = () => {
 
             {/* Quantity Selector */}
             <div className="mb-6">
-              <label className="block font-semibold mb-3 text-foreground">Quantidade:</label>
+              <label className="block font-semibold mb-3 text-foreground">Cantidad:</label>
               <div className="flex items-center gap-4">
                 <div className="flex items-center border-2 border-border rounded-lg overflow-hidden">
                   <button
@@ -219,14 +219,14 @@ const Index = () => {
                 className="w-full text-lg font-bold py-7 bg-gradient-hero hover:shadow-glow transition-all animate-pulse-glow"
               >
                 <Gift className="w-6 h-6 mr-2" />
-                COMPRAR AGORA - GANHE 2x1
+                COMPRAR AHORA - LLEVA 2x1
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="w-full text-lg font-bold py-7 border-2"
               >
-                Adicionar ao Carrinho
+                Agregar al Carrito
               </Button>
             </div>
 
@@ -234,18 +234,18 @@ const Index = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <TrustBadge
                 icon={Truck}
-                title="Frete Grátis"
-                description="Em todo Brasil"
+                title="Envío Gratis"
+                description="En toda Colombia"
               />
               <TrustBadge
                 icon={Shield}
                 title="Compra Segura"
-                description="Garantia de 30 dias"
+                description="Garantía de 30 días"
               />
               <TrustBadge
                 icon={Clock}
                 title="Entrega Rápida"
-                description="5-7 dias úteis"
+                description="5-7 días hábiles"
               />
             </div>
           </div>
@@ -257,10 +257,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-foreground">
-              Características Profissionais
+              Características Profesionales
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Tecnologia de ponta para proporcionar a melhor experiência visual
+              Tecnología de punta para proporcionar la mejor experiencia visual
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -277,19 +277,19 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="animate-fade-in">
               <h2 className="text-3xl font-bold mb-6 text-foreground">
-                Experiência Cinematográfica em Casa
+                Experiencia Cinematográfica en Casa
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Crie momentos inesquecíveis com sua família assistindo filmes, séries e jogando
-                em uma tela gigante de até 200 polegadas. A qualidade de imagem 4K garante
-                nitidez excepcional mesmo em ambientes com luz ambiente.
+                Crea momentos inolvidables con tu familia viendo películas, series y jugando
+                en una pantalla gigante de hasta 200 pulgadas. La calidad de imagen 4K garantiza
+                nitidez excepcional incluso en ambientes con luz ambiental.
               </p>
               <div className="space-y-4">
                 {[
-                  "Resolução 1920x1080 Full HD",
-                  "Projeção de 40 a 200 polegadas",
-                  "Contraste 5000:1 para cores vibrantes",
-                  "Lâmpada LED com 50.000 horas de vida",
+                  "Resolución 1920x1080 Full HD",
+                  "Proyección de 40 a 200 pulgadas",
+                  "Contraste 5000:1 para colores vibrantes",
+                  "Lámpara LED con 50.000 horas de vida",
                 ].map((spec, idx) => (
                   <div key={idx} className="flex items-center gap-3">
                     <Package className="w-5 h-5 text-primary flex-shrink-0" />
@@ -301,7 +301,7 @@ const Index = () => {
             <div className="rounded-2xl overflow-hidden shadow-large animate-scale-in">
               <img
                 src={projectorLifestyle1}
-                alt="Família assistindo projetor"
+                alt="Familia viendo proyector"
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -316,11 +316,11 @@ const Index = () => {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Users className="w-8 h-8 text-primary" />
               <h2 className="text-3xl font-bold text-foreground">
-                O Que Nossos Clientes Dizem
+                Lo Que Dicen Nuestros Clientes
               </h2>
             </div>
             <p className="text-lg text-muted-foreground">
-              Mais de 200 avaliações positivas de clientes satisfeitos
+              Más de 200 reseñas positivas de clientes satisfechos
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -335,55 +335,55 @@ const Index = () => {
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
-            Perguntas Frequentes
+            Preguntas Frecuentes
           </h2>
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="item-1" className="border rounded-lg px-6 bg-card">
               <AccordionTrigger className="text-left font-semibold hover:text-primary">
-                Como funciona a promoção 2x1?
+                ¿Cómo funciona la promoción 2x1?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Ao comprar um projetor VEVSHAO A10, você automaticamente ganha outro projetor
-                idêntico completamente grátis! É nossa forma de agradecer pela confiança em
-                nossos produtos.
+                Al comprar un proyector VEVSHAO A10, automáticamente recibes otro proyector
+                idéntico completamente gratis. ¡Es nuestra forma de agradecer la confianza en
+                nuestros productos!
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2" className="border rounded-lg px-6 bg-card">
               <AccordionTrigger className="text-left font-semibold hover:text-primary">
-                Qual é o prazo de entrega?
+                ¿Cuál es el tiempo de entrega?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                O prazo de entrega é de 5 a 7 dias úteis para todo o Brasil. Você receberá um
-                código de rastreamento assim que o produto for despachado.
+                El tiempo de entrega es de 5 a 7 días hábiles para toda Colombia. Recibirás un
+                código de rastreo tan pronto como el producto sea despachado.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3" className="border rounded-lg px-6 bg-card">
               <AccordionTrigger className="text-left font-semibold hover:text-primary">
-                O projetor é compatível com meu celular?
+                ¿El proyector es compatible con mi celular?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Sim! O projetor é compatível com qualquer smartphone através de conexão WiFi,
-                cabo HDMI ou adaptadores. Funciona com iOS, Android e todos os sistemas
-                operacionais.
+                ¡Sí! El proyector es compatible con cualquier smartphone a través de conexión WiFi,
+                cable HDMI o adaptadores. Funciona con iOS, Android y todos los sistemas
+                operativos.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4" className="border rounded-lg px-6 bg-card">
               <AccordionTrigger className="text-left font-semibold hover:text-primary">
-                Existe garantia?
+                ¿Tiene garantía?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Sim! Oferecemos garantia de 30 dias de satisfação garantida ou seu dinheiro de
-                volta, além de 1 ano de garantia do fabricante contra defeitos de fabricação.
+                ¡Sí! Ofrecemos garantía de 30 días de satisfacción garantizada o devolución de tu dinero,
+                además de 1 año de garantía del fabricante contra defectos de fabricación.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-5" className="border rounded-lg px-6 bg-card">
               <AccordionTrigger className="text-left font-semibold hover:text-primary">
-                Como é o pagamento na entrega?
+                ¿Cómo es el pago contra entrega?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Você pode escolher pagar na entrega em dinheiro ou cartão diretamente ao
-                entregador. Também aceitamos pagamento antecipado por cartão de crédito, débito,
-                PIX e boleto bancário.
+                Puedes elegir pagar contra entrega en efectivo o tarjeta directamente al
+                mensajero. También aceptamos pago anticipado con tarjeta de crédito, débito,
+                PSE y transferencia bancaria.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -395,26 +395,26 @@ const Index = () => {
         <div className="container mx-auto px-4 text-center">
           <Gift className="w-16 h-16 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-4">
-            Oferta Limitada: Compre 1 e Leve 2!
+            ¡Oferta Limitada: Compra 1 y Lleva 2!
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Não perca essa oportunidade única de ter dois projetores profissionais pelo preço de
-            um. Estoque limitado!
+            No pierdas esta oportunidad única de tener dos proyectores profesionales por el precio de
+            uno. ¡Stock limitado!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
             <div className="flex items-center gap-2 text-lg font-semibold">
               <Clock className="w-6 h-6" />
-              <span>Promoção válida por tempo limitado</span>
+              <span>Promoción válida por tiempo limitado</span>
             </div>
           </div>
           <Button
             size="lg"
             className="bg-foreground text-background hover:bg-foreground/90 text-xl font-bold py-8 px-12 shadow-large"
           >
-            GARANTIR MINHA PROMOÇÃO AGORA
+            ASEGURAR MI PROMOCIÓN AHORA
           </Button>
           <p className="mt-6 text-sm opacity-75">
-            ✓ Frete Grátis ✓ Pague na Entrega ✓ Garantia de 30 Dias
+            ✓ Envío Gratis ✓ Pago Contra Entrega ✓ Garantía de 30 Días
           </p>
         </div>
       </section>
@@ -423,7 +423,7 @@ const Index = () => {
       <footer className="bg-foreground text-background py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm opacity-75">
-            © 2024 VEVSHAO. Todos os direitos reservados.
+            © 2024 VEVSHAO. Todos los derechos reservados.
           </p>
         </div>
       </footer>
