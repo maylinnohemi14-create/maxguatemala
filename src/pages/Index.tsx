@@ -27,6 +27,7 @@ import {
   Users,
 } from "lucide-react";
 import projectorMain from "@/assets/projector-main.jpg";
+import projectorPromo from "@/assets/projector-promo.png";
 import projectorLifestyle1 from "@/assets/projector-lifestyle-1.jpg";
 import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
@@ -35,7 +36,7 @@ const Index = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
-  const images = [projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
+  const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
   const features = [
     {
@@ -115,7 +116,7 @@ const Index = () => {
                 className="w-full h-auto object-cover aspect-video"
               />
             </div>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-5 gap-3">
               {images.map((img, idx) => (
                 <button
                   key={idx}
