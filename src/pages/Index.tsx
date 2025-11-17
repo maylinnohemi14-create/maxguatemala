@@ -34,9 +34,6 @@ import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
 
 const Index = () => {
-  // COLOQUE SEU LINK DO CHECKOUT DA SHOPIFY AQUI:
-  const CHECKOUT_URL = https://puntoexpressco.myshopify.com/products/proyector-vevshao-a10-regalo
-  
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
@@ -257,7 +254,6 @@ const Index = () => {
             <div className="space-y-3 mb-8">
               <Button
                 size="lg"
-                onClick={() => window.open(CHECKOUT_URL, '_blank')}
                 className="w-full text-lg font-bold py-7 bg-gradient-hero hover:shadow-glow transition-all animate-button-bounce"
               >
                 <Gift className="w-6 h-6 mr-2" />
@@ -266,7 +262,6 @@ const Index = () => {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => window.open(CHECKOUT_URL, '_blank')}
                 className="w-full text-lg font-bold py-7 border-2"
               >
                 Agregar al Carrito
@@ -452,7 +447,6 @@ const Index = () => {
           </div>
           <Button
             size="lg"
-            onClick={() => window.open(CHECKOUT_URL, '_blank')}
             className="bg-foreground text-background hover:bg-foreground/90 text-xl font-bold py-8 px-12 shadow-large"
           >
             ASEGURAR MI PROMOCIÓN AHORA
