@@ -113,7 +113,7 @@ const Index = () => {
               <img
                 src={images[selectedImage]}
                 alt="Projetor VEVSHAO A10"
-                className="w-full h-auto object-cover aspect-video"
+                className="w-full h-auto object-contain aspect-square"
               />
             </div>
             <div className="grid grid-cols-5 gap-3">
@@ -130,7 +130,7 @@ const Index = () => {
                   <img
                     src={img}
                     alt={`Imagem ${idx + 1}`}
-                    className="w-full h-auto object-cover aspect-square"
+                    className="w-full h-auto object-contain aspect-square bg-white"
                   />
                 </button>
               ))}
