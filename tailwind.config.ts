@@ -122,6 +122,52 @@ export default {
             boxShadow: "0 0 30px hsl(var(--primary) / 0.5)",
           },
         },
+        "pulse-fast": {
+          "0%, 100%": {
+            opacity: "1",
+            transform: "scale(1)",
+          },
+          "50%": {
+            opacity: "0.8",
+            transform: "scale(1.05)",
+          },
+        },
+        "lightning": {
+          "0%, 100%": {
+            opacity: "1",
+            filter: "brightness(1)",
+          },
+          "10%": {
+            opacity: "0.7",
+            filter: "brightness(1.5) drop-shadow(0 0 8px hsl(var(--accent)))",
+          },
+          "20%": {
+            opacity: "1",
+            filter: "brightness(1)",
+          },
+          "30%": {
+            opacity: "0.8",
+            filter: "brightness(1.3) drop-shadow(0 0 6px hsl(var(--accent)))",
+          },
+          "40%, 100%": {
+            opacity: "1",
+            filter: "brightness(1)",
+          },
+        },
+        "button-bounce": {
+          "0%, 100%": {
+            transform: "scale(1)",
+          },
+          "25%": {
+            transform: "scale(1.05)",
+          },
+          "50%": {
+            transform: "scale(0.95)",
+          },
+          "75%": {
+            transform: "scale(1.02)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -129,6 +175,9 @@ export default {
         "fade-in": "fade-in 0.5s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "pulse-fast": "pulse-fast 0.5s ease-in-out infinite",
+        "lightning": "lightning 2s ease-in-out infinite",
+        "button-bounce": "button-bounce 0.6s ease-in-out infinite",
       },
     },
   },

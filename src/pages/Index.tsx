@@ -57,10 +57,15 @@ const Index = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const randomName = colombianNames[Math.floor(Math.random() * colombianNames.length)];
-      toast.success(`🎉 ${randomName} acabó de comprar`, {
-        description: "¡Quedan pocas unidades disponibles!",
-        duration: 4000,
-      });
+      toast.success(
+        <div>
+          🎉 <span className="text-destructive font-bold">{randomName}</span> acabó de comprar
+        </div>,
+        {
+          description: "¡Quedan pocas unidades disponibles!",
+          duration: 4000,
+        }
+      );
     }, 4000);
 
     return () => clearInterval(interval);
@@ -176,6 +181,9 @@ const Index = () => {
               <span className="text-sm font-medium text-muted-foreground">
                 (200+ reseñas)
               </span>
+              <Badge className="ml-2 bg-foreground text-background font-bold text-xs px-3 py-1 animate-pulse-fast">
+                +897 unidades vendidas!
+              </Badge>
             </div>
 
             <h1 className="text-4xl font-bold mb-4 text-foreground leading-tight">
@@ -194,7 +202,7 @@ const Index = () => {
                 <span className="text-5xl font-bold text-primary animate-pulse">$129.000</span>
                 <span className="text-2xl text-muted-foreground line-through">$399.000</span>
               </div>
-              <div className="flex items-center gap-2 text-success">
+              <div className="flex items-center gap-2 text-success animate-lightning">
                 <Zap className="w-5 h-5" />
                 <span className="font-semibold">¡Ahorra 68% hoy!</span>
               </div>
@@ -245,7 +253,7 @@ const Index = () => {
             <div className="space-y-3 mb-8">
               <Button
                 size="lg"
-                className="w-full text-lg font-bold py-7 bg-gradient-hero hover:shadow-glow transition-all animate-pulse-glow"
+                className="w-full text-lg font-bold py-7 bg-gradient-hero hover:shadow-glow transition-all animate-button-bounce"
               >
                 <Gift className="w-6 h-6 mr-2" />
                 COMPRAR AHORA - LLEVA 2x1
