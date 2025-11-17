@@ -59,9 +59,9 @@ const Index = () => {
       const randomName = colombianNames[Math.floor(Math.random() * colombianNames.length)];
       toast.success(`🎉 ${randomName} acabó de comprar`, {
         description: "¡Quedan pocas unidades disponibles!",
-        duration: 3000,
+        duration: 4000,
       });
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
