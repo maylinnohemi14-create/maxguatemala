@@ -5,6 +5,7 @@ import { TrustBadge } from "@/components/TrustBadge";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { toast } from "sonner";
+import { playSalesSound } from "@/utils/salesSound";
 import {
   Accordion,
   AccordionContent,
@@ -36,6 +37,7 @@ import projectorDetail from "@/assets/projector-detail.jpg";
 const Index = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [purchaseCount, setPurchaseCount] = useState(0);
 
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
@@ -57,6 +59,18 @@ const Index = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const randomName = colombianNames[Math.floor(Math.random() * colombianNames.length)];
+      
+      setPurchaseCount((prevCount) => {
+        const newCount = prevCount + 1;
+        
+        // Play sales sound every 4 purchases
+        if (newCount % 4 === 0) {
+          playSalesSound();
+        }
+        
+        return newCount;
+      });
+      
       toast.success(
         <div>
           🎉 <span className="text-destructive font-bold">{randomName}</span> acabó de comprar
