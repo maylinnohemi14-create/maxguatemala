@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TrustBadge } from "@/components/TrustBadge";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TestimonialCard } from "@/components/TestimonialCard";
+import { toast } from "sonner";
 import {
   Accordion,
   AccordionContent,
@@ -37,6 +38,33 @@ const Index = () => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
+
+  const colombianNames = [
+    "Juan Rodríguez de Bogotá",
+    "María García de Medellín",
+    "Carlos Martínez de Cali",
+    "Sofía López de Barranquilla",
+    "Andrés González de Cartagena",
+    "Camila Hernández de Bucaramanga",
+    "Diego Pérez de Pereira",
+    "Valentina Ramírez de Cúcuta",
+    "Santiago Torres de Manizales",
+    "Isabella Castro de Ibagué",
+    "Sebastián Morales de Santa Marta",
+    "Lucía Gutiérrez de Villavicencio",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomName = colombianNames[Math.floor(Math.random() * colombianNames.length)];
+      toast.success(`🎉 ${randomName} acabó de comprar`, {
+        description: "¡Quedan pocas unidades disponibles!",
+        duration: 3000,
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const features = [
     {
@@ -98,7 +126,7 @@ const Index = () => {
             </div>
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4" />
-              <span>Garantía de 30 Días</span>
+              <span>Garantía de 2 Años</span>
             </div>
           </div>
         </div>
@@ -163,7 +191,7 @@ const Index = () => {
 
             <div className="mb-6 p-6 rounded-xl bg-primary/5 border-2 border-primary/20">
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-5xl font-bold text-primary">$129.000</span>
+                <span className="text-5xl font-bold text-primary animate-pulse">$129.000</span>
                 <span className="text-2xl text-muted-foreground line-through">$399.000</span>
               </div>
               <div className="flex items-center gap-2 text-success">
@@ -241,7 +269,7 @@ const Index = () => {
               <TrustBadge
                 icon={Shield}
                 title="Compra Segura"
-                description="Garantía de 30 días"
+                description="Garantía de 2 años"
               />
               <TrustBadge
                 icon={Clock}
@@ -374,7 +402,7 @@ const Index = () => {
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
                 ¡Sí! Ofrecemos garantía de 30 días de satisfacción garantizada o devolución de tu dinero,
-                además de 1 año de garantía del fabricante contra defectos de fabricación.
+                además de 2 años de garantía del fabricante contra defectos de fabricación.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-5" className="border rounded-lg px-6 bg-card">
@@ -415,7 +443,7 @@ const Index = () => {
             ASEGURAR MI PROMOCIÓN AHORA
           </Button>
           <p className="mt-6 text-sm opacity-75">
-            ✓ Envío Gratis ✓ Pago Contra Entrega ✓ Garantía de 30 Días
+            ✓ Envío Gratis ✓ Pago Contra Entrega ✓ Garantía de 2 Años
           </p>
         </div>
       </section>
