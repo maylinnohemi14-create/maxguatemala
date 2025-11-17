@@ -35,7 +35,7 @@ import projectorDetail from "@/assets/projector-detail.jpg";
 
 const Index = () => {
   // COLOQUE SEU LINK DO CHECKOUT DA SHOPIFY AQUI:
-  const CHECKOUT_URL = "https://seu-link-shopify.com/checkout";
+  const CHECKOUT_URL = https://puntoexpressco.myshopify.com/products/proyector-vevshao-a10-regalo
   
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
