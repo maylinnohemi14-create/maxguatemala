@@ -194,13 +194,13 @@ const Index = () => {
               </Badge>
             </h1>
 
-            <p className="text-lg text-muted-foreground mb-6">
+            <p className="text-lg text-muted-foreground mb-6 font-bold">
               Transforma cualquier espacio en un cine con conectividad completa y sonido envolvente.
             </p>
 
             <div className="mb-6 p-6 rounded-xl bg-primary/5 border-2 border-primary/20">
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-5xl font-bold text-primary animate-pulse">$129.000</span>
+                <span className="text-5xl font-bold text-foreground animate-pulse-slow">$129.000</span>
                 <span className="text-2xl text-muted-foreground line-through">$399.000</span>
               </div>
               <div className="flex items-center gap-2 text-success animate-lightning">

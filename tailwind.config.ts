@@ -176,6 +176,7 @@ export default {
         "scale-in": "scale-in 0.3s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "pulse-fast": "pulse-fast 0.5s ease-in-out infinite",
+        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "lightning": "lightning 2s ease-in-out infinite",
         "button-bounce": "button-bounce 0.6s ease-in-out infinite",
       },
