@@ -205,48 +205,48 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 ✓ Pago Contra Entrega • ✓ Envío Gratis • ✓ Garantía 2 Años
               </p>
               
-              <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-4 border-2 border-primary/20">
-                <p className="text-lg font-black text-black mb-4 animate-pulse text-center" style={{ textShadow: '0 0 15px rgba(0,0,0,0.9), 0 0 25px rgba(0,0,0,0.7)' }}>
+              <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-3 border-2 border-primary/20">
+                <p className="text-base font-black text-black mb-3 animate-pulse text-center" style={{ textShadow: '0 0 15px rgba(0,0,0,0.9), 0 0 25px rgba(0,0,0,0.7)' }}>
                   ✨ INCLUIDO GRATIS ✨
                 </p>
                 
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 p-3 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2 p-2 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
                     <Checkbox 
                       id="magistv"
                       checked={upsells.magistv}
                       onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, magistv: checked as boolean }))}
-                      className="mt-1 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
+                      className="mt-0.5 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
                     />
                     <label htmlFor="magistv" className="flex-1 cursor-pointer">
-                      <p className="font-bold text-base">🎬 MagisTV</p>
-                      <p className="text-sm text-muted-foreground">Transforma tu proyector en un cine completo con MagisTV</p>
+                      <p className="font-bold text-sm">🎬 MagisTV</p>
+                      <p className="text-xs text-muted-foreground">Transforma tu proyector en un cine completo con MagisTV</p>
                     </label>
                   </div>
 
-                  <div className="flex items-start gap-3 p-3 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
+                  <div className="flex items-start gap-2 p-2 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
                     <Checkbox 
                       id="warranty"
                       checked={upsells.warranty}
                       onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, warranty: checked as boolean }))}
-                      className="mt-1 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
+                      className="mt-0.5 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
                     />
                     <label htmlFor="warranty" className="flex-1 cursor-pointer">
-                      <p className="font-bold text-base">🛡️ Garantía Extendida 2 Años</p>
-                      <p className="text-sm text-muted-foreground">Protección Extra para tu inversión</p>
+                      <p className="font-bold text-sm">🛡️ Garantía Extendida 2 Años</p>
+                      <p className="text-xs text-muted-foreground">Protección Extra para tu inversión</p>
                     </label>
                   </div>
 
-                  <div className="flex items-start gap-3 p-3 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
+                  <div className="flex items-start gap-2 p-2 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
                     <Checkbox 
                       id="cleaningKit"
                       checked={upsells.cleaningKit}
                       onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, cleaningKit: checked as boolean }))}
-                      className="mt-1 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
+                      className="mt-0.5 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
                     />
                     <label htmlFor="cleaningKit" className="flex-1 cursor-pointer">
-                      <p className="font-bold text-base">✨ Kit Premium de Limpieza para Lentes</p>
-                      <p className="text-sm text-muted-foreground">Mantén tu proyector siempre con imagen nítida. Retira polvo, manchas e impresiones sin rayar la lente</p>
+                      <p className="font-bold text-sm">✨ Kit Premium de Limpieza para Lentes</p>
+                      <p className="text-xs text-muted-foreground">Mantén tu proyector siempre con imagen nítida. Retira polvo, manchas e impresiones sin rayar la lente</p>
                     </label>
                   </div>
                 </div>
