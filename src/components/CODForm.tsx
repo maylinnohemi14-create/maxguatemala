@@ -102,6 +102,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     warranty: true,
     cleaningKit: true,
   });
+  const [viewerCount, setViewerCount] = useState(() => Math.floor(Math.random() * 11) + 10); // 10-20
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -116,6 +117,15 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       email: "",
       nota: "",
     },
+  });
+
+  // Update viewer count periodically
+  useState(() => {
+    const interval = setInterval(() => {
+      setViewerCount(Math.floor(Math.random() * 11) + 10); // 10-20
+    }, 8000); // Update every 8 seconds
+    
+    return () => clearInterval(interval);
   });
 
   const selectedDepartamento = form.watch("departamento");
@@ -185,6 +195,14 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
 
   return (
     <div className="space-y-6">
+      {/* Live Viewer Counter */}
+      <div className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-2 animate-pulse">
+        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+        <span className="text-sm font-bold">
+          <span className="text-red-600">{viewerCount}</span> personas están viendo este producto ahora
+        </span>
+      </div>
+
       {/* Product Info */}
       <div className="bg-primary/5 p-6 rounded-lg border-2 border-primary/20">
         <div className="flex items-start gap-4">
@@ -426,20 +444,6 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 <FormLabel>Email (Opcional)</FormLabel>
                 <FormControl>
                   <Input type="email" placeholder="cliente@email.com" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="nota"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Observaciones (Opcional)</FormLabel>
-                <FormControl>
-                  <Textarea placeholder="Información adicional sobre la entrega..." {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
