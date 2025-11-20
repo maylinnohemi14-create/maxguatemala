@@ -459,10 +459,13 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                   Procesando...
                 </>
               ) : (
-                "COMPRAR AHORA"
+                <>
+                  COMPRAR AHORA
+                  <span className="ml-2 animate-bounce">👉</span>
+                </>
               )}
             </Button>
-            <p className="text-sm text-muted-foreground font-medium">
+            <p className="text-sm font-bold" style={{ textShadow: '0 0 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.7)' }}>
               Solo pagas al recibir
             </p>
           </div>
