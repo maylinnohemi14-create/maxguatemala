@@ -32,10 +32,16 @@ import projectorPromo from "@/assets/projector-promo.png";
 import projectorLifestyle1 from "@/assets/projector-lifestyle-1.jpg";
 import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
+import { CODForm } from "@/components/CODForm";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Index = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [showCODForm, setShowCODForm] = useState(false);
+  
+  const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10";
+  const PRODUCT_PRICE = 129000;
 
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
@@ -252,16 +258,34 @@ const Index = () => {
 
             {/* CTA Buttons */}
             <div className="space-y-3 mb-8">
-              <Button
-                size="lg"
-                className="w-full text-lg font-bold py-7 bg-gradient-hero hover:shadow-glow transition-all animate-button-bounce"
-              >
-                <Gift className="w-6 h-6 mr-2" />
-                COMPRAR AHORA - LLEVA 2x1
-              </Button>
+              <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+                <DialogTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="w-full text-lg font-bold py-7 bg-gradient-hero hover:shadow-glow transition-all animate-button-bounce"
+                  >
+                    <Gift className="w-6 h-6 mr-2" />
+                    COMPRAR AHORA - ¡OFERTA LIMITADA!
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>Formulario de Pedido - Pago Contra Entrega</DialogTitle>
+                  </DialogHeader>
+                  <CODForm 
+                    productId={PRODUCT_ID}
+                    productPrice={PRODUCT_PRICE * quantity}
+                    onOrderComplete={() => {
+                      toast.success("¡Pedido registrado exitosamente!");
+                    }}
+                  />
+                </DialogContent>
+              </Dialog>
+              
               <Button
                 size="lg"
                 variant="outline"
+                onClick={() => setShowCODForm(true)}
                 className="w-full text-lg font-bold py-7 border-2"
               >
                 Agregar al Carrito
@@ -447,6 +471,7 @@ const Index = () => {
           </div>
           <Button
             size="lg"
+            onClick={() => setShowCODForm(true)}
             className="bg-foreground text-background hover:bg-foreground/90 text-xl font-bold py-8 px-12 shadow-large"
           >
             ASEGURAR MI PROMOCIÓN AHORA
