@@ -465,7 +465,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               ) : (
                 <>
                   <span className="mr-2 animate-bounce">👉</span>
-                  COMPRAR AHORA
+                  COMPRAR AHORA - ${productPrice.toLocaleString('es-CO')} COP
                 </>
               )}
             </Button>
