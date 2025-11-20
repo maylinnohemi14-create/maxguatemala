@@ -460,8 +460,8 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 </>
               ) : (
                 <>
+                  <span className="mr-2 animate-bounce">👉</span>
                   COMPRAR AHORA
-                  <span className="ml-2 animate-bounce">👉</span>
                 </>
               )}
             </Button>
