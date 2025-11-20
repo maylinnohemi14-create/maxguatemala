@@ -28,22 +28,57 @@ import trustSeals from "@/assets/trust-seals.jpg";
 import testimonialConfidence from "@/assets/testimonial-confidence.gif";
 
 const DEPARTAMENTOS = [
-  "ANTIOQUIA", "ARAUCA", "ATLANTICO", "BOLIVAR", "BOYACA", "CALDAS",
-  "CAQUETA", "CASANARE", "CAUCA", "CESAR", "CHOCO", "CORDOBA",
-  "CUNDINAMARCA", "GUAVIARE", "HUILA", "LA GUAJIRA", "MAGDALENA",
-  "META", "NARIÑO", "NORTE DE SANTANDER", "PUTUMAYO", "QUINDIO",
-  "RISARALDA", "SANTANDER", "SUCRE", "TOLIMA", "VALLE"
+  "AMAZONAS", "ANTIOQUIA", "ARAUCA", "ATLANTICO", "BOLIVAR", "BOYACA",
+  "CALDAS", "CAQUETA", "CASANARE", "CAUCA", "CESAR", "CHOCO",
+  "CORDOBA", "CUNDINAMARCA", "GUAINIA", "GUAVIARE", "HUILA", "LA GUAJIRA",
+  "MAGDALENA", "META", "NARIÑO", "NORTE DE SANTANDER", "PUTUMAYO", "QUINDIO",
+  "RISARALDA", "SAN ANDRES Y PROVIDENCIA", "SANTANDER", "SUCRE", "TOLIMA",
+  "VALLE DEL CAUCA", "VAUPES", "VICHADA"
 ];
+
+const CIUDADES_POR_DEPARTAMENTO: Record<string, string[]> = {
+  "AMAZONAS": ["Leticia", "Puerto Nariño"],
+  "ANTIOQUIA": ["Medellín", "Bello", "Itagüí", "Envigado", "Apartadó", "Turbo", "Rionegro", "Caucasia", "Sabaneta", "La Estrella"],
+  "ARAUCA": ["Arauca", "Arauquita", "Saravena", "Tame", "Fortul"],
+  "ATLANTICO": ["Barranquilla", "Soledad", "Malambo", "Sabanalarga", "Puerto Colombia", "Galapa"],
+  "BOLIVAR": ["Cartagena", "Magangué", "Turbaco", "Arjona", "El Carmen de Bolívar", "Mompós"],
+  "BOYACA": ["Tunja", "Duitama", "Sogamoso", "Chiquinquirá", "Paipa", "Villa de Leyva", "Nobsa"],
+  "CALDAS": ["Manizales", "La Dorada", "Chinchiná", "Villamaría", "Riosucio", "Aguadas"],
+  "CAQUETA": ["Florencia", "San Vicente del Caguán", "Puerto Rico", "El Doncello", "Belén de los Andaquíes"],
+  "CASANARE": ["Yopal", "Aguazul", "Villanueva", "Monterrey", "Tauramena", "Paz de Ariporo"],
+  "CAUCA": ["Popayán", "Santander de Quilichao", "Puerto Tejada", "Patía", "Guachené", "Miranda"],
+  "CESAR": ["Valledupar", "Aguachica", "Codazzi", "Bosconia", "La Paz", "Chimichagua"],
+  "CHOCO": ["Quibdó", "Istmina", "Condoto", "Tadó", "Bahía Solano", "Nuquí"],
+  "CORDOBA": ["Montería", "Lorica", "Cereté", "Sahagún", "Planeta Rica", "Montelíbano"],
+  "CUNDINAMARCA": ["Bogotá", "Soacha", "Fusagasugá", "Facatativá", "Chía", "Zipaquirá", "Girardot", "Cajicá", "Madrid", "Funza", "Mosquera", "La Calera"],
+  "GUAINIA": ["Inírida", "Barranco Minas"],
+  "GUAVIARE": ["San José del Guaviare", "Calamar", "El Retorno"],
+  "HUILA": ["Neiva", "Pitalito", "Garzón", "La Plata", "Campoalegre"],
+  "LA GUAJIRA": ["Riohacha", "Maicao", "Uribia", "Manaure", "San Juan del Cesar"],
+  "MAGDALENA": ["Santa Marta", "Ciénaga", "Fundación", "Plato", "El Banco"],
+  "META": ["Villavicencio", "Acacías", "Granada", "Puerto López", "San Martín"],
+  "NARIÑO": ["Pasto", "Tumaco", "Ipiales", "Túquerres", "Samaniego"],
+  "NORTE DE SANTANDER": ["Cúcuta", "Ocaña", "Pamplona", "Villa del Rosario", "Los Patios"],
+  "PUTUMAYO": ["Mocoa", "Puerto Asís", "Orito", "Valle del Guamuez", "San Miguel"],
+  "QUINDIO": ["Armenia", "Calarcá", "La Tebaida", "Montenegro", "Quimbaya", "Circasia"],
+  "RISARALDA": ["Pereira", "Dosquebradas", "Santa Rosa de Cabal", "La Virginia", "Marsella"],
+  "SAN ANDRES Y PROVIDENCIA": ["San Andrés", "Providencia"],
+  "SANTANDER": ["Bucaramanga", "Floridablanca", "Girón", "Piedecuesta", "Barrancabermeja", "Socorro"],
+  "SUCRE": ["Sincelejo", "Corozal", "Tolú", "Sampués", "Majagual"],
+  "TOLIMA": ["Ibagué", "Espinal", "Melgar", "Honda", "Líbano", "Chaparral"],
+  "VALLE DEL CAUCA": ["Cali", "Palmira", "Buenaventura", "Tuluá", "Cartago", "Buga", "Jamundí", "Yumbo"],
+  "VAUPES": ["Mitú", "Caruru"],
+  "VICHADA": ["Puerto Carreño", "La Primavera", "Cumaribo"]
+};
 
 const formSchema = z.object({
   nombres: z.string().min(2, "Nombre debe tener al menos 2 caracteres").max(50),
   apellidos: z.string().min(2, "Apellido debe tener al menos 2 caracteres").max(50),
   direccion: z.string().min(10, "Dirección debe ser más detallada").max(200),
   departamento: z.string().min(1, "Seleccione un departamento"),
-  ciudad: z.string().min(2, "Ciudad es requerida").max(100),
+  ciudad: z.string().min(1, "Seleccione una ciudad"),
   telefono: z.string().regex(/^[0-9]{10}$/, "Teléfono debe tener 10 dígitos"),
   email: z.string().email("Email inválido").optional().or(z.literal("")),
-  cedula: z.string().optional(),
   nota: z.string().max(500).optional(),
 });
 
@@ -71,10 +106,12 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       ciudad: "",
       telefono: "",
       email: "",
-      cedula: "",
       nota: "",
     },
   });
+
+  const selectedDepartamento = form.watch("departamento");
+  const availableCiudades = selectedDepartamento ? CIUDADES_POR_DEPARTAMENTO[selectedDepartamento] || [] : [];
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
@@ -96,7 +133,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         "ID DE VARIABLE (OPCIONAL)": "",
         "CODIGO POSTAL (OPCIONAL)": "",
         "TRANSPORTADORA (OPCIONAL)": "",
-        "CEDULA (OPCIONAL)": data.cedula || "",
+        "CEDULA (OPCIONAL)": "",
         "COLONIA (OBLIGATORIO SOLO PARA QUIKEN)": "",
         "SEGURO (SOLO APLICA PARA ENVIA)": "",
       };
@@ -263,44 +300,45 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Ciudad/Municipio *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Bogotá" {...field} />
-                  </FormControl>
+                  <Select 
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                    }} 
+                    value={field.value}
+                    disabled={!selectedDepartamento}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder={selectedDepartamento ? "Seleccione ciudad" : "Primero seleccione departamento"} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {availableCiudades.map((ciudad) => (
+                        <SelectItem key={ciudad} value={ciudad}>
+                          {ciudad}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <FormField
-              control={form.control}
-              name="telefono"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Teléfono/WhatsApp *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="3001234567" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="cedula"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Cédula (Opcional)</FormLabel>
-                  <FormControl>
-                    <Input placeholder="1234567890" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          <FormField
+            control={form.control}
+            name="telefono"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Teléfono/WhatsApp *</FormLabel>
+                <FormControl>
+                  <Input placeholder="3001234567" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
