@@ -75,6 +75,7 @@ const formSchema = z.object({
   nombres: z.string().min(2, "Nombre debe tener al menos 2 caracteres").max(50),
   apellidos: z.string().min(2, "Apellido debe tener al menos 2 caracteres").max(50),
   direccion: z.string().min(10, "Dirección debe ser más detallada").max(200),
+  complemento: z.string().max(100).optional().or(z.literal("")),
   departamento: z.string().min(1, "Seleccione un departamento"),
   ciudad: z.string().min(1, "Seleccione una ciudad"),
   telefono: z.string().regex(/^[0-9]{10}$/, "Teléfono debe tener 10 dígitos"),
@@ -102,6 +103,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       nombres: "",
       apellidos: "",
       direccion: "",
+      complemento: "",
       departamento: "",
       ciudad: "",
       telefono: "",
@@ -134,7 +136,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         "CODIGO POSTAL (OPCIONAL)": "",
         "TRANSPORTADORA (OPCIONAL)": "",
         "CEDULA (OPCIONAL)": "",
-        "COLONIA (OBLIGATORIO SOLO PARA QUIKEN)": "",
+        "COLONIA (OBLIGATORIO SOLO PARA QUIKEN)": data.complemento || "",
         "SEGURO (SOLO APLICA PARA ENVIA)": "",
       };
 
@@ -192,7 +194,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               <DollarSign className="w-6 h-6" />
               <span>${productPrice.toLocaleString('es-CO')} COP</span>
             </div>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="text-sm font-semibold text-green-600 mt-2 animate-pulse">
               ✓ Pago Contra Entrega • ✓ Envío Gratis • ✓ Garantía 2 Años
             </p>
           </div>
@@ -204,20 +206,16 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         <img src={guaranteeBadge} alt="100% Garantía" className="w-64 h-auto" />
       </div>
 
-      <div className="bg-muted p-4 rounded-lg">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium">Pedidos registrados: {orders.length}</p>
-            <p className="text-xs text-muted-foreground">Completa el formulario y descarga el archivo para Dropi</p>
-          </div>
-          {orders.length > 0 && (
+      {orders.length > 0 && (
+        <div className="bg-muted p-4 rounded-lg">
+          <div className="flex items-center justify-center">
             <Button onClick={downloadExcel} variant="outline" size="sm">
               <Download className="w-4 h-4 mr-2" />
-              Descargar Excel
+              Descargar Excel ({orders.length} {orders.length === 1 ? 'pedido' : 'pedidos'})
             </Button>
-          )}
+          </div>
         </div>
-      </div>
+      )}
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -260,6 +258,23 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 <FormControl>
                   <Textarea 
                     placeholder="Calle 50 # 25-30, Barrio El Poblado, Torre 3 Apto 401" 
+                    {...field} 
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="complemento"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Complemento (Opcional)</FormLabel>
+                <FormControl>
+                  <Input 
+                    placeholder="Torre, apartamento, oficina, etc." 
                     {...field} 
                   />
                 </FormControl>
