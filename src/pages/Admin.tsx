@@ -169,24 +169,24 @@ const Admin = () => {
     }
 
     const excelData = orders.map((order) => ({
-      'NOMBRES (OBLIGATORIO)': order.nombres,
-      'APELLIDOS (OBLIGATORIO)': order.apellidos,
-      'TELEFONO (OBLIGATORIO)': order.telefono,
-      'DIRECCION (OBLIGATORIO)': order.direccion_y_barrio,
-      'DEPARTAMENTO (OBLIGATORIO)': order.departamento,
-      'CIUDAD O MUNICIPIO (OBLIGATORIO)': order.ciudad,
-      'CORREO ELECTRONICO': order.email || '',
-      'CEDULA': order.cedula || '',
+      'NOMBRES': order.nombres,
+      'APELLIDOS': order.apellidos,
+      'DIRECCIÓN Y BARRIO': order.direccion_y_barrio,
+      'DEPARTAMENTO': order.departamento,
+      'CIUDAD': order.ciudad,
+      'TELÉFONO': order.telefono,
+      'ID DE PRODUCTO': '1989831',
+      'CANTIDAD': '1',
+      'PRECIO TOTAL (SIN PUNTOS NI COMAS)': order.precio_total,
+      'CON RECAUDO': 'SI',
+      'NOTA': 'Pago Contra Entrega + Envio Gratis',
+      'EMAIL (OPCIONAL)': order.email || '',
+      'ID DE VARIABLE (OPCIONAL)': '',
+      'CODIGO POSTAL (OPCIONAL)': '',
+      'TRANSPORTADORA (OPCIONAL)': 'COORDINADORA',
+      'CEDULA (OPCIONAL)': order.cedula || '',
       'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': order.colonia || '',
-      'CODIGO POSTAL': '',
-      'TRANSPORTADORA': 'COORDINADORA',
-      'NOTA': order.nota || '',
-      'ID PRODUCTO (OBLIGATORIO)': '1989831',
-      'CANTIDAD (OBLIGATORIO)': '1',
-      'ID VARIABLE': '',
-      'SEGURO': '',
-      'PRECIO TOTAL (OBLIGATORIO)': order.precio_total,
-      'CON RECAUDO (OBLIGATORIO)': 'SI'
+      'SEGURO (SOLO APLICA PARA ENVIA)': ''
     }));
 
     const ws = XLSX.utils.json_to_sheet(excelData);
