@@ -26,6 +26,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import guaranteeBadge from "@/assets/guarantee-badge.png";
 import trustSeals from "@/assets/trust-seals.jpg";
 import testimonialConfidence from "@/assets/testimonial-confidence.gif";
+import { trackFacebookConversion, trackTikTokConversion } from "@/hooks/useTrackingPixels";
 import { supabase } from "@/integrations/supabase/client";
 
 const DEPARTAMENTOS = [
@@ -153,6 +154,23 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       if (error) {
         throw error;
       }
+
+      // Track conversions on Facebook and TikTok
+      trackFacebookConversion('Purchase', {
+        value: 129,
+        currency: 'COP',
+        content_name: 'Mini Proyector LED',
+        content_ids: ['1989831'],
+        content_type: 'product'
+      });
+      
+      trackTikTokConversion('CompletePayment', {
+        value: 129,
+        currency: 'COP',
+        content_name: 'Mini Proyector LED',
+        content_id: '1989831',
+        content_type: 'product'
+      });
 
       toast.success("¡Pedido registrado con éxito!", {
         description: `Tu pedido ha sido registrado correctamente, ${data.nombres}. ¡Pronto recibirás tu producto!`,
