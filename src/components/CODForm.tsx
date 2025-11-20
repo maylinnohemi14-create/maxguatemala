@@ -194,9 +194,17 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               <DollarSign className="w-6 h-6" />
               <span>${productPrice.toLocaleString('es-CO')} COP</span>
             </div>
-            <p className="text-sm font-semibold text-green-600 mt-2 animate-pulse">
-              ✓ Pago Contra Entrega • ✓ Envío Gratis • ✓ Garantía 2 Años
-            </p>
+            <div className="mt-2 space-y-2">
+              <p className="text-sm font-semibold text-green-600 animate-pulse">
+                ✓ Pago Contra Entrega • ✓ Envío Gratis • ✓ Garantía 2 Años
+              </p>
+              <div className="text-sm font-semibold text-primary space-y-1 border-t pt-2 mt-2">
+                <p className="text-xs uppercase tracking-wide mb-2 text-muted-foreground">Incluido Gratis:</p>
+                <p>🎬 MagisTV - Transforma tu proyector en un cine completo</p>
+                <p>🛡️ Garantía Extendida 2 Años - Protección Extra</p>
+                <p>✨ Kit Premium de Limpieza para Lentes - Mantén tu proyector siempre con imagen nítida</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -206,10 +214,10 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         <img src={guaranteeBadge} alt="100% Garantía" className="w-64 h-auto" />
         <div className="text-center md:text-left">
           <p className="text-xl md:text-2xl font-bold text-black animate-pulse" style={{ textShadow: '0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>
-            PROMOÇÃO DE BLACK FRIDAY
+            PROMOCIÓN DE BLACK FRIDAY
           </p>
           <p className="text-lg md:text-xl font-semibold text-black animate-pulse" style={{ textShadow: '0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>
-            VÁLIDA ATÉ DIA 5 DE DEZEMBRO
+            VÁLIDA HASTA EL 5 DE DICIEMBRE
           </p>
         </div>
       </div>
