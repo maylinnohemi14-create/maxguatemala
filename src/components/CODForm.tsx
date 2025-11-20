@@ -142,9 +142,9 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         DEPARTAMENTO: data.departamento,
         CIUDAD: data.ciudad,
         TELÉFONO: data.telefono,
-        "ID DE PRODUCTO": productId,
+        "ID DE PRODUCTO": "1989831",
         CANTIDAD: 1,
-        "PRECIO TOTAL (SIN PUNTOS NI COMAS)": productPrice,
+        "PRECIO TOTAL (SIN PUNTOS NI COMAS)": productPrice.toString().replace(/\./g, '').replace(/,/g, ''),
         "CON RECAUDO": "SI",
         NOTA: data.nota || "",
         "EMAIL (OPCIONAL)": data.email || "",
@@ -195,6 +195,29 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
 
   return (
     <div className="space-y-6">
+      {/* Admin Controls - Only visible when there are orders */}
+      {orders.length > 0 && (
+        <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-lg font-bold text-green-800">
+                Pedidos registrados: {orders.length}
+              </p>
+              <p className="text-sm text-green-700">
+                Haz clic abajo para descargar el Excel con todos los pedidos
+              </p>
+            </div>
+            <Button
+              onClick={downloadExcel}
+              className="bg-green-600 hover:bg-green-700 text-white gap-2"
+            >
+              <Download className="w-5 h-5" />
+              Descargar Excel
+            </Button>
+          </div>
+        </div>
+      )}
+
       {/* Live Viewer Counter */}
       <div className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-2 animate-pulse">
         <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
