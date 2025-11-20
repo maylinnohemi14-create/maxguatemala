@@ -201,9 +201,17 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         </div>
       </div>
 
-      {/* Guarantee Badge */}
-      <div className="flex justify-center py-4">
+      {/* Guarantee Badge with Promo */}
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-4">
         <img src={guaranteeBadge} alt="100% Garantía" className="w-64 h-auto" />
+        <div className="text-center md:text-left">
+          <p className="text-xl md:text-2xl font-bold text-black animate-pulse" style={{ textShadow: '0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>
+            PROMOÇÃO DE BLACK FRIDAY
+          </p>
+          <p className="text-lg md:text-xl font-semibold text-black animate-pulse" style={{ textShadow: '0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>
+            VÁLIDA ATÉ DIA 5 DE DEZEMBRO
+          </p>
+        </div>
       </div>
 
       {orders.length > 0 && (
