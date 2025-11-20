@@ -3,9 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Download, Loader2, LogOut, Package, TrendingUp, MapPin, DollarSign, Users } from "lucide-react";
+import { Download, Loader2, LogOut, Package, TrendingUp, MapPin, DollarSign, Users, Trash2 } from "lucide-react";
 import * as XLSX from 'xlsx';
 import type { User, Session } from '@supabase/supabase-js';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import {
   Table,
   TableBody,
@@ -186,6 +197,27 @@ const Admin = () => {
     toast.success("Arquivo Excel baixado com sucesso!");
   };
 
+  const clearAllOrders = async () => {
+    try {
+      const { error } = await supabase
+        .from('orders')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all records
+      
+      if (error) throw error;
+      
+      // Clear local state
+      setOrders([]);
+      setCityStats([]);
+      setDepartmentStats([]);
+      setTotalRevenue(0);
+      
+      toast.success("Todos os pedidos foram limpos com sucesso!");
+    } catch (error: any) {
+      toast.error("Erro ao limpar pedidos: " + error.message);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -326,18 +358,47 @@ const Admin = () => {
           </Card>
         </div>
 
-        {/* Download Button */}
+        {/* Download and Clear Buttons */}
         <div className="mb-8">
           <Card>
             <CardContent className="pt-6">
-              <Button 
-                onClick={downloadExcel}
-                className="w-full text-lg h-12"
-                disabled={orders.length === 0}
-              >
-                <Download className="mr-2 h-5 w-5" />
-                Baixar Excel para Dropi ({orders.length} pedidos)
-              </Button>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Button 
+                  onClick={downloadExcel}
+                  className="w-full text-lg h-12"
+                  disabled={orders.length === 0}
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Baixar Excel para Dropi ({orders.length} pedidos)
+                </Button>
+                
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button 
+                      variant="destructive"
+                      className="w-full text-lg h-12"
+                      disabled={orders.length === 0}
+                    >
+                      <Trash2 className="mr-2 h-5 w-5" />
+                      Limpar Todos os Pedidos do Excel
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Tem certeza?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Esta ação não pode ser desfeita. Isso irá deletar permanentemente todos os {orders.length} pedidos do banco de dados.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                      <AlertDialogAction onClick={clearAllOrders}>
+                        Sim, limpar todos os pedidos
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
             </CardContent>
           </Card>
         </div>
