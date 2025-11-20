@@ -179,7 +179,7 @@ const Admin = () => {
       'CEDULA': order.cedula || '',
       'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': order.colonia || '',
       'CODIGO POSTAL': '',
-      'TRANSPORTADORA': '',
+      'TRANSPORTADORA': 'COORDINADORA',
       'NOTA': order.nota || '',
       'ID PRODUCTO (OBLIGATORIO)': '1989831',
       'CANTIDAD (OBLIGATORIO)': '1',
