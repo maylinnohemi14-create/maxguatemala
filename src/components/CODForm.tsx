@@ -21,12 +21,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Download, Loader2, Package, DollarSign } from "lucide-react";
-import * as XLSX from 'xlsx';
+import { Loader2, Package, DollarSign } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import guaranteeBadge from "@/assets/guarantee-badge.png";
 import trustSeals from "@/assets/trust-seals.jpg";
 import testimonialConfidence from "@/assets/testimonial-confidence.gif";
+import { supabase } from "@/integrations/supabase/client";
 
 const DEPARTAMENTOS = [
   "AMAZONAS", "ANTIOQUIA", "ARAUCA", "ATLANTICO", "BOLIVAR", "BOYACA",
@@ -96,7 +96,6 @@ interface CODFormProps {
 
 export function CODForm({ productId, productPrice, productName = "Proyector Vevshao A10", productImage, onOrderComplete }: CODFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [orders, setOrders] = useState<any[]>([]);
   const [upsells, setUpsells] = useState({
     magistv: true,
     warranty: true,
@@ -135,89 +134,42 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     setIsSubmitting(true);
 
     try {
-      const newOrder = {
-        NOMBRES: data.nombres,
-        APELLIDOS: data.apellidos,
-        "DIRECCIÓN Y BARRIO": data.direccion,
-        DEPARTAMENTO: data.departamento,
-        CIUDAD: data.ciudad,
-        TELÉFONO: data.telefono,
-        "ID DE PRODUCTO": "1989831",
-        CANTIDAD: 1,
-        "PRECIO TOTAL (SIN PUNTOS NI COMAS)": productPrice.toString().replace(/\./g, '').replace(/,/g, ''),
-        "CON RECAUDO": "SI",
-        NOTA: data.nota || "",
-        "EMAIL (OPCIONAL)": data.email || "",
-        "ID DE VARIABLE (OPCIONAL)": "",
-        "CODIGO POSTAL (OPCIONAL)": "",
-        "TRANSPORTADORA (OPCIONAL)": "",
-        "CEDULA (OPCIONAL)": "",
-        "COLONIA (OBLIGATORIO SOLO PARA QUIKEN)": data.complemento || "",
-        "SEGURO (SOLO APLICA PARA ENVIA)": "",
-      };
+      const { error } = await supabase.from('orders').insert({
+        nombres: data.nombres,
+        apellidos: data.apellidos,
+        direccion_y_barrio: data.direccion,
+        departamento: data.departamento,
+        ciudad: data.ciudad,
+        telefono: data.telefono,
+        email: data.email || null,
+        colonia: data.complemento || null,
+        nota: data.nota || null,
+        id_producto: '1989831',
+        cantidad: 1,
+        precio_total: productPrice.toString().replace(/\./g, '').replace(/,/g, ''),
+        con_recaudo: 'SI',
+      });
 
-      setOrders([...orders, newOrder]);
+      if (error) {
+        throw error;
+      }
 
-      toast.success("¡Pedido registrado!", {
-        description: `Pedido de ${data.nombres} ${data.apellidos} agregado. Total de pedidos: ${orders.length + 1}`,
+      toast.success("¡Pedido registrado con éxito!", {
+        description: `Tu pedido ha sido registrado correctamente, ${data.nombres}. ¡Pronto recibirás tu producto!`,
       });
 
       form.reset();
       onOrderComplete?.();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error al registrar pedido:", error);
-      toast.error("Error al registrar pedido");
+      toast.error("Error al registrar pedido: " + (error.message || "Intenta nuevamente"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const downloadExcel = () => {
-    if (orders.length === 0) {
-      toast.error("No hay pedidos para descargar");
-      return;
-    }
-
-    try {
-      const ws = XLSX.utils.json_to_sheet(orders);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Ordenes");
-      
-      const today = new Date().toISOString().split('T')[0];
-      XLSX.writeFile(wb, `ordenes_dropi_${today}.xlsx`);
-
-      toast.success(`Archivo descargado con ${orders.length} pedidos`);
-    } catch (error) {
-      console.error("Error al generar Excel:", error);
-      toast.error("Error al generar archivo");
-    }
-  };
-
   return (
     <div className="space-y-6">
-      {/* Admin Controls - Only visible when there are orders */}
-      {orders.length > 0 && (
-        <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-lg font-bold text-green-800">
-                Pedidos registrados: {orders.length}
-              </p>
-              <p className="text-sm text-green-700">
-                Haz clic abajo para descargar el Excel con todos los pedidos
-              </p>
-            </div>
-            <Button
-              onClick={downloadExcel}
-              className="bg-green-600 hover:bg-green-700 text-white gap-2"
-            >
-              <Download className="w-5 h-5" />
-              Descargar Excel
-            </Button>
-          </div>
-        </div>
-      )}
-
       {/* Live Viewer Counter */}
       <div className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-2 animate-pulse">
         <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
@@ -309,17 +261,6 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
           </p>
         </div>
       </div>
-
-      {orders.length > 0 && (
-        <div className="bg-muted p-4 rounded-lg">
-          <div className="flex items-center justify-center">
-            <Button onClick={downloadExcel} variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              Descargar Excel ({orders.length} {orders.length === 1 ? 'pedido' : 'pedidos'})
-            </Button>
-          </div>
-        </div>
-      )}
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
