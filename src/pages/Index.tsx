@@ -283,15 +283,6 @@ const Index = () => {
                   />
                 </DialogContent>
               </Dialog>
-              
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => setShowCODForm(true)}
-                className="w-full text-lg font-bold py-7 border-2"
-              >
-                Agregar al Carrito
-              </Button>
             </div>
 
             {/* Trust Badges */}
@@ -309,7 +300,7 @@ const Index = () => {
               <TrustBadge
                 icon={Clock}
                 title="Entrega Rápida"
-                description="5-7 días hábiles"
+                description="3 a 5 dias uteis"
               />
             </div>
           </div>
