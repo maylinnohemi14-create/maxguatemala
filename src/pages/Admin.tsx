@@ -33,6 +33,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PixelManager } from "@/components/PixelManager";
 
 interface Order {
   id: string;
@@ -420,6 +421,11 @@ const Admin = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Pixel Management Section */}
+        <div className="mb-8">
+          <PixelManager />
         </div>
 
         {/* Orders Table */}

@@ -33,6 +33,7 @@ import projectorLifestyle1 from "@/assets/projector-lifestyle-1.jpg";
 import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
 import { CODForm } from "@/components/CODForm";
+import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Index = () => {
@@ -124,6 +125,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <TrackingPixels />
       {/* Admin Link - Fixed top right */}
       <div className="fixed top-4 right-4 z-50">
         <Button
