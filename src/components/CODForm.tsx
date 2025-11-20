@@ -23,6 +23,7 @@ import {
 import { toast } from "sonner";
 import { Download, Loader2, Package, DollarSign } from "lucide-react";
 import * as XLSX from 'xlsx';
+import { Checkbox } from "@/components/ui/checkbox";
 import guaranteeBadge from "@/assets/guarantee-badge.png";
 import trustSeals from "@/assets/trust-seals.jpg";
 import testimonialConfidence from "@/assets/testimonial-confidence.gif";
@@ -96,6 +97,11 @@ interface CODFormProps {
 export function CODForm({ productId, productPrice, productName = "Proyector Vevshao A10", productImage, onOrderComplete }: CODFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orders, setOrders] = useState<any[]>([]);
+  const [upsells, setUpsells] = useState({
+    magistv: true,
+    warranty: true,
+    cleaningKit: true,
+  });
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -194,15 +200,56 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               <DollarSign className="w-6 h-6" />
               <span>${productPrice.toLocaleString('es-CO')} COP</span>
             </div>
-            <div className="mt-2 space-y-2">
+            <div className="mt-3 space-y-3">
               <p className="text-sm font-semibold text-green-600 animate-pulse">
                 ✓ Pago Contra Entrega • ✓ Envío Gratis • ✓ Garantía 2 Años
               </p>
-              <div className="text-sm font-semibold text-primary space-y-1 border-t pt-2 mt-2">
-                <p className="text-xs uppercase tracking-wide mb-2 text-muted-foreground">Incluido Gratis:</p>
-                <p>🎬 MagisTV - Transforma tu proyector en un cine completo</p>
-                <p>🛡️ Garantía Extendida 2 Años - Protección Extra</p>
-                <p>✨ Kit Premium de Limpieza para Lentes - Mantén tu proyector siempre con imagen nítida</p>
+              
+              <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-4 border-2 border-primary/20">
+                <p className="text-lg font-black text-black mb-4 animate-pulse text-center" style={{ textShadow: '0 0 15px rgba(0,0,0,0.9), 0 0 25px rgba(0,0,0,0.7)' }}>
+                  ✨ INCLUIDO GRATIS ✨
+                </p>
+                
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 p-3 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
+                    <Checkbox 
+                      id="magistv"
+                      checked={upsells.magistv}
+                      onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, magistv: checked as boolean }))}
+                      className="mt-1 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
+                    />
+                    <label htmlFor="magistv" className="flex-1 cursor-pointer">
+                      <p className="font-bold text-base">🎬 MagisTV</p>
+                      <p className="text-sm text-muted-foreground">Transforma tu proyector en un cine completo con MagisTV</p>
+                    </label>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-3 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
+                    <Checkbox 
+                      id="warranty"
+                      checked={upsells.warranty}
+                      onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, warranty: checked as boolean }))}
+                      className="mt-1 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
+                    />
+                    <label htmlFor="warranty" className="flex-1 cursor-pointer">
+                      <p className="font-bold text-base">🛡️ Garantía Extendida 2 Años</p>
+                      <p className="text-sm text-muted-foreground">Protección Extra para tu inversión</p>
+                    </label>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-3 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
+                    <Checkbox 
+                      id="cleaningKit"
+                      checked={upsells.cleaningKit}
+                      onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, cleaningKit: checked as boolean }))}
+                      className="mt-1 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
+                    />
+                    <label htmlFor="cleaningKit" className="flex-1 cursor-pointer">
+                      <p className="font-bold text-base">✨ Kit Premium de Limpieza para Lentes</p>
+                      <p className="text-sm text-muted-foreground">Mantén tu proyector siempre con imagen nítida. Retira polvo, manchas e impresiones sin rayar la lente</p>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
