@@ -21,8 +21,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Download, Loader2 } from "lucide-react";
+import { Download, Loader2, Package, DollarSign } from "lucide-react";
 import * as XLSX from 'xlsx';
+import guaranteeBadge from "@/assets/guarantee-badge.png";
+import trustSeals from "@/assets/trust-seals.jpg";
+import testimonialConfidence from "@/assets/testimonial-confidence.gif";
 
 const DEPARTAMENTOS = [
   "ANTIOQUIA", "ARAUCA", "ATLANTICO", "BOLIVAR", "BOYACA", "CALDAS",
@@ -49,10 +52,12 @@ type FormValues = z.infer<typeof formSchema>;
 interface CODFormProps {
   productId: string;
   productPrice: number;
+  productName?: string;
+  productImage?: string;
   onOrderComplete?: () => void;
 }
 
-export function CODForm({ productId, productPrice, onOrderComplete }: CODFormProps) {
+export function CODForm({ productId, productPrice, productName = "Proyector Vevshao A10", productImage, onOrderComplete }: CODFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orders, setOrders] = useState<any[]>([]);
 
@@ -135,6 +140,33 @@ export function CODForm({ productId, productPrice, onOrderComplete }: CODFormPro
 
   return (
     <div className="space-y-6">
+      {/* Product Info */}
+      <div className="bg-primary/5 p-6 rounded-lg border-2 border-primary/20">
+        <div className="flex items-start gap-4">
+          {productImage && (
+            <img src={productImage} alt={productName} className="w-24 h-24 object-cover rounded-lg" />
+          )}
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <Package className="w-5 h-5 text-primary" />
+              <h3 className="font-bold text-lg">{productName}</h3>
+            </div>
+            <div className="flex items-center gap-2 text-2xl font-bold text-primary">
+              <DollarSign className="w-6 h-6" />
+              <span>${productPrice.toLocaleString('es-CO')} COP</span>
+            </div>
+            <p className="text-sm text-muted-foreground mt-2">
+              ✓ Pago Contra Entrega • ✓ Envío Gratis • ✓ Garantía 2 Años
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Guarantee Badge */}
+      <div className="flex justify-center py-4">
+        <img src={guaranteeBadge} alt="100% Garantía" className="w-64 h-auto" />
+      </div>
+
       <div className="bg-muted p-4 rounded-lg">
         <div className="flex items-center justify-between">
           <div>
@@ -315,6 +347,16 @@ export function CODForm({ productId, productPrice, onOrderComplete }: CODFormPro
           </Button>
         </form>
       </Form>
+
+      {/* Trust Seals */}
+      <div className="pt-6 border-t">
+        <img src={trustSeals} alt="Selos de Confianza" className="w-full max-w-2xl mx-auto" />
+      </div>
+
+      {/* Testimonial */}
+      <div className="flex justify-center">
+        <img src={testimonialConfidence} alt="Testimonio" className="w-full max-w-2xl rounded-lg" />
+      </div>
     </div>
   );
 }

@@ -275,6 +275,8 @@ const Index = () => {
                   <CODForm 
                     productId={PRODUCT_ID}
                     productPrice={PRODUCT_PRICE * quantity}
+                    productName="Proyector Vevshao A10 - Compra 1 y Lleva 2"
+                    productImage={projectorPromo}
                     onOrderComplete={() => {
                       toast.success("¡Pedido registrado exitosamente!");
                     }}
