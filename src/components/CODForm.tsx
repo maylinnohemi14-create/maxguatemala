@@ -248,19 +248,34 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center">
-              <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+              <div className="text-5xl mb-4">🎉✅🎊</div>
             </DialogTitle>
           </DialogHeader>
           <div className="text-center space-y-4 py-4">
             <h2 className="text-2xl font-bold text-green-600">
-              ¡Su compra se ha realizado con éxito!
+              🎉 ¡Su compra se ha realizado con éxito! 🎉
             </h2>
             <p className="text-muted-foreground text-lg">
-              Su pedido llegará a su casa en un plazo de <strong>3 a 5 días</strong>.
+              📦 Su pedido llegará a su casa en un plazo de <strong>3 a 5 días</strong>.
             </p>
             <p className="text-muted-foreground">
-              Contamos con <strong>2 años de garantía</strong>.
+              🛡️ Contamos con <strong>2 años de garantía</strong>.
             </p>
+            
+            <div className="border-t pt-4 mt-4">
+              <p className="text-muted-foreground text-sm mb-3">
+                Para cualquier duda, contáctenos por WhatsApp:
+              </p>
+              <a
+                href="https://wa.me/56984591932?text=Hola,%20acabo%20de%20realizar%20una%20compra%20y%20tengo%20una%20consulta"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors text-lg"
+              >
+                <span className="text-2xl">📱</span> WhatsApp
+              </a>
+            </div>
+            
             <Button 
               onClick={handleCloseSuccessDialog}
               className="w-full mt-4 text-lg py-6"
