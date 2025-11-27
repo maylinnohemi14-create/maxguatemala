@@ -21,13 +21,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Loader2, Package, DollarSign, AlertTriangle } from "lucide-react";
+import { Loader2, Package, DollarSign, AlertTriangle, CheckCircle } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import guaranteeBadge from "@/assets/guarantee-badge.png";
 import trustSeals from "@/assets/trust-seals.jpg";
 import testimonialConfidence from "@/assets/testimonial-confidence.gif";
 import { trackFacebookConversion, trackTikTokConversion } from "@/hooks/useTrackingPixels";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const DEPARTAMENTOS = [
   "AMAZONAS", "ANTIOQUIA", "ARAUCA", "ATLANTICO", "BOLIVAR", "BOYACA",
@@ -100,6 +106,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [ipHasOrder, setIpHasOrder] = useState(false);
   const [checkingIp, setCheckingIp] = useState(true);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [upsells, setUpsells] = useState({
     magistv: true,
     warranty: true,
@@ -203,13 +210,9 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         content_type: 'product'
       });
 
-      toast.success("¡Pedido registrado con éxito!", {
-        description: `Tu pedido ha sido registrado correctamente, ${data.nombres}. ¡Pronto recibirás tu producto!`,
-      });
-
       setIpHasOrder(true); // Mark as purchased
       form.reset();
-      onOrderComplete?.();
+      setShowSuccessDialog(true);
     } catch (error: any) {
       console.error("Error al registrar pedido:", error);
       toast.error("Error al registrar pedido: " + (error.message || "Intenta nuevamente"));
@@ -233,8 +236,40 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     );
   }
 
+  const handleCloseSuccessDialog = () => {
+    setShowSuccessDialog(false);
+    onOrderComplete?.();
+  };
+
   return (
     <div className="space-y-6">
+      {/* Success Dialog */}
+      <Dialog open={showSuccessDialog} onOpenChange={handleCloseSuccessDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-center">
+              <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+            </DialogTitle>
+          </DialogHeader>
+          <div className="text-center space-y-4 py-4">
+            <h2 className="text-2xl font-bold text-green-600">
+              ¡Su compra se ha realizado con éxito!
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Su pedido llegará a su casa en un plazo de <strong>3 a 5 días</strong>.
+            </p>
+            <p className="text-muted-foreground">
+              Contamos con <strong>2 años de garantía</strong>.
+            </p>
+            <Button 
+              onClick={handleCloseSuccessDialog}
+              className="w-full mt-4 text-lg py-6"
+            >
+              Cerrar
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
       {/* Loading IP check */}
       {checkingIp && (
         <div className="flex items-center justify-center gap-2 py-4">
