@@ -5,17 +5,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-interface OrderData {
-  nombres: string;
-  apellidos: string;
-  telefono: string;
-  direccion: string;
-  departamento: string;
-  ciudad: string;
-  precio_total: string;
-  cantidad: number;
-}
-
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -30,19 +19,10 @@ serve(async (req) => {
       throw new Error('Telegram credentials not configured');
     }
 
-    const orderData: OrderData = await req.json();
-    console.log('Received order data for notification:', orderData);
+    const { precio_total } = await req.json();
+    console.log('Sending notification for purchase:', precio_total);
 
-    const message = `🎉 *¡NUEVA VENTA!* 🎉
-
-👤 *Cliente:* ${orderData.nombres} ${orderData.apellidos}
-📱 *Teléfono:* ${orderData.telefono}
-📍 *Dirección:* ${orderData.direccion}
-🏙️ *Ciudad:* ${orderData.ciudad}, ${orderData.departamento}
-📦 *Cantidad:* ${orderData.cantidad}
-💰 *Total:* $${orderData.precio_total} COP
-
-✅ Pedido registrado exitosamente`;
+    const message = `Compra realizada no valor de ${precio_total}`;
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     
@@ -54,7 +34,6 @@ serve(async (req) => {
       body: JSON.stringify({
         chat_id: chatId,
         text: message,
-        parse_mode: 'Markdown',
       }),
     });
 
