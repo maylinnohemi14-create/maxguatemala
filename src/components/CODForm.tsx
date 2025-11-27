@@ -210,6 +210,25 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         content_type: 'product'
       });
 
+      // Send Telegram notification
+      try {
+        await supabase.functions.invoke('send-telegram-notification', {
+          body: {
+            nombres: data.nombres,
+            apellidos: data.apellidos,
+            telefono: data.telefono,
+            direccion: data.direccion,
+            departamento: data.departamento,
+            ciudad: data.ciudad,
+            precio_total: productPrice.toString(),
+            cantidad: 1,
+          }
+        });
+      } catch (telegramError) {
+        console.error('Error sending Telegram notification:', telegramError);
+        // Don't fail the order if notification fails
+      }
+
       setIpHasOrder(true); // Mark as purchased
       form.reset();
       setShowSuccessDialog(true);
