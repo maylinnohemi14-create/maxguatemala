@@ -30,6 +30,7 @@ export type Database = {
           id: string
           id_producto: string
           id_variable: string | null
+          ip_address: string | null
           nombres: string
           nota: string | null
           precio_total: string
@@ -53,6 +54,7 @@ export type Database = {
           id?: string
           id_producto?: string
           id_variable?: string | null
+          ip_address?: string | null
           nombres: string
           nota?: string | null
           precio_total: string
@@ -76,6 +78,7 @@ export type Database = {
           id?: string
           id_producto?: string
           id_variable?: string | null
+          ip_address?: string | null
           nombres?: string
           nota?: string | null
           precio_total?: string
@@ -164,6 +167,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      ip_has_order: { Args: { client_ip: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "user"

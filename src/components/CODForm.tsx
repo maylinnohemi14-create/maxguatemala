@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Loader2, Package, DollarSign } from "lucide-react";
+import { Loader2, Package, DollarSign, AlertTriangle } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import guaranteeBadge from "@/assets/guarantee-badge.png";
 import trustSeals from "@/assets/trust-seals.jpg";
@@ -97,6 +97,9 @@ interface CODFormProps {
 
 export function CODForm({ productId, productPrice, productName = "Proyector Vevshao A10", productImage, onOrderComplete }: CODFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [clientIp, setClientIp] = useState<string | null>(null);
+  const [ipHasOrder, setIpHasOrder] = useState(false);
+  const [checkingIp, setCheckingIp] = useState(true);
   const [upsells, setUpsells] = useState({
     magistv: true,
     warranty: true,
@@ -119,19 +122,46 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     },
   });
 
+  // Check client IP on mount
+  useEffect(() => {
+    const checkClientIp = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-client-ip');
+        if (error) throw error;
+        
+        setClientIp(data.ip);
+        setIpHasOrder(data.hasOrder);
+      } catch (error) {
+        console.error('Error checking IP:', error);
+      } finally {
+        setCheckingIp(false);
+      }
+    };
+    
+    checkClientIp();
+  }, []);
+
   // Update viewer count periodically
-  useState(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setViewerCount(Math.floor(Math.random() * 11) + 10); // 10-20
     }, 8000); // Update every 8 seconds
     
     return () => clearInterval(interval);
-  });
+  }, []);
 
   const selectedDepartamento = form.watch("departamento");
   const availableCiudades = selectedDepartamento ? CIUDADES_POR_DEPARTAMENTO[selectedDepartamento] || [] : [];
 
   const onSubmit = async (data: FormValues) => {
+    // Check if IP already has an order
+    if (ipHasOrder) {
+      toast.error("Ya realizaste una compra anteriormente", {
+        description: "Solo se permite una compra por persona.",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -149,6 +179,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         cantidad: 1,
         precio_total: productPrice.toString().replace(/\./g, '').replace(/,/g, ''),
         con_recaudo: 'SI',
+        ip_address: clientIp,
       });
 
       if (error) {
@@ -176,6 +207,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         description: `Tu pedido ha sido registrado correctamente, ${data.nombres}. ¡Pronto recibirás tu producto!`,
       });
 
+      setIpHasOrder(true); // Mark as purchased
       form.reset();
       onOrderComplete?.();
     } catch (error: any) {
@@ -186,8 +218,31 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     }
   };
 
+  // Show message if user already purchased
+  if (ipHasOrder && !checkingIp) {
+    return (
+      <div className="space-y-6">
+        <div className="flex flex-col items-center justify-center gap-4 bg-amber-500/10 border border-amber-500/30 rounded-lg p-8 text-center">
+          <AlertTriangle className="h-12 w-12 text-amber-500" />
+          <h3 className="text-xl font-bold text-amber-600">Ya realizaste una compra</h3>
+          <p className="text-muted-foreground">
+            Solo se permite una compra por persona. Si tienes alguna duda sobre tu pedido, contáctanos por WhatsApp.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
+      {/* Loading IP check */}
+      {checkingIp && (
+        <div className="flex items-center justify-center gap-2 py-4">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          <span className="text-sm text-muted-foreground">Verificando disponibilidad...</span>
+        </div>
+      )}
+
       {/* Live Viewer Counter */}
       <div className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-2 animate-pulse">
         <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
