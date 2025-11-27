@@ -157,17 +157,17 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
 
       // Track conversions on Facebook and TikTok
       trackFacebookConversion('Purchase', {
-        value: 129,
+        value: productPrice,
         currency: 'COP',
-        content_name: 'Mini Proyector LED',
+        content_name: productName,
         content_ids: ['1989831'],
         content_type: 'product'
       });
       
       trackTikTokConversion('CompletePayment', {
-        value: 129,
+        value: productPrice,
         currency: 'COP',
-        content_name: 'Mini Proyector LED',
+        content_name: productName,
         content_id: '1989831',
         content_type: 'product'
       });
