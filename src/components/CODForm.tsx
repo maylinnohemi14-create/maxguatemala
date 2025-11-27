@@ -214,14 +214,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       try {
         await supabase.functions.invoke('send-telegram-notification', {
           body: {
-            nombres: data.nombres,
-            apellidos: data.apellidos,
-            telefono: data.telefono,
-            direccion: data.direccion,
-            departamento: data.departamento,
-            ciudad: data.ciudad,
-            precio_total: productPrice.toString(),
-            cantidad: 1,
+            precio_total: productPrice.toLocaleString('es-CO'),
           }
         });
       } catch (telegramError) {
