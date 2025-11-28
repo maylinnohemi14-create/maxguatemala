@@ -284,7 +284,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors text-lg"
               >
-                <span className="text-2xl">📱</span> WhatsApp
+                📲 WhatsApp: +56 984 591 932
               </a>
             </div>
             
