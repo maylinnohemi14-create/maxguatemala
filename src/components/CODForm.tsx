@@ -282,7 +282,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 href="https://wa.me/56984591932?text=Hola,%20acabo%20de%20realizar%20una%20compra%20y%20tengo%20una%20consulta"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors text-lg"
+                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors text-lg animate-pulse"
               >
                 📲 WhatsApp: +56 984 591 932
               </a>
