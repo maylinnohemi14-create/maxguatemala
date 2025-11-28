@@ -140,42 +140,42 @@ const Index = () => {
 
       {/* Trust Bar */}
       <div className="bg-gradient-hero text-primary-foreground py-2">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
-            <div className="flex items-center gap-2">
-              <Truck className="w-4 h-4" />
+        <div className="container mx-auto px-2 sm:px-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Truck className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>Envío Gratis</span>
             </div>
-            <div className="flex items-center gap-2">
-              <CreditCard className="w-4 h-4" />
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <CreditCard className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>Pago Contra Entrega</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4" />
-              <span>Garantía de 2 Años</span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span>Garantía 2 Años</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <section className="container mx-auto px-3 sm:px-4 py-6 sm:py-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
           {/* Product Gallery */}
           <div className="animate-fade-in">
-            <div className="rounded-2xl overflow-hidden shadow-large mb-4 bg-white">
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white">
               <img
                 src={images[selectedImage]}
                 alt="Projetor VEVSHAO A10"
                 className="w-full h-auto object-contain aspect-square"
               />
             </div>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-5 gap-1.5 sm:gap-3">
               {images.map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
-                  className={`rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
+                  className={`rounded-md sm:rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
                     selectedImage === idx
                       ? "border-primary shadow-glow"
                       : "border-border hover:border-primary/50"
@@ -193,76 +193,76 @@ const Index = () => {
 
           {/* Product Info */}
           <div className="animate-scale-in">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="flex gap-1">
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <div className="flex gap-0.5 sm:gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                  <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-accent text-accent" />
                 ))}
               </div>
-              <span className="text-sm font-medium text-muted-foreground">
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground">
                 (200+ reseñas)
               </span>
-              <Badge className="ml-2 bg-foreground text-background font-bold text-xs px-3 py-1 animate-pulse-fast">
+              <Badge className="bg-foreground text-background font-bold text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 animate-pulse-fast">
                 +897 unidades vendidas!
               </Badge>
             </div>
 
-            <h1 className="text-4xl font-bold mb-4 text-foreground leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-foreground leading-tight">
               PROYECTOR VEVSHAO A10 + REGALO
-              <Badge className="ml-3 bg-primary text-primary-foreground text-sm px-3 py-1 animate-pulse-glow">
+              <Badge className="block sm:inline-block mt-2 sm:mt-0 sm:ml-3 bg-primary text-primary-foreground text-xs sm:text-sm px-2 sm:px-3 py-1 animate-pulse-glow w-fit">
                 COMPRE 1 Y LLEVA OTRO GRATIS
               </Badge>
             </h1>
 
-            <p className="text-lg text-muted-foreground mb-6 font-bold">
+            <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6 font-bold">
               Transforma cualquier espacio en un cine con conectividad completa y sonido envolvente.
             </p>
 
-            <div className="mb-6 p-6 rounded-xl bg-primary/5 border-2 border-primary/20">
-              <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-5xl font-bold text-foreground animate-pulse-slow">$129.000</span>
-                <span className="text-2xl text-muted-foreground line-through">$399.000</span>
+            <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-xl bg-primary/5 border-2 border-primary/20">
+              <div className="flex items-baseline gap-2 sm:gap-3 mb-2">
+                <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground animate-pulse-slow">$129.000</span>
+                <span className="text-lg sm:text-xl lg:text-2xl text-muted-foreground line-through">$399.000</span>
               </div>
               <div className="flex items-center gap-2 text-success animate-lightning">
-                <Zap className="w-5 h-5" />
-                <span className="font-semibold">¡Ahorra 68% hoy!</span>
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="font-semibold text-sm sm:text-base">¡Ahorra 68% hoy!</span>
               </div>
             </div>
 
             {/* Benefits List */}
-            <div className="space-y-3 mb-6">
+            <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
               {[
                 "Disfruta imágenes nítidas en cualquier habitación",
                 "Experimenta sonido envolvente sin altavoces extra",
                 "Conecta dispositivos fácilmente con múltiples opciones",
                 "Proyecta con claridad incluso con luz ambiental",
               ].map((benefit, idx) => (
-                <div key={idx} className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-success flex items-center justify-center">
-                    <Check className="w-4 h-4 text-success-foreground" />
+                <div key={idx} className="flex items-start gap-2 sm:gap-3">
+                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-success flex items-center justify-center mt-0.5">
+                    <Check className="w-3 h-3 sm:w-4 sm:h-4 text-success-foreground" />
                   </div>
-                  <span className="text-foreground">{benefit}</span>
+                  <span className="text-sm sm:text-base text-foreground">{benefit}</span>
                 </div>
               ))}
             </div>
 
             {/* Quantity Selector */}
-            <div className="mb-6">
-              <label className="block font-semibold mb-3 text-foreground">Cantidad:</label>
+            <div className="mb-4 sm:mb-6">
+              <label className="block font-semibold mb-2 sm:mb-3 text-foreground text-sm sm:text-base">Cantidad:</label>
               <div className="flex items-center gap-4">
                 <div className="flex items-center border-2 border-border rounded-lg overflow-hidden">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-6 py-3 bg-secondary hover:bg-muted transition-colors font-bold text-lg"
+                    className="px-4 sm:px-6 py-2 sm:py-3 bg-secondary hover:bg-muted transition-colors font-bold text-base sm:text-lg"
                   >
                     -
                   </button>
-                  <span className="px-8 py-3 font-bold text-lg border-x-2 border-border">
+                  <span className="px-5 sm:px-8 py-2 sm:py-3 font-bold text-base sm:text-lg border-x-2 border-border">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-6 py-3 bg-secondary hover:bg-muted transition-colors font-bold text-lg"
+                    className="px-4 sm:px-6 py-2 sm:py-3 bg-secondary hover:bg-muted transition-colors font-bold text-base sm:text-lg"
                   >
                     +
                   </button>
@@ -271,20 +271,20 @@ const Index = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="space-y-3 mb-8">
+            <div className="space-y-3 mb-6 sm:mb-8">
               <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
                 <DialogTrigger asChild>
                   <Button
                     size="lg"
-                    className="w-full text-lg font-bold py-7 bg-gradient-hero hover:shadow-glow transition-all animate-button-bounce"
+                    className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-gradient-hero hover:shadow-glow transition-all animate-button-bounce"
                   >
-                    <Gift className="w-6 h-6 mr-2" />
+                    <Gift className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
                     COMPRAR AHORA - ¡OFERTA LIMITADA!
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
                   <DialogHeader>
-                    <DialogTitle>Formulario de Pedido - Pago Contra Entrega</DialogTitle>
+                    <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
                   </DialogHeader>
                   {showCODForm && (
                     <CODForm 
@@ -304,7 +304,7 @@ const Index = () => {
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               <TrustBadge
                 icon={Truck}
                 title="Envío Gratis"
@@ -326,17 +326,17 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="bg-secondary/30 py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-foreground">
+      <section className="bg-secondary/30 py-10 sm:py-16">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-foreground">
               Características Profesionales
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Tecnología de punta para proporcionar la mejor experiencia visual
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {features.map((feature, idx) => (
               <FeatureCard key={idx} {...feature} />
             ))}
@@ -345,33 +345,33 @@ const Index = () => {
       </section>
 
       {/* Lifestyle Image Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="animate-fade-in">
-              <h2 className="text-3xl font-bold mb-6 text-foreground">
+      <section className="py-10 sm:py-16">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+            <div className="animate-fade-in order-2 md:order-1">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-foreground">
                 Experiencia Cinematográfica en Casa
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6">
                 Crea momentos inolvidables con tu familia viendo películas, series y jugando
                 en una pantalla gigante de hasta 200 pulgadas. La calidad de imagen 4K garantiza
                 nitidez excepcional incluso en ambientes con luz ambiental.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {[
                   "Resolución 1920x1080 Full HD",
                   "Proyección de 40 a 200 pulgadas",
                   "Contraste 5000:1 para colores vibrantes",
                   "Lámpara LED con 50.000 horas de vida",
                 ].map((spec, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <Package className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground font-medium">{spec}</span>
+                  <div key={idx} className="flex items-center gap-2 sm:gap-3">
+                    <Package className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                    <span className="text-sm sm:text-base text-foreground font-medium">{spec}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-large animate-scale-in">
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large animate-scale-in order-1 md:order-2">
               <img
                 src={projectorLifestyle1}
                 alt="Familia viendo proyector"
@@ -383,20 +383,20 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-secondary/30 py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Users className="w-8 h-8 text-primary" />
-              <h2 className="text-3xl font-bold text-foreground">
+      <section className="bg-secondary/30 py-10 sm:py-16">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
+              <Users className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+              <h2 className="text-xl sm:text-3xl font-bold text-foreground">
                 Lo Que Dicen Nuestros Clientes
               </h2>
             </div>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-sm sm:text-lg text-muted-foreground">
               Más de 200 reseñas positivas de clientes satisfechos
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {testimonials.map((testimonial, idx) => (
               <TestimonialCard key={idx} {...testimonial} />
             ))}
@@ -405,55 +405,55 @@ const Index = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
+      <section className="py-10 sm:py-16">
+        <div className="container mx-auto px-3 sm:px-4 max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-foreground">
             Preguntas Frecuentes
           </h2>
-          <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="item-1" className="border rounded-lg px-6 bg-card">
-              <AccordionTrigger className="text-left font-semibold hover:text-primary">
+          <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+            <AccordionItem value="item-1" className="border rounded-lg px-4 sm:px-6 bg-card">
+              <AccordionTrigger className="text-left font-semibold hover:text-primary text-sm sm:text-base">
                 ¿Cómo funciona la promoción 2x1?
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
+              <AccordionContent className="text-muted-foreground text-sm sm:text-base">
                 Al comprar un proyector VEVSHAO A10, automáticamente recibes otro proyector
                 idéntico completamente gratis. ¡Es nuestra forma de agradecer la confianza en
                 nuestros productos!
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-2" className="border rounded-lg px-6 bg-card">
-              <AccordionTrigger className="text-left font-semibold hover:text-primary">
+            <AccordionItem value="item-2" className="border rounded-lg px-4 sm:px-6 bg-card">
+              <AccordionTrigger className="text-left font-semibold hover:text-primary text-sm sm:text-base">
                 ¿Cuál es el tiempo de entrega?
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
+              <AccordionContent className="text-muted-foreground text-sm sm:text-base">
                 El tiempo de entrega es de 5 a 7 días hábiles para toda Colombia. Recibirás un
                 código de rastreo tan pronto como el producto sea despachado.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-3" className="border rounded-lg px-6 bg-card">
-              <AccordionTrigger className="text-left font-semibold hover:text-primary">
+            <AccordionItem value="item-3" className="border rounded-lg px-4 sm:px-6 bg-card">
+              <AccordionTrigger className="text-left font-semibold hover:text-primary text-sm sm:text-base">
                 ¿El proyector es compatible con mi celular?
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
+              <AccordionContent className="text-muted-foreground text-sm sm:text-base">
                 ¡Sí! El proyector es compatible con cualquier smartphone a través de conexión WiFi,
                 cable HDMI o adaptadores. Funciona con iOS, Android y todos los sistemas
                 operativos.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-4" className="border rounded-lg px-6 bg-card">
-              <AccordionTrigger className="text-left font-semibold hover:text-primary">
+            <AccordionItem value="item-4" className="border rounded-lg px-4 sm:px-6 bg-card">
+              <AccordionTrigger className="text-left font-semibold hover:text-primary text-sm sm:text-base">
                 ¿Tiene garantía?
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
+              <AccordionContent className="text-muted-foreground text-sm sm:text-base">
                 ¡Sí! Ofrecemos garantía de 30 días de satisfacción garantizada o devolución de tu dinero,
                 además de 2 años de garantía del fabricante contra defectos de fabricación.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-5" className="border rounded-lg px-6 bg-card">
-              <AccordionTrigger className="text-left font-semibold hover:text-primary">
+            <AccordionItem value="item-5" className="border rounded-lg px-4 sm:px-6 bg-card">
+              <AccordionTrigger className="text-left font-semibold hover:text-primary text-sm sm:text-base">
                 ¿Cómo es el pago contra entrega?
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
+              <AccordionContent className="text-muted-foreground text-sm sm:text-base">
                 Puedes elegir pagar contra entrega en efectivo o tarjeta directamente al
                 mensajero. También aceptamos pago anticipado con tarjeta de crédito, débito,
                 PSE y transferencia bancaria.
@@ -464,39 +464,39 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="bg-gradient-hero text-primary-foreground py-16">
-        <div className="container mx-auto px-4 text-center">
-          <Gift className="w-16 h-16 mx-auto mb-6" />
-          <h2 className="text-4xl font-bold mb-4">
+      <section className="bg-gradient-hero text-primary-foreground py-10 sm:py-16">
+        <div className="container mx-auto px-3 sm:px-4 text-center">
+          <Gift className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6" />
+          <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
             ¡Oferta Limitada: Compra 1 y Lleva 2!
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
             No pierdas esta oportunidad única de tener dos proyectores profesionales por el precio de
             uno. ¡Stock limitado!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-            <div className="flex items-center gap-2 text-lg font-semibold">
-              <Clock className="w-6 h-6" />
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 text-base sm:text-lg font-semibold">
+              <Clock className="w-5 h-5 sm:w-6 sm:h-6" />
               <span>Promoción válida por tiempo limitado</span>
             </div>
           </div>
           <Button
             size="lg"
             onClick={() => setShowCODForm(true)}
-            className="bg-foreground text-background hover:bg-foreground/90 text-xl font-bold py-8 px-12 shadow-large"
+            className="bg-foreground text-background hover:bg-foreground/90 text-base sm:text-xl font-bold py-5 sm:py-8 px-8 sm:px-12 shadow-large w-full sm:w-auto"
           >
             ASEGURAR MI PROMOCIÓN AHORA
           </Button>
-          <p className="mt-6 text-sm opacity-75">
+          <p className="mt-4 sm:mt-6 text-xs sm:text-sm opacity-75">
             ✓ Envío Gratis ✓ Pago Contra Entrega ✓ Garantía de 2 Años
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm opacity-75">
+      <footer className="bg-foreground text-background py-6 sm:py-8">
+        <div className="container mx-auto px-3 sm:px-4 text-center">
+          <p className="text-xs sm:text-sm opacity-75">
             © 2024 VEVSHAO. Todos los derechos reservados.
           </p>
         </div>
