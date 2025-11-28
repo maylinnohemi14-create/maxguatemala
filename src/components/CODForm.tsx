@@ -233,8 +233,8 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     }
   };
 
-  // Show message if user already purchased
-  if (ipHasOrder && !checkingIp) {
+  // Show message if user already purchased (but not if showing success dialog)
+  if (ipHasOrder && !checkingIp && !showSuccessDialog) {
     return (
       <div className="space-y-6">
         <div className="flex flex-col items-center justify-center gap-4 bg-amber-500/10 border border-amber-500/30 rounded-lg p-8 text-center">
