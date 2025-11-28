@@ -286,15 +286,19 @@ const Index = () => {
                   <DialogHeader>
                     <DialogTitle>Formulario de Pedido - Pago Contra Entrega</DialogTitle>
                   </DialogHeader>
-                  <CODForm 
-                    productId={PRODUCT_ID}
-                    productPrice={PRODUCT_PRICE * quantity}
-                    productName="Proyector Vevshao A10 - Compra 1 y Lleva 2"
-                    productImage={projectorPromo}
-                    onOrderComplete={() => {
-                      toast.success("¡Pedido registrado exitosamente!");
-                    }}
-                  />
+                  {showCODForm && (
+                    <CODForm 
+                      key={Date.now()}
+                      productId={PRODUCT_ID}
+                      productPrice={PRODUCT_PRICE * quantity}
+                      productName="Proyector Vevshao A10 - Compra 1 y Lleva 2"
+                      productImage={projectorPromo}
+                      onOrderComplete={() => {
+                        setShowCODForm(false);
+                        toast.success("¡Pedido registrado exitosamente!");
+                      }}
+                    />
+                  )}
                 </DialogContent>
               </Dialog>
             </div>
