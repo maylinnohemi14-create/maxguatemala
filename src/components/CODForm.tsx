@@ -129,6 +129,19 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     },
   });
 
+  const [hasTrackedInitiate, setHasTrackedInitiate] = useState(false);
+
+  // Track ViewContent when form loads
+  useEffect(() => {
+    trackTikTokConversion('ViewContent', {
+      content_type: 'product',
+      content_id: productId,
+      content_name: productName,
+      value: productPrice,
+      currency: 'COP'
+    });
+  }, [productId, productName, productPrice]);
+
   // Check client IP on mount
   useEffect(() => {
     const checkClientIp = async () => {
@@ -147,6 +160,19 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     
     checkClientIp();
   }, []);
+
+  // Track InitiateCheckout when user starts filling the form
+  const handleFormInteraction = () => {
+    if (!hasTrackedInitiate) {
+      trackTikTokConversion('InitiateCheckout', {
+        content_type: 'product',
+        content_id: productId,
+        value: productPrice,
+        currency: 'COP'
+      });
+      setHasTrackedInitiate(true);
+    }
+  };
 
   // Update viewer count periodically
   useEffect(() => {
@@ -465,7 +491,12 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 <FormItem>
                   <FormLabel className="text-sm">Nombres *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Juan Carlos" {...field} className="text-base" />
+                    <Input 
+                      placeholder="Juan Carlos" 
+                      {...field} 
+                      className="text-base"
+                      onFocus={handleFormInteraction}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
