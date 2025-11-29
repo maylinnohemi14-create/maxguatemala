@@ -210,7 +210,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         content_type: 'product'
       });
 
-      // Send Telegram notification
+      // Send Telegram notification to admin
       try {
         await supabase.functions.invoke('send-telegram-notification', {
           body: {
@@ -219,6 +219,20 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         });
       } catch (telegramError) {
         console.error('Error sending Telegram notification:', telegramError);
+        // Don't fail the order if notification fails
+      }
+
+      // Send WhatsApp confirmation to customer
+      try {
+        await supabase.functions.invoke('send-whatsapp-confirmation', {
+          body: {
+            telefono: data.telefono,
+            nombres: data.nombres,
+            precio_total: productPrice.toLocaleString('es-CO'),
+          }
+        });
+      } catch (whatsappError) {
+        console.error('Error sending WhatsApp confirmation:', whatsappError);
         // Don't fail the order if notification fails
       }
 
