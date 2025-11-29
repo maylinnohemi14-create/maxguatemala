@@ -19,7 +19,7 @@ serve(async (req) => {
       throw new Error('Z-API credentials not configured');
     }
 
-    const { telefono, nombres, precio_total } = await req.json();
+    const { telefono, direccion, ciudad, departamento } = await req.json();
     
     // Format phone number for WhatsApp (remove spaces, dashes, add country code if needed)
     let phoneNumber = telefono.replace(/[\s\-\(\)]/g, '');
@@ -32,20 +32,14 @@ serve(async (req) => {
     
     console.log('Sending WhatsApp to:', phoneNumber);
 
-    const message = `¡Hola ${nombres}! 🎉
+    const message = `✅ *¡Tu compra fue realizada con éxito!*
 
-✅ *Tu pedido ha sido confirmado*
+📦 Tu pedido llegará en hasta *3 días hábiles* a:
+📍 ${direccion}, ${ciudad}, ${departamento}
 
-📦 *Resumen de tu compra:*
-• Producto: Mini Proyector LED 4K
-• Total: $${precio_total} COP
+💵 *Solo pagas al recibir*
 
-🚚 *Envío:* Gratis
-💵 *Pago:* Contra Entrega
-
-Tu pedido será enviado en las próximas 24-48 horas. Te notificaremos cuando esté en camino.
-
-📱 ¿Dudas? Responde a este mensaje.
+🚚 Transportadora de envío: *Coordinadora*
 
 ¡Gracias por tu compra! 🙏`;
 
