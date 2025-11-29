@@ -222,20 +222,6 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         // Don't fail the order if notification fails
       }
 
-      // Send WhatsApp confirmation to customer
-      try {
-        await supabase.functions.invoke('send-whatsapp-confirmation', {
-          body: {
-            telefono: data.telefono,
-            direccion: data.direccion,
-            ciudad: data.ciudad,
-            departamento: data.departamento,
-          }
-        });
-      } catch (whatsappError) {
-        console.error('Error sending WhatsApp confirmation:', whatsappError);
-        // Don't fail the order if notification fails
-      }
 
       setIpHasOrder(true); // Mark as purchased
       form.reset();
