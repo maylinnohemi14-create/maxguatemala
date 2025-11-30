@@ -137,8 +137,9 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       content_type: 'product',
       content_id: productId,
       content_name: productName,
-      value: productPrice,
-      currency: 'COP'
+      value: Number(productPrice),
+      currency: 'COP',
+      quantity: 1
     });
   }, [productId, productName, productPrice]);
 
@@ -167,8 +168,9 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       trackTikTokConversion('InitiateCheckout', {
         content_type: 'product',
         content_id: productId,
-        value: productPrice,
-        currency: 'COP'
+        value: Number(productPrice),
+        currency: 'COP',
+        quantity: 1
       });
       setHasTrackedInitiate(true);
     }
@@ -229,11 +231,12 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       });
       
       trackTikTokConversion('CompletePayment', {
-        value: productPrice,
+        value: Number(productPrice),
         currency: 'COP',
         content_name: productName,
         content_id: '1989831',
-        content_type: 'product'
+        content_type: 'product',
+        quantity: 1
       });
 
       // Send Telegram notification to admin

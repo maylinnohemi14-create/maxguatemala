@@ -83,6 +83,7 @@ export const trackFacebookConversion = (eventName: string, data?: any) => {
 // Track TikTok conversion
 export const trackTikTokConversion = (eventName: string, data?: any) => {
   if (typeof window !== 'undefined' && (window as any).ttq) {
+    console.log('TikTok Event:', eventName, data);
     (window as any).ttq.track(eventName, data);
   }
 };
