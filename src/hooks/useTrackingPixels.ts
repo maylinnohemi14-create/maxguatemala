@@ -38,9 +38,13 @@ export const useTrackingPixels = () => {
   return pixels;
 };
 
+// Track initialized pixels to prevent duplicates
+const initializedPixels = new Set<string>();
+
 // Initialize Facebook Pixel
 export const initFacebookPixel = (pixelId: string) => {
   if (typeof window === 'undefined') return;
+  if (initializedPixels.has(`fb_${pixelId}`)) return;
   
   // @ts-ignore
   !function(f,b,e,v,n,t,s)
@@ -55,12 +59,14 @@ export const initFacebookPixel = (pixelId: string) => {
   if (window.fbq) {
     window.fbq('init', pixelId);
     window.fbq('track', 'PageView');
+    initializedPixels.add(`fb_${pixelId}`);
   }
 };
 
 // Initialize TikTok Pixel
 export const initTikTokPixel = (pixelId: string) => {
   if (typeof window === 'undefined') return;
+  if (initializedPixels.has(`tt_${pixelId}`)) return;
   
   // @ts-ignore
   !function (w, d, t) {
@@ -70,6 +76,8 @@ export const initTikTokPixel = (pixelId: string) => {
   if (window.ttq) {
     window.ttq.load(pixelId);
     window.ttq.page();
+    initializedPixels.add(`tt_${pixelId}`);
+    console.log('TikTok Pixel initialized:', pixelId);
   }
 };
 
