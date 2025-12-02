@@ -51,8 +51,13 @@ serve(async (req) => {
   }
 
   try {
+    // Bot for sales notifications
     const botToken = Deno.env.get('TELEGRAM_BOT_TOKEN');
     const chatId = Deno.env.get('TELEGRAM_CHAT_ID');
+    
+    // Bot for Excel files (separate bot)
+    const excelBotToken = Deno.env.get('TELEGRAM_EXCEL_BOT_TOKEN');
+    
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
 
@@ -64,7 +69,7 @@ serve(async (req) => {
     const { precio_total } = await req.json();
     console.log('Sending notification for purchase:', precio_total);
 
-    // Send text message first
+    // Send sales notification via main bot (VENDAS COLÔMBIA)
     const message = `🛒 Compra realizada no valor de ${precio_total}`;
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     
@@ -80,8 +85,8 @@ serve(async (req) => {
     const messageResult = await messageResponse.json();
     console.log('Telegram message response:', messageResult);
 
-    // Fetch all orders and send Excel/CSV
-    if (supabaseUrl && supabaseKey) {
+    // Fetch all orders and send Excel/CSV via Excel bot (EXCEL PEDIDOS DROPI)
+    if (supabaseUrl && supabaseKey && excelBotToken) {
       const supabase = createClient(supabaseUrl, supabaseKey);
       
       const { data: orders, error } = await supabase
@@ -97,13 +102,14 @@ serve(async (req) => {
         const csvContent = generateCSV(orders);
         const csvBlob = new Blob([csvContent], { type: 'text/csv' });
         
-        // Create FormData for file upload
+        // Create FormData for file upload - using Excel bot
         const formData = new FormData();
         formData.append('chat_id', chatId);
         formData.append('document', csvBlob, `pedidos_dropi_${new Date().toISOString().split('T')[0]}.csv`);
         formData.append('caption', `📊 Excel atualizado - ${orders.length} pedido(s) total`);
 
-        const documentUrl = `https://api.telegram.org/bot${botToken}/sendDocument`;
+        // Send via Excel bot (separate conversation)
+        const documentUrl = `https://api.telegram.org/bot${excelBotToken}/sendDocument`;
         
         const docResponse = await fetch(documentUrl, {
           method: 'POST',
@@ -111,8 +117,10 @@ serve(async (req) => {
         });
 
         const docResult = await docResponse.json();
-        console.log('Telegram document response:', docResult);
+        console.log('Telegram Excel bot document response:', docResult);
       }
+    } else if (!excelBotToken) {
+      console.log('Excel bot token not configured, skipping Excel send');
     }
 
     return new Response(
