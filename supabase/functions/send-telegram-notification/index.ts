@@ -1,13 +1,14 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import * as XLSX from "https://esm.sh/xlsx@0.18.5";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Generate CSV content from orders
-function generateCSV(orders: any[]): string {
+// Generate XLSX content from orders
+function generateXLSX(orders: any[]): Uint8Array {
   const headers = [
     'NOMBRES', 'APELLIDOS', 'DIRECCIÓN Y BARRIO', 'DEPARTAMENTO', 'CIUDAD',
     'TELÉFONO', 'ID DE PRODUCTO', 'CANTIDAD', 'PRECIO TOTAL (SIN PUNTOS NI COMAS)',
@@ -37,12 +38,20 @@ function generateCSV(orders: any[]): string {
     order.seguro || ''
   ]);
 
-  const csvContent = [
-    headers.join(','),
-    ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
-  ].join('\n');
-
-  return csvContent;
+  // Create worksheet data with headers
+  const wsData = [headers, ...rows];
+  
+  // Create workbook and worksheet
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+  
+  // Add worksheet to workbook
+  XLSX.utils.book_append_sheet(wb, ws, 'Pedidos');
+  
+  // Generate buffer
+  const xlsxBuffer = XLSX.write(wb, { type: 'array', bookType: 'xlsx' });
+  
+  return new Uint8Array(xlsxBuffer);
 }
 
 serve(async (req) => {
@@ -85,7 +94,7 @@ serve(async (req) => {
     const messageResult = await messageResponse.json();
     console.log('Telegram message response:', messageResult);
 
-    // Fetch all orders and send Excel/CSV via Excel bot (EXCEL PEDIDOS DROPI)
+    // Fetch all orders and send Excel via Excel bot (EXCEL PEDIDOS DROPI)
     if (supabaseUrl && supabaseKey && excelBotToken) {
       const supabase = createClient(supabaseUrl, supabaseKey);
       
@@ -97,15 +106,17 @@ serve(async (req) => {
       if (error) {
         console.error('Error fetching orders:', error);
       } else if (orders && orders.length > 0) {
-        console.log(`Found ${orders.length} orders, generating CSV...`);
+        console.log(`Found ${orders.length} orders, generating XLSX...`);
         
-        const csvContent = generateCSV(orders);
-        const csvBlob = new Blob([csvContent], { type: 'text/csv' });
+        const xlsxBuffer = generateXLSX(orders);
+        const xlsxBlob = new Blob([xlsxBuffer as BlobPart], { 
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' 
+        });
         
         // Create FormData for file upload - using Excel bot
         const formData = new FormData();
         formData.append('chat_id', chatId);
-        formData.append('document', csvBlob, `pedidos_dropi_${new Date().toISOString().split('T')[0]}.csv`);
+        formData.append('document', xlsxBlob, `pedidos_dropi_${new Date().toISOString().split('T')[0]}.xlsx`);
         formData.append('caption', `📊 Excel atualizado - ${orders.length} pedido(s) total`);
 
         // Send via Excel bot (separate conversation)
