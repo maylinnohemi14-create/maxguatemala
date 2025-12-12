@@ -163,13 +163,8 @@ const Admin = () => {
     navigate("/");
   };
 
-  const downloadExcel = async () => {
-    if (orders.length === 0) {
-      toast.error("Não há pedidos para baixar");
-      return;
-    }
-
-    const excelData = orders.map((order) => ({
+  const formatOrdersForExcel = (ordersToFormat: Order[]) => {
+    return ordersToFormat.map((order) => ({
       'NOMBRES': order.nombres,
       'APELLIDOS': order.apellidos,
       'DIRECCIÓN Y BARRIO': order.direccion_y_barrio,
@@ -189,6 +184,15 @@ const Admin = () => {
       'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': order.colonia || '',
       'SEGURO (SOLO APLICA PARA ENVIA)': ''
     }));
+  };
+
+  const downloadExcel = async () => {
+    if (orders.length === 0) {
+      toast.error("Não há pedidos para baixar");
+      return;
+    }
+
+    const excelData = formatOrdersForExcel(orders);
 
     const ws = XLSX.utils.json_to_sheet(excelData);
     const wb = XLSX.utils.book_new();
@@ -215,6 +219,35 @@ const Admin = () => {
     } catch (error: any) {
       toast.error("Excel baixado, mas erro ao resetar pedidos: " + error.message);
     }
+  };
+
+  const downloadSplitExcel = () => {
+    if (orders.length === 0) {
+      toast.error("Não há pedidos para baixar");
+      return;
+    }
+
+    const halfIndex = Math.ceil(orders.length / 2);
+    const firstHalf = orders.slice(0, halfIndex);
+    const secondHalf = orders.slice(halfIndex);
+
+    const today = new Date().toISOString().split('T')[0];
+
+    // First file
+    const excelData1 = formatOrdersForExcel(firstHalf);
+    const ws1 = XLSX.utils.json_to_sheet(excelData1);
+    const wb1 = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb1, ws1, "Pedidos");
+    XLSX.writeFile(wb1, `pedidos_dropi_${today}_parte1.xlsx`);
+
+    // Second file
+    const excelData2 = formatOrdersForExcel(secondHalf);
+    const ws2 = XLSX.utils.json_to_sheet(excelData2);
+    const wb2 = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb2, ws2, "Pedidos");
+    XLSX.writeFile(wb2, `pedidos_dropi_${today}_parte2.xlsx`);
+
+    toast.success(`Excel dividido em 2 arquivos: ${firstHalf.length} pedidos na parte 1 e ${secondHalf.length} pedidos na parte 2`);
   };
 
   const clearAllOrders = async () => {
@@ -382,14 +415,24 @@ const Admin = () => {
         <div className="mb-8">
           <Card>
             <CardContent className="pt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Button 
                   onClick={downloadExcel}
                   className="w-full text-lg h-12"
                   disabled={orders.length === 0}
                 >
                   <Download className="mr-2 h-5 w-5" />
-                  Baixar Excel para Dropi ({orders.length} pedidos)
+                  Baixar Excel ({orders.length} pedidos)
+                </Button>
+
+                <Button 
+                  onClick={downloadSplitExcel}
+                  variant="secondary"
+                  className="w-full text-lg h-12"
+                  disabled={orders.length < 2}
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Baixar Dividido em 2 ({orders.length} pedidos)
                 </Button>
                 
                 <AlertDialog>
@@ -400,7 +443,7 @@ const Admin = () => {
                       disabled={orders.length === 0}
                     >
                       <Trash2 className="mr-2 h-5 w-5" />
-                      Limpar Todos os Pedidos do Excel
+                      Limpar Todos os Pedidos
                     </Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
