@@ -1,10 +1,1 @@
-project_id = "wyrtohhwnuixymuredrs"
-
-[functions.get-client-ip]
-verify_jwt = false
-
-[functions.send-telegram-notification]
-verify_jwt = false
-
-[functions.send-whatsapp-confirmation]
-verify_jwt = false
+project_id = "uqnnxcsnfojrmetplbui"
