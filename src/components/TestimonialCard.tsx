@@ -6,9 +6,10 @@ interface TestimonialCardProps {
   rating: number;
   comment: string;
   date: string;
+  image?: string;
 }
 
-export const TestimonialCard = ({ name, rating, comment, date }: TestimonialCardProps) => {
+export const TestimonialCard = ({ name, rating, comment, date, image }: TestimonialCardProps) => {
   return (
     <Card className="animate-fade-in hover:shadow-medium transition-shadow">
       <CardContent className="p-6">
@@ -26,7 +27,16 @@ export const TestimonialCard = ({ name, rating, comment, date }: TestimonialCard
             />
           ))}
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed">{comment}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">{comment}</p>
+        {image && (
+          <div className="rounded-lg overflow-hidden">
+            <img 
+              src={image} 
+              alt={`Foto de ${name}`}
+              className="w-full h-auto object-cover rounded-lg"
+            />
+          </div>
+        )}
       </CardContent>
     </Card>
   );
