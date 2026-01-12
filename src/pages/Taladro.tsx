@@ -220,27 +220,46 @@ const Taladro = () => {
             </div>
 
             {/* Delivery Timeline */}
-            <div className="mb-4 sm:mb-6 p-4 rounded-xl bg-secondary/50 border border-border">
-              <div className="flex items-center justify-between text-xs sm:text-sm">
-                <div className="flex flex-col items-center text-center">
-                  <ShoppingCart className="w-5 h-5 mb-1 text-primary" />
-                  <span className="font-bold">12 Jan</span>
-                  <span className="text-muted-foreground">Confirmada</span>
+            {(() => {
+              const today = new Date();
+              const formatDate = (date: Date) => {
+                return `${date.getDate()} ${date.toLocaleDateString('es-CO', { month: 'short' }).replace('.', '')}`;
+              };
+              const addDays = (date: Date, days: number) => {
+                const result = new Date(date);
+                result.setDate(result.getDate() + days);
+                return result;
+              };
+              const confirmedDate = formatDate(today);
+              const dispatchStart = formatDate(addDays(today, 1));
+              const dispatchEnd = formatDate(addDays(today, 2));
+              const deliveryStart = formatDate(addDays(today, 4));
+              const deliveryEnd = formatDate(addDays(today, 5));
+              
+              return (
+                <div className="mb-4 sm:mb-6 p-4 rounded-xl bg-secondary/50 border border-border">
+                  <div className="flex items-center justify-between text-xs sm:text-sm">
+                    <div className="flex flex-col items-center text-center">
+                      <ShoppingCart className="w-5 h-5 mb-1 text-primary" />
+                      <span className="font-bold">{confirmedDate}</span>
+                      <span className="text-muted-foreground">Confirmada</span>
+                    </div>
+                    <div className="flex-1 h-0.5 bg-primary/30 mx-2" />
+                    <div className="flex flex-col items-center text-center">
+                      <Truck className="w-5 h-5 mb-1 text-primary" />
+                      <span className="font-bold">{dispatchStart}-{addDays(today, 2).getDate()}</span>
+                      <span className="text-muted-foreground">Despachada</span>
+                    </div>
+                    <div className="flex-1 h-0.5 bg-primary/30 mx-2" />
+                    <div className="flex flex-col items-center text-center">
+                      <Gift className="w-5 h-5 mb-1 text-primary" />
+                      <span className="font-bold">{deliveryStart}-{addDays(today, 5).getDate()}</span>
+                      <span className="text-muted-foreground">Entregada</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex-1 h-0.5 bg-primary/30 mx-2" />
-                <div className="flex flex-col items-center text-center">
-                  <Truck className="w-5 h-5 mb-1 text-primary" />
-                  <span className="font-bold">13-14 Jan</span>
-                  <span className="text-muted-foreground">Despachada</span>
-                </div>
-                <div className="flex-1 h-0.5 bg-primary/30 mx-2" />
-                <div className="flex flex-col items-center text-center">
-                  <Gift className="w-5 h-5 mb-1 text-primary" />
-                  <span className="font-bold">16-17 Jan</span>
-                  <span className="text-muted-foreground">Entregada</span>
-                </div>
-              </div>
-            </div>
+              );
+            })()}
 
             {/* Benefits List */}
             <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
