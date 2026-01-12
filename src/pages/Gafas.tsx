@@ -312,11 +312,11 @@ const Gafas = () => {
               ))}
             </div>
 
-            {/* Urgency Badge */}
-            <div className="mb-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
-              <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400">
-                <span className="animate-pulse">🚨</span>
-                <span className="font-bold text-sm">ÚLTIMAS 7 UNIDADES - ¡Se agotan rápido!</span>
+            {/* Urgency Badge - Black Friday */}
+            <div className="mb-4 p-3 rounded-lg bg-gradient-to-r from-amber-500/20 to-red-500/20 border border-red-500/40">
+              <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
+                <span className="animate-pulse">🔥</span>
+                <span className="font-bold text-sm">¡50% DE DESCUENTO POR BLACK FRIDAY! - UNIDADES LIMITADAS 🚨</span>
               </div>
               <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
@@ -406,16 +406,6 @@ const Gafas = () => {
         </div>
       </section>
 
-      {/* Urgency Banner */}
-      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 overflow-hidden">
-        <div className="animate-marquee whitespace-nowrap">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <span key={i} className="mx-8 text-lg font-bold">
-              🏷️ ¡50% DE DESCUENTO! 🔥 ¡UNIDADES LIMITADAS! 🚨
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* Revolution Section with GIFs */}
       <section className="py-10 sm:py-16 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-background">
