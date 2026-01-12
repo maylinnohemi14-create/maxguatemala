@@ -45,6 +45,15 @@ const Gafas = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
+  const [liveViewers, setLiveViewers] = useState(12);
+  
+  // Update live viewers randomly between 12-15
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLiveViewers(Math.floor(Math.random() * 4) + 12);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   
   const PRODUCT_ID = "GAFAS-TR90-2X1";
   const PRODUCT_PRICE = 99900;
@@ -312,24 +321,16 @@ const Gafas = () => {
               ))}
             </div>
 
-            {/* Urgency Badge - Black Friday with GIF */}
-            <div className="mb-4 p-3 rounded-lg bg-gradient-to-r from-amber-500/20 to-red-500/20 border border-red-500/40">
-              <div className="flex items-center gap-3">
-                <img 
-                  src={gafasDemo} 
-                  alt="Oferta Black Friday" 
-                  className="w-12 h-12 rounded-lg object-cover"
-                />
-                <div>
-                  <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
-                    <span className="animate-pulse">🔥</span>
-                    <span className="font-bold text-sm">¡50% DE DESCUENTO POR BLACK FRIDAY! - UNIDADES LIMITADAS 🚨</span>
-                  </div>
-                  <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
-                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    <span>12 personas están viendo esto</span>
-                  </div>
-                </div>
+            {/* GIF with Live View */}
+            <div className="mb-4 flex flex-col items-center gap-2">
+              <img 
+                src={gafasDemo} 
+                alt="Gafas en acción" 
+                className="w-20 h-20 rounded-xl shadow-lg object-cover"
+              />
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <span>{liveViewers} personas están viendo esto</span>
               </div>
             </div>
 
