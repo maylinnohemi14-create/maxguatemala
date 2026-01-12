@@ -164,39 +164,18 @@ const Gafas = () => {
       <section className="container mx-auto px-3 sm:px-4 py-6 sm:py-12">
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
           {/* Product Gallery */}
-          <div className="animate-fade-in">
-            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-gradient-to-br from-slate-800 to-slate-900 relative">
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large bg-gradient-to-br from-slate-800 to-slate-900 relative">
               <div className="absolute top-4 left-4 z-10">
                 <Badge className="bg-amber-500 text-black font-bold text-xs sm:text-sm px-3 py-1.5 animate-pulse">
                   OFERTA 2X1 🔥
                 </Badge>
               </div>
               <img
-                src={images[selectedImage]}
+                src={gafasMain}
                 alt="Lentes Multifocales TR90"
                 className="w-full h-auto object-contain aspect-square"
               />
             </div>
-            <div className="grid grid-cols-4 gap-1.5 sm:gap-3">
-              {images.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`rounded-md sm:rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
-                    selectedImage === idx
-                      ? "border-blue-500 shadow-lg shadow-blue-500/30"
-                      : "border-border hover:border-blue-500/50"
-                  }`}
-                >
-                  <img
-                    src={img}
-                    alt={`Imagen ${idx + 1}`}
-                    className="w-full h-auto object-contain aspect-square bg-slate-800"
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Product Info */}
           <div className="animate-scale-in">
