@@ -34,6 +34,9 @@ import taladroCase from "@/assets/taladro-case.webp";
 import taladroLifestyle from "@/assets/taladro-lifestyle.jpg";
 import taladroAction from "@/assets/taladro-action.webp";
 import taladroDemo from "@/assets/taladro-demo.webp";
+import reviewPedro from "@/assets/review-pedro.jpg";
+import reviewArturo from "@/assets/review-arturo.jpg";
+import reviewLuis from "@/assets/review-luis.jpg";
 import { CODForm, IncludedItem } from "@/components/CODForm";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -87,18 +90,21 @@ const Taladro = () => {
       rating: 5,
       comment: "Muy útil y práctico, fue perfecto para hacerle una casita de muñecas sorpresa a mi hija. ¡Excelente producto y servicio!",
       date: "Hace 3 días",
+      image: reviewPedro,
     },
     {
       name: "Arturo G.",
       rating: 5,
       comment: "Todo está ok. La batería está cargada. Todas las funciones muy bien. ¡Recomendado!",
       date: "Hace 1 semana",
+      image: reviewArturo,
     },
     {
       name: "Luis R.",
       rating: 5,
       comment: "Excelente producto, soy instalador de muebles y me facilita muchísimo el trabajo. Ahora puedo hacer más instalaciones en menos tiempo.",
       date: "Hace 2 semanas",
+      image: reviewLuis,
     },
     {
       name: "Rodrigo A.",
