@@ -300,17 +300,10 @@ const Gafas = () => {
               ))}
             </div>
 
-            {/* GIF with Live View */}
-            <div className="mb-4">
-              <img 
-                src={gafasDemo} 
-                alt="Gafas en acción" 
-                className="w-full max-w-[280px] rounded-xl shadow-lg"
-              />
-              <div className="flex items-center gap-1 mt-2 text-xs text-muted-foreground">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span>{liveViewers} personas están viendo esto</span>
-              </div>
+            {/* Live View */}
+            <div className="mb-4 flex items-center gap-1 text-xs text-muted-foreground">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span>{liveViewers} personas están viendo esto</span>
             </div>
 
             {/* Quantity Selector */}
