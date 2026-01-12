@@ -427,9 +427,9 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               <Package className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
               <h3 className="font-bold text-sm sm:text-lg">{productName}</h3>
             </div>
-            <div className="flex items-center gap-1 sm:gap-2 text-lg sm:text-2xl font-bold text-primary">
+            <div className="flex items-center gap-1 sm:gap-2 text-lg sm:text-2xl font-bold text-primary animate-pulse" style={{ textShadow: '0 0 8px rgba(var(--primary), 0.6), 0 0 16px rgba(var(--primary), 0.4)' }}>
               <DollarSign className="w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0" />
-              <span>${productPrice.toLocaleString('es-CO')} COP</span>
+              <span style={{ textShadow: '0 0 10px currentColor, 0 0 20px currentColor' }}>${productPrice.toLocaleString('es-CO')} COP</span>
             </div>
             <div className="mt-2 sm:mt-3">
               <p className="text-xs sm:text-sm font-semibold text-green-600 animate-pulse">
