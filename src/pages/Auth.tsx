@@ -15,9 +15,38 @@ const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [hasExistingUsers, setHasExistingUsers] = useState(true);
+  const [checkingUsers, setCheckingUsers] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if there are existing users (profiles)
+    const checkExistingUsers = async () => {
+      try {
+        const { count, error } = await supabase
+          .from('profiles')
+          .select('*', { count: 'exact', head: true });
+        
+        if (error) {
+          console.error('Error checking users:', error);
+          setHasExistingUsers(true); // Default to login only on error
+        } else {
+          setHasExistingUsers((count ?? 0) > 0);
+          // If no users exist, show signup form
+          if ((count ?? 0) === 0) {
+            setIsLogin(false);
+          }
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        setHasExistingUsers(true);
+      } finally {
+        setCheckingUsers(false);
+      }
+    };
+
+    checkExistingUsers();
+
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
@@ -67,6 +96,18 @@ const Auth = () => {
 
         toast.success("Login realizado com sucesso!");
       } else {
+        // Check again if user already exists before signup
+        const { count } = await supabase
+          .from('profiles')
+          .select('*', { count: 'exact', head: true });
+        
+        if ((count ?? 0) > 0) {
+          toast.error("Já existe uma conta cadastrada. Faça login.");
+          setIsLogin(true);
+          setHasExistingUsers(true);
+          return;
+        }
+
         const redirectUrl = `${window.location.origin}/`;
         
         const { error } = await supabase.auth.signUp({
@@ -88,6 +129,7 @@ const Auth = () => {
 
         toast.success("Conta criada com sucesso! Você já pode fazer login.");
         setIsLogin(true);
+        setHasExistingUsers(true);
       }
     } catch (error: any) {
       toast.error("Erro ao processar solicitação");
@@ -96,15 +138,25 @@ const Auth = () => {
     }
   };
 
+  if (checkingUsers) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-secondary/20 to-background p-4">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-secondary/20 to-background p-4">
       <div className="w-full max-w-md">
         <div className="bg-card rounded-lg shadow-xl p-8 border border-border">
           <h1 className="text-3xl font-bold text-center mb-2 text-foreground">
-            {isLogin ? "Login" : "Criar Conta"}
+            {isLogin ? "Login" : "Criar Conta Admin"}
           </h1>
           <p className="text-center text-muted-foreground mb-8">
-            {isLogin ? "Acesse o painel administrativo" : "Registre-se para acessar"}
+            {isLogin 
+              ? "Acesse o painel administrativo" 
+              : "Crie sua conta de administrador"}
           </p>
 
           <form onSubmit={handleAuth} className="space-y-4">
@@ -146,21 +198,24 @@ const Auth = () => {
                   Processando...
                 </>
               ) : (
-                isLogin ? "Entrar" : "Criar Conta"
+                isLogin ? "Entrar" : "Criar Conta Admin"
               )}
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-primary hover:underline"
-              disabled={loading}
-            >
-              {isLogin ? "Não tem conta? Criar conta" : "Já tem conta? Fazer login"}
-            </button>
-          </div>
+          {/* Only show toggle if no users exist yet */}
+          {!hasExistingUsers && (
+            <div className="mt-6 text-center">
+              <button
+                type="button"
+                onClick={() => setIsLogin(!isLogin)}
+                className="text-primary hover:underline"
+                disabled={loading}
+              >
+                {isLogin ? "Criar conta de administrador" : "Já tem conta? Fazer login"}
+              </button>
+            </div>
+          )}
 
           <div className="mt-4 text-center">
             <button
