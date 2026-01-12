@@ -301,7 +301,8 @@ const Gafas = () => {
             </div>
 
             {/* Live View */}
-            <div className="mb-4 flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground">
+              <Eye className="w-4 h-4" />
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
               <span>{liveViewers} personas están viendo esto</span>
             </div>
