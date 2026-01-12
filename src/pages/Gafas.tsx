@@ -312,15 +312,24 @@ const Gafas = () => {
               ))}
             </div>
 
-            {/* Urgency Badge - Black Friday */}
+            {/* Urgency Badge - Black Friday with GIF */}
             <div className="mb-4 p-3 rounded-lg bg-gradient-to-r from-amber-500/20 to-red-500/20 border border-red-500/40">
-              <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
-                <span className="animate-pulse">🔥</span>
-                <span className="font-bold text-sm">¡50% DE DESCUENTO POR BLACK FRIDAY! - UNIDADES LIMITADAS 🚨</span>
-              </div>
-              <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span>12 personas están viendo esto</span>
+              <div className="flex items-center gap-3">
+                <img 
+                  src={gafasDemo} 
+                  alt="Oferta Black Friday" 
+                  className="w-12 h-12 rounded-lg object-cover"
+                />
+                <div>
+                  <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
+                    <span className="animate-pulse">🔥</span>
+                    <span className="font-bold text-sm">¡50% DE DESCUENTO POR BLACK FRIDAY! - UNIDADES LIMITADAS 🚨</span>
+                  </div>
+                  <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span>12 personas están viendo esto</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -434,13 +443,6 @@ const Gafas = () => {
 
           {/* Feature 1: Multifocal */}
           <div className="grid md:grid-cols-2 gap-6 items-center mb-10">
-            <div className="order-2 md:order-1">
-              <img 
-                src={gafasDemo} 
-                alt="Lentes multifocales en acción" 
-                className="w-full max-w-[280px] mx-auto rounded-xl shadow-lg"
-              />
-            </div>
             <div className="order-1 md:order-2">
               <h3 className="text-xl sm:text-2xl font-bold mb-3 text-foreground">
                 LENTES PARA TODAS TUS NECESIDADES
