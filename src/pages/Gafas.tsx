@@ -166,7 +166,7 @@ const Gafas = () => {
           {/* Product Gallery */}
             <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large bg-gradient-to-br from-slate-800 to-slate-900 relative">
               <div className="absolute top-4 left-4 z-10">
-                <Badge className="bg-amber-500 text-black font-bold text-xs sm:text-sm px-3 py-1.5 animate-pulse">
+                <Badge className="bg-red-600 text-white font-bold text-xs sm:text-sm px-3 py-1.5 animate-pulse">
                   OFERTA 2X1 🔥
                 </Badge>
               </div>
