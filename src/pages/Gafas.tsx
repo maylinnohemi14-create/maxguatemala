@@ -406,8 +406,17 @@ const Gafas = () => {
         </div>
       </section>
 
+      {/* Urgency Banner */}
+      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span key={i} className="mx-8 text-lg font-bold">
+              🏷️ ¡50% DE DESCUENTO POR BLACK FRIDAY! 🔥 ¡UNIDADES LIMITADAS! 🚨
+            </span>
+          ))}
+        </div>
+      </div>
 
-      {/* Revolution Section with GIFs */}
       <section className="py-10 sm:py-16 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-background">
         <div className="container mx-auto px-3 sm:px-4">
           <div className="text-center mb-8 sm:mb-12">
