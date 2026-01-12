@@ -34,7 +34,7 @@ import taladroCase from "@/assets/taladro-case.webp";
 import taladroLifestyle from "@/assets/taladro-lifestyle.jpg";
 import taladroAction from "@/assets/taladro-action.webp";
 import taladroDemo from "@/assets/taladro-demo.webp";
-import { CODForm } from "@/components/CODForm";
+import { CODForm, IncludedItem } from "@/components/CODForm";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -302,6 +302,9 @@ const Taladro = () => {
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Taladro Inalámbrico 48V + 24 Accesorios + 2 Baterías"
                       productImage={taladroMain}
+                      includedItems={[
+                        { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' }
+                      ]}
                       onOrderComplete={() => {
                         setShowCODForm(false);
                         toast.success("¡Pedido registrado exitosamente!");
