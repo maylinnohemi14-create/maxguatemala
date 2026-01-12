@@ -33,6 +33,10 @@ import reviewPatricia from "@/assets/review-patricia.jpg";
 import reviewJose from "@/assets/review-jose.jpg";
 import reviewElena from "@/assets/review-elena.jpg";
 import reviewPedroGafas from "@/assets/review-pedro-gafas.jpg";
+import gafasDemo from "@/assets/gafas-demo.gif";
+import gafasProtection from "@/assets/gafas-protection.gif";
+import gafasLightweight from "@/assets/gafas-lightweight.gif";
+import drRoncero from "@/assets/dr-roncero.jpg";
 import { CODForm } from "@/components/CODForm";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -413,12 +417,12 @@ const Gafas = () => {
         </div>
       </div>
 
-      {/* Revolution Section */}
+      {/* Revolution Section with GIFs */}
       <section className="py-10 sm:py-16 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-background">
         <div className="container mx-auto px-3 sm:px-4">
           <div className="text-center mb-8 sm:mb-12">
             <Badge className="mb-4 bg-blue-500/10 text-blue-600 border-blue-500/30">
-              ¡ÚLTIMO DÍA DE PROMOCIÓN!
+              ¡ÚLTIMO DÍA DE PROMOCIÓN! Compra 1 y llévate 2
             </Badge>
             <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-foreground">
               LA REVOLUCIÓN DE LAS GAFAS<br />TODO EN UNO
@@ -429,46 +433,139 @@ const Gafas = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 text-white">
-                <Eye className="w-12 h-12 mb-4" />
-                <h3 className="text-xl sm:text-2xl font-bold mb-3">LENTES PARA TODAS TUS NECESIDADES</h3>
-                <p className="text-white/90">
-                  ¿Necesitas <strong>ver de cerca y de lejos</strong>? Con nuestras gafas obtendrás la 
-                  <strong> mejor tecnología</strong> de lentes progresivas multifocales.
-                </p>
-                <p className="mt-4 text-white/80">
-                  Se adaptan a tu visión en cualquier distancia, brindándote una <strong>transición suave</strong> 
-                  entre diferentes campos de visión.
-                </p>
-              </div>
+          {/* Feature 1: Multifocal */}
+          <div className="grid md:grid-cols-2 gap-6 items-center mb-10">
+            <div className="order-2 md:order-1">
+              <img 
+                src={gafasDemo} 
+                alt="Lentes multifocales en acción" 
+                className="w-full max-w-[280px] mx-auto rounded-xl shadow-lg"
+              />
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-8 text-white">
-                <Shield className="w-12 h-12 mb-4" />
-                <h3 className="text-xl sm:text-2xl font-bold mb-3">PROTECCIÓN TOTAL</h3>
-                <p className="text-white/90">
-                  Nuestras gafas bloquean el <strong>100% de los rayos UV400</strong> y la <strong>luz azul dañina</strong> 
-                  que emiten las pantallas digitales.
-                </p>
-                <p className="mt-4 text-white/80">
-                  <strong>Reducen la fatiga visual</strong> y <strong>protegen tus ojos</strong> tanto en interiores como en exteriores.
-                </p>
-              </div>
+            <div className="order-1 md:order-2">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-foreground">
+                LENTES PARA TODAS TUS NECESIDADES
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                ¿Necesitas <strong>ver de cerca y de lejos</strong>? Con nuestras gafas obtendrás la 
+                <strong> mejor tecnología</strong> de lentes progresivas multifocales.
+              </p>
+              <p className="text-muted-foreground">
+                <strong>Se adaptan a tu visión</strong> en cualquier distancia, brindándote una 
+                <strong> transición suave</strong> entre diferentes campos de visión.
+              </p>
             </div>
           </div>
 
-          <div className="bg-card rounded-2xl p-8 border border-border shadow-lg text-center max-w-3xl mx-auto">
-            <Sparkles className="w-12 h-12 mx-auto mb-4 text-amber-500" />
-            <h3 className="text-xl sm:text-2xl font-bold mb-3">LIGERAS Y RESISTENTES</h3>
-            <p className="text-muted-foreground">
-              Con <strong>solo 17 gramos</strong>, nuestras gafas están hechas con <strong>material TR90 premium</strong>, 
-              son <strong>ultraligeras y cómodas</strong>, lo que te permitirá <strong>llevarlas todo el día sin molestias</strong>.
-            </p>
-            <p className="mt-4 text-muted-foreground">
-              Además, sus lentes son <strong>ultrarresistentes a golpes y arañazos</strong>, garantizando una <strong>larga vida útil</strong>.
-            </p>
+          {/* Feature 2: Protection */}
+          <div className="grid md:grid-cols-2 gap-6 items-center mb-10">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-foreground">
+                PROTECCIÓN TOTAL
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Nuestras gafas bloquean el <strong>100% de los rayos UV400</strong> y la 
+                <strong> luz azul dañina</strong> que emiten las pantallas digitales, 
+                <strong> reduciendo la fatiga visual</strong> y <strong>protegiendo tus ojos</strong> 
+                tanto en interiores como en exteriores.
+              </p>
+              <p className="text-muted-foreground">
+                También, son ideales para <strong>corregir diversas condiciones visuales.</strong>
+              </p>
+            </div>
+            <div>
+              <img 
+                src={gafasProtection} 
+                alt="Protección de luz azul" 
+                className="w-full max-w-[280px] mx-auto rounded-xl shadow-lg"
+              />
+            </div>
+          </div>
+
+          {/* Feature 3: Lightweight */}
+          <div className="grid md:grid-cols-2 gap-6 items-center mb-10">
+            <div className="order-2 md:order-1">
+              <img 
+                src={gafasLightweight} 
+                alt="Gafas ultraligeras" 
+                className="w-full max-w-[280px] mx-auto rounded-xl shadow-lg"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-foreground">
+                LIGERAS Y RESISTENTES
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Con <strong>solo 17 gramos</strong>, nuestras gafas están hechas con 
+                <strong> aleación de aluminio-magnesio</strong>, estas gafas son 
+                <strong> ultraligeras y cómodas</strong>, lo que te permitirá 
+                <strong> llevarlas todo el día sin molestias</strong>.
+              </p>
+              <p className="text-muted-foreground">
+                Además, sus lentes son <strong>ultrarresistentes a golpes y arañazos</strong>, 
+                garantizando una <strong>larga vida útil</strong>.
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 4: Style */}
+          <div className="grid md:grid-cols-2 gap-6 items-center">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-foreground">
+                ESTILO Y COMODIDAD
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                No solo <strong>mejorarás tu visión</strong>, también <strong>lucirás increíble</strong>. 
+                Con su <strong>diseño elegante y minimalista</strong>, son ideales tanto para hombres como para mujeres.
+              </p>
+              <p className="text-muted-foreground">
+                Gracias a sus <strong>almohadillas nasales ajustables</strong>, siempre tendrás un 
+                <strong> ajuste perfecto</strong>, sin importar la forma de tu rostro.
+              </p>
+            </div>
+            <div>
+              <img 
+                src={gafasDemo} 
+                alt="Estilo elegante" 
+                className="w-full max-w-[280px] mx-auto rounded-xl shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Doctor Recommendation Section */}
+      <section className="py-10 sm:py-16 bg-white dark:bg-background">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="relative">
+                <img 
+                  src={drRoncero} 
+                  alt="Dr. Pedro Roncero" 
+                  className="w-full max-w-[350px] mx-auto rounded-2xl shadow-xl"
+                />
+              </div>
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-foreground">
+                  Dr. Pedro Roncero
+                </h2>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Según el Dr. Roncero, su <strong>diseño multifocal progresivo</strong> permite a sus usuarios 
+                  ver claramente tanto de cerca como de lejos sin necesidad de cambiar de lentes, una característica 
+                  ideal para quienes llevan un <strong>ritmo de vida activo</strong> y necesitan una solución visual 
+                  adaptable en todo momento.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Además, el Dr. Roncero destaca la <strong>protección UV y contra la luz azul</strong>, algo 
+                  fundamental en la era digital para <strong>prevenir la fatiga ocular</strong> y mantener la salud visual.
+                </p>
+                <div className="mt-4 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-blue-500" />
+                  <span className="text-sm font-medium text-blue-600">Oftalmólogo Especialista</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
