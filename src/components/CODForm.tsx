@@ -93,24 +93,40 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+export interface IncludedItem {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+}
+
 interface CODFormProps {
   productId: string;
   productPrice: number;
   productName?: string;
   productImage?: string;
   onOrderComplete?: () => void;
+  includedItems?: IncludedItem[];
 }
 
-export function CODForm({ productId, productPrice, productName = "Proyector Vevshao A10", productImage, onOrderComplete }: CODFormProps) {
+const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
+  { id: 'magistv', icon: '🎬', title: 'MagisTV', description: 'Transforma tu proyector en un cine completo' },
+  { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
+  { id: 'cleaningKit', icon: '✨', title: 'Kit Premium de Limpieza', description: 'Mantén tu proyector siempre con imagen nítida' },
+];
+
+export function CODForm({ productId, productPrice, productName = "Proyector Vevshao A10", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS }: CODFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [ipHasOrder, setIpHasOrder] = useState(false);
   const [checkingIp, setCheckingIp] = useState(true);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
-  const [upsells, setUpsells] = useState({
-    magistv: true,
-    warranty: true,
-    cleaningKit: true,
+  const [upsells, setUpsells] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    includedItems.forEach(item => {
+      initial[item.id] = true;
+    });
+    return initial;
   });
   const [viewerCount, setViewerCount] = useState(() => Math.floor(Math.random() * 11) + 10); // 10-20
 
@@ -426,44 +442,20 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 </p>
                 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <div className="flex items-start gap-2 p-1.5 sm:p-2 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
-                    <Checkbox 
-                      id="magistv"
-                      checked={upsells.magistv}
-                      onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, magistv: checked as boolean }))}
-                      className="mt-0.5 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
-                    />
-                    <label htmlFor="magistv" className="flex-1 cursor-pointer">
-                      <p className="font-bold text-xs sm:text-sm">🎬 MagisTV</p>
-                      <p className="text-[10px] sm:text-xs text-muted-foreground">Transforma tu proyector en un cine completo</p>
-                    </label>
-                  </div>
-
-                  <div className="flex items-start gap-2 p-1.5 sm:p-2 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
-                    <Checkbox 
-                      id="warranty"
-                      checked={upsells.warranty}
-                      onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, warranty: checked as boolean }))}
-                      className="mt-0.5 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
-                    />
-                    <label htmlFor="warranty" className="flex-1 cursor-pointer">
-                      <p className="font-bold text-xs sm:text-sm">🛡️ Garantía Extendida 2 Años</p>
-                      <p className="text-[10px] sm:text-xs text-muted-foreground">Protección Extra para tu inversión</p>
-                    </label>
-                  </div>
-
-                  <div className="flex items-start gap-2 p-1.5 sm:p-2 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
-                    <Checkbox 
-                      id="cleaningKit"
-                      checked={upsells.cleaningKit}
-                      onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, cleaningKit: checked as boolean }))}
-                      className="mt-0.5 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
-                    />
-                    <label htmlFor="cleaningKit" className="flex-1 cursor-pointer">
-                      <p className="font-bold text-xs sm:text-sm">✨ Kit Premium de Limpieza</p>
-                      <p className="text-[10px] sm:text-xs text-muted-foreground">Mantén tu proyector siempre con imagen nítida</p>
-                    </label>
-                  </div>
+                  {includedItems.map((item) => (
+                    <div key={item.id} className="flex items-start gap-2 p-1.5 sm:p-2 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
+                      <Checkbox 
+                        id={item.id}
+                        checked={upsells[item.id] ?? true}
+                        onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, [item.id]: checked as boolean }))}
+                        className="mt-0.5 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
+                      />
+                      <label htmlFor={item.id} className="flex-1 cursor-pointer">
+                        <p className="font-bold text-xs sm:text-sm">{item.icon} {item.title}</p>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground">{item.description}</p>
+                      </label>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
