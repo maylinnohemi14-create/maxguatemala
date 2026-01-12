@@ -184,6 +184,14 @@ export default {
             transform: "translateX(0%)",
           },
         },
+        "pulse-scale": {
+          "0%, 100%": {
+            transform: "scale(1)",
+          },
+          "50%": {
+            transform: "scale(1.05)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -197,6 +205,7 @@ export default {
         "button-bounce": "button-bounce 0.6s ease-in-out infinite",
         "marquee": "marquee 20s linear infinite",
         "marquee-reverse": "marquee-reverse 20s linear infinite",
+        "pulse-scale": "pulse-scale 1.5s ease-in-out infinite",
       },
     },
   },
