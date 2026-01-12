@@ -207,15 +207,37 @@ const Taladro = () => {
               TALADRO INALÁMBRICO con PERCUTOR + 24 ACCESORIOS + 2 BATERÍAS 48V
             </h1>
 
-            <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-xl bg-primary/5 border-2 border-primary/20">
-              <div className="flex items-baseline gap-2 sm:gap-3 mb-2">
-                <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-destructive animate-pulse-slow">$169.900</span>
-                <span className="text-lg sm:text-xl lg:text-2xl text-muted-foreground line-through">$299.900</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Badge className="bg-success text-success-foreground font-bold text-xs px-2 py-1">
-                  💚 AHORRO 43%
-                </Badge>
+            <div className="mb-4 sm:mb-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-16 h-16 bg-success/10 rounded-full blur-xl translate-y-1/2 -translate-x-1/2"></div>
+              
+              <div className="relative">
+                {/* Original Price with strikethrough */}
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-sm sm:text-base text-muted-foreground">Precio normal:</span>
+                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">$299.900 COP</span>
+                </div>
+                
+                {/* Current Price */}
+                <div className="flex items-baseline gap-3 mb-3">
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">
+                    $169.900
+                  </span>
+                  <span className="text-lg sm:text-xl font-semibold text-muted-foreground">COP</span>
+                </div>
+                
+                {/* Savings Badge */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="inline-flex items-center gap-1.5 bg-success text-success-foreground font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full shadow-md">
+                    <span className="text-base">💰</span>
+                    <span>AHORRAS $130.000</span>
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 bg-destructive/10 text-destructive font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full border border-destructive/30">
+                    <span className="text-base">🔥</span>
+                    <span>-43% OFF</span>
+                  </div>
+                </div>
               </div>
             </div>
 
