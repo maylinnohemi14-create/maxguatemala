@@ -425,7 +425,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1 sm:mb-2">
               <Package className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-              <h3 className="font-bold text-sm sm:text-lg truncate">{productName}</h3>
+              <h3 className="font-bold text-sm sm:text-lg">{productName}</h3>
             </div>
             <div className="flex items-center gap-1 sm:gap-2 text-lg sm:text-2xl font-bold text-primary">
               <DollarSign className="w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0" />
