@@ -471,7 +471,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
             PROMOCIÓN DE BLACK FRIDAY
           </p>
           <p className="text-sm sm:text-lg md:text-xl font-semibold text-black animate-pulse" style={{ textShadow: '0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>
-            VÁLIDA HASTA EL 5 DE DICIEMBRE
+            VÁLIDA HASTA EL 28 DE ENERO
           </p>
         </div>
       </div>
