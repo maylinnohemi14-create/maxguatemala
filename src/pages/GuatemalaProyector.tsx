@@ -138,11 +138,6 @@ const GuatemalaProyector = () => {
           {/* Product Image */}
           <div className="animate-fade-in">
             <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
-              <div className="absolute top-4 left-4 z-10">
-                <Badge className="bg-red-600 text-white font-bold text-xs sm:text-sm px-3 py-1.5 animate-pulse">
-                  NAVIDAD 2024 🎄
-                </Badge>
-              </div>
               <img
                 src={proyectorGuatemala}
                 alt="Proyector de Luces Navideñas"
