@@ -21,17 +21,21 @@ import {
   Clock,
   ShoppingCart,
 } from "lucide-react";
-import guatemalaProduct from "@/assets/guatemala-product.png";
+import mochilaMain from "@/assets/mochila-main.jpg";
+import mochilaDetails from "@/assets/mochila-details.jpg";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Guatemala = () => {
   const [quantity, setQuantity] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
   
-  const PRODUCT_ID = "PRODUCTO-GUATEMALA";
-  const PRODUCT_PRICE = 219;
+  const PRODUCT_ID = "MOCHILA-COMPACTA-GT";
+  const PRODUCT_PRICE = 199;
+  
+  const images = [mochilaMain, mochilaDetails];
 
   const guatemalanNames = [
     "María García de Ciudad de Guatemala",
@@ -135,10 +139,29 @@ const Guatemala = () => {
                 </Badge>
               </div>
               <img
-                src={guatemalaProduct}
-                alt="Producto Guatemala"
+                src={images[selectedImage]}
+                alt="Mochila Compacta"
                 className="w-full h-auto object-contain aspect-square"
               />
+            </div>
+            <div className="grid grid-cols-2 gap-1.5 sm:gap-3">
+              {images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedImage(idx)}
+                  className={`rounded-md sm:rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
+                    selectedImage === idx
+                      ? "border-primary shadow-glow"
+                      : "border-border hover:border-primary/50"
+                  }`}
+                >
+                  <img
+                    src={img}
+                    alt={`Imagen ${idx + 1}`}
+                    className="w-full h-auto object-contain aspect-square bg-white"
+                  />
+                </button>
+              ))}
             </div>
           </div>
 
@@ -163,7 +186,7 @@ const Guatemala = () => {
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-foreground leading-tight">
-              PRODUCTO ESPECIAL PARA GUATEMALA
+              MOCHILA COMPACTA CON PUERTO USB - Diseño Elegante y Funcional
             </h1>
 
             {/* Price Section */}
@@ -174,12 +197,12 @@ const Guatemala = () => {
               <div className="relative">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-sm sm:text-base text-muted-foreground">Precio normal:</span>
-                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q399</span>
+                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q349</span>
                 </div>
                 
                 <div className="flex items-baseline gap-3 mb-3">
                   <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">
-                    Q219
+                    Q199
                   </span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
@@ -187,11 +210,11 @@ const Guatemala = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <div className="inline-flex items-center gap-1.5 bg-success text-success-foreground font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full shadow-md">
                     <span className="text-base">💰</span>
-                    <span>AHORRAS Q180</span>
+                    <span>AHORRAS Q150</span>
                   </div>
                   <div className="inline-flex items-center gap-1.5 bg-destructive/10 text-destructive font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full border border-destructive/30">
                     <span className="text-base">🔥</span>
-                    <span>-45% OFF</span>
+                    <span>-43% OFF</span>
                   </div>
                 </div>
               </div>
@@ -241,10 +264,11 @@ const Guatemala = () => {
             {/* Benefits List */}
             <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
               {[
+                { text: "Puerto USB integrado para", bold: "cargar tu celular", suffix: "mientras caminas" },
+                { text: "Material", bold: "impermeable y resistente", suffix: "a rasguños" },
+                { text: "Diseño", bold: "antirrobo", suffix: "con cierre oculto" },
                 { text: "Envío", bold: "100% gratis", suffix: "a toda Guatemala" },
                 { text: "Pago", bold: "contra entrega", suffix: "- Paga cuando recibas" },
-                { text: "Garantía de", bold: "2 años", suffix: "incluida" },
-                { text: "", bold: "Producto original y garantizado", suffix: "" },
               ].map((benefit, idx) => (
                 <div key={idx} className="flex items-start gap-2 sm:gap-3">
                   <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-success flex items-center justify-center mt-0.5">
@@ -302,8 +326,8 @@ const Guatemala = () => {
                       key={Date.now()}
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
-                      productName="Producto Guatemala"
-                      productImage={guatemalaProduct}
+                      productName="Mochila Compacta con Puerto USB"
+                      productImage={mochilaMain}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' }
                       ]}
