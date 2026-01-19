@@ -74,20 +74,26 @@ const Guatemala = () => {
     {
       name: "María G.",
       rating: 5,
-      comment: "Excelente producto, llegó muy rápido a mi casa en Zona 10. ¡Muy recomendado!",
+      comment: "Me encanta el diseño y el puerto USB es súper práctico. La uso todos los días para ir al trabajo en zona 10. ¡Muy recomendada!",
       date: "Hace 3 días",
     },
     {
       name: "Carlos L.",
       rating: 5,
-      comment: "Todo llegó perfecto, el pago contra entrega es muy cómodo. Gracias!",
+      comment: "Perfecta para el transporte público. Me siento más seguro con el cierre oculto. Llegó rapidísimo a Mixco.",
       date: "Hace 1 semana",
     },
     {
       name: "Ana M.",
       rating: 5,
-      comment: "Muy buena calidad y el servicio al cliente es excelente. Volveré a comprar.",
+      comment: "La calidad del material es excelente, ya la probé bajo la lluvia y mis cosas quedaron secas. El pago contra entrega muy cómodo.",
       date: "Hace 2 semanas",
+    },
+    {
+      name: "Roberto S.",
+      rating: 5,
+      comment: "Compré una para mí y otra para mi hermano. Excelente relación calidad-precio. El envío a Quetzaltenango fue rápido.",
+      date: "Hace 3 semanas",
     },
   ];
 
@@ -374,8 +380,156 @@ const Guatemala = () => {
         </div>
       </div>
 
-      {/* Testimonials */}
+      {/* Product Details Section */}
       <section className="py-10 sm:py-16 bg-secondary/30">
+        <div className="container mx-auto px-3 sm:px-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
+            ¿Por qué elegir esta Mochila? 🎒
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-center">
+            <div>
+              <img
+                src={mochilaDetails}
+                alt="Detalles de la Mochila"
+                className="rounded-2xl shadow-large w-full"
+              />
+            </div>
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-background border border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🔌</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Puerto USB Integrado</h3>
+                  <p className="text-muted-foreground text-sm">Carga tu celular mientras caminas. Solo conecta tu powerbank dentro de la mochila y usa el cable externo.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-background border border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">💧</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Material Impermeable</h3>
+                  <p className="text-muted-foreground text-sm">Protege tus pertenencias de la lluvia y derrames. Material resistente al agua de alta calidad.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-background border border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🔒</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Diseño Antirrobo</h3>
+                  <p className="text-muted-foreground text-sm">Cierre oculto en la espalda que impide el acceso fácil a tus pertenencias cuando la llevas puesta.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-background border border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🎨</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Diseño Elegante</h3>
+                  <p className="text-muted-foreground text-sm">Combinación de negro mate con detalles en café que combina con cualquier outfit casual o formal.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem/Solution Section */}
+      <section className="py-10 sm:py-16">
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-foreground">
+              ¿Te identificas con esto? 🤔
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Problems */}
+              <div className="p-6 rounded-2xl bg-destructive/10 border border-destructive/20">
+                <h3 className="text-xl font-bold mb-4 text-destructive flex items-center gap-2">
+                  <span>❌</span> Sin la Mochila Compacta
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2 text-sm">
+                    <span className="text-destructive mt-0.5">•</span>
+                    <span>Tu celular siempre sin batería cuando más lo necesitas</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <span className="text-destructive mt-0.5">•</span>
+                    <span>Preocupación constante por los carteristas en el transporte público</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <span className="text-destructive mt-0.5">•</span>
+                    <span>Tus cosas se mojan cuando llueve de sorpresa</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <span className="text-destructive mt-0.5">•</span>
+                    <span>Mochilas grandes e incómodas que no combinan con tu estilo</span>
+                  </li>
+                </ul>
+              </div>
+              {/* Solutions */}
+              <div className="p-6 rounded-2xl bg-success/10 border border-success/20">
+                <h3 className="text-xl font-bold mb-4 text-success flex items-center gap-2">
+                  <span>✅</span> Con la Mochila Compacta
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2 text-sm">
+                    <span className="text-success mt-0.5">•</span>
+                    <span>Carga tu celular mientras caminas con el puerto USB integrado</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <span className="text-success mt-0.5">•</span>
+                    <span>Cierre oculto antirrobo que protege tus pertenencias</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <span className="text-success mt-0.5">•</span>
+                    <span>Material impermeable que mantiene todo seco</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm">
+                    <span className="text-success mt-0.5">•</span>
+                    <span>Diseño elegante y compacto perfecto para el día a día</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Specifications */}
+      <section className="py-10 sm:py-16 bg-secondary/30">
+        <div className="container mx-auto px-3 sm:px-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
+            Especificaciones 📋
+          </h2>
+          <div className="max-w-2xl mx-auto grid grid-cols-2 gap-4">
+            <div className="p-4 rounded-xl bg-background border border-border text-center">
+              <span className="text-2xl mb-2 block">📏</span>
+              <p className="font-bold">Tamaño</p>
+              <p className="text-sm text-muted-foreground">32 x 17 x 8 cm</p>
+            </div>
+            <div className="p-4 rounded-xl bg-background border border-border text-center">
+              <span className="text-2xl mb-2 block">⚖️</span>
+              <p className="font-bold">Peso</p>
+              <p className="text-sm text-muted-foreground">Solo 350g</p>
+            </div>
+            <div className="p-4 rounded-xl bg-background border border-border text-center">
+              <span className="text-2xl mb-2 block">🧵</span>
+              <p className="font-bold">Material</p>
+              <p className="text-sm text-muted-foreground">Oxford Impermeable + PU Leather</p>
+            </div>
+            <div className="p-4 rounded-xl bg-background border border-border text-center">
+              <span className="text-2xl mb-2 block">🎒</span>
+              <p className="font-bold">Compartimentos</p>
+              <p className="text-sm text-muted-foreground">3 bolsillos + 1 oculto</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-10 sm:py-16">
         <div className="container mx-auto px-3 sm:px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
             Lo que dicen nuestros clientes en Guatemala 🇬🇹
