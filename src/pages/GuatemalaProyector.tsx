@@ -20,9 +20,9 @@ import {
   Gift,
   Clock,
   ShoppingCart,
-  Tv,
-  Wifi,
-  Volume2,
+  Sparkles,
+  Home,
+  Zap,
 } from "lucide-react";
 import proyectorGuatemala from "@/assets/proyector-guatemala.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
@@ -33,7 +33,7 @@ const GuatemalaProyector = () => {
   const [quantity, setQuantity] = useState(1);
   const [showCODForm, setShowCODForm] = useState(false);
   
-  const PRODUCT_ID = "PROYECTOR-GUATEMALA";
+  const PRODUCT_ID = "PROYECTOR-NAVIDAD-GT";
   const PRODUCT_PRICE = 199;
 
   const guatemalanNames = [
@@ -57,7 +57,7 @@ const GuatemalaProyector = () => {
       
       toast.success(
         <div>
-          📽️ <span className="text-destructive font-bold">{randomName}</span> acaba de comprar
+          🎄 <span className="text-destructive font-bold">{randomName}</span> acaba de comprar
         </div>,
         {
           description: "¡Quedan pocas unidades disponibles!",
@@ -73,25 +73,25 @@ const GuatemalaProyector = () => {
     {
       name: "Roberto M.",
       rating: 5,
-      comment: "Increíble calidad de imagen para el precio. Lo uso para ver películas con mi familia en zona 11. ¡Se ve como cine en casa!",
+      comment: "¡Mi casa se ve espectacular! Los vecinos vienen a ver las luces de Navidad. Muy fácil de instalar en zona 11.",
       date: "Hace 3 días",
     },
     {
       name: "Lucía P.",
       rating: 5,
-      comment: "Perfecto para las noches de películas. Mis hijos están felices. Llegó rápido a Villa Nueva.",
+      comment: "Mis hijos están felices con las luces navideñas. Se proyectan copos de nieve y estrellas. Llegó rápido a Villa Nueva.",
       date: "Hace 1 semana",
     },
     {
       name: "Fernando A.",
       rating: 5,
-      comment: "Lo conecto al celular y veo YouTube en pantalla grande. La bocina integrada suena bastante bien. Muy recomendado.",
+      comment: "Perfecto para decorar sin tener que subir al techo. Solo lo enchufo y listo. La mejor compra que he hecho.",
       date: "Hace 2 semanas",
     },
     {
       name: "Patricia G.",
       rating: 5,
-      comment: "Lo compré para mi negocio y quedé encantada. Excelente para presentaciones. El pago contra entrega muy seguro.",
+      comment: "Lo uso para decorar mi negocio y atrae muchos clientes. Las figuras navideñas se ven hermosas en la pared.",
       date: "Hace 3 semanas",
     },
   ];
@@ -140,12 +140,12 @@ const GuatemalaProyector = () => {
             <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
               <div className="absolute top-4 left-4 z-10">
                 <Badge className="bg-red-600 text-white font-bold text-xs sm:text-sm px-3 py-1.5 animate-pulse">
-                  OFERTA ESPECIAL 🔥
+                  NAVIDAD 2024 🎄
                 </Badge>
               </div>
               <img
                 src={proyectorGuatemala}
-                alt="Mini Proyector Portátil"
+                alt="Proyector de Luces Navideñas"
                 className="w-full h-auto object-contain aspect-square"
               />
             </div>
@@ -155,8 +155,8 @@ const GuatemalaProyector = () => {
           <div className="animate-scale-in">
             {/* Badge */}
             <div className="mb-3">
-              <Badge className="bg-destructive text-destructive-foreground font-bold text-xs sm:text-sm px-3 py-1.5 border-2 border-destructive">
-                🇬🇹 Envío a toda Guatemala
+              <Badge className="bg-green-600 text-white font-bold text-xs sm:text-sm px-3 py-1.5 border-2 border-green-700">
+                🇬🇹 Envío a toda Guatemala - Llega antes de Navidad
               </Badge>
             </div>
 
@@ -172,7 +172,7 @@ const GuatemalaProyector = () => {
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-foreground leading-tight">
-              MINI PROYECTOR PORTÁTIL HD - Convierte tu Casa en un Cine
+              PROYECTOR DE LUCES NAVIDEÑAS - Decora tu Casa Sin Esfuerzo 🎄✨
             </h1>
 
             {/* Price Section */}
@@ -249,10 +249,11 @@ const GuatemalaProyector = () => {
             {/* Benefits List */}
             <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
               {[
-                { text: "Proyecta hasta", bold: "120 pulgadas", suffix: "de imagen HD" },
-                { text: "Conecta tu", bold: "celular, USB, HDMI", suffix: "y más" },
-                { text: "", bold: "Bocina integrada", suffix: "de alta potencia" },
-                { text: "Diseño", bold: "compacto y portátil", suffix: "- Llévalo a donde quieras" },
+                { text: "Proyecta", bold: "copos de nieve, estrellas y figuras navideñas", suffix: "en paredes y fachadas" },
+                { text: "", bold: "Fácil instalación", suffix: "- Solo enchúfalo y apunta" },
+                { text: "Uso en", bold: "interiores y exteriores", suffix: "resistente al agua" },
+                { text: "Cubre hasta", bold: "50 metros cuadrados", suffix: "de área" },
+                { text: "", bold: "Sin subir al techo", suffix: "- Decora de forma segura" },
                 { text: "Envío", bold: "100% gratis", suffix: "a toda Guatemala" },
               ].map((benefit, idx) => (
                 <div key={idx} className="flex items-start gap-2 sm:gap-3">
@@ -311,11 +312,11 @@ const GuatemalaProyector = () => {
                       key={Date.now()}
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
-                      productName="Mini Proyector Portátil HD"
+                      productName="Proyector de Luces Navideñas"
                       productImage={proyectorGuatemala}
                       includedItems={[
-                        { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
-                        { id: 'cable', icon: '🔌', title: 'Cable HDMI Incluido', description: 'Conecta cualquier dispositivo' }
+                        { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
+                        { id: 'base', icon: '📍', title: 'Base con Estaca Incluida', description: 'Para jardín o terraza' }
                       ]}
                       onOrderComplete={() => {
                         setShowCODForm(false);
@@ -350,11 +351,11 @@ const GuatemalaProyector = () => {
       </section>
 
       {/* Urgency Banner */}
-      <div className="bg-destructive text-destructive-foreground py-3 overflow-hidden">
+      <div className="bg-green-600 text-white py-3 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap">
           {Array.from({ length: 10 }).map((_, i) => (
             <span key={i} className="mx-8 text-lg font-bold">
-              🚨 ÚLTIMAS UNIDADES DISPONIBLES 🚨
+              🎄 ¡LLEGA ANTES DE NAVIDAD! - ÚLTIMAS UNIDADES 🎄
             </span>
           ))}
         </div>
@@ -364,36 +365,36 @@ const GuatemalaProyector = () => {
       <section className="py-10 sm:py-16 bg-secondary/30">
         <div className="container mx-auto px-3 sm:px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
-            ¿Por qué elegir este Proyector? 📽️
+            ¿Por qué elegir este Proyector Navideño? 🎄
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <div className="p-6 rounded-2xl bg-background border border-border text-center">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Tv className="w-8 h-8 text-primary" />
+              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">Pantalla Gigante</h3>
-              <p className="text-muted-foreground text-sm">Proyecta hasta 120 pulgadas de imagen HD. Convierte cualquier pared en una pantalla de cine.</p>
+              <h3 className="font-bold text-lg mb-2">Múltiples Diseños</h3>
+              <p className="text-muted-foreground text-sm">Copos de nieve, estrellas, Santa Claus y más figuras navideñas que se proyectan en movimiento.</p>
             </div>
             <div className="p-6 rounded-2xl bg-background border border-border text-center">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Wifi className="w-8 h-8 text-primary" />
+              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+                <Home className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">Múltiples Conexiones</h3>
-              <p className="text-muted-foreground text-sm">HDMI, USB, AV, y conexión de celular. Compatible con cualquier dispositivo.</p>
+              <h3 className="font-bold text-lg mb-2">Interior y Exterior</h3>
+              <p className="text-muted-foreground text-sm">Resistente al agua IP65. Úsalo en tu sala, fachada, jardín o terraza sin problemas.</p>
             </div>
             <div className="p-6 rounded-2xl bg-background border border-border text-center">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Volume2 className="w-8 h-8 text-primary" />
+              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">Bocina Integrada</h3>
-              <p className="text-muted-foreground text-sm">Audio potente incorporado. No necesitas altavoces externos para disfrutar tus películas.</p>
+              <h3 className="font-bold text-lg mb-2">Instalación en Segundos</h3>
+              <p className="text-muted-foreground text-sm">Solo enchúfalo y apunta. Incluye base con estaca para jardín y soporte para piso.</p>
             </div>
             <div className="p-6 rounded-2xl bg-background border border-border text-center">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Package className="w-8 h-8 text-primary" />
+              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">Ultra Portátil</h3>
-              <p className="text-muted-foreground text-sm">Diseño compacto y liviano. Llévalo a fiestas, campamentos o a casa de tus amigos.</p>
+              <h3 className="font-bold text-lg mb-2">Seguro para Todos</h3>
+              <p className="text-muted-foreground text-sm">No necesitas subir escaleras ni colgar luces. Decora de forma segura y sin riesgos.</p>
             </div>
           </div>
         </div>
@@ -403,23 +404,23 @@ const GuatemalaProyector = () => {
       <section className="py-10 sm:py-16">
         <div className="container mx-auto px-3 sm:px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
-            ¿Para qué puedes usarlo? 🎬
+            ¿Dónde puedes usarlo? 🏠
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 text-center">
-              <span className="text-4xl mb-4 block">🎥</span>
-              <h3 className="font-bold text-lg mb-2">Noches de Películas</h3>
-              <p className="text-muted-foreground text-sm">Disfruta películas y series en pantalla gigante con toda la familia.</p>
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-red-500/10 to-red-600/5 border border-red-500/20 text-center">
+              <span className="text-4xl mb-4 block">🏠</span>
+              <h3 className="font-bold text-lg mb-2">Fachada de tu Casa</h3>
+              <p className="text-muted-foreground text-sm">Proyecta hermosas figuras navideñas en la pared exterior y destaca en tu vecindario.</p>
             </div>
             <div className="p-6 rounded-2xl bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/20 text-center">
-              <span className="text-4xl mb-4 block">🎮</span>
-              <h3 className="font-bold text-lg mb-2">Gaming Épico</h3>
-              <p className="text-muted-foreground text-sm">Conecta tu consola o celular y juega en una pantalla de 120 pulgadas.</p>
+              <span className="text-4xl mb-4 block">🌲</span>
+              <h3 className="font-bold text-lg mb-2">Jardín y Terraza</h3>
+              <p className="text-muted-foreground text-sm">Crea un ambiente mágico en tu jardín con copos de nieve y estrellas en movimiento.</p>
             </div>
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20 text-center">
-              <span className="text-4xl mb-4 block">💼</span>
-              <h3 className="font-bold text-lg mb-2">Presentaciones</h3>
-              <p className="text-muted-foreground text-sm">Ideal para presentaciones de trabajo, clases o reuniones de negocios.</p>
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 border border-yellow-500/20 text-center">
+              <span className="text-4xl mb-4 block">🛋️</span>
+              <h3 className="font-bold text-lg mb-2">Interior del Hogar</h3>
+              <p className="text-muted-foreground text-sm">Decora tu sala o habitación con luces navideñas que no ocupan espacio.</p>
             </div>
           </div>
         </div>
@@ -433,24 +434,24 @@ const GuatemalaProyector = () => {
           </h2>
           <div className="max-w-2xl mx-auto grid grid-cols-2 gap-4">
             <div className="p-4 rounded-xl bg-background border border-border text-center">
-              <span className="text-2xl mb-2 block">📺</span>
-              <p className="font-bold">Resolución</p>
-              <p className="text-sm text-muted-foreground">1080P Full HD</p>
-            </div>
-            <div className="p-4 rounded-xl bg-background border border-border text-center">
-              <span className="text-2xl mb-2 block">💡</span>
-              <p className="font-bold">Brillo</p>
-              <p className="text-sm text-muted-foreground">3000 Lúmenes</p>
-            </div>
-            <div className="p-4 rounded-xl bg-background border border-border text-center">
               <span className="text-2xl mb-2 block">📐</span>
-              <p className="font-bold">Tamaño de Imagen</p>
-              <p className="text-sm text-muted-foreground">30 - 120 pulgadas</p>
+              <p className="font-bold">Cobertura</p>
+              <p className="text-sm text-muted-foreground">Hasta 50m² de área</p>
             </div>
             <div className="p-4 rounded-xl bg-background border border-border text-center">
-              <span className="text-2xl mb-2 block">🔌</span>
-              <p className="font-bold">Conexiones</p>
-              <p className="text-sm text-muted-foreground">HDMI, USB, AV, Audio</p>
+              <span className="text-2xl mb-2 block">💧</span>
+              <p className="font-bold">Resistencia</p>
+              <p className="text-sm text-muted-foreground">IP65 Impermeable</p>
+            </div>
+            <div className="p-4 rounded-xl bg-background border border-border text-center">
+              <span className="text-2xl mb-2 block">🎨</span>
+              <p className="font-bold">Diseños</p>
+              <p className="text-sm text-muted-foreground">Múltiples patrones navideños</p>
+            </div>
+            <div className="p-4 rounded-xl bg-background border border-border text-center">
+              <span className="text-2xl mb-2 block">⚡</span>
+              <p className="font-bold">Potencia</p>
+              <p className="text-sm text-muted-foreground">4W LED de bajo consumo</p>
             </div>
           </div>
         </div>
@@ -479,34 +480,34 @@ const GuatemalaProyector = () => {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Se ve bien de día o solo de noche?
+                ¿Se puede usar bajo la lluvia?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                El proyector funciona mejor en ambientes oscuros o con poca luz. De día puedes usarlo cerrando cortinas. Para la mejor experiencia, recomendamos usarlo de noche o en habitaciones oscuras.
+                ¡Sí! El proyector tiene certificación IP65, lo que significa que es resistente al agua y al polvo. Puedes dejarlo en tu jardín sin preocupaciones.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Cómo lo conecto a mi celular?
+                ¿Qué figuras proyecta?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                Puedes conectarlo con un cable HDMI (incluido) usando un adaptador para tu celular. También es compatible con Chromecast o Fire TV Stick para proyectar de forma inalámbrica.
+                Proyecta copos de nieve, estrellas, y figuras navideñas en movimiento. Los diseños rotan automáticamente creando un efecto mágico en tu pared o fachada.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
               <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Necesito comprar una pantalla especial?
+                ¿Cómo se instala?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                ¡No! Puedes proyectar en cualquier pared blanca o clara. Si quieres mejor calidad, puedes usar una sábana blanca o comprar una pantalla de proyección, pero no es necesario.
+                Es muy fácil: solo enchúfalo y apúntalo hacia donde quieras proyectar. Incluye una base con estaca para jardín y también puedes colocarlo en el piso o una mesa.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4">
               <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Hacen envíos a todo Guatemala?
+                ¿Llegará antes de Navidad?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                ¡Sí! Hacemos envíos a todos los departamentos de Guatemala con envío 100% gratis. El tiempo de entrega es de 3-5 días hábiles.
+                ¡Sí! Hacemos envíos a todos los departamentos de Guatemala en 3-5 días hábiles. Si ordenas hoy, llegará a tiempo para que decores tu casa.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -514,13 +515,13 @@ const GuatemalaProyector = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-10 sm:py-16 bg-gradient-hero text-primary-foreground">
+      <section className="py-10 sm:py-16 bg-gradient-to-r from-red-600 to-green-600 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            ¡Convierte tu casa en un cine! 🎬🇬🇹
+            ¡Decora tu casa esta Navidad! 🎄🇬🇹
           </h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">
-            Envío gratis + Pago contra entrega en toda Guatemala
+            Envío gratis + Pago contra entrega + Llega antes de Navidad
           </p>
           <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
             <DialogTrigger asChild>
