@@ -509,7 +509,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 <FormLabel className="text-sm">Dirección completa y Barrio *</FormLabel>
                 <FormControl>
                   <Textarea 
-                    placeholder="4a Avenida 12-30, Zona 1, Ciudad de Guatemala" 
+                    placeholder="4a Avenida 12-30, Zona 1" 
                     {...field}
                     className="text-base min-h-[80px]"
                   />
