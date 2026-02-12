@@ -36,47 +36,35 @@ import {
 } from "@/components/ui/dialog";
 
 const DEPARTAMENTOS = [
-  "AMAZONAS", "ANTIOQUIA", "ARAUCA", "ATLANTICO", "BOLIVAR", "BOYACA",
-  "CALDAS", "CAQUETA", "CASANARE", "CAUCA", "CESAR", "CHOCO",
-  "CORDOBA", "CUNDINAMARCA", "GUAINIA", "GUAVIARE", "HUILA", "LA GUAJIRA",
-  "MAGDALENA", "META", "NARIÑO", "NORTE DE SANTANDER", "PUTUMAYO", "QUINDIO",
-  "RISARALDA", "SAN ANDRES Y PROVIDENCIA", "SANTANDER", "SUCRE", "TOLIMA",
-  "VALLE DEL CAUCA", "VAUPES", "VICHADA"
+  "ALTA VERAPAZ", "BAJA VERAPAZ", "CHIMALTENANGO", "CHIQUIMULA", "EL PROGRESO",
+  "ESCUINTLA", "GUATEMALA", "HUEHUETENANGO", "IZABAL", "JALAPA", "JUTIAPA",
+  "PETÉN", "QUETZALTENANGO", "QUICHÉ", "RETALHULEU", "SACATEPÉQUEZ",
+  "SAN MARCOS", "SANTA ROSA", "SOLOLÁ", "SUCHITEPÉQUEZ", "TOTONICAPÁN", "ZACAPA"
 ];
 
 const CIUDADES_POR_DEPARTAMENTO: Record<string, string[]> = {
-  "AMAZONAS": ["Leticia", "Puerto Nariño"],
-  "ANTIOQUIA": ["Medellín", "Bello", "Itagüí", "Envigado", "Apartadó", "Turbo", "Rionegro", "Caucasia", "Sabaneta", "La Estrella"],
-  "ARAUCA": ["Arauca", "Arauquita", "Saravena", "Tame", "Fortul"],
-  "ATLANTICO": ["Barranquilla", "Soledad", "Malambo", "Sabanalarga", "Puerto Colombia", "Galapa"],
-  "BOLIVAR": ["Cartagena", "Magangué", "Turbaco", "Arjona", "El Carmen de Bolívar", "Mompós"],
-  "BOYACA": ["Tunja", "Duitama", "Sogamoso", "Chiquinquirá", "Paipa", "Villa de Leyva", "Nobsa"],
-  "CALDAS": ["Manizales", "La Dorada", "Chinchiná", "Villamaría", "Riosucio", "Aguadas"],
-  "CAQUETA": ["Florencia", "San Vicente del Caguán", "Puerto Rico", "El Doncello", "Belén de los Andaquíes"],
-  "CASANARE": ["Yopal", "Aguazul", "Villanueva", "Monterrey", "Tauramena", "Paz de Ariporo"],
-  "CAUCA": ["Popayán", "Santander de Quilichao", "Puerto Tejada", "Patía", "Guachené", "Miranda"],
-  "CESAR": ["Valledupar", "Aguachica", "Codazzi", "Bosconia", "La Paz", "Chimichagua"],
-  "CHOCO": ["Quibdó", "Istmina", "Condoto", "Tadó", "Bahía Solano", "Nuquí"],
-  "CORDOBA": ["Montería", "Lorica", "Cereté", "Sahagún", "Planeta Rica", "Montelíbano"],
-  "CUNDINAMARCA": ["Bogotá", "Soacha", "Fusagasugá", "Facatativá", "Chía", "Zipaquirá", "Girardot", "Cajicá", "Madrid", "Funza", "Mosquera", "La Calera"],
-  "GUAINIA": ["Inírida", "Barranco Minas"],
-  "GUAVIARE": ["San José del Guaviare", "Calamar", "El Retorno"],
-  "HUILA": ["Neiva", "Pitalito", "Garzón", "La Plata", "Campoalegre"],
-  "LA GUAJIRA": ["Riohacha", "Maicao", "Uribia", "Manaure", "San Juan del Cesar"],
-  "MAGDALENA": ["Santa Marta", "Ciénaga", "Fundación", "Plato", "El Banco"],
-  "META": ["Villavicencio", "Acacías", "Granada", "Puerto López", "San Martín"],
-  "NARIÑO": ["Pasto", "Tumaco", "Ipiales", "Túquerres", "Samaniego"],
-  "NORTE DE SANTANDER": ["Cúcuta", "Ocaña", "Pamplona", "Villa del Rosario", "Los Patios"],
-  "PUTUMAYO": ["Mocoa", "Puerto Asís", "Orito", "Valle del Guamuez", "San Miguel"],
-  "QUINDIO": ["Armenia", "Calarcá", "La Tebaida", "Montenegro", "Quimbaya", "Circasia"],
-  "RISARALDA": ["Pereira", "Dosquebradas", "Santa Rosa de Cabal", "La Virginia", "Marsella"],
-  "SAN ANDRES Y PROVIDENCIA": ["San Andrés", "Providencia"],
-  "SANTANDER": ["Bucaramanga", "Floridablanca", "Girón", "Piedecuesta", "Barrancabermeja", "Socorro"],
-  "SUCRE": ["Sincelejo", "Corozal", "Tolú", "Sampués", "Majagual"],
-  "TOLIMA": ["Ibagué", "Espinal", "Melgar", "Honda", "Líbano", "Chaparral"],
-  "VALLE DEL CAUCA": ["Cali", "Palmira", "Buenaventura", "Tuluá", "Cartago", "Buga", "Jamundí", "Yumbo"],
-  "VAUPES": ["Mitú", "Caruru"],
-  "VICHADA": ["Puerto Carreño", "La Primavera", "Cumaribo"]
+  "ALTA VERAPAZ": ["Cobán", "San Pedro Carchá", "San Juan Chamelco", "Tucurú", "Tactic", "Tamahú", "Panzós", "Senahú", "Cahabón", "Lanquín", "Chahal", "Fray Bartolomé de las Casas", "Chisec", "Santa Cruz Verapaz", "Santa Catarina La Tinta", "Raxruhá"],
+  "BAJA VERAPAZ": ["Salamá", "San Miguel Chicaj", "Rabinal", "Cubulco", "Granados", "Santa Cruz El Chol", "San Jerónimo", "Purulhá"],
+  "CHIMALTENANGO": ["Chimaltenango", "San José Poaquil", "San Martín Jilotepeque", "San Juan Comalapa", "Santa Apolonia", "Tecpán Guatemala", "Patzún", "Pochuta", "Patzicía", "Santa Cruz Balanyá", "Acatenango", "Yepocapa", "San Andrés Itzapa", "Parramos", "Zaragoza", "El Tejar"],
+  "CHIQUIMULA": ["Chiquimula", "San José La Arada", "San Juan Ermita", "Jocotán", "Camotán", "Olopa", "Esquipulas", "Concepción Las Minas", "Quetzaltepeque", "San Jacinto", "Ipala"],
+  "EL PROGRESO": ["Guastatoya", "Morazán", "San Agustín Acasaguastlán", "San Cristóbal Acasaguastlán", "El Jícaro", "Sansare", "Sanarate", "San Antonio La Paz"],
+  "ESCUINTLA": ["Escuintla", "Santa Lucía Cotzumalguapa", "La Democracia", "Siquinalá", "Masagua", "Tiquisate", "La Gomera", "Guanagazapa", "San José", "Iztapa", "Palín", "San Vicente Pacaya", "Nueva Concepción"],
+  "GUATEMALA": ["Ciudad de Guatemala", "Santa Catarina Pinula", "San José Pinula", "San José del Golfo", "Palencia", "Chinautla", "San Pedro Ayampuc", "Mixco", "San Pedro Sacatepéquez", "San Juan Sacatepéquez", "San Raymundo", "Chuarrancho", "Fraijanes", "Amatitlán", "Villa Nueva", "Villa Canales", "Petapa"],
+  "HUEHUETENANGO": ["Huehuetenango", "Chiantla", "Malacatancito", "Cuilco", "Nentón", "San Pedro Necta", "Jacaltenango", "Soloma", "Ixtahuacán", "Santa Bárbara", "La Libertad", "La Democracia", "San Miguel Acatán", "San Rafael La Independencia", "Todos Santos Cuchumatán", "San Juan Atitán", "Santa Eulalia", "San Mateo Ixtatán", "Colotenango", "San Sebastián Huehuetenango", "Tectitán", "Concepción Huista", "San Juan Ixcoy", "San Antonio Huista", "San Sebastián Coatán", "Barillas", "Aguacatán", "San Rafael Petzal", "San Gaspar Ixchil", "Santiago Chimaltenango", "Santa Ana Huista", "Unión Cantinil", "Petatán"],
+  "IZABAL": ["Puerto Barrios", "Livingston", "El Estor", "Morales", "Los Amates"],
+  "JALAPA": ["Jalapa", "San Pedro Pinula", "San Luis Jilotepeque", "San Manuel Chaparrón", "San Carlos Alzatate", "Monjas", "Mataquescuintla"],
+  "JUTIAPA": ["Jutiapa", "El Progreso", "Santa Catarina Mita", "Agua Blanca", "Asunción Mita", "Yupiltepeque", "Atescatempa", "Jerez", "El Adelanto", "Zapotitlán", "Comapa", "Jalpatagua", "Conguaco", "Moyuta", "Pasaco", "San José Acatempa", "Quesada"],
+  "PETÉN": ["Flores", "San José", "San Benito", "San Andrés", "La Libertad", "San Francisco", "Santa Ana", "Dolores", "San Luis", "Sayaxché", "Melchor de Mencos", "Poptún", "Las Cruces", "El Chal"],
+  "QUETZALTENANGO": ["Quetzaltenango", "Salcajá", "Olintepeque", "San Carlos Sija", "Sibilia", "Cabricán", "Cajolá", "San Miguel Sigüilá", "Ostuncalco", "San Mateo", "Concepción Chiquirichapa", "San Martín Sacatepéquez", "Almolonga", "Cantel", "Huitán", "Zunil", "Colomba", "San Francisco La Unión", "El Palmar", "Coatepeque", "Génova", "Flores Costa Cuca", "La Esperanza", "Palestina de Los Altos"],
+  "QUICHÉ": ["Santa Cruz del Quiché", "Chiché", "Chinique", "Zacualpa", "Chajul", "Chichicastenango", "Patzité", "San Antonio Ilotenango", "San Pedro Jocopilas", "Cunén", "San Juan Cotzal", "Joyabaj", "Nebaj", "San Andrés Sajcabajá", "Uspantán", "Sacapulas", "San Bartolomé Jocotenango", "Canillá", "Chicamán", "Ixcán", "Pachalum"],
+  "RETALHULEU": ["Retalhuleu", "San Sebastián", "Santa Cruz Muluá", "San Martín Zapotitlán", "San Felipe", "San Andrés Villa Seca", "Champerico", "Nuevo San Carlos", "El Asintal"],
+  "SACATEPÉQUEZ": ["Antigua Guatemala", "Jocotenango", "Pastores", "Sumpango", "Santo Domingo Xenacoj", "Santiago Sacatepéquez", "San Bartolomé Milpas Altas", "San Lucas Sacatepéquez", "Santa Lucía Milpas Altas", "Magdalena Milpas Altas", "Santa María de Jesús", "Ciudad Vieja", "San Miguel Dueñas", "Alotenango", "San Antonio Aguas Calientes", "Santa Catarina Barahona"],
+  "SAN MARCOS": ["San Marcos", "San Pedro Sacatepéquez", "San Antonio Sacatepéquez", "Comitancillo", "San Miguel Ixtahuacán", "Concepción Tutuapa", "Tacaná", "Sibinal", "Tajumulco", "Tejutla", "San Rafael Pie de la Cuesta", "Nuevo Progreso", "El Tumbador", "El Rodeo", "Malacatán", "Catarina", "Ayutla", "Ocós", "San Pablo", "El Quetzal", "La Reforma", "Pajapita", "Ixchiguán", "San José Ojetenam", "San Cristóbal Cucho", "Sipacapa", "Esquipulas Palo Gordo", "Río Blanco", "San Lorenzo", "La Blanca"],
+  "SANTA ROSA": ["Cuilapa", "Barberena", "Santa Rosa de Lima", "Casillas", "San Rafael Las Flores", "Oratorio", "San Juan Tecuaco", "Chiquimulilla", "Taxisco", "Santa María Ixhuatán", "Guazacapán", "Santa Cruz Naranjo", "Pueblo Nuevo Viñas", "Nueva Santa Rosa"],
+  "SOLOLÁ": ["Sololá", "San José Chacayá", "Santa María Visitación", "Santa Lucía Utatlán", "Nahualá", "Santa Catarina Ixtahuacán", "Santa Clara La Laguna", "Concepción", "San Andrés Semetabaj", "Panajachel", "Santa Catarina Palopó", "San Antonio Palopó", "San Lucas Tolimán", "Santa Cruz La Laguna", "San Pablo La Laguna", "San Marcos La Laguna", "San Juan La Laguna", "San Pedro La Laguna", "Santiago Atitlán"],
+  "SUCHITEPÉQUEZ": ["Mazatenango", "Cuyotenango", "San Francisco Zapotitlán", "San Bernardino", "San José El Ídolo", "Santo Domingo Suchitepéquez", "San Lorenzo", "Samayac", "San Pablo Jocopilas", "San Antonio Suchitepéquez", "San Miguel Panán", "San Gabriel", "Chicacao", "Patulul", "Santa Bárbara", "San Juan Bautista", "Santo Tomás La Unión", "Zunilito", "Pueblo Nuevo", "Río Bravo"],
+  "TOTONICAPÁN": ["Totonicapán", "San Cristóbal Totonicapán", "San Francisco El Alto", "San Andrés Xecul", "Momostenango", "Santa María Chiquimula", "Santa Lucía La Reforma", "San Bartolo"],
+  "ZACAPA": ["Zacapa", "Estanzuela", "Río Hondo", "Gualán", "Teculután", "Usumatlán", "Cabañas", "San Diego", "La Unión", "Huité"]
 };
 
 const formSchema = z.object({
@@ -86,7 +74,7 @@ const formSchema = z.object({
   complemento: z.string().max(100).optional().or(z.literal("")),
   departamento: z.string().min(1, "Seleccione un departamento"),
   ciudad: z.string().min(1, "Seleccione una ciudad"),
-  telefono: z.string().regex(/^[0-9]{10}$/, "Teléfono debe tener 10 dígitos"),
+  telefono: z.string().regex(/^[0-9]{8}$/, "Teléfono debe tener 8 dígitos"),
   email: z.string().email("Email inválido").optional().or(z.literal("")),
   nota: z.string().max(500).optional(),
 });
@@ -154,7 +142,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       content_id: productId,
       content_name: productName,
       value: Number(productPrice),
-      currency: 'COP',
+      currency: 'GTQ',
       quantity: 1
     });
   }, [productId, productName, productPrice]);
@@ -185,7 +173,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         content_type: 'product',
         content_id: productId,
         value: Number(productPrice),
-        currency: 'COP',
+        currency: 'GTQ',
         quantity: 1
       });
       setHasTrackedInitiate(true);
@@ -226,9 +214,9 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         email: data.email || null,
         colonia: data.complemento || null,
         nota: data.nota || null,
-        id_producto: '1989831',
+        id_producto: productId,
         cantidad: 1,
-        precio_total: productPrice.toString().replace(/\./g, '').replace(/,/g, ''),
+        precio_total: productPrice.toString(),
         con_recaudo: 'SI',
         ip_address: clientIp,
       });
@@ -240,17 +228,17 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       // Track conversions on Facebook and TikTok
       trackFacebookConversion('Purchase', {
         value: productPrice,
-        currency: 'COP',
+        currency: 'GTQ',
         content_name: productName,
-        content_ids: ['1989831'],
+        content_ids: [productId],
         content_type: 'product'
       });
       
       trackTikTokConversion('CompletePayment', {
         value: Number(productPrice),
-        currency: 'COP',
+        currency: 'GTQ',
         content_name: productName,
-        content_id: '1989831',
+        content_id: productId,
         content_type: 'product',
         quantity: 1
       });
@@ -259,7 +247,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       try {
         await supabase.functions.invoke('send-telegram-notification', {
           body: {
-            precio_total: productPrice.toLocaleString('es-CO'),
+            precio_total: `Q${productPrice}`,
           }
         });
       } catch (telegramError) {
@@ -429,7 +417,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
             </div>
             <div className="flex items-center gap-1 sm:gap-2 text-lg sm:text-2xl font-bold text-primary animate-pulse-scale">
               <DollarSign className="w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0" />
-              <span>${productPrice.toLocaleString('es-CO')} COP</span>
+              <span>Q{productPrice}</span>
             </div>
             <div className="mt-2 sm:mt-3">
               <p className="text-xs sm:text-sm font-semibold text-green-600 animate-pulse">
@@ -612,9 +600,9 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
             name="telefono"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm">Teléfono/WhatsApp *</FormLabel>
+                <FormLabel className="text-sm">Teléfono/WhatsApp (8 dígitos) *</FormLabel>
                 <FormControl>
-                  <Input placeholder="3001234567" {...field} className="text-base" />
+                  <Input placeholder="12345678" {...field} className="text-base" maxLength={8} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -650,7 +638,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               ) : (
                 <>
                   <span className="mr-2 animate-bounce">👉</span>
-                  COMPRAR AHORA - ${productPrice.toLocaleString('es-CO')} COP
+                  COMPRAR AHORA - Q{productPrice}
                 </>
               )}
             </Button>
