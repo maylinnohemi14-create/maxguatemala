@@ -509,7 +509,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 <FormLabel className="text-sm">Dirección completa y Barrio *</FormLabel>
                 <FormControl>
                   <Textarea 
-                    placeholder="Calle 50 # 25-30, Barrio El Poblado, Torre 3 Apto 401" 
+                    placeholder="4a Avenida 12-30, Zona 1, Ciudad de Guatemala" 
                     {...field}
                     className="text-base min-h-[80px]"
                   />
@@ -527,7 +527,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
                 <FormLabel className="text-sm">Complemento (Opcional)</FormLabel>
                 <FormControl>
                   <Input 
-                    placeholder="Torre, apartamento, oficina, etc." 
+                    placeholder="Edificio, apartamento, oficina, referencia, etc." 
                     {...field}
                     className="text-base"
                   />
@@ -602,7 +602,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               <FormItem>
                 <FormLabel className="text-sm">Teléfono/WhatsApp (8 dígitos) *</FormLabel>
                 <FormControl>
-                  <Input placeholder="12345678" {...field} className="text-base" maxLength={8} />
+                  <Input placeholder="5512 3456" {...field} className="text-base" maxLength={8} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
