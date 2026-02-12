@@ -73,7 +73,7 @@ const formSchema = z.object({
   direccion: z.string().min(10, "Dirección debe ser más detallada").max(200),
   complemento: z.string().max(100).optional().or(z.literal("")),
   departamento: z.string().min(1, "Seleccione un departamento"),
-  ciudad: z.string().optional().or(z.literal("")),
+  ciudad: z.string().min(1, "Seleccione una ciudad"),
   telefono: z.string().regex(/^[0-9]{8}$/, "Teléfono debe tener 8 dígitos"),
   email: z.string().email("Email inválido").optional().or(z.literal("")),
   nota: z.string().max(500).optional(),
@@ -209,7 +209,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         apellidos: data.apellidos,
         direccion_y_barrio: data.direccion,
         departamento: data.departamento,
-        ciudad: data.departamento,
+        ciudad: data.ciudad,
         telefono: data.telefono,
         email: data.email || null,
         colonia: data.complemento || null,
@@ -537,30 +537,63 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="departamento"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-sm">Departamento *</FormLabel>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl>
-                    <SelectTrigger className="text-base">
-                      <SelectValue placeholder="Seleccione departamento" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {DEPARTAMENTOS.map((dept) => (
-                      <SelectItem key={dept} value={dept}>
-                        {dept}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <FormField
+              control={form.control}
+              name="departamento"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm">Departamento *</FormLabel>
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="text-base">
+                        <SelectValue placeholder="Seleccione departamento" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {DEPARTAMENTOS.map((dept) => (
+                        <SelectItem key={dept} value={dept}>
+                          {dept}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="ciudad"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm">Ciudad/Municipio *</FormLabel>
+                  <Select 
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                    }} 
+                    value={field.value}
+                    disabled={!selectedDepartamento}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="text-base">
+                        <SelectValue placeholder={selectedDepartamento ? "Seleccione ciudad" : "Primero seleccione departamento"} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {availableCiudades.map((ciudad) => (
+                        <SelectItem key={ciudad} value={ciudad}>
+                          {ciudad}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}
