@@ -32,7 +32,7 @@ import projectorPromo from "@/assets/projector-promo.png";
 import projectorLifestyle1 from "@/assets/projector-lifestyle-1.jpg";
 import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
-import { CODForm } from "@/components/CODForm";
+import { CODFormGuatemala } from "@/components/CODFormGuatemala";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -41,29 +41,29 @@ const Index = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
   
-  const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10";
-  const PRODUCT_PRICE = 129000;
+  const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10-GT";
+  const PRODUCT_PRICE = 359;
 
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
-  const colombianNames = [
-    "Juan Rodríguez de Bogotá",
-    "María García de Medellín",
-    "Carlos Martínez de Cali",
-    "Sofía López de Barranquilla",
-    "Andrés González de Cartagena",
-    "Camila Hernández de Bucaramanga",
-    "Diego Pérez de Pereira",
-    "Valentina Ramírez de Cúcuta",
-    "Santiago Torres de Manizales",
-    "Isabella Castro de Ibagué",
-    "Sebastián Morales de Santa Marta",
-    "Lucía Gutiérrez de Villavicencio",
+  const guatemalanNames = [
+    "Juan Rodríguez de Guatemala",
+    "María García de Quetzaltenango",
+    "Carlos Martínez de Escuintla",
+    "Sofía López de Mixco",
+    "Andrés González de Villa Nueva",
+    "Camila Hernández de Cobán",
+    "Diego Pérez de Huehuetenango",
+    "Valentina Ramírez de Petén",
+    "Santiago Torres de Antigua",
+    "Isabella Castro de Chimaltenango",
+    "Sebastián Morales de Mazatenango",
+    "Lucía Gutiérrez de Retalhuleu",
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomName = colombianNames[Math.floor(Math.random() * colombianNames.length)];
+      const randomName = guatemalanNames[Math.floor(Math.random() * guatemalanNames.length)];
       
       toast.success(
         <div>
@@ -219,13 +219,13 @@ const Index = () => {
             </p>
 
             <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-xl bg-primary/5 border-2 border-primary/20">
-              <div className="flex items-baseline gap-2 sm:gap-3 mb-2">
-                <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground animate-pulse-slow">$129.000</span>
-                <span className="text-lg sm:text-xl lg:text-2xl text-muted-foreground line-through">$399.000</span>
+            <div className="flex items-baseline gap-2 sm:gap-3 mb-2">
+                <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground animate-pulse-slow">Q359</span>
+                <span className="text-lg sm:text-xl lg:text-2xl text-muted-foreground line-through">Q899</span>
               </div>
               <div className="flex items-center gap-2 text-success animate-lightning">
                 <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="font-semibold text-sm sm:text-base">¡Ahorra 68% hoy!</span>
+                <span className="font-semibold text-sm sm:text-base">¡Ahorra 60% hoy!</span>
               </div>
             </div>
 
@@ -287,7 +287,7 @@ const Index = () => {
                     <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
                   </DialogHeader>
                   {showCODForm && (
-                    <CODForm 
+                    <CODFormGuatemala 
                       key={Date.now()}
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
@@ -308,7 +308,7 @@ const Index = () => {
               <TrustBadge
                 icon={Truck}
                 title="Envío Gratis"
-                description="En toda Colombia"
+                description="En toda Guatemala"
               />
               <TrustBadge
                 icon={Shield}
@@ -318,7 +318,7 @@ const Index = () => {
               <TrustBadge
                 icon={Clock}
                 title="Entrega Rápida"
-                description="3 a 5 dias uteis"
+                description="3 a 5 días hábiles"
               />
             </div>
           </div>
@@ -426,7 +426,7 @@ const Index = () => {
                 ¿Cuál es el tiempo de entrega?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-sm sm:text-base">
-                El tiempo de entrega es de 5 a 7 días hábiles para toda Colombia. Recibirás un
+                El tiempo de entrega es de 3 a 5 días hábiles para toda Guatemala. Recibirás un
                 código de rastreo tan pronto como el producto sea despachado.
               </AccordionContent>
             </AccordionItem>
@@ -454,9 +454,9 @@ const Index = () => {
                 ¿Cómo es el pago contra entrega?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-sm sm:text-base">
-                Puedes elegir pagar contra entrega en efectivo o tarjeta directamente al
-                mensajero. También aceptamos pago anticipado con tarjeta de crédito, débito,
-                PSE y transferencia bancaria.
+                Puedes elegir pagar contra entrega en efectivo directamente al
+                mensajero. También aceptamos pago anticipado con tarjeta de crédito, débito
+                y transferencia bancaria.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
