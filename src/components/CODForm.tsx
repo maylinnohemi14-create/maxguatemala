@@ -405,53 +405,68 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       </div>
 
       {/* Product Info */}
-      <div className="bg-gradient-to-br from-primary/5 via-background to-primary/5 p-4 sm:p-6 rounded-2xl border border-primary/15 shadow-sm">
-        <div className="flex items-start gap-4 sm:gap-5">
-          {productImage && (
-            <img src={productImage} alt={productName} className="w-20 h-20 sm:w-28 sm:h-28 object-cover rounded-xl shadow-md border border-border/50" />
-          )}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-bold text-sm sm:text-lg text-foreground">{productName}</h3>
-            </div>
-            <div className="flex items-baseline gap-1 text-xl sm:text-3xl font-black text-primary animate-pulse-scale mt-1">
-              <span>Q{productPrice}</span>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-2 sm:mt-3">
-              <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-green-700 bg-green-50 border border-green-200 rounded-full px-2 py-0.5">
-                <Truck className="w-3 h-3" /> Envío Gratis
-              </span>
-              <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200 rounded-full px-2 py-0.5">
-                <Shield className="w-3 h-3" /> Garantía 2 Años
-              </span>
-              <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2 py-0.5">
-                <Package className="w-3 h-3" /> Contra Entrega
-              </span>
+      <div className="overflow-hidden rounded-2xl border border-border/60 shadow-lg bg-background">
+        {/* Product Header */}
+        <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 p-4 sm:p-5 border-b border-border/40">
+          <div className="flex items-center gap-4 sm:gap-5">
+            {productImage && (
+              <div className="relative flex-shrink-0">
+                <img src={productImage} alt={productName} className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl shadow-lg ring-2 ring-background" />
+                <div className="absolute -top-2 -right-2 bg-green-500 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-md">
+                  GRATIS
+                </div>
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-sm sm:text-base text-foreground leading-tight">{productName}</h3>
+              <div className="mt-1.5 sm:mt-2">
+                <span className="text-muted-foreground text-xs line-through mr-2">Q{Math.round(productPrice * 1.6)}</span>
+                <span className="text-2xl sm:text-3xl font-black text-primary animate-pulse-scale">Q{productPrice}</span>
+              </div>
+              <p className="text-[10px] sm:text-xs text-green-600 font-semibold mt-1">
+                Ahorra Q{Math.round(productPrice * 0.6)} — Oferta por tiempo limitado
+              </p>
             </div>
           </div>
         </div>
 
+        {/* Trust Badges Row */}
+        <div className="grid grid-cols-3 divide-x divide-border/40 bg-muted/30">
+          <div className="flex flex-col items-center py-2.5 sm:py-3 gap-1">
+            <Truck className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+            <span className="text-[9px] sm:text-[11px] font-bold text-foreground text-center leading-tight">Envío Gratis</span>
+          </div>
+          <div className="flex flex-col items-center py-2.5 sm:py-3 gap-1">
+            <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+            <span className="text-[9px] sm:text-[11px] font-bold text-foreground text-center leading-tight">Garantía 2 Años</span>
+          </div>
+          <div className="flex flex-col items-center py-2.5 sm:py-3 gap-1">
+            <Package className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
+            <span className="text-[9px] sm:text-[11px] font-bold text-foreground text-center leading-tight">Contra Entrega</span>
+          </div>
+        </div>
+
         {/* Included Items */}
-        <div className="mt-4 sm:mt-5">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-            <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">🎁 Incluido Gratis</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="p-4 sm:p-5">
+          <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
+            <span className="text-base sm:text-lg">🎁</span>
+            <h4 className="text-xs sm:text-sm font-bold text-foreground uppercase tracking-wide">Incluido Gratis con tu compra</h4>
           </div>
           
-          <div className="grid grid-cols-1 gap-2">
+          <div className="space-y-2 sm:space-y-2.5">
             {includedItems.map((item) => (
-              <div key={item.id} className="flex items-center gap-3 p-2.5 sm:p-3 bg-green-50/60 rounded-xl border border-green-100 hover:border-green-300 transition-all">
+              <div key={item.id} className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gradient-to-r from-green-50/80 to-emerald-50/40 border border-green-200/60 hover:shadow-sm transition-all">
                 <Checkbox 
                   id={item.id}
                   checked={upsells[item.id] ?? true}
                   onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, [item.id]: checked as boolean }))}
-                  className="data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600"
+                  className="data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 flex-shrink-0"
                 />
                 <label htmlFor={item.id} className="flex-1 cursor-pointer">
-                  <p className="font-semibold text-xs sm:text-sm text-foreground">{item.icon} {item.title}</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground leading-snug">{item.description}</p>
+                  <p className="font-semibold text-xs sm:text-sm text-foreground leading-snug">{item.icon} {item.title}</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground leading-snug mt-0.5">{item.description}</p>
                 </label>
+                <span className="text-green-600 text-[10px] sm:text-xs font-bold flex-shrink-0">GRATIS</span>
               </div>
             ))}
           </div>
