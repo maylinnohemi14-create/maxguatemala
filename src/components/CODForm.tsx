@@ -448,8 +448,8 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
 
         {/* Included Items */}
         <div className="p-4 sm:p-5">
-          <div className="flex items-center gap-2 mb-3 sm:mb-4">
-            <div className="bg-green-500 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1.5">
+          <div className="flex justify-center mb-3 sm:mb-4">
+            <div className="bg-green-500 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-pulse">
               🎁 INCLUIDO GRATIS CON TU COMPRA
             </div>
           </div>
