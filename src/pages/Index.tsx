@@ -227,7 +227,7 @@ const Index = () => {
                 "Disfruta imágenes nítidas en cualquier habitación",
                 "Experimenta sonido envolvente sin altavoces extra",
                 "Conecta dispositivos fácilmente con múltiples opciones",
-                "Proyecta con claridad incluso con luz ambiental",
+              "Proyecta con claridad incluso con luz ambiental",
               ].map((benefit, idx) => (
                 <div key={idx} className="flex items-start gap-2 sm:gap-3">
                   <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-success flex items-center justify-center mt-0.5">
@@ -236,6 +236,20 @@ const Index = () => {
                   <span className="text-sm sm:text-base text-foreground">{benefit}</span>
                 </div>
               ))}
+              {/* MagisTV Benefit */}
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-success flex items-center justify-center mt-0.5">
+                  <Check className="w-3 h-3 sm:w-4 sm:h-4 text-success-foreground" />
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-sm sm:text-base text-foreground font-bold animate-pulse-scale">
+                    🎬 MagisTV — Transforma tu proyector en un cine completo
+                  </span>
+                  <Badge className="bg-success text-success-foreground text-[10px] sm:text-xs px-2 py-0.5 animate-pulse-scale">
+                    🎁 INCLUIDO GRATIS
+                  </Badge>
+                </div>
+              </div>
             </div>
 
             {/* Quantity Selector */}
