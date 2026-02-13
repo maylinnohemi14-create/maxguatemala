@@ -66,11 +66,14 @@ const Index = () => {
       const randomName = guatemalanNames[Math.floor(Math.random() * guatemalanNames.length)];
       
       toast.success(
-        <div>
-          🎉 <span className="text-destructive font-bold">{randomName}</span> acabó de comprar
+        <div className="flex items-center gap-3">
+          <img src={projectorPromo} alt="Proyector" className="w-12 h-12 rounded-md object-cover flex-shrink-0" />
+          <div>
+            <span className="text-destructive font-bold">{randomName}</span> acaba de comprar
+            <p className="text-xs text-muted-foreground mt-0.5">¡Quedan pocas unidades disponibles!</p>
+          </div>
         </div>,
         {
-          description: "¡Quedan pocas unidades disponibles!",
           duration: 4000,
         }
       );
