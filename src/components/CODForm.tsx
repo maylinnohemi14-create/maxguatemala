@@ -405,48 +405,55 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       </div>
 
       {/* Product Info */}
-      <div className="bg-primary/5 p-4 sm:p-6 rounded-lg border-2 border-primary/20">
-        <div className="flex items-start gap-3 sm:gap-4">
+      <div className="bg-gradient-to-br from-primary/5 via-background to-primary/5 p-4 sm:p-6 rounded-2xl border border-primary/15 shadow-sm">
+        <div className="flex items-start gap-4 sm:gap-5">
           {productImage && (
-            <img src={productImage} alt={productName} className="w-16 h-16 sm:w-24 sm:h-24 object-cover rounded-lg" />
+            <img src={productImage} alt={productName} className="w-20 h-20 sm:w-28 sm:h-28 object-cover rounded-xl shadow-md border border-border/50" />
           )}
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1 sm:mb-2">
-              <Package className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-              <h3 className="font-bold text-sm sm:text-lg">{productName}</h3>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="font-bold text-sm sm:text-lg text-foreground">{productName}</h3>
             </div>
-            <div className="flex items-center gap-1 sm:gap-2 text-lg sm:text-2xl font-bold text-primary animate-pulse-scale">
-              <DollarSign className="w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0" />
+            <div className="flex items-baseline gap-1 text-xl sm:text-3xl font-black text-primary animate-pulse-scale mt-1">
               <span>Q{productPrice}</span>
             </div>
-            <div className="mt-2 sm:mt-3">
-              <p className="text-xs sm:text-sm font-semibold text-green-600 animate-pulse">
-                ✓ Pago Contra Entrega • ✓ Envío Gratis • ✓ Garantía 2 Años
-              </p>
-              
-              <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-2 sm:p-3 border-2 border-primary/20">
-                <p className="text-sm sm:text-base font-black text-black mb-2 sm:mb-3 animate-pulse text-center" style={{ textShadow: '0 0 15px rgba(0,0,0,0.9), 0 0 25px rgba(0,0,0,0.7)' }}>
-                  ✨ INCLUIDO GRATIS ✨
-                </p>
-                
-                <div className="space-y-1.5 sm:space-y-2">
-                  {includedItems.map((item) => (
-                    <div key={item.id} className="flex items-start gap-2 p-1.5 sm:p-2 bg-background/80 rounded-lg border border-green-500/30 hover:border-green-500/60 transition-colors">
-                      <Checkbox 
-                        id={item.id}
-                        checked={upsells[item.id] ?? true}
-                        onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, [item.id]: checked as boolean }))}
-                        className="mt-0.5 data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600 animate-pulse"
-                      />
-                      <label htmlFor={item.id} className="flex-1 cursor-pointer">
-                        <p className="font-bold text-xs sm:text-sm">{item.icon} {item.title}</p>
-                        <p className="text-[10px] sm:text-xs text-muted-foreground">{item.description}</p>
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="flex flex-wrap gap-2 mt-2 sm:mt-3">
+              <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-green-700 bg-green-50 border border-green-200 rounded-full px-2 py-0.5">
+                <Truck className="w-3 h-3" /> Envío Gratis
+              </span>
+              <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200 rounded-full px-2 py-0.5">
+                <Shield className="w-3 h-3" /> Garantía 2 Años
+              </span>
+              <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2 py-0.5">
+                <Package className="w-3 h-3" /> Contra Entrega
+              </span>
             </div>
+          </div>
+        </div>
+
+        {/* Included Items */}
+        <div className="mt-4 sm:mt-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+            <span className="text-xs sm:text-sm font-bold text-primary uppercase tracking-wider">🎁 Incluido Gratis</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+          </div>
+          
+          <div className="grid grid-cols-1 gap-2">
+            {includedItems.map((item) => (
+              <div key={item.id} className="flex items-center gap-3 p-2.5 sm:p-3 bg-green-50/60 rounded-xl border border-green-100 hover:border-green-300 transition-all">
+                <Checkbox 
+                  id={item.id}
+                  checked={upsells[item.id] ?? true}
+                  onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, [item.id]: checked as boolean }))}
+                  className="data-[state=checked]:bg-green-600 data-[state=checked]:border-green-600"
+                />
+                <label htmlFor={item.id} className="flex-1 cursor-pointer">
+                  <p className="font-semibold text-xs sm:text-sm text-foreground">{item.icon} {item.title}</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground leading-snug">{item.description}</p>
+                </label>
+              </div>
+            ))}
           </div>
         </div>
       </div>
