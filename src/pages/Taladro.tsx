@@ -118,17 +118,6 @@ const Taladro = () => {
     <div className="min-h-screen bg-background">
       <TrackingPixels />
       
-      {/* Admin Link - Fixed top right */}
-      <div className="fixed top-4 right-4 z-50">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => window.location.href = '/auth'}
-          className="text-xs opacity-50 hover:opacity-100"
-        >
-          Admin
-        </Button>
-      </div>
 
       {/* Trust Bar */}
       <div className="bg-gradient-hero text-primary-foreground py-2">
