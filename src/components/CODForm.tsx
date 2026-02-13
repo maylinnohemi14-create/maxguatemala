@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Loader2, Package, DollarSign, AlertTriangle, CheckCircle, Shield, Truck, Award, LockKeyhole } from "lucide-react";
+import { Loader2, Package, DollarSign, AlertTriangle, CheckCircle, Shield, Truck, Award, LockKeyhole, Zap } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import guaranteeBadge from "@/assets/guarantee-badge.png";
 import trustSeals from "@/assets/trust-seals.jpg";
@@ -419,13 +419,14 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
             )}
             <div className="flex-1 min-w-0">
               <h3 className="font-bold text-sm sm:text-base text-foreground leading-tight">{productName}</h3>
-              <div className="mt-1.5 sm:mt-2">
-                <span className="text-muted-foreground text-xs line-through mr-2">Q{Math.round(productPrice * 1.6)}</span>
-                <span className="text-2xl sm:text-3xl font-black text-primary animate-pulse-scale">Q{productPrice}</span>
+              <div className="flex items-baseline gap-2 sm:gap-3 mt-1.5 sm:mt-2">
+                <span className="text-2xl sm:text-3xl font-black text-foreground animate-pulse-scale">Q{productPrice}</span>
+                <span className="text-sm sm:text-base text-muted-foreground line-through">Q{Math.round(productPrice * 1.6)}</span>
               </div>
-              <p className="text-[10px] sm:text-xs text-green-600 font-semibold mt-1">
-                Ahorra Q{Math.round(productPrice * 0.6)} — Oferta por tiempo limitado
-              </p>
+              <div className="flex items-center gap-1.5 mt-1">
+                <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-600" />
+                <span className="font-semibold text-[10px] sm:text-xs text-green-600">¡Ahorra 60% hoy!</span>
+              </div>
             </div>
           </div>
         </div>
