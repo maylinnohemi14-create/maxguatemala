@@ -66,7 +66,7 @@ const MUNICIPIOS_POR_DEPARTAMENTO: Record<string, string[]> = {
   "SOLOLÁ": ["Sololá", "Santa Lucía Utatlán", "San Andrés Semetabaj", "San Antonio Palopó", "San José Chacayá", "María Tecún", "Los Encuentros", "Santa Catarina Palopó", "San Juan Argueta", "San Jorge La Laguna", "Concepción", "Panajachel", "Santa Cruz La Laguna", "Santa Catarina Ixtahuacán", "San Lucas Tolimán", "Santiago Atitlán", "Nahualá", "San Juan La Laguna", "San Marcos La Laguna", "San Pablo La Laguna", "San Pedro La Laguna", "Santa Clara La Laguna", "Santa María Visitación"],
   "SUCHITEPÉQUEZ": ["Mazatenango", "Cuyotenango", "San Francisco Zapotitlán", "San Bernardino", "San José El Ídolo", "Santo Domingo", "Samayac", "San Pablo Jocopilas", "San Antonio Suchitepéquez", "San Miguel Panán", "San Gabriel", "Chicacao", "Santo Tomás La Unión", "Zunilito", "Pueblo Nuevo", "San Lorenzo Suchitepéquez", "Santa Bárbara", "San Juan Bautista", "Patulul", "Río Bravo", "San José La Máquina", "San Lorenzo"],
   "TOTONICAPÁN": ["Santa Lucía La Reforma", "Totonicapán", "San Cristóbal", "San Andrés Xecul", "Santa María Chiquimula", "San Francisco El Alto", "Momostenango", "San Bartolo Aguas Calientes", "San Cristóbal Totonicapán"],
-  "ZACAPA": ["Zacapa", "Estanzuela", "Río Hondo", "Gualán", "Teculután", "Usumatlán", "Cabañas", "San Diego", "La Unión", "Huité"]
+  "ZACAPA": ["Zacapa", "Teculután", "Río Hondo", "San Jorge", "Estanzuela", "Huité", "San Diego", "Usumatlán", "Cabañas", "Gualán", "La Unión"]
 };
 
 const formSchema = z.object({
