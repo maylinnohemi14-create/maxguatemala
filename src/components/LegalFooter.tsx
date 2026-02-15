@@ -36,7 +36,7 @@ export const LegalFooter = () => {
         </div>
         <div className="border-t border-background/20 pt-6 text-center">
           <p className="text-xs opacity-75">
-            © 2024 VEVSHAO. Todos los derechos reservados.
+            © 2026 GUATEMALA EXPRESS. Todos los derechos reservados.
           </p>
         </div>
       </div>
