@@ -35,6 +35,7 @@ import projectorDetail from "@/assets/projector-detail.jpg";
 import { CODForm } from "@/components/CODForm";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { LegalFooter } from "@/components/LegalFooter";
 
 const Index = () => {
   const [quantity, setQuantity] = useState(1);
@@ -500,13 +501,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-6 sm:py-8">
-        <div className="container mx-auto px-3 sm:px-4 text-center">
-          <p className="text-xs sm:text-sm opacity-75">
-            © 2024 VEVSHAO. Todos los derechos reservados.
-          </p>
-        </div>
-      </footer>
+      <LegalFooter />
     </div>
   );
 };
