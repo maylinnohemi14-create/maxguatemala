@@ -70,7 +70,7 @@ const Index = () => {
         <div className="flex items-center gap-2">
           <img src={projectorPromo} alt="Proyector" className="w-8 h-8 rounded object-cover flex-shrink-0" />
           <div className="text-xs">
-            <span className="font-bold text-foreground">{randomName}</span> acaba de comprar
+            <span className="text-destructive font-bold">{randomName.split(' de ')[0]}</span>{randomName.includes(' de ') && <> de <span className="font-bold text-foreground">{randomName.split(' de ')[1]}</span></>} acaba de comprar
           </div>
         </div>,
         {
