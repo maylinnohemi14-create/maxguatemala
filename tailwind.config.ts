@@ -156,10 +156,10 @@ export default {
         },
         "button-bounce": {
           "0%, 100%": {
-            transform: "scale(1)",
-          },
-          "25%": {
             transform: "scale(1.05)",
+          },
+          "50%": {
+            transform: "scale(1.12)",
           },
           "50%": {
             transform: "scale(0.95)",
@@ -202,7 +202,7 @@ export default {
         "pulse-fast": "pulse-fast 0.5s ease-in-out infinite",
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "lightning": "lightning 2s ease-in-out infinite",
-        "button-bounce": "button-bounce 0.6s ease-in-out infinite",
+        "button-bounce": "button-bounce 2s ease-in-out infinite",
         "marquee": "marquee 20s linear infinite",
         "marquee-reverse": "marquee-reverse 20s linear infinite",
         "pulse-scale": "pulse-scale 1.5s ease-in-out infinite",
