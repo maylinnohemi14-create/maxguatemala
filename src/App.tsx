@@ -11,6 +11,7 @@ import GuatemalaProyector from "./pages/GuatemalaProyector";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import DownloadDepartamentos from "./pages/DownloadDepartamentos";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/guatemala-proyector" element={<GuatemalaProyector />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/download-departamentos" element={<DownloadDepartamentos />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
