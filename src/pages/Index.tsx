@@ -283,7 +283,7 @@ const Index = () => {
                     className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-gradient-hero hover:shadow-glow transition-all animate-button-bounce"
                   >
                     <Gift className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                    COMPRAR AHORA - ¡OFERTA LIMITADA!
+                    COMPRAR AHORA - ¡COMPRA 1 Y LLEVA 2!
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
