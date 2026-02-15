@@ -107,25 +107,22 @@ const Index = () => {
   ];
 
   const testimonials = [
-    {
-      name: "María Rodríguez",
-      rating: 5,
-      comment: "¡Increíble! Transformó mi sala en un cine. La calidad de imagen es excepcional y la instalación fue súper fácil.",
-      date: "Hace 2 días",
-    },
-    {
-      name: "Carlos Gómez",
-      rating: 5,
-      comment: "¡Mejor compra que hice este año! El sonido es excelente y la conectividad con mi celular es perfecta. ¡Lo recomiendo mucho!",
-      date: "Hace 1 semana",
-    },
-    {
-      name: "Ana López",
-      rating: 5,
-      comment: "¡Producto de calidad profesional! Lo uso para reuniones de trabajo y también para ver películas. Vale cada peso.",
-      date: "Hace 2 semanas",
-    },
+    { name: "María Rodríguez", rating: 5, comment: "¡Increíble! Transformó mi sala en un cine. La calidad de imagen es excepcional y la instalación fue súper fácil.", date: "Hace 2 días" },
+    { name: "Carlos Gómez", rating: 5, comment: "¡Mejor compra que hice este año! El sonido es excelente y la conectividad con mi celular es perfecta. ¡Lo recomiendo mucho!", date: "Hace 1 semana" },
+    { name: "Ana López", rating: 5, comment: "¡Producto de calidad profesional! Lo uso para reuniones de trabajo y también para ver películas. Vale cada peso.", date: "Hace 2 semanas" },
+    { name: "José Hernández", rating: 5, comment: "Mis hijos están felices, ven películas y juegan en pantalla gigante. La mejor inversión para la familia.", date: "Hace 3 días" },
+    { name: "Sofía Martínez", rating: 5, comment: "La calidad del proyector es impresionante por el precio. Lo recomiendo a todos mis amigos.", date: "Hace 5 días" },
+    { name: "Pedro García", rating: 5, comment: "Llegó rápido y funciona perfecto. El sonido integrado es más que suficiente. ¡Excelente compra!", date: "Hace 1 semana" },
   ];
+
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTestimonialIndex((prev) => (prev + 1) % (testimonials.length - 2));
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
@@ -404,8 +401,10 @@ const Index = () => {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-            {testimonials.map((testimonial, idx) => (
-              <TestimonialCard key={idx} {...testimonial} />
+            {testimonials.slice(testimonialIndex, testimonialIndex + 3).map((testimonial, idx) => (
+              <div key={`${testimonialIndex}-${idx}`} className="animate-fade-in">
+                <TestimonialCard {...testimonial} />
+              </div>
             ))}
           </div>
         </div>
