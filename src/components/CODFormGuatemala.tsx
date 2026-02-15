@@ -46,7 +46,7 @@ const DEPARTAMENTOS = [
 // Municipios por departamento de Guatemala
 const MUNICIPIOS_POR_DEPARTAMENTO: Record<string, string[]> = {
   "ALTA VERAPAZ": ["Cobán", "San Cristóbal Verapaz", "Tactic", "San Pedro Carchá", "San Juan Chamelco", "Chisec", "Santa María Cahabón", "Santa Cruz Verapaz", "Fray Bartolomé de las Casas", "Lanquín", "Chahal", "Santa Catalina La Tinta", "Panzós", "Senahú", "Tamahú", "Tucurú", "Raxruhá"],
-  "BAJA VERAPAZ": ["Salamá", "San Miguel Chicaj", "Rabinal", "Cubulco", "Granados", "Santa Cruz El Chol", "San Jerónimo", "Purulhá"],
+  "BAJA VERAPAZ": ["Salamá", "San Miguel Chicaj", "Rabinal", "San Jerónimo", "Santa Cruz El Chol", "Granados", "Purulhá", "Cubulco"],
   "CHIMALTENANGO": ["Chimaltenango", "San José Poaquil", "San Martín Jilotepeque", "San Juan Comalapa", "Santa Apolonia", "Tecpán Guatemala", "Patzún", "Pochuta", "Patzicía", "Santa Cruz Balanyá", "Acatenango", "Yepocapa", "San Andrés Itzapa", "Parramos", "Zaragoza", "El Tejar"],
   "CHIQUIMULA": ["Chiquimula", "Jocotán", "Camotán", "San José de la Arada", "San Juan Ermita", "San Jacinto", "Ipala", "San José La Arada", "Esquipulas", "Concepción Las Minas", "Olopa", "Quetzaltepeque"],
   "EL PROGRESO": ["Guastatoya", "Morazán", "San Agustín Acasaguastlán", "San Cristóbal Acasaguastlán", "El Jícaro", "Sansare", "Sanarate", "San Antonio La Paz"],
