@@ -337,8 +337,7 @@ const Gafas = () => {
                     <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
                   </DialogHeader>
                   {showCODForm && (
-                    <CODForm 
-                      key={Date.now()}
+                    <CODForm
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Lentes Multifocales TR90 - OFERTA 2X1"
