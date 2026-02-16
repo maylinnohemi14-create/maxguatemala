@@ -629,9 +629,9 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
             name="telefono"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm">Teléfono/WhatsApp (8 dígitos) *</FormLabel>
+                <FormLabel className="text-sm">Teléfono/WhatsApp *</FormLabel>
                 <FormControl>
-                  <Input placeholder="5512 3456" {...field} className="text-base" maxLength={8} />
+                  <Input placeholder="5512 3456" {...field} className="text-base" maxLength={15} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
