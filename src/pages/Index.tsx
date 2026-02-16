@@ -64,6 +64,7 @@ const Index = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      toast.dismiss();
       const randomName = guatemalanNames[Math.floor(Math.random() * guatemalanNames.length)];
       
       toast.success(
@@ -74,10 +75,10 @@ const Index = () => {
           </div>
         </div>,
         {
-          duration: 2000,
+          duration: 2500,
         }
       );
-    }, 4000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
