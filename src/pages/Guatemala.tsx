@@ -317,8 +317,7 @@ const Guatemala = () => {
                     <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
                   </DialogHeader>
                   {showCODForm && (
-                    <CODFormGuatemala 
-                      key={Date.now()}
+                    <CODFormGuatemala
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Mochila Compacta con Puerto USB"

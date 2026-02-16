@@ -290,8 +290,7 @@ const Index = () => {
                     <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
                   </DialogHeader>
                   {showCODForm && (
-                    <CODForm 
-                      key={Date.now()}
+                    <CODForm
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Proyector Vevshao A10 - Compra 1 y Lleva 2"
