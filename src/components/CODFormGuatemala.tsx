@@ -508,7 +508,12 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
             name="direccion"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs sm:text-sm">Dirección completa *</FormLabel>
+                <div className="flex flex-col gap-1">
+                  <FormLabel className="text-xs sm:text-sm">Dirección completa *</FormLabel>
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs bg-red-600 text-white px-2 py-0.5 rounded-md w-fit font-medium">
+                    📍 Incluye dirección completa para garantizar la entrega
+                  </span>
+                </div>
                 <FormControl>
                   <Textarea 
                     placeholder="Calle, número, zona, colonia o barrio, referencias" 
