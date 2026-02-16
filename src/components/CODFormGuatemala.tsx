@@ -543,9 +543,9 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
               name="telefono"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs sm:text-sm">Teléfono (8 dígitos) *</FormLabel>
+                  <FormLabel className="text-xs sm:text-sm">Teléfono *</FormLabel>
                   <FormControl>
-                    <Input placeholder="12345678" {...field} className="text-sm" maxLength={8} />
+                    <Input placeholder="12345678" {...field} className="text-sm" maxLength={15} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
