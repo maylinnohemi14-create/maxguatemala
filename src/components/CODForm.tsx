@@ -75,7 +75,7 @@ const formSchema = z.object({
   departamento: z.string().min(1, "Seleccione un departamento"),
   ciudad: z.string().min(1, "Seleccione una ciudad"),
   telefono: z.string().regex(/^[0-9]{4,15}$/, "Ingrese un número de teléfono válido"),
-  email: z.string().email("Email inválido").optional().or(z.literal("")),
+  email: z.string().email("Por favor, ingrese un correo electrónico válido").optional().or(z.literal("")),
   nota: z.string().max(500).optional(),
 });
 
@@ -645,7 +645,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
               <FormItem>
                 <FormLabel className="text-sm">Email (Opcional)</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="cliente@email.com" {...field} className="text-base" />
+                  <Input placeholder="cliente@email.com" {...field} className="text-base" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

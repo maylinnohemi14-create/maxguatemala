@@ -77,7 +77,7 @@ const formSchema = z.object({
   departamento: z.string().min(1, "Seleccione un departamento"),
   municipio: z.string().min(1, "Seleccione un municipio"),
   telefono: z.string().regex(/^[0-9]{4,15}$/, "Ingrese un número de teléfono válido"),
-  email: z.string().email("Email inválido").optional().or(z.literal("")),
+  email: z.string().email("Por favor, ingrese un correo electrónico válido").optional().or(z.literal("")),
   nota: z.string().max(500).optional(),
 });
 
@@ -558,7 +558,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
                 <FormItem>
                   <FormLabel className="text-xs sm:text-sm">Email (opcional)</FormLabel>
                   <FormControl>
-                    <Input placeholder="tu@email.com" type="email" {...field} className="text-sm" />
+                    <Input placeholder="tu@email.com" {...field} className="text-sm" />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
