@@ -74,7 +74,7 @@ const formSchema = z.object({
   complemento: z.string().max(100).optional().or(z.literal("")),
   departamento: z.string().min(1, "Seleccione un departamento"),
   ciudad: z.string().min(1, "Seleccione una ciudad"),
-  telefono: z.string().regex(/^[0-9]{8}$/, "Teléfono debe tener 8 dígitos"),
+  telefono: z.string().regex(/^[0-9]{4,15}$/, "Ingrese un número de teléfono válido"),
   email: z.string().email("Email inválido").optional().or(z.literal("")),
   nota: z.string().max(500).optional(),
 });
