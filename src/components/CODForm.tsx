@@ -479,17 +479,17 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       {/* Guarantee Badge with Promo */}
       <div className="flex flex-col items-center justify-center gap-2 sm:gap-4 py-3 sm:py-4">
         <img src={guaranteeBadge} alt="100% Garantía" className="w-40 sm:w-64 h-auto" />
-        <div className="text-center">
-          <p className="text-base sm:text-xl md:text-2xl font-bold text-black animate-pulse" style={{ textShadow: '0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>
-            PROMOCIÓN DE BLACK FRIDAY
-          </p>
-          <p className="text-sm sm:text-lg md:text-xl font-semibold text-black animate-pulse" style={{ textShadow: '0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>
-            VÁLIDA HASTA EL {(() => {
+        <div className="text-center bg-destructive text-destructive-foreground rounded-lg px-3 py-2 sm:px-4 sm:py-3">
+          <p className="text-xs sm:text-sm md:text-base font-bold flex items-center justify-center gap-2">
+            <span>⚠️</span>
+            <span>¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta el {(() => {
               const tomorrow = new Date();
               tomorrow.setDate(tomorrow.getDate() + 1);
-              const months = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
-              return `${tomorrow.getDate()} DE ${months[tomorrow.getMonth()]}`;
-            })()}
+              const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+              const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+              return `${diasSemana[tomorrow.getDay()]} ${tomorrow.getDate()} de ${meses[tomorrow.getMonth()]}`;
+            })()}. ¡Asegura el tuyo ahora!</span>
+            <span>⚠️</span>
           </p>
         </div>
       </div>
