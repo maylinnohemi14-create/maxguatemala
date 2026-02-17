@@ -75,10 +75,10 @@ const Index = () => {
           </div>
         </div>,
         {
-          duration: 2500,
+          duration: 3000,
         }
       );
-    }, 3000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);
