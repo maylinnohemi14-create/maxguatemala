@@ -222,7 +222,7 @@ const Index = () => {
             {/* Benefits List */}
             <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
               {/* MagisTV Benefit */}
-              <div className="flex items-start gap-2 sm:gap-3 animate-pulse-scale">
+              <div className="flex items-start gap-2 sm:gap-3">
                 <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-success flex items-center justify-center mt-0.5">
                   <Check className="w-3 h-3 sm:w-4 sm:h-4 text-success-foreground" />
                 </div>
@@ -236,7 +236,7 @@ const Index = () => {
                 </div>
               </div>
               {/* Pantalla Benefit */}
-              <div className="flex items-start gap-2 sm:gap-3 animate-pulse-scale">
+              <div className="flex items-start gap-2 sm:gap-3">
                 <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-success flex items-center justify-center mt-0.5">
                   <Check className="w-3 h-3 sm:w-4 sm:h-4 text-success-foreground" />
                 </div>
