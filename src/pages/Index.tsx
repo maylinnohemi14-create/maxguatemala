@@ -78,7 +78,7 @@ const Index = () => {
           duration: 3000,
         }
       );
-    }, 7000);
+    }, 11000);
 
     return () => clearInterval(interval);
   }, []);
