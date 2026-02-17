@@ -139,9 +139,9 @@ const Index = () => {
       <div className="bg-destructive text-destructive-foreground py-2.5 sm:py-3">
         <div className="container mx-auto px-2 sm:px-4 text-center">
           <p className="text-xs sm:text-sm font-bold flex items-center justify-center gap-2 flex-wrap">
-            <span>🔥</span>
-            <span>¡ATENCIÓN! Esta promoción 2x1 solo estará disponible hasta <span className="underline">{tomorrowText}</span>. ¡Aprovecha y asegura el tuyo!</span>
-            <span>🔥</span>
+            <span>⚠️</span>
+            <span>¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta el <span className="underline">{tomorrowText}</span>. ¡Asegura el tuyo ahora!</span>
+            <span>⚠️</span>
           </p>
         </div>
       </div>
