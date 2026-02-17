@@ -216,7 +216,7 @@ const Index = () => {
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-foreground leading-tight">
-              PROYECTOR VEVSHAO A10 + REGALO
+              2 PROYECTORES VEVSHAO A10 + REGALO
               <Badge className="block sm:inline-block mt-2 sm:mt-0 sm:ml-3 bg-primary text-primary-foreground text-xs sm:text-sm px-2 sm:px-3 py-1 animate-pulse-glow w-fit">
                 COMPRE 1 Y LLEVA OTRO GRATIS
               </Badge>
