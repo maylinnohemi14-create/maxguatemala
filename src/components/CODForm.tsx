@@ -99,6 +99,7 @@ interface CODFormProps {
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'magistv', icon: '🎬', title: 'MagisTV', description: 'Transforma tu proyector en un cine completo' },
+  { id: 'pantalla', icon: '🖥️', title: 'Pantalla de Proyección', description: 'Pantalla portátil para la mejor experiencia visual' },
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
   { id: 'cleaningKit', icon: '✨', title: 'Kit Premium de Limpieza', description: 'Mantén tu proyector siempre con imagen nítida' },
 ];
