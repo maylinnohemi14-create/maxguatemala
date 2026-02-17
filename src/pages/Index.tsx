@@ -45,6 +45,13 @@ const Index = () => {
   const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10-GT";
   const PRODUCT_PRICE = 359;
 
+  // Calculate tomorrow's date for urgency banner
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const tomorrowText = `${diasSemana[tomorrow.getDay()]} ${tomorrow.getDate()} de ${meses[tomorrow.getMonth()]}`;
+
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
   const guatemalanNames = [
@@ -127,6 +134,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-subtle">
       <TrackingPixels />
+
+      {/* Urgency Banner */}
+      <div className="bg-destructive text-destructive-foreground py-2.5 sm:py-3">
+        <div className="container mx-auto px-2 sm:px-4 text-center">
+          <p className="text-xs sm:text-sm font-bold flex items-center justify-center gap-2 flex-wrap">
+            <span>🔥</span>
+            <span>¡ATENCIÓN! Esta promoción 2x1 solo estará disponible hasta <span className="underline">{tomorrowText}</span>. ¡Aprovecha y asegura el tuyo!</span>
+            <span>🔥</span>
+          </p>
+        </div>
+      </div>
 
       {/* Trust Bar */}
       <div className="bg-gradient-hero text-primary-foreground py-2">
