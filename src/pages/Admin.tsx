@@ -171,22 +171,22 @@ const Admin = () => {
       'DEPARTAMENTO': order.departamento,
       'CIUDAD': order.ciudad,
       'TELÉFONO': order.telefono,
-      'ID DE PRODUCTO': '1989831',
+      'ID DE PRODUCTO': '179',
       'CANTIDAD': '1',
       'PRECIO TOTAL (SIN PUNTOS NI COMAS)': order.precio_total,
       'CON RECAUDO': 'SI',
-      'NOTA': 'Pago Contra Entrega + Envio Gratis',
+      'NOTA': 'PROYECTOR VEV',
       'EMAIL (OPCIONAL)': order.email || '',
       'ID DE VARIABLE (OPCIONAL)': '',
       'CODIGO POSTAL (OPCIONAL)': '',
-      'TRANSPORTADORA (OPCIONAL)': 'COORDINADORA',
+      'TRANSPORTADORA (OPCIONAL)': 'FORZA',
       'CEDULA (OPCIONAL)': order.cedula || '',
       'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': order.colonia || '',
       'SEGURO (SOLO APLICA PARA ENVIA)': ''
     }));
   };
 
-  const downloadExcel = async () => {
+  const downloadExcel = () => {
     if (orders.length === 0) {
       toast.error("Não há pedidos para baixar");
       return;
@@ -198,27 +198,8 @@ const Admin = () => {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Pedidos");
     
-    XLSX.writeFile(wb, `pedidos_dropi_${new Date().toISOString().split('T')[0]}.xlsx`);
-    
-    // Reset orders after download
-    try {
-      const { error } = await supabase
-        .from('orders')
-        .delete()
-        .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all records
-      
-      if (error) throw error;
-      
-      // Clear local state
-      setOrders([]);
-      setCityStats([]);
-      setDepartmentStats([]);
-      setTotalRevenue(0);
-      
-      toast.success("Excel baixado e pedidos resetados com sucesso!");
-    } catch (error: any) {
-      toast.error("Excel baixado, mas erro ao resetar pedidos: " + error.message);
-    }
+    XLSX.writeFile(wb, `pedidos_proyector_guatemala_${new Date().toISOString().split('T')[0]}.xlsx`);
+    toast.success("Excel baixado com sucesso!");
   };
 
   const downloadSplitExcel = () => {
