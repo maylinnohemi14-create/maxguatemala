@@ -162,9 +162,6 @@ const Index = () => {
               <span className="text-xs sm:text-sm font-medium text-muted-foreground">
                 (200+ reseñas)
               </span>
-              <Badge className="bg-foreground text-background font-bold text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 animate-pulse-fast">
-                +897 unidades vendidas!
-              </Badge>
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-foreground leading-tight">
