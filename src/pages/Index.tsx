@@ -46,50 +46,7 @@ const Index = () => {
   const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10-GT";
   const PRODUCT_PRICE = 359;
 
-  // Calculate tomorrow's date for urgency banner
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  const tomorrowText = `${diasSemana[tomorrow.getDay()]} ${tomorrow.getDate()} de ${meses[tomorrow.getMonth()]}`;
-
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
-
-  const guatemalanNames = [
-    "Juan Rodríguez de Guatemala",
-    "María García de Quetzaltenango",
-    "Carlos Martínez de Escuintla",
-    "Sofía López de Mixco",
-    "Andrés González de Villa Nueva",
-    "Camila Hernández de Cobán",
-    "Diego Pérez de Huehuetenango",
-    "Valentina Ramírez de Petén",
-    "Santiago Torres de Antigua",
-    "Isabella Castro de Chimaltenango",
-    "Sebastián Morales de Mazatenango",
-    "Lucía Gutiérrez de Retalhuleu",
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      toast.dismiss();
-      const randomName = guatemalanNames[Math.floor(Math.random() * guatemalanNames.length)];
-      
-      toast.success(
-        <div className="flex items-center gap-2">
-          <img src={projectorPromo} alt="Proyector" className="w-8 h-8 rounded object-cover flex-shrink-0" />
-          <div className="text-xs">
-            <span className="text-destructive font-bold">{randomName.split(' de ')[0]}</span>{randomName.includes(' de ') && <> de <span className="font-bold text-foreground">{randomName.split(' de ')[1]}</span></>} acaba de comprar
-          </div>
-        </div>,
-        {
-          duration: 3000,
-        }
-      );
-    }, 11000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const features = [
     {
