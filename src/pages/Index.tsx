@@ -93,15 +93,9 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-subtle">
       <TrackingPixels />
 
-      {/* Urgency Banner */}
-      <div className="bg-destructive text-destructive-foreground py-2.5 sm:py-3">
-        <div className="container mx-auto px-2 sm:px-4 text-center">
-          <p className="text-xs sm:text-sm font-bold flex items-center justify-center gap-2 flex-wrap">
-            <span>⚠️</span>
-            <span>¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta el <span className="underline">{tomorrowText}</span>. ¡Asegura el tuyo ahora!</span>
-            <span>⚠️</span>
-          </p>
-        </div>
+      {/* MAX Header */}
+      <div className="w-full">
+        <img src={maxHeader} alt="MAX Guatemala - Tienda de Electrónicos" className="w-full h-auto object-cover" />
       </div>
 
       {/* Trust Bar */}
