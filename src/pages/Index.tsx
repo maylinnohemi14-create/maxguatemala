@@ -32,6 +32,7 @@ import projectorPromo from "@/assets/projector-promo.png";
 import projectorLifestyle1 from "@/assets/projector-lifestyle-1.jpg";
 import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
+import maxHeader from "@/assets/max-header.png";
 import { CODForm } from "@/components/CODForm";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -45,50 +46,7 @@ const Index = () => {
   const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10-GT";
   const PRODUCT_PRICE = 359;
 
-  // Calculate tomorrow's date for urgency banner
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  const tomorrowText = `${diasSemana[tomorrow.getDay()]} ${tomorrow.getDate()} de ${meses[tomorrow.getMonth()]}`;
-
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
-
-  const guatemalanNames = [
-    "Juan Rodríguez de Guatemala",
-    "María García de Quetzaltenango",
-    "Carlos Martínez de Escuintla",
-    "Sofía López de Mixco",
-    "Andrés González de Villa Nueva",
-    "Camila Hernández de Cobán",
-    "Diego Pérez de Huehuetenango",
-    "Valentina Ramírez de Petén",
-    "Santiago Torres de Antigua",
-    "Isabella Castro de Chimaltenango",
-    "Sebastián Morales de Mazatenango",
-    "Lucía Gutiérrez de Retalhuleu",
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      toast.dismiss();
-      const randomName = guatemalanNames[Math.floor(Math.random() * guatemalanNames.length)];
-      
-      toast.success(
-        <div className="flex items-center gap-2">
-          <img src={projectorPromo} alt="Proyector" className="w-8 h-8 rounded object-cover flex-shrink-0" />
-          <div className="text-xs">
-            <span className="text-destructive font-bold">{randomName.split(' de ')[0]}</span>{randomName.includes(' de ') && <> de <span className="font-bold text-foreground">{randomName.split(' de ')[1]}</span></>} acaba de comprar
-          </div>
-        </div>,
-        {
-          duration: 3000,
-        }
-      );
-    }, 11000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const features = [
     {
@@ -135,15 +93,9 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-subtle">
       <TrackingPixels />
 
-      {/* Urgency Banner */}
-      <div className="bg-destructive text-destructive-foreground py-2.5 sm:py-3">
-        <div className="container mx-auto px-2 sm:px-4 text-center">
-          <p className="text-xs sm:text-sm font-bold flex items-center justify-center gap-2 flex-wrap">
-            <span>⚠️</span>
-            <span>¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta el <span className="underline">{tomorrowText}</span>. ¡Asegura el tuyo ahora!</span>
-            <span>⚠️</span>
-          </p>
-        </div>
+      {/* MAX Header */}
+      <div className="w-full">
+        <img src={maxHeader} alt="MAX Guatemala - Tienda de Electrónicos" className="w-full h-auto object-cover" />
       </div>
 
       {/* Trust Bar */}
@@ -210,9 +162,6 @@ const Index = () => {
               <span className="text-xs sm:text-sm font-medium text-muted-foreground">
                 (200+ reseñas)
               </span>
-              <Badge className="bg-foreground text-background font-bold text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 animate-pulse-fast">
-                +897 unidades vendidas!
-              </Badge>
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-foreground leading-tight">
@@ -505,16 +454,15 @@ const Index = () => {
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <Gift className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6" />
           <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
-            ¡Oferta Limitada: Compra 1 y Lleva 2!
+            ¡Promoción Especial: Compra 1 y Lleva 2!
           </h2>
           <p className="text-base sm:text-xl mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
-            No pierdas esta oportunidad única de tener dos proyectores profesionales por el precio de
-            uno. ¡Stock limitado!
+            Aprovecha esta promoción exclusiva y lleva dos proyectores profesionales por el precio de uno.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-4 sm:mb-6">
             <div className="flex items-center gap-2 text-base sm:text-lg font-semibold">
               <Clock className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span>Promoción válida por tiempo limitado</span>
+              <span>Envío gratis a toda Guatemala</span>
             </div>
           </div>
           <Button
