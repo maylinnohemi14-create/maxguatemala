@@ -454,16 +454,15 @@ const Index = () => {
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <Gift className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6" />
           <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
-            ¡Oferta Limitada: Compra 1 y Lleva 2!
+            ¡Promoción Especial: Compra 1 y Lleva 2!
           </h2>
           <p className="text-base sm:text-xl mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
-            No pierdas esta oportunidad única de tener dos proyectores profesionales por el precio de
-            uno. ¡Stock limitado!
+            Aprovecha esta promoción exclusiva y lleva dos proyectores profesionales por el precio de uno.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-4 sm:mb-6">
             <div className="flex items-center gap-2 text-base sm:text-lg font-semibold">
               <Clock className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span>Promoción válida por tiempo limitado</span>
+              <span>Envío gratis a toda Guatemala</span>
             </div>
           </div>
           <Button
