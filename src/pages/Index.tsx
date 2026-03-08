@@ -32,6 +32,7 @@ import projectorPromo from "@/assets/projector-promo.png";
 import projectorLifestyle1 from "@/assets/projector-lifestyle-1.jpg";
 import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
+import maxHeader from "@/assets/max-header.png";
 import { CODForm } from "@/components/CODForm";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
