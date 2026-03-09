@@ -63,24 +63,31 @@ const Gafas = () => {
   useEffect(() => {
     trackTikTokConversion('LandingPageView');
     trackTikTokConversion('ViewContent', {
-      content_id: 'GAFAS-TR90-2X1',
-      content_type: 'product',
-      content_name: 'Gafas TR90 2x1',
-      value: 99900,
+      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Gafas TR90 2x1' }],
+      value: PRODUCT_PRICE,
       currency: 'COP'
     });
     trackFacebookConversion('ViewContent', {
-      content_ids: ['GAFAS-TR90-2X1'],
+      content_ids: [PRODUCT_ID],
       content_type: 'product',
       content_name: 'Gafas TR90 2x1',
-      value: 99900,
+      value: PRODUCT_PRICE,
       currency: 'COP'
     });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
     if (open) {
-      trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'COP' });
+      trackTikTokConversion('AddToCart', {
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Gafas TR90 2x1' }],
+        value: PRODUCT_PRICE,
+        currency: 'COP'
+      });
+      trackTikTokConversion('AddToWishlist', {
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Gafas TR90 2x1' }],
+        value: PRODUCT_PRICE,
+        currency: 'COP'
+      });
       trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'COP' });
     }
     setShowCODForm(open);
