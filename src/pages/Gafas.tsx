@@ -40,6 +40,7 @@ import drRoncero from "@/assets/dr-roncero.jpg";
 import { CODForm } from "@/components/CODForm";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { TrackingPixels } from "@/components/TrackingPixels";
 
 const Gafas = () => {
   const [quantity, setQuantity] = useState(1);
