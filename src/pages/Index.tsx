@@ -69,6 +69,7 @@ const Index = () => {
 
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
+  const features = [
     {
       icon: Play,
       title: "Imágenes Nítidas 4K",
