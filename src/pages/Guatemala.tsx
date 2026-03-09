@@ -24,7 +24,7 @@ import {
 import mochilaMain from "@/assets/mochila-main.jpg";
 import mochilaDetails from "@/assets/mochila-details.jpg";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
-import { TrackingPixels } from "@/components/TrackingPixels";
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Guatemala = () => {
