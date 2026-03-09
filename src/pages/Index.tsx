@@ -60,7 +60,13 @@ const Index = () => {
     });
   }, []);
 
-  const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
+  const handleDialogChange = (open: boolean) => {
+    if (open) {
+      trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
+    }
+    setShowCODForm(open);
+  };
+
 
   const features = [
     {
