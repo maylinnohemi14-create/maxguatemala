@@ -91,7 +91,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <TrackingPixels />
+      
 
       {/* MAX Header */}
       <div className="w-full bg-white">

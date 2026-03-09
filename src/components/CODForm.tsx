@@ -26,7 +26,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import guaranteeBadge from "@/assets/guarantee-badge.png";
 import trustSeals from "@/assets/trust-seals.jpg";
 import testimonialConfidence from "@/assets/testimonial-confidence.gif";
-import { trackFacebookConversion, trackTikTokConversion } from "@/hooks/useTrackingPixels";
+
 import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,

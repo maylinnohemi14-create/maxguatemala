@@ -98,7 +98,7 @@ const GuatemalaProyector = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TrackingPixels />
+      
       
 
       {/* Trust Bar */}
