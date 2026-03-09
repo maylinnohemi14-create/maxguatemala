@@ -94,8 +94,8 @@ const Index = () => {
       <TrackingPixels />
 
       {/* MAX Header */}
-      <div className="w-full">
-        <img src={maxHeader} alt="MAX Guatemala - Tienda de Electrónicos" className="w-full h-auto object-cover" />
+      <div className="w-full bg-white">
+        <img src={maxHeader} alt="MAX Guatemala - Tienda de Electrónicos" className="w-full h-auto object-contain sm:object-cover max-h-[120px] sm:max-h-none mx-auto sm:mx-0 p-2 sm:p-0" />
       </div>
 
       {/* Trust Bar */}
