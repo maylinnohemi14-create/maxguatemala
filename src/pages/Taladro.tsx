@@ -41,6 +41,7 @@ import { CODForm, IncludedItem } from "@/components/CODForm";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 const Taladro = () => {
   const [quantity, setQuantity] = useState(1);
@@ -49,6 +50,18 @@ const Taladro = () => {
   
   const PRODUCT_ID = "TALADRO-INALAMBRICO-48V";
   const PRODUCT_PRICE = 169900;
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'TALADRO-INALAMBRICO-48V',
+      content_type: 'product',
+      content_name: 'Taladro Inalámbrico 48V',
+      value: 169900,
+      currency: 'COP'
+    });
+  }, []);
 
   const images = [taladroMain, taladroPower, taladroKit, taladroCase];
 

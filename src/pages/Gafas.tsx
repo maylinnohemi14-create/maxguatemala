@@ -41,6 +41,7 @@ import { CODForm } from "@/components/CODForm";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 const Gafas = () => {
   const [quantity, setQuantity] = useState(1);
@@ -58,6 +59,18 @@ const Gafas = () => {
   
   const PRODUCT_ID = "GAFAS-TR90-2X1";
   const PRODUCT_PRICE = 99900;
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'GAFAS-TR90-2X1',
+      content_type: 'product',
+      content_name: 'Gafas TR90 2x1',
+      value: 99900,
+      currency: 'COP'
+    });
+  }, []);
 
   const images = [gafasMain, gafasMain, gafasMain, gafasMain];
 

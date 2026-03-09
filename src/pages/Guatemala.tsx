@@ -27,6 +27,7 @@ import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 const Guatemala = () => {
   const [quantity, setQuantity] = useState(1);
@@ -35,6 +36,18 @@ const Guatemala = () => {
   
   const PRODUCT_ID = "MOCHILA-COMPACTA-GT";
   const PRODUCT_PRICE = 199;
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'MOCHILA-COMPACTA-GT',
+      content_type: 'product',
+      content_name: 'Mochila Compacta',
+      value: 199,
+      currency: 'GTQ'
+    });
+  }, []);
   
   const images = [mochilaMain, mochilaDetails];
 

@@ -29,6 +29,7 @@ import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 const GuatemalaProyector = () => {
   const [quantity, setQuantity] = useState(1);
@@ -36,6 +37,18 @@ const GuatemalaProyector = () => {
   
   const PRODUCT_ID = "PROYECTOR-NAVIDAD-GT";
   const PRODUCT_PRICE = 199;
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'PROYECTOR-NAVIDAD-GT',
+      content_type: 'product',
+      content_name: 'Proyector Navidad Guatemala',
+      value: 199,
+      currency: 'GTQ'
+    });
+  }, []);
 
   const guatemalanNames = [
     "María García de Ciudad de Guatemala",
