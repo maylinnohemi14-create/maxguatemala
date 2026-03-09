@@ -215,7 +215,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       }
 
       // Track TikTok conversion
-      trackTikTokConversion('CompletePayment', {
+      trackTikTokConversion('Purchase', {
         content_id: productId,
         content_type: 'product',
         quantity: 1,
