@@ -299,7 +299,7 @@ const GuatemalaProyector = () => {
 
             {/* CTA Button */}
             <div className="space-y-3 mb-6 sm:mb-8">
-              <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+              <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
                 <DialogTrigger asChild>
                   <Button
                     size="lg"
