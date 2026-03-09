@@ -154,18 +154,8 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     checkClientIp();
   }, []);
 
-  // Track InitiateCheckout when user starts filling the form
   const handleFormInteraction = () => {
-    if (!hasTrackedInitiate) {
-      trackTikTokConversion('InitiateCheckout', {
-        content_type: 'product',
-        content_id: productId,
-        value: Number(productPrice),
-        currency: 'GTQ',
-        quantity: 1
-      });
-      setHasTrackedInitiate(true);
-    }
+    // placeholder for future tracking
   };
 
   // Update viewer count periodically
