@@ -201,23 +201,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         throw error;
       }
 
-      // Track conversions
-      trackFacebookConversion('Purchase', {
-        value: productPrice,
-        currency: 'GTQ',
-        content_name: productName,
-        content_ids: [productId],
-        content_type: 'product'
-      });
-      
-      trackTikTokConversion('CompletePayment', {
-        value: Number(productPrice),
-        currency: 'GTQ',
-        content_name: productName,
-        content_id: productId,
-        content_type: 'product',
-        quantity: 1
-      });
 
       // Send Telegram notification
       try {

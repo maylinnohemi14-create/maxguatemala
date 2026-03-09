@@ -203,23 +203,6 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         throw error;
       }
 
-      // Track conversions on Facebook and TikTok
-      trackFacebookConversion('Purchase', {
-        value: productPrice,
-        currency: 'GTQ',
-        content_name: productName,
-        content_ids: [productId],
-        content_type: 'product'
-      });
-      
-      trackTikTokConversion('CompletePayment', {
-        value: Number(productPrice),
-        currency: 'GTQ',
-        content_name: productName,
-        content_id: productId,
-        content_type: 'product',
-        quantity: 1
-      });
 
       // Send Telegram notification to admin
       try {
