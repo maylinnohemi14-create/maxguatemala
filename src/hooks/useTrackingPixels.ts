@@ -181,3 +181,81 @@ export const trackTikTokConversion = (eventName: string, data?: any) => {
     window.ttq.track(eventName, data);
   }
 };
+
+// Helper to get TikTok cookie values
+const getCookie = (name: string): string => {
+  if (typeof document === 'undefined') return '';
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : '';
+};
+
+// Helper to get ttclid from URL params
+const getTtclid = (): string => {
+  if (typeof window === 'undefined') return '';
+  const params = new URLSearchParams(window.location.search);
+  return params.get('ttclid') || getCookie('ttclid') || '';
+};
+
+// Generate a unique event_id
+const generateEventId = (): string => {
+  return `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`;
+};
+
+// Enhanced TikTok Purchase event with ALL required parameters
+export const trackTikTokPurchase = async (params: {
+  productId: string;
+  productName: string;
+  value: number;
+  currency: string;
+  email?: string;
+  phone?: string;
+  externalId?: string;
+  ip?: string;
+}) => {
+  if (typeof window === 'undefined' || !window.ttq) return;
+
+  const eventId = generateEventId();
+  const eventTime = Math.floor(Date.now() / 1000);
+
+  // Identify user with hashed PII before the event
+  const identifyData: Record<string, string> = {};
+  if (params.email) identifyData.email = await sha256Hash(params.email);
+  if (params.phone) identifyData.phone_number = await sha256Hash(params.phone);
+  if (params.externalId) identifyData.external_id = await sha256Hash(params.externalId);
+  
+  // Add client info parameters
+  const ttclid = getTtclid();
+  const ttp = getCookie('_ttp');
+  
+  if (ttclid) identifyData.ttclid = ttclid;
+  if (ttp) identifyData.ttp = ttp;
+
+  if (Object.keys(identifyData).length > 0) {
+    window.ttq.identify(identifyData);
+    console.log('TikTok identify (Purchase):', identifyData);
+  }
+
+  // Track Purchase with full parameters
+  const eventData: Record<string, any> = {
+    contents: [{
+      content_id: params.productId,
+      content_type: 'product',
+      content_name: params.productName,
+    }],
+    value: params.value,
+    currency: params.currency,
+    event_id: eventId,
+  };
+
+  window.ttq.track('Purchase', eventData);
+
+  console.log('TikTok Purchase (enhanced):', {
+    ...eventData,
+    event_time: eventTime,
+    url: window.location.href,
+    user_agent: navigator.userAgent,
+    ip: params.ip || 'collected server-side',
+    ttclid: ttclid || 'n/a',
+    ttp: ttp || 'n/a',
+  });
+};
