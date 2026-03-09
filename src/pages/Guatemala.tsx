@@ -27,6 +27,7 @@ import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 const Guatemala = () => {
   const [quantity, setQuantity] = useState(1);
@@ -35,7 +36,26 @@ const Guatemala = () => {
   
   const PRODUCT_ID = "MOCHILA-COMPACTA-GT";
   const PRODUCT_PRICE = 199;
-  
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'MOCHILA-COMPACTA-GT',
+      content_type: 'product',
+      content_name: 'Mochila Compacta',
+      value: 199,
+      currency: 'GTQ'
+    });
+  }, []);
+
+  const handleDialogChange = (open: boolean) => {
+    if (open) {
+      trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
+    }
+    setShowCODForm(open);
+  };
+
   const images = [mochilaMain, mochilaDetails];
 
   const guatemalanNames = [
@@ -304,7 +324,7 @@ const Guatemala = () => {
 
             {/* CTA Button */}
             <div className="space-y-3 mb-6 sm:mb-8">
-              <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+              <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
                 <DialogTrigger asChild>
                   <Button
                     size="lg"
@@ -584,7 +604,7 @@ const Guatemala = () => {
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega en toda Guatemala
           </p>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"

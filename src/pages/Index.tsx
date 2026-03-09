@@ -35,6 +35,7 @@ import projectorDetail from "@/assets/projector-detail.jpg";
 import maxHeader from "@/assets/max-header.png";
 import { CODForm } from "@/components/CODForm";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { LegalFooter } from "@/components/LegalFooter";
@@ -46,6 +47,25 @@ const Index = () => {
   
   const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10-GT";
   const PRODUCT_PRICE = 359;
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'PROYECTOR-VEVSHAO-A10-GT',
+      content_type: 'product',
+      content_name: 'Proyector Vevshao A10',
+      value: 359,
+      currency: 'GTQ'
+    });
+  }, []);
+
+  const handleDialogChange = (open: boolean) => {
+    if (open) {
+      trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
+    }
+    setShowCODForm(open);
+  };
 
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
@@ -259,7 +279,7 @@ const Index = () => {
 
             {/* CTA Buttons */}
             <div className="space-y-3 mb-6 sm:mb-8">
-              <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+              <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
                 <DialogTrigger asChild>
                   <Button
                     size="lg"
@@ -469,7 +489,7 @@ const Index = () => {
           </div>
           <Button
             size="lg"
-            onClick={() => setShowCODForm(true)}
+            onClick={() => handleDialogChange(true)}
             className="bg-foreground text-background hover:bg-foreground/90 text-base sm:text-xl font-bold py-5 sm:py-8 px-8 sm:px-12 shadow-large w-full sm:w-auto"
           >
             ASEGURAR MI PROMOCIÓN AHORA

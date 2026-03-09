@@ -41,6 +41,7 @@ import { CODForm, IncludedItem } from "@/components/CODForm";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 const Taladro = () => {
   const [quantity, setQuantity] = useState(1);
@@ -49,6 +50,25 @@ const Taladro = () => {
   
   const PRODUCT_ID = "TALADRO-INALAMBRICO-48V";
   const PRODUCT_PRICE = 169900;
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'TALADRO-INALAMBRICO-48V',
+      content_type: 'product',
+      content_name: 'Taladro Inalámbrico 48V',
+      value: 169900,
+      currency: 'COP'
+    });
+  }, []);
+
+  const handleDialogChange = (open: boolean) => {
+    if (open) {
+      trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'COP' });
+    }
+    setShowCODForm(open);
+  };
 
   const images = [taladroMain, taladroPower, taladroKit, taladroCase];
 
@@ -319,7 +339,7 @@ const Taladro = () => {
 
             {/* CTA Buttons */}
             <div className="space-y-3 mb-6 sm:mb-8">
-              <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+              <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
                 <DialogTrigger asChild>
                   <Button
                     size="lg"
@@ -506,7 +526,7 @@ const Taladro = () => {
           <p className="text-xl font-bold text-primary mb-8">
             🔥 ¡Transforma tu trabajo con la potencia que mereces! 🔥
           </p>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"
@@ -624,7 +644,7 @@ const Taladro = () => {
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-primary-foreground">
             ¡No esperes más! Obtén tu Taladro Profesional Ahora
           </h2>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"

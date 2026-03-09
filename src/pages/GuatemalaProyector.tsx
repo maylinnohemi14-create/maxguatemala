@@ -29,6 +29,7 @@ import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 const GuatemalaProyector = () => {
   const [quantity, setQuantity] = useState(1);
@@ -36,6 +37,25 @@ const GuatemalaProyector = () => {
   
   const PRODUCT_ID = "PROYECTOR-NAVIDAD-GT";
   const PRODUCT_PRICE = 199;
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'PROYECTOR-NAVIDAD-GT',
+      content_type: 'product',
+      content_name: 'Proyector Navidad Guatemala',
+      value: 199,
+      currency: 'GTQ'
+    });
+  }, []);
+
+  const handleDialogChange = (open: boolean) => {
+    if (open) {
+      trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
+    }
+    setShowCODForm(open);
+  };
 
   const guatemalanNames = [
     "María García de Ciudad de Guatemala",
@@ -279,7 +299,7 @@ const GuatemalaProyector = () => {
 
             {/* CTA Button */}
             <div className="space-y-3 mb-6 sm:mb-8">
-              <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+              <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
                 <DialogTrigger asChild>
                   <Button
                     size="lg"
@@ -508,7 +528,7 @@ const GuatemalaProyector = () => {
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega + Llega antes de Navidad
           </p>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"

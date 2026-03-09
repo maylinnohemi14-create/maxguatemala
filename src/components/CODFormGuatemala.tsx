@@ -154,8 +154,18 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     checkClientIp();
   }, []);
 
+  const [hasTrackedInitiateCheckout, setHasTrackedInitiateCheckout] = useState(false);
+
   const handleFormInteraction = () => {
-    // placeholder for future tracking
+    if (!hasTrackedInitiateCheckout) {
+      trackTikTokConversion('InitiateCheckout', {
+        content_id: productId,
+        content_type: 'product',
+        value: productPrice,
+        currency: 'GTQ'
+      });
+      setHasTrackedInitiateCheckout(true);
+    }
   };
 
   // Update viewer count periodically
@@ -214,7 +224,13 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      // Track TikTok conversion
+      // Track TikTok conversions
+      trackTikTokConversion('CompleteRegistration', {
+        content_id: productId,
+        content_type: 'product',
+        value: productPrice,
+        currency: 'GTQ'
+      });
       trackTikTokConversion('Purchase', {
         content_id: productId,
         content_type: 'product',
