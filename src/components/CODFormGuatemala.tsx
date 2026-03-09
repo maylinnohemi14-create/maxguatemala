@@ -133,19 +133,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     },
   });
 
-  const [hasTrackedInitiate, setHasTrackedInitiate] = useState(false);
-
-  // Track ViewContent when form loads
-  useEffect(() => {
-    trackTikTokConversion('ViewContent', {
-      content_type: 'product',
-      content_id: productId,
-      content_name: productName,
-      value: Number(productPrice),
-      currency: 'GTQ',
-      quantity: 1
-    });
-  }, [productId, productName, productPrice]);
 
   // Check client IP on mount
   useEffect(() => {
