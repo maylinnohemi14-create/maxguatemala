@@ -526,7 +526,7 @@ const Taladro = () => {
           <p className="text-xl font-bold text-primary mb-8">
             🔥 ¡Transforma tu trabajo con la potencia que mereces! 🔥
           </p>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"
