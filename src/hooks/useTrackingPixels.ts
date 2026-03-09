@@ -17,6 +17,73 @@ interface TrackingPixel {
   is_active: boolean;
 }
 
+// ===== IMMEDIATELY initialize ttq stub so events queue before pixel loads =====
+(function initTtqStub() {
+  if (typeof window === 'undefined') return;
+  if (window.ttq) return; // already exists
+  
+  const w = window as any;
+  const t = 'ttq';
+  w.TiktokAnalyticsObject = t;
+  const ttq: any = w[t] = w[t] || [];
+  ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+  ttq.setAndDefer = function(obj: any, method: string) {
+    obj[method] = function() {
+      obj.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+    };
+  };
+  for (let i = 0; i < ttq.methods.length; i++) {
+    ttq.setAndDefer(ttq, ttq.methods[i]);
+  }
+  ttq.instance = function(id: string) {
+    const e = ttq._i[id] || [];
+    for (let n = 0; n < ttq.methods.length; n++) {
+      ttq.setAndDefer(e, ttq.methods[n]);
+    }
+    return e;
+  };
+  ttq.load = function(e: string, n?: any) {
+    const r = "https://analytics.tiktok.com/i18n/pixel/events.js";
+    ttq._i = ttq._i || {};
+    ttq._i[e] = [];
+    ttq._i[e]._u = r;
+    ttq._t = ttq._t || {};
+    ttq._t[e] = +new Date();
+    ttq._o = ttq._o || {};
+    ttq._o[e] = n || {};
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.async = true;
+    script.src = r + "?sdkid=" + e + "&lib=" + t;
+    const first = document.getElementsByTagName("script")[0];
+    first.parentNode?.insertBefore(script, first);
+  };
+  console.log('TikTok ttq stub initialized (events will queue)');
+})();
+
+// ===== IMMEDIATELY initialize fbq stub so events queue before pixel loads =====
+(function initFbqStub() {
+  if (typeof window === 'undefined') return;
+  if (window.fbq) return;
+  
+  const n: any = window.fbq = function() {
+    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+  };
+  if (!window._fbq) window._fbq = n;
+  n.push = n;
+  n.loaded = true;
+  n.version = '2.0';
+  n.queue = [];
+  
+  // Load the FB script
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+  const first = document.getElementsByTagName('script')[0];
+  first.parentNode?.insertBefore(script, first);
+  console.log('Facebook fbq stub initialized (events will queue)');
+})();
+
 export const useTrackingPixels = () => {
   const [pixels, setPixels] = useState<TrackingPixel[]>([]);
 
@@ -55,44 +122,26 @@ const sha256Hash = async (value: string): Promise<string> => {
   }
 };
 
-// Initialize Facebook Pixel
+// Initialize Facebook Pixel (just init + PageView, stub already loaded)
 export const initFacebookPixel = (pixelId: string) => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !window.fbq) return;
   if (initializedPixels.has(`fb_${pixelId}`)) return;
   
-  // @ts-ignore
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  
-  if (window.fbq) {
-    window.fbq('init', pixelId);
-    window.fbq('track', 'PageView');
-    initializedPixels.add(`fb_${pixelId}`);
-  }
+  window.fbq('init', pixelId);
+  window.fbq('track', 'PageView');
+  initializedPixels.add(`fb_${pixelId}`);
+  console.log('Facebook Pixel initialized:', pixelId);
 };
 
-// Initialize TikTok Pixel
+// Initialize TikTok Pixel (just load + page, stub already loaded)
 export const initTikTokPixel = (pixelId: string) => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !window.ttq) return;
   if (initializedPixels.has(`tt_${pixelId}`)) return;
   
-  // @ts-ignore
-  !function (w, d, t) {
-    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-  }(window, document, 'ttq');
-  
-  if (window.ttq) {
-    window.ttq.load(pixelId);
-    window.ttq.page();
-    initializedPixels.add(`tt_${pixelId}`);
-    console.log('TikTok Pixel initialized:', pixelId);
-  }
+  window.ttq.load(pixelId);
+  window.ttq.page();
+  initializedPixels.add(`tt_${pixelId}`);
+  console.log('TikTok Pixel initialized:', pixelId);
 };
 
 // Identify user for TikTok with hashed PII
@@ -119,15 +168,16 @@ export const identifyTikTokUser = async (data: { email?: string; phone?: string;
 
 // Track Facebook conversion
 export const trackFacebookConversion = (eventName: string, data?: any) => {
-  if (typeof window !== 'undefined' && (window as any).fbq) {
-    (window as any).fbq('track', eventName, data);
+  if (typeof window !== 'undefined' && window.fbq) {
+    console.log('Facebook Event:', eventName, data);
+    window.fbq('track', eventName, data);
   }
 };
 
 // Track TikTok conversion with proper contents format
 export const trackTikTokConversion = (eventName: string, data?: any) => {
-  if (typeof window !== 'undefined' && (window as any).ttq) {
+  if (typeof window !== 'undefined' && window.ttq) {
     console.log('TikTok Event:', eventName, data);
-    (window as any).ttq.track(eventName, data);
+    window.ttq.track(eventName, data);
   }
 };
