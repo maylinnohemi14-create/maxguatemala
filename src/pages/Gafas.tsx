@@ -69,6 +69,13 @@ const Gafas = () => {
       value: 99900,
       currency: 'COP'
     });
+    trackFacebookConversion('ViewContent', {
+      content_ids: ['GAFAS-TR90-2X1'],
+      content_type: 'product',
+      content_name: 'Gafas TR90 2x1',
+      value: 99900,
+      currency: 'COP'
+    });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
