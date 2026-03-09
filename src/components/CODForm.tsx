@@ -134,10 +134,24 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     },
   });
 
+  // Track ViewContent when form loads
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).ttq) {
+      (window as any).ttq.track('ViewContent', {
+        content_type: 'product',
+        content_id: productId,
+        content_name: productName,
+        value: Number(productPrice),
+        currency: 'GTQ',
+        quantity: 1
+      });
+    }
+  }, [productId, productName, productPrice]);
 
   // Check client IP on mount
   useEffect(() => {
     const checkClientIp = async () => {
+
       try {
         const { data, error } = await supabase.functions.invoke('get-client-ip');
         if (error) throw error;
@@ -154,8 +168,18 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     checkClientIp();
   }, []);
 
+  const [hasTrackedInitiate, setHasTrackedInitiate] = useState(false);
   const handleFormInteraction = () => {
-    // placeholder for future tracking
+    if (!hasTrackedInitiate && typeof window !== 'undefined' && (window as any).ttq) {
+      (window as any).ttq.track('InitiateCheckout', {
+        content_type: 'product',
+        content_id: productId,
+        value: Number(productPrice),
+        currency: 'GTQ',
+        quantity: 1
+      });
+      setHasTrackedInitiate(true);
+    }
   };
 
   // Update viewer count periodically
@@ -216,6 +240,18 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         // Don't fail the order if notification fails
       }
 
+
+      // Track TikTok CompletePayment conversion
+      if (typeof window !== 'undefined' && (window as any).ttq) {
+        (window as any).ttq.track('CompletePayment', {
+          value: Number(productPrice),
+          currency: 'GTQ',
+          content_name: productName,
+          content_id: productId,
+          content_type: 'product',
+          quantity: 1
+        });
+      }
 
       setIpHasOrder(true); // Mark as purchased
       form.reset();
