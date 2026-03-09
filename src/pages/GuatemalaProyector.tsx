@@ -47,6 +47,13 @@ const GuatemalaProyector = () => {
       value: 199,
       currency: 'GTQ'
     });
+    trackFacebookConversion('ViewContent', {
+      content_ids: ['PROYECTOR-NAVIDAD-GT'],
+      content_type: 'product',
+      content_name: 'Proyector Navidad Guatemala',
+      value: 199,
+      currency: 'GTQ'
+    });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
