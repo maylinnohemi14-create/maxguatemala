@@ -254,6 +254,21 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         currency: 'GTQ'
       });
 
+      // Track Facebook conversions
+      trackFacebookConversion('Purchase', {
+        content_ids: [productId],
+        content_type: 'product',
+        content_name: productName || productId,
+        value: productPrice,
+        currency: 'GTQ',
+        num_items: 1
+      });
+      trackFacebookConversion('CompleteRegistration', {
+        content_name: productName || productId,
+        value: productPrice,
+        currency: 'GTQ'
+      });
+
       setIpHasOrder(true);
       form.reset();
       setShowSuccessDialog(true);

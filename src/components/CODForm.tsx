@@ -258,6 +258,21 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         currency: 'GTQ'
       });
 
+      // Track Facebook conversions
+      trackFacebookConversion('Purchase', {
+        content_ids: [productId],
+        content_type: 'product',
+        content_name: productName || productId,
+        value: productPrice,
+        currency: 'GTQ',
+        num_items: 1
+      });
+      trackFacebookConversion('CompleteRegistration', {
+        content_name: productName || productId,
+        value: productPrice,
+        currency: 'GTQ'
+      });
+
       setIpHasOrder(true); // Mark as purchased
       form.reset();
       setShowSuccessDialog(true);
