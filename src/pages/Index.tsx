@@ -489,10 +489,7 @@ const Index = () => {
           </div>
           <Button
             size="lg"
-            onClick={() => {
-              trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
-              setShowCODForm(true);
-            }}
+            onClick={() => handleDialogChange(true)}
             className="bg-foreground text-background hover:bg-foreground/90 text-base sm:text-xl font-bold py-5 sm:py-8 px-8 sm:px-12 shadow-large w-full sm:w-auto"
           >
             ASEGURAR MI PROMOCIÓN AHORA
