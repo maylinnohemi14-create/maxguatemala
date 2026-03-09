@@ -34,8 +34,7 @@ import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
 import maxHeader from "@/assets/max-header.png";
 import { CODForm } from "@/components/CODForm";
-import { TrackingPixels } from "@/components/TrackingPixels";
-import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { LegalFooter } from "@/components/LegalFooter";
