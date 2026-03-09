@@ -57,6 +57,13 @@ const Index = () => {
       value: 359,
       currency: 'GTQ'
     });
+    trackFacebookConversion('ViewContent', {
+      content_ids: ['PROYECTOR-VEVSHAO-A10-GT'],
+      content_type: 'product',
+      content_name: 'Proyector Vevshao A10',
+      value: 359,
+      currency: 'GTQ'
+    });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
