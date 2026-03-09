@@ -160,8 +160,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   const handleFormInteraction = () => {
     if (!hasTrackedInitiateCheckout) {
       trackTikTokConversion('InitiateCheckout', {
-        content_id: productId,
-        content_type: 'product',
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
         value: productPrice,
         currency: 'GTQ'
       });
