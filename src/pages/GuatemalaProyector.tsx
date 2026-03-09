@@ -28,8 +28,7 @@ import proyectorGuatemala from "@/assets/proyector-guatemala.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { TrackingPixels } from "@/components/TrackingPixels";
-import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
 
 const GuatemalaProyector = () => {
   const [quantity, setQuantity] = useState(1);
@@ -48,11 +47,19 @@ const GuatemalaProyector = () => {
       value: 199,
       currency: 'GTQ'
     });
+    trackFacebookConversion('ViewContent', {
+      content_ids: ['PROYECTOR-NAVIDAD-GT'],
+      content_type: 'product',
+      content_name: 'Proyector Navidad Guatemala',
+      value: 199,
+      currency: 'GTQ'
+    });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
     if (open) {
       trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
+      trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
     }
     setShowCODForm(open);
   };
@@ -119,7 +126,7 @@ const GuatemalaProyector = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TrackingPixels />
+      
       
       
 

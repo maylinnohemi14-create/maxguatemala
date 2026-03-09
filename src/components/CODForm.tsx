@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -165,6 +165,12 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         value: productPrice,
         currency: 'GTQ'
       });
+      trackFacebookConversion('InitiateCheckout', {
+        content_ids: [productId],
+        content_type: 'product',
+        value: productPrice,
+        currency: 'GTQ'
+      });
       setHasTrackedInitiateCheckout(true);
     }
   };
@@ -248,6 +254,21 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
           quantity: 1,
           price: productPrice
         }],
+        value: productPrice,
+        currency: 'GTQ'
+      });
+
+      // Track Facebook conversions
+      trackFacebookConversion('Purchase', {
+        content_ids: [productId],
+        content_type: 'product',
+        content_name: productName || productId,
+        value: productPrice,
+        currency: 'GTQ',
+        num_items: 1
+      });
+      trackFacebookConversion('CompleteRegistration', {
+        content_name: productName || productId,
         value: productPrice,
         currency: 'GTQ'
       });

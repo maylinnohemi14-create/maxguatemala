@@ -40,8 +40,7 @@ import drRoncero from "@/assets/dr-roncero.jpg";
 import { CODForm } from "@/components/CODForm";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { TrackingPixels } from "@/components/TrackingPixels";
-import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
 
 const Gafas = () => {
   const [quantity, setQuantity] = useState(1);
@@ -70,11 +69,19 @@ const Gafas = () => {
       value: 99900,
       currency: 'COP'
     });
+    trackFacebookConversion('ViewContent', {
+      content_ids: ['GAFAS-TR90-2X1'],
+      content_type: 'product',
+      content_name: 'Gafas TR90 2x1',
+      value: 99900,
+      currency: 'COP'
+    });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
     if (open) {
       trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'COP' });
+      trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'COP' });
     }
     setShowCODForm(open);
   };
@@ -147,7 +154,7 @@ const Gafas = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TrackingPixels />
+      
       
       
 

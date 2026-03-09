@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { TrackingPixels } from "@/components/TrackingPixels";
 import Index from "./pages/Index";
 import Taladro from "./pages/Taladro";
 import Gafas from "./pages/Gafas";
@@ -23,6 +24,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <TrackingPixels />
       <Toaster />
       <Sonner position="top-right" />
       <BrowserRouter>
