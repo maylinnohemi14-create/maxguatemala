@@ -180,17 +180,29 @@ export const identifyTikTokUser = async (data: { email?: string; phone?: string;
 
 // Track Facebook conversion
 export const trackFacebookConversion = (eventName: string, data?: any) => {
-  if (typeof window !== 'undefined' && window.fbq) {
-    console.log('Facebook Event:', eventName, data);
-    window.fbq('track', eventName, data);
+  try {
+    if (typeof window !== 'undefined' && window.fbq) {
+      console.log('Facebook Event:', eventName, data);
+      window.fbq('track', eventName, data);
+    } else {
+      console.warn('Facebook fbq not available for event:', eventName);
+    }
+  } catch (err) {
+    console.error('Error tracking Facebook event:', eventName, err);
   }
 };
 
 // Track TikTok conversion with proper contents format
 export const trackTikTokConversion = (eventName: string, data?: any) => {
-  if (typeof window !== 'undefined' && window.ttq) {
-    console.log('TikTok Event:', eventName, data);
-    window.ttq.track(eventName, data);
+  try {
+    if (typeof window !== 'undefined' && window.ttq) {
+      console.log('TikTok Event:', eventName, data);
+      window.ttq.track(eventName, data);
+    } else {
+      console.warn('TikTok ttq not available for event:', eventName);
+    }
+  } catch (err) {
+    console.error('Error tracking TikTok event:', eventName, err);
   }
 };
 
