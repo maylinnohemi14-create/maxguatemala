@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { trackTikTokConversion, trackFacebookConversion, identifyTikTokUser } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion, identifyTikTokUser, trackTikTokPurchase } from "@/hooks/useTrackingPixels";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -256,10 +256,15 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         value: productPrice,
         currency: 'GTQ'
       });
-      trackTikTokConversion('Purchase', {
-        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+      await trackTikTokPurchase({
+        productId,
+        productName: productName || productId,
         value: productPrice,
-        currency: 'GTQ'
+        currency: 'GTQ',
+        email: data.email || undefined,
+        phone: data.telefono,
+        externalId: data.telefono,
+        ip: clientIp || undefined,
       });
 
       // Track Facebook conversions
