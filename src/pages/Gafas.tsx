@@ -38,7 +38,7 @@ import gafasProtection from "@/assets/gafas-protection.gif";
 import gafasLightweight from "@/assets/gafas-lightweight.gif";
 import drRoncero from "@/assets/dr-roncero.jpg";
 import { CODForm } from "@/components/CODForm";
-import { TrackingPixels } from "@/components/TrackingPixels";
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Gafas = () => {
@@ -126,7 +126,7 @@ const Gafas = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TrackingPixels />
+      
       
 
       {/* Trust Bar */}

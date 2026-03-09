@@ -26,7 +26,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import guaranteeBadge from "@/assets/guarantee-badge.png";
 import trustSeals from "@/assets/trust-seals.jpg";
 import testimonialConfidence from "@/assets/testimonial-confidence.gif";
-import { trackFacebookConversion, trackTikTokConversion } from "@/hooks/useTrackingPixels";
+
 import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
@@ -133,19 +133,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     },
   });
 
-  const [hasTrackedInitiate, setHasTrackedInitiate] = useState(false);
-
-  // Track ViewContent when form loads
-  useEffect(() => {
-    trackTikTokConversion('ViewContent', {
-      content_type: 'product',
-      content_id: productId,
-      content_name: productName,
-      value: Number(productPrice),
-      currency: 'GTQ',
-      quantity: 1
-    });
-  }, [productId, productName, productPrice]);
 
   // Check client IP on mount
   useEffect(() => {
@@ -166,18 +153,8 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     checkClientIp();
   }, []);
 
-  // Track InitiateCheckout when user starts filling the form
   const handleFormInteraction = () => {
-    if (!hasTrackedInitiate) {
-      trackTikTokConversion('InitiateCheckout', {
-        content_type: 'product',
-        content_id: productId,
-        value: Number(productPrice),
-        currency: 'GTQ',
-        quantity: 1
-      });
-      setHasTrackedInitiate(true);
-    }
+    // placeholder for future tracking
   };
 
   // Update viewer count periodically
@@ -224,23 +201,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         throw error;
       }
 
-      // Track conversions
-      trackFacebookConversion('Purchase', {
-        value: productPrice,
-        currency: 'GTQ',
-        content_name: productName,
-        content_ids: [productId],
-        content_type: 'product'
-      });
-      
-      trackTikTokConversion('CompletePayment', {
-        value: Number(productPrice),
-        currency: 'GTQ',
-        content_name: productName,
-        content_id: productId,
-        content_type: 'product',
-        quantity: 1
-      });
 
       // Send Telegram notification
       try {

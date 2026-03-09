@@ -38,7 +38,7 @@ import reviewPedro from "@/assets/review-pedro.jpg";
 import reviewArturo from "@/assets/review-arturo.jpg";
 import reviewLuis from "@/assets/review-luis.jpg";
 import { CODForm, IncludedItem } from "@/components/CODForm";
-import { TrackingPixels } from "@/components/TrackingPixels";
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Taladro = () => {
@@ -116,7 +116,7 @@ const Taladro = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TrackingPixels />
+      
       
 
       {/* Trust Bar */}

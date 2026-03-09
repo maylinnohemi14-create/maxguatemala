@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import proyectorGuatemala from "@/assets/proyector-guatemala.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
-import { TrackingPixels } from "@/components/TrackingPixels";
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const GuatemalaProyector = () => {
@@ -98,7 +98,7 @@ const GuatemalaProyector = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TrackingPixels />
+      
       
 
       {/* Trust Bar */}
