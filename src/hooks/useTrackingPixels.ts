@@ -92,13 +92,25 @@ export const useTrackingPixels = () => {
   }, []);
 
   const fetchPixels = async () => {
-    const { data } = await supabase
-      .from('tracking_pixels')
-      .select('*')
-      .eq('is_active', true);
-    
-    if (data) {
-      setPixels(data as TrackingPixel[]);
+    try {
+      const { data, error } = await supabase
+        .from('tracking_pixels')
+        .select('*')
+        .eq('is_active', true);
+      
+      if (error) {
+        console.error('Error fetching tracking pixels:', error);
+        return;
+      }
+      
+      if (data && data.length > 0) {
+        console.log('Tracking pixels loaded from DB:', data.length);
+        setPixels(data as TrackingPixel[]);
+      } else {
+        console.warn('No active tracking pixels found in database');
+      }
+    } catch (err) {
+      console.error('Exception fetching tracking pixels:', err);
     }
   };
 
