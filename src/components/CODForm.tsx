@@ -233,26 +233,31 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       }
 
 
+      // Identify user for TikTok with hashed PII
+      await identifyTikTokUser({
+        email: data.email || undefined,
+        phone: data.telefono,
+        externalId: data.telefono,
+      });
+
       // Track TikTok conversions
+      trackTikTokConversion('AddPaymentInfo', {
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+        value: productPrice,
+        currency: 'GTQ'
+      });
+      trackTikTokConversion('PlaceAnOrder', {
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+        value: productPrice,
+        currency: 'GTQ'
+      });
       trackTikTokConversion('CompleteRegistration', {
-        contents: [{
-          content_id: productId,
-          content_type: 'product',
-          content_name: productName || productId,
-          quantity: 1,
-          price: productPrice
-        }],
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
         value: productPrice,
         currency: 'GTQ'
       });
       trackTikTokConversion('Purchase', {
-        contents: [{
-          content_id: productId,
-          content_type: 'product',
-          content_name: productName || productId,
-          quantity: 1,
-          price: productPrice
-        }],
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
         value: productPrice,
         currency: 'GTQ'
       });
