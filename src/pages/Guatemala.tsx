@@ -26,8 +26,7 @@ import mochilaDetails from "@/assets/mochila-details.jpg";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { TrackingPixels } from "@/components/TrackingPixels";
-import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
 
 const Guatemala = () => {
   const [quantity, setQuantity] = useState(1);
