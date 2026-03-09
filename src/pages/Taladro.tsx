@@ -644,7 +644,7 @@ const Taladro = () => {
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-primary-foreground">
             ¡No esperes más! Obtén tu Taladro Profesional Ahora
           </h2>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"

@@ -528,7 +528,7 @@ const GuatemalaProyector = () => {
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega + Llega antes de Navidad
           </p>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"

@@ -751,7 +751,7 @@ const Gafas = () => {
           <p className="text-lg text-white/80 mb-6">
             Oferta 2x1 - Compra 1 y llévate 2 pares de gafas
           </p>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"

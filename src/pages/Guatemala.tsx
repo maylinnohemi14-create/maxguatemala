@@ -604,7 +604,7 @@ const Guatemala = () => {
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega en toda Guatemala
           </p>
-          <Dialog open={showCODForm} onOpenChange={setShowCODForm}>
+          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button
                 size="lg"
