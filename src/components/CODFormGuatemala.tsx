@@ -159,8 +159,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   const handleFormInteraction = () => {
     if (!hasTrackedInitiateCheckout) {
       trackTikTokConversion('InitiateCheckout', {
-        content_id: productId,
-        content_type: 'product',
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
         value: productPrice,
         currency: 'GTQ'
       });
