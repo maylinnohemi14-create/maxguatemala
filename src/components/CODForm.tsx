@@ -236,9 +236,13 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         currency: 'GTQ'
       });
       trackTikTokConversion('Purchase', {
-        content_id: productId,
-        content_type: 'product',
-        quantity: 1,
+        contents: [{
+          content_id: productId,
+          content_type: 'product',
+          content_name: productName || productId,
+          quantity: 1,
+          price: productPrice
+        }],
         value: productPrice,
         currency: 'GTQ'
       });
