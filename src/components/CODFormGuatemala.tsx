@@ -133,6 +133,19 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     },
   });
 
+  // Track ViewContent when form loads
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).ttq) {
+      (window as any).ttq.track('ViewContent', {
+        content_type: 'product',
+        content_id: productId,
+        content_name: productName,
+        value: Number(productPrice),
+        currency: 'GTQ',
+        quantity: 1
+      });
+    }
+  }, [productId, productName, productPrice]);
 
   // Check client IP on mount
   useEffect(() => {
@@ -153,8 +166,18 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     checkClientIp();
   }, []);
 
+  const [hasTrackedInitiate, setHasTrackedInitiate] = useState(false);
   const handleFormInteraction = () => {
-    // placeholder for future tracking
+    if (!hasTrackedInitiate && typeof window !== 'undefined' && (window as any).ttq) {
+      (window as any).ttq.track('InitiateCheckout', {
+        content_type: 'product',
+        content_id: productId,
+        value: Number(productPrice),
+        currency: 'GTQ',
+        quantity: 1
+      });
+      setHasTrackedInitiate(true);
+    }
   };
 
   // Update viewer count periodically
