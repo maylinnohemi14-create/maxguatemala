@@ -222,8 +222,8 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       trackTikTokConversion('CompletePayment', {
         content_id: productId,
         content_type: 'product',
-        quantity: quantity,
-        value: productPrice * quantity,
+        quantity: 1,
+        value: productPrice,
         currency: 'GTQ'
       });
 
