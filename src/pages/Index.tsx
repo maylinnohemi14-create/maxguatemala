@@ -35,6 +35,7 @@ import projectorDetail from "@/assets/projector-detail.jpg";
 import maxHeader from "@/assets/max-header.png";
 import { CODForm } from "@/components/CODForm";
 import { TrackingPixels } from "@/components/TrackingPixels";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { LegalFooter } from "@/components/LegalFooter";
@@ -46,6 +47,18 @@ const Index = () => {
   
   const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10-GT";
   const PRODUCT_PRICE = 359;
+
+  // TikTok: LandingPageView + ViewContent on mount
+  useEffect(() => {
+    trackTikTokConversion('LandingPageView');
+    trackTikTokConversion('ViewContent', {
+      content_id: 'PROYECTOR-VEVSHAO-A10-GT',
+      content_type: 'product',
+      content_name: 'Proyector Vevshao A10',
+      value: 359,
+      currency: 'GTQ'
+    });
+  }, []);
 
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
