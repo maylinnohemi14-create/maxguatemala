@@ -127,6 +127,7 @@ const Gafas = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <TrackingPixels />
       
       
 
