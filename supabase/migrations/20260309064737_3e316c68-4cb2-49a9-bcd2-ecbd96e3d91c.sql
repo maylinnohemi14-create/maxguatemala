@@ -1,0 +1,14 @@
+DELETE FROM orders WHERE id IN (
+  '0628b9c5-0897-401c-a1a5-22bd6a49e9a1',
+  '99452c93-df86-4f1b-a4b0-66723380f744',
+  '5f5ccec4-d738-444d-a20f-c7878e26f898',
+  '5e30e818-b353-4552-8344-28bfce390da7',
+  '6dd04094-9f07-4f6e-b4f1-53cc3167fd26',
+  '88ad1fc6-fad3-483b-9d78-20ec7bb4245d',
+  '94ce1f0b-13a0-4afc-a765-24bcfc4969d0',
+  '5ff85cbb-b9d8-4cd9-accb-8ac0ca84591e',
+  '93be5707-9cf9-4064-a647-539b0cd27255',
+  'cf58d416-ea5c-4f45-8fd3-bb10e79d9856',
+  '99dc9a56-d265-47de-b7e5-c66c399eb517',
+  'd01a18d9-0fc7-4bd1-b372-3c9ac627711d'
+);
