@@ -58,6 +58,7 @@ const Guatemala = () => {
   const handleDialogChange = (open: boolean) => {
     if (open) {
       trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
+      trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
     }
     setShowCODForm(open);
   };
