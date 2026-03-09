@@ -241,6 +241,18 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       }
 
 
+      // Track TikTok CompletePayment conversion
+      if (typeof window !== 'undefined' && (window as any).ttq) {
+        (window as any).ttq.track('CompletePayment', {
+          value: Number(productPrice),
+          currency: 'GTQ',
+          content_name: productName,
+          content_id: productId,
+          content_type: 'product',
+          quantity: 1
+        });
+      }
+
       setIpHasOrder(true); // Mark as purchased
       form.reset();
       setShowSuccessDialog(true);

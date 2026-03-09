@@ -236,6 +236,18 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         console.error('Error sending Telegram notification:', telegramError);
       }
 
+      // Track TikTok CompletePayment conversion
+      if (typeof window !== 'undefined' && (window as any).ttq) {
+        (window as any).ttq.track('CompletePayment', {
+          value: Number(productPrice),
+          currency: 'GTQ',
+          content_name: productName,
+          content_id: productId,
+          content_type: 'product',
+          quantity: 1
+        });
+      }
+
       setIpHasOrder(true);
       form.reset();
       setShowSuccessDialog(true);
