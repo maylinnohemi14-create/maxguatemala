@@ -54,24 +54,31 @@ const Taladro = () => {
   useEffect(() => {
     trackTikTokConversion('LandingPageView');
     trackTikTokConversion('ViewContent', {
-      content_id: 'TALADRO-INALAMBRICO-48V',
-      content_type: 'product',
-      content_name: 'Taladro Inalámbrico 48V',
-      value: 169900,
+      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Taladro Inalámbrico 48V' }],
+      value: PRODUCT_PRICE,
       currency: 'COP'
     });
     trackFacebookConversion('ViewContent', {
-      content_ids: ['TALADRO-INALAMBRICO-48V'],
+      content_ids: [PRODUCT_ID],
       content_type: 'product',
       content_name: 'Taladro Inalámbrico 48V',
-      value: 169900,
+      value: PRODUCT_PRICE,
       currency: 'COP'
     });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
     if (open) {
-      trackTikTokConversion('AddToWishlist', { content_id: PRODUCT_ID, content_type: 'product', value: PRODUCT_PRICE, currency: 'COP' });
+      trackTikTokConversion('AddToCart', {
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Taladro Inalámbrico 48V' }],
+        value: PRODUCT_PRICE,
+        currency: 'COP'
+      });
+      trackTikTokConversion('AddToWishlist', {
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Taladro Inalámbrico 48V' }],
+        value: PRODUCT_PRICE,
+        currency: 'COP'
+      });
       trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'COP' });
     }
     setShowCODForm(open);

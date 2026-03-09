@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion, identifyTikTokUser } from "@/hooks/useTrackingPixels";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -159,8 +159,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   const handleFormInteraction = () => {
     if (!hasTrackedInitiateCheckout) {
       trackTikTokConversion('InitiateCheckout', {
-        content_id: productId,
-        content_type: 'product',
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
         value: productPrice,
         currency: 'GTQ'
       });
@@ -230,26 +229,31 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         console.error('Error sending Telegram notification:', telegramError);
       }
 
+      // Identify user for TikTok with hashed PII
+      await identifyTikTokUser({
+        email: data.email || undefined,
+        phone: data.telefono,
+        externalId: data.telefono,
+      });
+
       // Track TikTok conversions
+      trackTikTokConversion('AddPaymentInfo', {
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+        value: productPrice,
+        currency: 'GTQ'
+      });
+      trackTikTokConversion('PlaceAnOrder', {
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+        value: productPrice,
+        currency: 'GTQ'
+      });
       trackTikTokConversion('CompleteRegistration', {
-        contents: [{
-          content_id: productId,
-          content_type: 'product',
-          content_name: productName || productId,
-          quantity: 1,
-          price: productPrice
-        }],
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
         value: productPrice,
         currency: 'GTQ'
       });
       trackTikTokConversion('Purchase', {
-        contents: [{
-          content_id: productId,
-          content_type: 'product',
-          content_name: productName || productId,
-          quantity: 1,
-          price: productPrice
-        }],
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
         value: productPrice,
         currency: 'GTQ'
       });

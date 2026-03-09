@@ -41,6 +41,20 @@ export const useTrackingPixels = () => {
 // Track initialized pixels to prevent duplicates
 const initializedPixels = new Set<string>();
 
+// Simple SHA-256 hash using Web Crypto API
+const sha256Hash = async (value: string): Promise<string> => {
+  if (!value) return '';
+  try {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(value.trim().toLowerCase());
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  } catch {
+    return '';
+  }
+};
+
 // Initialize Facebook Pixel
 export const initFacebookPixel = (pixelId: string) => {
   if (typeof window === 'undefined') return;
@@ -70,7 +84,7 @@ export const initTikTokPixel = (pixelId: string) => {
   
   // @ts-ignore
   !function (w, d, t) {
-    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
   }(window, document, 'ttq');
   
   if (window.ttq) {
@@ -81,6 +95,28 @@ export const initTikTokPixel = (pixelId: string) => {
   }
 };
 
+// Identify user for TikTok with hashed PII
+export const identifyTikTokUser = async (data: { email?: string; phone?: string; externalId?: string }) => {
+  if (typeof window === 'undefined' || !window.ttq) return;
+  
+  const identifyData: Record<string, string> = {};
+  
+  if (data.email) {
+    identifyData.email = await sha256Hash(data.email);
+  }
+  if (data.phone) {
+    identifyData.phone_number = await sha256Hash(data.phone);
+  }
+  if (data.externalId) {
+    identifyData.external_id = await sha256Hash(data.externalId);
+  }
+  
+  if (Object.keys(identifyData).length > 0) {
+    window.ttq.identify(identifyData);
+    console.log('TikTok identify:', identifyData);
+  }
+};
+
 // Track Facebook conversion
 export const trackFacebookConversion = (eventName: string, data?: any) => {
   if (typeof window !== 'undefined' && (window as any).fbq) {
@@ -88,8 +124,7 @@ export const trackFacebookConversion = (eventName: string, data?: any) => {
   }
 };
 
-// Track TikTok conversion - supports all standard events:
-// PageView, LandingPageView, ViewContent, AddToWishlist, InitiateCheckout, CompleteRegistration, Purchase
+// Track TikTok conversion with proper contents format
 export const trackTikTokConversion = (eventName: string, data?: any) => {
   if (typeof window !== 'undefined' && (window as any).ttq) {
     console.log('TikTok Event:', eventName, data);
