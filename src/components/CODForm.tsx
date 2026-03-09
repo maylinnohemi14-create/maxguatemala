@@ -168,8 +168,18 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     checkClientIp();
   }, []);
 
+  const [hasTrackedInitiate, setHasTrackedInitiate] = useState(false);
   const handleFormInteraction = () => {
-    // placeholder for future tracking
+    if (!hasTrackedInitiate && typeof window !== 'undefined' && (window as any).ttq) {
+      (window as any).ttq.track('InitiateCheckout', {
+        content_type: 'product',
+        content_id: productId,
+        value: Number(productPrice),
+        currency: 'GTQ',
+        quantity: 1
+      });
+      setHasTrackedInitiate(true);
+    }
   };
 
   // Update viewer count periodically
