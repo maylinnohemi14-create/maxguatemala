@@ -135,15 +135,15 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   });
 
 
-  // Check client IP on mount
+  // IP check temporarily disabled for testing
   useEffect(() => {
     const checkClientIp = async () => {
       try {
         const { data, error } = await supabase.functions.invoke('get-client-ip');
         if (error) throw error;
-        
         setClientIp(data.ip);
-        setIpHasOrder(data.hasOrder);
+        // Disabled: setIpHasOrder(data.hasOrder);
+        setIpHasOrder(false);
       } catch (error) {
         console.error('Error checking IP:', error);
       } finally {
