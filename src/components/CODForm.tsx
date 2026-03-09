@@ -134,10 +134,24 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     },
   });
 
+  // Track ViewContent when form loads
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).ttq) {
+      (window as any).ttq.track('ViewContent', {
+        content_type: 'product',
+        content_id: productId,
+        content_name: productName,
+        value: Number(productPrice),
+        currency: 'GTQ',
+        quantity: 1
+      });
+    }
+  }, [productId, productName, productPrice]);
 
   // Check client IP on mount
   useEffect(() => {
     const checkClientIp = async () => {
+
       try {
         const { data, error } = await supabase.functions.invoke('get-client-ip');
         if (error) throw error;
