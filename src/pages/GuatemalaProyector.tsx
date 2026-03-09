@@ -28,6 +28,7 @@ import proyectorGuatemala from "@/assets/proyector-guatemala.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { TrackingPixels } from "@/components/TrackingPixels";
 
 const GuatemalaProyector = () => {
   const [quantity, setQuantity] = useState(1);
@@ -98,6 +99,7 @@ const GuatemalaProyector = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <TrackingPixels />
       
       
 

@@ -40,6 +40,7 @@ import reviewLuis from "@/assets/review-luis.jpg";
 import { CODForm, IncludedItem } from "@/components/CODForm";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { TrackingPixels } from "@/components/TrackingPixels";
 
 const Taladro = () => {
   const [quantity, setQuantity] = useState(1);
@@ -116,6 +117,7 @@ const Taladro = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <TrackingPixels />
       
       
 

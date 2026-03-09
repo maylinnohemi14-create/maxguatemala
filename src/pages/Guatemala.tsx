@@ -26,6 +26,7 @@ import mochilaDetails from "@/assets/mochila-details.jpg";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { TrackingPixels } from "@/components/TrackingPixels";
 
 const Guatemala = () => {
   const [quantity, setQuantity] = useState(1);
@@ -99,6 +100,7 @@ const Guatemala = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <TrackingPixels />
       
       
 

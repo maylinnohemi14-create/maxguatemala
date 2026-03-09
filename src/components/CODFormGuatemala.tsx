@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { trackTikTokConversion } from "@/hooks/useTrackingPixels";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -212,6 +213,15 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       } catch (telegramError) {
         console.error('Error sending Telegram notification:', telegramError);
       }
+
+      // Track TikTok conversion
+      trackTikTokConversion('CompletePayment', {
+        content_id: productId,
+        content_type: 'product',
+        quantity: 1,
+        value: productPrice,
+        currency: 'GTQ'
+      });
 
       setIpHasOrder(true);
       form.reset();
