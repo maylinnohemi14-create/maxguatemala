@@ -46,6 +46,13 @@ const Guatemala = () => {
       value: 199,
       currency: 'GTQ'
     });
+    trackFacebookConversion('ViewContent', {
+      content_ids: ['MOCHILA-COMPACTA-GT'],
+      content_type: 'product',
+      content_name: 'Mochila Compacta',
+      value: 199,
+      currency: 'GTQ'
+    });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
