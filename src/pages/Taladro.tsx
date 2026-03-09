@@ -60,6 +60,13 @@ const Taladro = () => {
       value: 169900,
       currency: 'COP'
     });
+    trackFacebookConversion('ViewContent', {
+      content_ids: ['TALADRO-INALAMBRICO-48V'],
+      content_type: 'product',
+      content_name: 'Taladro Inalámbrico 48V',
+      value: 169900,
+      currency: 'COP'
+    });
   }, []);
 
   const handleDialogChange = (open: boolean) => {
