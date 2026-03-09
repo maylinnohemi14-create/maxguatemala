@@ -127,7 +127,7 @@ const Guatemala = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <TrackingPixels />
+      
       
       
 
