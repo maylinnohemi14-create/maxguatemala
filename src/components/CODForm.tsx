@@ -233,54 +233,67 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       }
 
 
-      // Identify user for TikTok with hashed PII
-      await identifyTikTokUser({
-        email: data.email || undefined,
-        phone: data.telefono,
-        externalId: data.telefono,
-      });
+      // === TRACKING: Conversion events ===
+      try {
+        // Identify user for TikTok with hashed PII
+        await identifyTikTokUser({
+          email: data.email || undefined,
+          phone: data.telefono,
+          externalId: data.telefono,
+        });
 
-      // Track TikTok conversions
-      trackTikTokConversion('AddPaymentInfo', {
-        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
-        value: productPrice,
-        currency: 'GTQ'
-      });
-      trackTikTokConversion('PlaceAnOrder', {
-        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
-        value: productPrice,
-        currency: 'GTQ'
-      });
-      trackTikTokConversion('CompleteRegistration', {
-        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
-        value: productPrice,
-        currency: 'GTQ'
-      });
-      await trackTikTokPurchase({
-        productId,
-        productName: productName || productId,
-        value: productPrice,
-        currency: 'GTQ',
-        email: data.email || undefined,
-        phone: data.telefono,
-        externalId: data.telefono,
-        ip: clientIp || undefined,
-      });
+        // Track TikTok conversions
+        trackTikTokConversion('AddPaymentInfo', {
+          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+          value: productPrice,
+          currency: 'GTQ'
+        });
+        trackTikTokConversion('PlaceAnOrder', {
+          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+          value: productPrice,
+          currency: 'GTQ'
+        });
+        trackTikTokConversion('CompleteRegistration', {
+          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+          value: productPrice,
+          currency: 'GTQ'
+        });
+        await trackTikTokPurchase({
+          productId,
+          productName: productName || productId,
+          value: productPrice,
+          currency: 'GTQ',
+          email: data.email || undefined,
+          phone: data.telefono,
+          externalId: data.telefono,
+          ip: clientIp || undefined,
+        });
 
-      // Track Facebook conversions
-      trackFacebookConversion('Purchase', {
-        content_ids: [productId],
-        content_type: 'product',
-        content_name: productName || productId,
-        value: productPrice,
-        currency: 'GTQ',
-        num_items: 1
-      });
-      trackFacebookConversion('CompleteRegistration', {
-        content_name: productName || productId,
-        value: productPrice,
-        currency: 'GTQ'
-      });
+        // Track Facebook conversions
+        trackFacebookConversion('Purchase', {
+          content_ids: [productId],
+          content_type: 'product',
+          content_name: productName || productId,
+          value: productPrice,
+          currency: 'GTQ',
+          num_items: 1
+        });
+        trackFacebookConversion('CompleteRegistration', {
+          content_name: productName || productId,
+          value: productPrice,
+          currency: 'GTQ'
+        });
+        trackFacebookConversion('Lead', {
+          content_name: productName || productId,
+          value: productPrice,
+          currency: 'GTQ'
+        });
+
+        console.log('All conversion tracking events fired successfully');
+      } catch (trackingError) {
+        console.error('Error firing tracking events:', trackingError);
+        // Don't fail the order if tracking fails
+      }
 
       setIpHasOrder(true); // Mark as purchased
       form.reset();
