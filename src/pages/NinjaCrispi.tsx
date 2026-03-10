@@ -339,7 +339,7 @@ const NinjaCrispi = () => {
                 <DialogTrigger asChild>
                   <Button
                     size="lg"
-                    className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#FFEB3B] hover:bg-[#FDD835] text-black hover:shadow-glow transition-all animate-button-bounce"
+                    className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all animate-button-bounce"
                   >
                     <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
                     Pedir con pago Contra Entrega + Envío Gratis
