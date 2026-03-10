@@ -230,6 +230,8 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       }
 
       // === TRACKING: Fire each event independently so one failure doesn't block others ===
+      console.log('🔔 TRACKING SECTION REACHED - Order was successful, firing conversion events...');
+
       // PURCHASE events first (most important for attribution)
       try {
         trackFacebookConversion('Purchase', {
@@ -242,6 +244,16 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         });
         console.log('✅ Facebook Purchase fired');
       } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
+
+      // TikTok: fire BOTH 'CompletePayment' (standard) AND 'Purchase' (alternative)
+      try {
+        trackTikTokConversion('CompletePayment', {
+          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+          value: productPrice,
+          currency: 'GTQ'
+        });
+        console.log('✅ TikTok CompletePayment fired');
+      } catch (e) { console.error('❌ TikTok CompletePayment failed:', e); }
 
       try {
         trackTikTokConversion('Purchase', {
@@ -259,6 +271,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
           phone: data.telefono,
           externalId: data.telefono,
         });
+        console.log('✅ TikTok identify done');
       } catch (e) { console.error('❌ TikTok identify failed:', e); }
 
       try {
@@ -282,7 +295,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       try { trackFacebookConversion('CompleteRegistration', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB CompleteRegistration failed:', e); }
       try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB Lead failed:', e); }
 
-      console.log('All conversion tracking events processed');
+      console.log('✅✅ All conversion tracking events processed');
 
       setIpHasOrder(true);
       form.reset();

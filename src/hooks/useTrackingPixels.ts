@@ -271,10 +271,19 @@ export const trackTikTokPurchase = async (params: {
     event_id: eventId,
   };
 
-  window.ttq.track('Purchase', eventData);
+  // Fire BOTH CompletePayment (TikTok standard) and Purchase (alternative)
+  try {
+    window.ttq.track('CompletePayment', eventData);
+    console.log('TikTok CompletePayment (enhanced):', eventData);
+  } catch (e) { console.error('TikTok CompletePayment enhanced failed:', e); }
 
-  console.log('TikTok Purchase (enhanced):', {
-    ...eventData,
+  try {
+    window.ttq.track('Purchase', eventData);
+    console.log('TikTok Purchase (enhanced):', eventData);
+  } catch (e) { console.error('TikTok Purchase enhanced failed:', e); }
+
+  console.log('TikTok enhanced purchase metadata:', {
+    event_id: eventId,
     event_time: eventTime,
     url: window.location.href,
     user_agent: navigator.userAgent,
