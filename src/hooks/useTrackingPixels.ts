@@ -270,8 +270,11 @@ export const trackTikTokPurchase = async (params: {
     console.log('TikTok identify (Purchase):', identifyData);
   }
 
-  // Track Purchase with full parameters
+  // Track Purchase with full parameters - content_id at root level for VSA
   const eventData: Record<string, any> = {
+    content_id: params.productId,
+    content_type: 'product',
+    content_name: params.productName,
     contents: [{
       content_id: params.productId,
       content_type: 'product',
