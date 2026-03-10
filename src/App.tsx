@@ -18,6 +18,7 @@ import TerminosCondiciones from "./pages/TerminosCondiciones";
 import PoliticaEnvios from "./pages/PoliticaEnvios";
 import PoliticaDevoluciones from "./pages/PoliticaDevoluciones";
 import Contacto from "./pages/Contacto";
+import NinjaCrispi from "./pages/NinjaCrispi";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/gafas" element={<Gafas />} />
           <Route path="/guatemala" element={<Guatemala />} />
           <Route path="/guatemala-proyector" element={<GuatemalaProyector />} />
+          <Route path="/ninja-crispi" element={<NinjaCrispi />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/download-departamentos" element={<DownloadDepartamentos />} />
