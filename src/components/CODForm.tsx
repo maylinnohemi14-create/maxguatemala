@@ -233,31 +233,39 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       }
 
 
-      // === TRACKING: Conversion events ===
+      // === TRACKING: Fire each event independently so one failure doesn't block others ===
+      // PURCHASE events first (most important for attribution)
       try {
-        // Identify user for TikTok with hashed PII
+        trackFacebookConversion('Purchase', {
+          content_ids: [productId],
+          content_type: 'product',
+          content_name: productName || productId,
+          value: productPrice,
+          currency: 'GTQ',
+          num_items: 1
+        });
+        console.log('✅ Facebook Purchase fired');
+      } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
+
+      try {
+        trackTikTokConversion('Purchase', {
+          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+          value: productPrice,
+          currency: 'GTQ'
+        });
+        console.log('✅ TikTok Purchase (simple) fired');
+      } catch (e) { console.error('❌ TikTok Purchase (simple) failed:', e); }
+
+      // Enhanced TikTok Purchase with PII (non-blocking)
+      try {
         await identifyTikTokUser({
           email: data.email || undefined,
           phone: data.telefono,
           externalId: data.telefono,
         });
+      } catch (e) { console.error('❌ TikTok identify failed:', e); }
 
-        // Track TikTok conversions
-        trackTikTokConversion('AddPaymentInfo', {
-          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
-          value: productPrice,
-          currency: 'GTQ'
-        });
-        trackTikTokConversion('PlaceAnOrder', {
-          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
-          value: productPrice,
-          currency: 'GTQ'
-        });
-        trackTikTokConversion('CompleteRegistration', {
-          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
-          value: productPrice,
-          currency: 'GTQ'
-        });
+      try {
         await trackTikTokPurchase({
           productId,
           productName: productName || productId,
@@ -268,32 +276,17 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
           externalId: data.telefono,
           ip: clientIp || undefined,
         });
+        console.log('✅ TikTok Purchase (enhanced) fired');
+      } catch (e) { console.error('❌ TikTok Purchase (enhanced) failed:', e); }
 
-        // Track Facebook conversions
-        trackFacebookConversion('Purchase', {
-          content_ids: [productId],
-          content_type: 'product',
-          content_name: productName || productId,
-          value: productPrice,
-          currency: 'GTQ',
-          num_items: 1
-        });
-        trackFacebookConversion('CompleteRegistration', {
-          content_name: productName || productId,
-          value: productPrice,
-          currency: 'GTQ'
-        });
-        trackFacebookConversion('Lead', {
-          content_name: productName || productId,
-          value: productPrice,
-          currency: 'GTQ'
-        });
+      // Secondary events
+      try { trackTikTokConversion('AddPaymentInfo', { contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }], value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ TikTok AddPaymentInfo failed:', e); }
+      try { trackTikTokConversion('PlaceAnOrder', { contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }], value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ TikTok PlaceAnOrder failed:', e); }
+      try { trackTikTokConversion('CompleteRegistration', { contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }], value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ TikTok CompleteRegistration failed:', e); }
+      try { trackFacebookConversion('CompleteRegistration', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB CompleteRegistration failed:', e); }
+      try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB Lead failed:', e); }
 
-        console.log('All conversion tracking events fired successfully');
-      } catch (trackingError) {
-        console.error('Error firing tracking events:', trackingError);
-        // Don't fail the order if tracking fails
-      }
+      console.log('All conversion tracking events processed');
 
       setIpHasOrder(true); // Mark as purchased
       form.reset();
