@@ -249,26 +249,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         console.log('✅ Facebook Purchase fired');
       } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
-      // TikTok: fire BOTH 'CompletePayment' (standard) AND 'Purchase' (alternative)
-      try {
-        trackTikTokConversion('CompletePayment', {
-          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
-          value: productPrice,
-          currency: 'GTQ'
-        });
-        console.log('✅ TikTok CompletePayment fired');
-      } catch (e) { console.error('❌ TikTok CompletePayment failed:', e); }
-
-      try {
-        trackTikTokConversion('Purchase', {
-          contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
-          value: productPrice,
-          currency: 'GTQ'
-        });
-        console.log('✅ TikTok Purchase (simple) fired');
-      } catch (e) { console.error('❌ TikTok Purchase (simple) failed:', e); }
-
-      // Enhanced TikTok Purchase with PII (non-blocking)
+      // TikTok: single CompletePayment with PII (enhanced)
       try {
         await identifyTikTokUser({
           email: data.email || undefined,
@@ -289,8 +270,8 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
           externalId: data.telefono,
           ip: clientIp || undefined,
         });
-        console.log('✅ TikTok Purchase (enhanced) fired');
-      } catch (e) { console.error('❌ TikTok Purchase (enhanced) failed:', e); }
+        console.log('✅ TikTok CompletePayment (enhanced) fired');
+      } catch (e) { console.error('❌ TikTok CompletePayment (enhanced) failed:', e); }
 
       // Secondary events
       try { trackTikTokConversion('AddPaymentInfo', { contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }], value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ TikTok AddPaymentInfo failed:', e); }
