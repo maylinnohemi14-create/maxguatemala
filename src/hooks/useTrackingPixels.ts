@@ -196,17 +196,28 @@ export const trackFacebookConversion = (eventName: string, data?: any) => {
 export const trackTikTokConversion = (eventName: string, data?: any) => {
   try {
     if (typeof window !== 'undefined' && window.ttq) {
-      // TikTok requires content_id at root level for VSA compatibility
       const enrichedData = { ...data };
-      if (data?.contents?.[0]?.content_id && !enrichedData.content_id) {
-        enrichedData.content_id = data.contents[0].content_id;
+      
+      // Ensure contents array items have quantity (required by TikTok)
+      if (enrichedData.contents && Array.isArray(enrichedData.contents)) {
+        enrichedData.contents = enrichedData.contents.map((item: any) => ({
+          ...item,
+          quantity: item.quantity || 1,
+          price: item.price || enrichedData.value || 0,
+        }));
       }
-      if (data?.contents?.[0]?.content_name && !enrichedData.content_name) {
-        enrichedData.content_name = data.contents[0].content_name;
+      
+      // TikTok requires these at root level for VSA compatibility
+      if (enrichedData.contents?.[0]) {
+        const first = enrichedData.contents[0];
+        if (!enrichedData.content_id) enrichedData.content_id = first.content_id;
+        if (!enrichedData.content_name) enrichedData.content_name = first.content_name;
+        if (!enrichedData.content_type) enrichedData.content_type = first.content_type;
       }
-      if (data?.contents?.[0]?.content_type && !enrichedData.content_type) {
-        enrichedData.content_type = data.contents[0].content_type;
-      }
+      
+      // Ensure quantity at root level too
+      if (!enrichedData.quantity) enrichedData.quantity = 1;
+      
       console.log('TikTok Event:', eventName, enrichedData);
       window.ttq.track(eventName, enrichedData);
     } else {
