@@ -192,12 +192,23 @@ export const trackFacebookConversion = (eventName: string, data?: any) => {
   }
 };
 
-// Track TikTok conversion with proper contents format
+// Track TikTok conversion - ensures content_id is at root level AND inside contents array
 export const trackTikTokConversion = (eventName: string, data?: any) => {
   try {
     if (typeof window !== 'undefined' && window.ttq) {
-      console.log('TikTok Event:', eventName, data);
-      window.ttq.track(eventName, data);
+      // TikTok requires content_id at root level for VSA compatibility
+      const enrichedData = { ...data };
+      if (data?.contents?.[0]?.content_id && !enrichedData.content_id) {
+        enrichedData.content_id = data.contents[0].content_id;
+      }
+      if (data?.contents?.[0]?.content_name && !enrichedData.content_name) {
+        enrichedData.content_name = data.contents[0].content_name;
+      }
+      if (data?.contents?.[0]?.content_type && !enrichedData.content_type) {
+        enrichedData.content_type = data.contents[0].content_type;
+      }
+      console.log('TikTok Event:', eventName, enrichedData);
+      window.ttq.track(eventName, enrichedData);
     } else {
       console.warn('TikTok ttq not available for event:', eventName);
     }
