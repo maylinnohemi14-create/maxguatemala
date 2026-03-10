@@ -135,15 +135,14 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   });
 
 
-  // IP check temporarily disabled for testing
+  // IP check enabled - blocks duplicate orders from same IP
   useEffect(() => {
     const checkClientIp = async () => {
       try {
         const { data, error } = await supabase.functions.invoke('get-client-ip');
         if (error) throw error;
         setClientIp(data.ip);
-        // Disabled: setIpHasOrder(data.hasOrder);
-        setIpHasOrder(false);
+        setIpHasOrder(data.hasOrder);
       } catch (error) {
         console.error('Error checking IP:', error);
       } finally {
