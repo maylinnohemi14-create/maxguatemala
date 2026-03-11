@@ -200,6 +200,23 @@ const Admin = () => {
     }));
   };
 
+  const downloadProductExcel = (product: typeof PRODUCTS[0]) => {
+    const productOrders = getOrdersByProduct(product.id);
+    if (productOrders.length === 0) {
+      toast.error(`Não há pedidos de ${product.label} para baixar`);
+      return;
+    }
+
+    const excelData = formatOrdersForExcel(productOrders, product);
+    const ws = XLSX.utils.json_to_sheet(excelData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Pedidos");
+    
+    const today = new Date().toISOString().split('T')[0];
+    XLSX.writeFile(wb, `pedidos_${product.id.toLowerCase()}_${today}.xlsx`);
+    toast.success(`Excel de ${product.label} baixado com sucesso! (${productOrders.length} pedidos)`);
+  };
+
   const downloadExcel = () => {
     if (orders.length === 0) {
       toast.error("Não há pedidos para baixar");
@@ -207,12 +224,11 @@ const Admin = () => {
     }
 
     const excelData = formatOrdersForExcel(orders);
-
     const ws = XLSX.utils.json_to_sheet(excelData);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Pedidos");
     
-    XLSX.writeFile(wb, `pedidos_proyector_guatemala_${new Date().toISOString().split('T')[0]}.xlsx`);
+    XLSX.writeFile(wb, `pedidos_todos_${new Date().toISOString().split('T')[0]}.xlsx`);
     toast.success("Excel baixado com sucesso!");
   };
 
