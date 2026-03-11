@@ -8,7 +8,7 @@ import Index from "./pages/Index";
 import Taladro from "./pages/Taladro";
 import Gafas from "./pages/Gafas";
 import Guatemala from "./pages/Guatemala";
-import GuatemalaProyector from "./pages/GuatemalaProyector";
+
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
