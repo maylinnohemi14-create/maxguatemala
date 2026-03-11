@@ -174,8 +174,7 @@ const Admin = () => {
   ];
 
   const getOrdersByProduct = (productId: string) => {
-    return orders.filter(order => order.nota === PRODUCTS.find(p => p.id === productId)?.nota || 
-      (order as any).id_producto === productId);
+    return orders.filter(order => order.id_producto === productId);
   };
 
   const formatOrdersForExcel = (ordersToFormat: Order[], product?: typeof PRODUCTS[0]) => {
