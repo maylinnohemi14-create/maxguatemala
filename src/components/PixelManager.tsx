@@ -201,7 +201,7 @@ export const PixelManager = () => {
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">
-                    ID: {pixel.pixel_id}
+                    ID: {pixel.pixel_id} {pixel.page_route ? `• Rota: ${pixel.page_route}` : '• Global (todas as páginas)'}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
