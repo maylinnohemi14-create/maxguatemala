@@ -163,7 +163,21 @@ const Admin = () => {
     navigate("/");
   };
 
-  const formatOrdersForExcel = (ordersToFormat: Order[]) => {
+  const PRODUCTS = [
+    { id: 'NINJA-CRISPI-GT', label: 'Ninja CRISPi', nota: 'NINJA CRISPI', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'PROYECTOR-VEVSHAO-A10-GT', label: 'Proyector Vevshao', nota: 'PROYECTOR VEV', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'PROYECTOR-NAVIDAD-GT', label: 'Proyector Navideño', nota: 'PROYECTOR NAVIDAD', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'MOCHILA-COMPACTA-GT', label: 'Mochila Compacta', nota: 'MOCHILA COMPACTA', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'TALADRO-INALAMBRICO-48V', label: 'Taladro 48V', nota: 'TALADRO 48V', idProducto: '1989831', transportadora: '' },
+    { id: 'GAFAS-TR90-2X1', label: 'Gafas TR90', nota: 'GAFAS TR90 2X1', idProducto: '1989831', transportadora: '' },
+  ];
+
+  const getOrdersByProduct = (productId: string) => {
+    return orders.filter(order => order.nota === PRODUCTS.find(p => p.id === productId)?.nota || 
+      (order as any).id_producto === productId);
+  };
+
+  const formatOrdersForExcel = (ordersToFormat: Order[], product?: typeof PRODUCTS[0]) => {
     return ordersToFormat.map((order) => ({
       'NOMBRES': order.nombres,
       'APELLIDOS': order.apellidos,
@@ -171,15 +185,15 @@ const Admin = () => {
       'DEPARTAMENTO': order.departamento,
       'CIUDAD': order.ciudad,
       'TELÉFONO': order.telefono,
-      'ID DE PRODUCTO': '179',
+      'ID DE PRODUCTO': product?.idProducto || '179',
       'CANTIDAD': '1',
       'PRECIO TOTAL (SIN PUNTOS NI COMAS)': order.precio_total,
       'CON RECAUDO': 'SI',
-      'NOTA': 'PROYECTOR VEV',
+      'NOTA': product?.nota || order.nota || 'PROYECTOR VEV',
       'EMAIL (OPCIONAL)': order.email || '',
       'ID DE VARIABLE (OPCIONAL)': '',
       'CODIGO POSTAL (OPCIONAL)': '',
-      'TRANSPORTADORA (OPCIONAL)': 'FORZA',
+      'TRANSPORTADORA (OPCIONAL)': product?.transportadora || 'FORZA',
       'CEDULA (OPCIONAL)': order.cedula || '',
       'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': order.colonia || '',
       'SEGURO (SOLO APLICA PARA ENVIA)': ''
