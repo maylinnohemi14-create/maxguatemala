@@ -34,7 +34,7 @@ const App = () => (
           <Route path="/taladro" element={<Taladro />} />
           <Route path="/gafas" element={<Gafas />} />
           <Route path="/guatemala" element={<Guatemala />} />
-          <Route path="/guatemala-proyector" element={<GuatemalaProyector />} />
+          
           <Route path="/ninja-crispi" element={<NinjaCrispi />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
