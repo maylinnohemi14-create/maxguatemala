@@ -57,13 +57,14 @@ export const PixelManager = () => {
         .insert([{
           platform: newPixel.platform as 'facebook' | 'tiktok',
           pixel_id: newPixel.pixel_id,
-          is_active: true
+          is_active: true,
+          page_route: newPixel.page_route || null
         }]);
 
       if (error) throw error;
 
       toast.success("Pixel adicionado com sucesso!");
-      setNewPixel({ platform: '', pixel_id: '' });
+      setNewPixel({ platform: '', pixel_id: '', page_route: '' });
       fetchPixels();
     } catch (error: any) {
       toast.error("Erro ao adicionar pixel: " + error.message);
