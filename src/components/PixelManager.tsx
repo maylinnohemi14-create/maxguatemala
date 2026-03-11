@@ -14,6 +14,7 @@ interface Pixel {
   platform: 'facebook' | 'tiktok';
   pixel_id: string;
   is_active: boolean;
+  page_route: string | null;
   created_at: string;
 }
 
@@ -21,7 +22,7 @@ export const PixelManager = () => {
   const [pixels, setPixels] = useState<Pixel[]>([]);
   const [loading, setLoading] = useState(true);
   const [adding, setAdding] = useState(false);
-  const [newPixel, setNewPixel] = useState({ platform: '', pixel_id: '' });
+  const [newPixel, setNewPixel] = useState({ platform: '', pixel_id: '', page_route: '' });
 
   useEffect(() => {
     fetchPixels();
