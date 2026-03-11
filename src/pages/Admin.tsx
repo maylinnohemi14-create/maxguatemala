@@ -445,20 +445,55 @@ const Admin = () => {
               <CardDescription>Baixe o Excel de cada produto separadamente</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {PRODUCTS.map((product) => {
                   const count = getOrdersByProduct(product.id).length;
                   return (
-                    <Button
-                      key={product.id}
-                      onClick={() => downloadProductExcel(product)}
-                      variant="outline"
-                      className="w-full h-12 justify-start"
-                      disabled={count === 0}
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      {product.label} ({count})
-                    </Button>
+                    <Card key={product.id} className="border-dashed">
+                      <CardContent className="pt-4 pb-4 flex flex-col gap-3">
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold text-lg">{product.label}</span>
+                          <span className="text-sm text-muted-foreground">{count} pedidos</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button
+                            onClick={() => downloadProductExcel(product)}
+                            variant="outline"
+                            className="flex-1"
+                            disabled={count === 0}
+                          >
+                            <Download className="mr-2 h-4 w-4" />
+                            Baixar Excel
+                          </Button>
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                variant="destructive"
+                                size="default"
+                                disabled={count === 0}
+                              >
+                                <Trash2 className="mr-2 h-4 w-4" />
+                                Limpar
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Limpar pedidos de {product.label}?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Esta ação irá deletar permanentemente os {count} pedidos de {product.label}.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => clearProductOrders(product)}>
+                                  Sim, limpar
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        </div>
+                      </CardContent>
+                    </Card>
                   );
                 })}
               </div>
