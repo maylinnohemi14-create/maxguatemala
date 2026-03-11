@@ -422,6 +422,35 @@ const Admin = () => {
           </Card>
         </div>
 
+        {/* Per-Product Downloads */}
+        <div className="mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Download por Produto</CardTitle>
+              <CardDescription>Baixe o Excel de cada produto separadamente</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {PRODUCTS.map((product) => {
+                  const count = getOrdersByProduct(product.id).length;
+                  return (
+                    <Button
+                      key={product.id}
+                      onClick={() => downloadProductExcel(product)}
+                      variant="outline"
+                      className="w-full h-12 justify-start"
+                      disabled={count === 0}
+                    >
+                      <Download className="mr-2 h-4 w-4" />
+                      {product.label} ({count})
+                    </Button>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Download and Clear Buttons */}
         <div className="mb-8">
           <Card>
