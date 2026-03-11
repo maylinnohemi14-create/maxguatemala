@@ -165,13 +165,28 @@ const Admin = () => {
   };
 
   const PRODUCTS = [
-    { id: 'NINJA-CRISPI-GT', label: 'Ninja CRISPi', nota: 'NINJA CRISPI', idProducto: '179', transportadora: 'FORZA' },
     { id: 'PROYECTOR-VEVSHAO-A10-GT', label: 'Proyector Vevshao', nota: 'PROYECTOR VEV', idProducto: '179', transportadora: 'FORZA' },
-    { id: 'PROYECTOR-NAVIDAD-GT', label: 'Proyector Navideño', nota: 'PROYECTOR NAVIDAD', idProducto: '179', transportadora: 'FORZA' },
-    { id: 'MOCHILA-COMPACTA-GT', label: 'Mochila Compacta', nota: 'MOCHILA COMPACTA', idProducto: '179', transportadora: 'FORZA' },
-    { id: 'TALADRO-INALAMBRICO-48V', label: 'Taladro 48V', nota: 'TALADRO 48V', idProducto: '1989831', transportadora: '' },
-    { id: 'GAFAS-TR90-2X1', label: 'Gafas TR90', nota: 'GAFAS TR90 2X1', idProducto: '1989831', transportadora: '' },
+    { id: 'NINJA-CRISPI-GT', label: 'Ninja CRISPi', nota: 'NINJA CRISPI', idProducto: '179', transportadora: 'FORZA' },
   ];
+
+  const clearProductOrders = async (product: typeof PRODUCTS[0]) => {
+    try {
+      const { error } = await supabase
+        .from('orders')
+        .delete()
+        .eq('id_producto', product.id);
+      
+      if (error) throw error;
+      
+      const remaining = orders.filter(o => o.id_producto !== product.id);
+      setOrders(remaining);
+      calculateStats(remaining);
+      
+      toast.success(`Pedidos de ${product.label} limpos com sucesso!`);
+    } catch (error: any) {
+      toast.error("Erro ao limpar pedidos: " + error.message);
+    }
+  };
 
   const getOrdersByProduct = (productId: string) => {
     return orders.filter(order => order.id_producto === productId);
