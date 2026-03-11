@@ -1,0 +1,1 @@
+ALTER TABLE public.tracking_pixels ADD COLUMN page_route text DEFAULT NULL;

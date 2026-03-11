@@ -15,6 +15,7 @@ interface TrackingPixel {
   platform: 'facebook' | 'tiktok';
   pixel_id: string;
   is_active: boolean;
+  page_route: string | null;
 }
 
 // ===== IMMEDIATELY initialize ttq stub so events queue before pixel loads =====

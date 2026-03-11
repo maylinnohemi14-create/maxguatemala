@@ -115,6 +115,7 @@ export type Database = {
           created_at: string
           id: string
           is_active: boolean
+          page_route: string | null
           pixel_id: string
           platform: string
           updated_at: string
@@ -123,6 +124,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_active?: boolean
+          page_route?: string | null
           pixel_id: string
           platform: string
           updated_at?: string
@@ -131,6 +133,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_active?: boolean
+          page_route?: string | null
           pixel_id?: string
           platform?: string
           updated_at?: string

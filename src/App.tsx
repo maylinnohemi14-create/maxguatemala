@@ -25,10 +25,10 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <TrackingPixels />
       <Toaster />
       <Sonner position="top-right" />
       <BrowserRouter>
+        <TrackingPixels />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/taladro" element={<Taladro />} />

@@ -14,6 +14,7 @@ interface Pixel {
   platform: 'facebook' | 'tiktok';
   pixel_id: string;
   is_active: boolean;
+  page_route: string | null;
   created_at: string;
 }
 
@@ -21,7 +22,7 @@ export const PixelManager = () => {
   const [pixels, setPixels] = useState<Pixel[]>([]);
   const [loading, setLoading] = useState(true);
   const [adding, setAdding] = useState(false);
-  const [newPixel, setNewPixel] = useState({ platform: '', pixel_id: '' });
+  const [newPixel, setNewPixel] = useState({ platform: '', pixel_id: '', page_route: '' });
 
   useEffect(() => {
     fetchPixels();
@@ -56,13 +57,14 @@ export const PixelManager = () => {
         .insert([{
           platform: newPixel.platform as 'facebook' | 'tiktok',
           pixel_id: newPixel.pixel_id,
-          is_active: true
+          is_active: true,
+          page_route: newPixel.page_route || null
         }]);
 
       if (error) throw error;
 
       toast.success("Pixel adicionado com sucesso!");
-      setNewPixel({ platform: '', pixel_id: '' });
+      setNewPixel({ platform: '', pixel_id: '', page_route: '' });
       fetchPixels();
     } catch (error: any) {
       toast.error("Erro ao adicionar pixel: " + error.message);
@@ -128,7 +130,7 @@ export const PixelManager = () => {
         {/* Add New Pixel Form */}
         <div className="space-y-4 p-4 border rounded-lg bg-muted/30">
           <h3 className="font-semibold">Adicionar Novo Pixel</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="space-y-2">
               <Label>Plataforma</Label>
               <Select
@@ -150,6 +152,14 @@ export const PixelManager = () => {
                 placeholder="Ex: 123456789012345"
                 value={newPixel.pixel_id}
                 onChange={(e) => setNewPixel({ ...newPixel, pixel_id: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Rota (opcional)</Label>
+              <Input
+                placeholder="Ex: /ninja-crispi (vazio = global)"
+                value={newPixel.page_route}
+                onChange={(e) => setNewPixel({ ...newPixel, page_route: e.target.value })}
               />
             </div>
             <div className="flex items-end">
@@ -191,7 +201,7 @@ export const PixelManager = () => {
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">
-                    ID: {pixel.pixel_id}
+                    ID: {pixel.pixel_id} {pixel.page_route ? `• Rota: ${pixel.page_route}` : '• Global (todas as páginas)'}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
