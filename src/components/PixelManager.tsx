@@ -130,7 +130,7 @@ export const PixelManager = () => {
         {/* Add New Pixel Form */}
         <div className="space-y-4 p-4 border rounded-lg bg-muted/30">
           <h3 className="font-semibold">Adicionar Novo Pixel</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="space-y-2">
               <Label>Plataforma</Label>
               <Select
@@ -152,6 +152,14 @@ export const PixelManager = () => {
                 placeholder="Ex: 123456789012345"
                 value={newPixel.pixel_id}
                 onChange={(e) => setNewPixel({ ...newPixel, pixel_id: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Rota (opcional)</Label>
+              <Input
+                placeholder="Ex: /ninja-crispi (vazio = global)"
+                value={newPixel.page_route}
+                onChange={(e) => setNewPixel({ ...newPixel, page_route: e.target.value })}
               />
             </div>
             <div className="flex items-end">
