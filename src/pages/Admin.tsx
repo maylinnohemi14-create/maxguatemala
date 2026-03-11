@@ -49,6 +49,7 @@ interface Order {
   cedula?: string;
   colonia?: string;
   nota?: string;
+  id_producto?: string;
 }
 
 interface CityStats {
@@ -163,7 +164,20 @@ const Admin = () => {
     navigate("/");
   };
 
-  const formatOrdersForExcel = (ordersToFormat: Order[]) => {
+  const PRODUCTS = [
+    { id: 'NINJA-CRISPI-GT', label: 'Ninja CRISPi', nota: 'NINJA CRISPI', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'PROYECTOR-VEVSHAO-A10-GT', label: 'Proyector Vevshao', nota: 'PROYECTOR VEV', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'PROYECTOR-NAVIDAD-GT', label: 'Proyector Navideño', nota: 'PROYECTOR NAVIDAD', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'MOCHILA-COMPACTA-GT', label: 'Mochila Compacta', nota: 'MOCHILA COMPACTA', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'TALADRO-INALAMBRICO-48V', label: 'Taladro 48V', nota: 'TALADRO 48V', idProducto: '1989831', transportadora: '' },
+    { id: 'GAFAS-TR90-2X1', label: 'Gafas TR90', nota: 'GAFAS TR90 2X1', idProducto: '1989831', transportadora: '' },
+  ];
+
+  const getOrdersByProduct = (productId: string) => {
+    return orders.filter(order => order.id_producto === productId);
+  };
+
+  const formatOrdersForExcel = (ordersToFormat: Order[], product?: typeof PRODUCTS[0]) => {
     return ordersToFormat.map((order) => ({
       'NOMBRES': order.nombres,
       'APELLIDOS': order.apellidos,
@@ -171,19 +185,36 @@ const Admin = () => {
       'DEPARTAMENTO': order.departamento,
       'CIUDAD': order.ciudad,
       'TELÉFONO': order.telefono,
-      'ID DE PRODUCTO': '179',
+      'ID DE PRODUCTO': product?.idProducto || '179',
       'CANTIDAD': '1',
       'PRECIO TOTAL (SIN PUNTOS NI COMAS)': order.precio_total,
       'CON RECAUDO': 'SI',
-      'NOTA': 'PROYECTOR VEV',
+      'NOTA': product?.nota || order.nota || 'PROYECTOR VEV',
       'EMAIL (OPCIONAL)': order.email || '',
       'ID DE VARIABLE (OPCIONAL)': '',
       'CODIGO POSTAL (OPCIONAL)': '',
-      'TRANSPORTADORA (OPCIONAL)': 'FORZA',
+      'TRANSPORTADORA (OPCIONAL)': product?.transportadora || 'FORZA',
       'CEDULA (OPCIONAL)': order.cedula || '',
       'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': order.colonia || '',
       'SEGURO (SOLO APLICA PARA ENVIA)': ''
     }));
+  };
+
+  const downloadProductExcel = (product: typeof PRODUCTS[0]) => {
+    const productOrders = getOrdersByProduct(product.id);
+    if (productOrders.length === 0) {
+      toast.error(`Não há pedidos de ${product.label} para baixar`);
+      return;
+    }
+
+    const excelData = formatOrdersForExcel(productOrders, product);
+    const ws = XLSX.utils.json_to_sheet(excelData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Pedidos");
+    
+    const today = new Date().toISOString().split('T')[0];
+    XLSX.writeFile(wb, `pedidos_${product.id.toLowerCase()}_${today}.xlsx`);
+    toast.success(`Excel de ${product.label} baixado com sucesso! (${productOrders.length} pedidos)`);
   };
 
   const downloadExcel = () => {
@@ -193,12 +224,11 @@ const Admin = () => {
     }
 
     const excelData = formatOrdersForExcel(orders);
-
     const ws = XLSX.utils.json_to_sheet(excelData);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Pedidos");
     
-    XLSX.writeFile(wb, `pedidos_proyector_guatemala_${new Date().toISOString().split('T')[0]}.xlsx`);
+    XLSX.writeFile(wb, `pedidos_todos_${new Date().toISOString().split('T')[0]}.xlsx`);
     toast.success("Excel baixado com sucesso!");
   };
 
@@ -388,6 +418,35 @@ const Admin = () => {
                   Nenhum dado disponível
                 </div>
               )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Per-Product Downloads */}
+        <div className="mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Download por Produto</CardTitle>
+              <CardDescription>Baixe o Excel de cada produto separadamente</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {PRODUCTS.map((product) => {
+                  const count = getOrdersByProduct(product.id).length;
+                  return (
+                    <Button
+                      key={product.id}
+                      onClick={() => downloadProductExcel(product)}
+                      variant="outline"
+                      className="w-full h-12 justify-start"
+                      disabled={count === 0}
+                    >
+                      <Download className="mr-2 h-4 w-4" />
+                      {product.label} ({count})
+                    </Button>
+                  );
+                })}
+              </div>
             </CardContent>
           </Card>
         </div>
