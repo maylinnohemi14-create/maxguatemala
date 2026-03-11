@@ -49,6 +49,7 @@ interface Order {
   cedula?: string;
   colonia?: string;
   nota?: string;
+  id_producto?: string;
 }
 
 interface CityStats {
