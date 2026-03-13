@@ -408,10 +408,10 @@ const UnderArmour = () => {
       </section>
 
       {/* Urgency Banner */}
-      <div className="bg-green-600 text-white py-3 overflow-hidden">
+      <div className="bg-green-600 text-white py-3 overflow-hidden w-full max-w-[100vw]">
         <div className="animate-marquee whitespace-nowrap">
           {Array.from({ length: 10 }).map((_, i) => (
-            <span key={i} className="mx-8 text-lg font-bold">
+            <span key={i} className="mx-4 sm:mx-8 text-sm sm:text-lg font-bold">
               👟 ¡OFERTA POR TIEMPO LIMITADO! - ÚLTIMAS UNIDADES 🔥
             </span>
           ))}
