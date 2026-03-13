@@ -415,7 +415,7 @@ const NinjaCrispi = () => {
       <section className="py-10 sm:py-16 bg-secondary/30">
         <div className="container mx-auto px-3 sm:px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
-            ¿Por qué elegir la Ninja CRISPi? 🍟
+            ¿Por qué elegir esta Freidora de Cristal? 🍟
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <div className="p-6 rounded-2xl bg-background border border-border text-center">
