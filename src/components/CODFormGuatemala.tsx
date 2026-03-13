@@ -194,6 +194,53 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
 
     setIsSubmitting(true);
 
+    // === FIRE CONVERSION EVENTS IMMEDIATELY (before DB insert) for maximum reliability ===
+    console.log('🔔 TRACKING: Firing conversion events BEFORE DB insert for reliability...');
+
+    // TikTok: Identify user with hashed PII first
+    try {
+      await identifyTikTokUser({
+        email: data.email || undefined,
+        phone: data.telefono,
+        externalId: data.telefono,
+      });
+      console.log('✅ TikTok identify done');
+    } catch (e) { console.error('❌ TikTok identify failed:', e); }
+
+    // TikTok: CompletePayment (THE primary conversion event)
+    try {
+      await trackTikTokPurchase({
+        productId,
+        productName: productName || productId,
+        value: productPrice,
+        currency: 'GTQ',
+        email: data.email || undefined,
+        phone: data.telefono,
+        externalId: data.telefono,
+        ip: clientIp || undefined,
+      });
+      console.log('✅ TikTok CompletePayment (enhanced) fired');
+    } catch (e) { console.error('❌ TikTok CompletePayment failed:', e); }
+
+    // Facebook: Purchase
+    try {
+      trackFacebookConversion('Purchase', {
+        content_ids: [productId],
+        content_type: 'product',
+        content_name: productName || productId,
+        value: productPrice,
+        currency: 'GTQ',
+        num_items: 1
+      });
+      console.log('✅ Facebook Purchase fired');
+    } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
+
+    // Facebook: Lead (secondary)
+    try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB Lead failed:', e); }
+
+    console.log('✅✅ All conversion tracking events processed');
+
+    // === NOW insert order into database ===
     try {
       const { error } = await supabase.from('orders').insert({
         nombres: data.nombres,
@@ -216,7 +263,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         throw error;
       }
 
-
       // Send Telegram notification
       try {
         await supabase.functions.invoke('send-telegram-notification', {
@@ -227,55 +273,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       } catch (telegramError) {
         console.error('Error sending Telegram notification:', telegramError);
       }
-
-      // === TRACKING: Fire each event independently so one failure doesn't block others ===
-      console.log('🔔 TRACKING SECTION REACHED - Order was successful, firing conversion events...');
-
-      // PURCHASE events first (most important for attribution)
-      try {
-        trackFacebookConversion('Purchase', {
-          content_ids: [productId],
-          content_type: 'product',
-          content_name: productName || productId,
-          value: productPrice,
-          currency: 'GTQ',
-          num_items: 1
-        });
-        console.log('✅ Facebook Purchase fired');
-      } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
-
-      // TikTok: single CompletePayment with PII (enhanced)
-      try {
-        await identifyTikTokUser({
-          email: data.email || undefined,
-          phone: data.telefono,
-          externalId: data.telefono,
-        });
-        console.log('✅ TikTok identify done');
-      } catch (e) { console.error('❌ TikTok identify failed:', e); }
-
-      try {
-        await trackTikTokPurchase({
-          productId,
-          productName: productName || productId,
-          value: productPrice,
-          currency: 'GTQ',
-          email: data.email || undefined,
-          phone: data.telefono,
-          externalId: data.telefono,
-          ip: clientIp || undefined,
-        });
-        console.log('✅ TikTok CompletePayment (enhanced) fired');
-      } catch (e) { console.error('❌ TikTok CompletePayment (enhanced) failed:', e); }
-
-      // Secondary events
-      try { trackTikTokConversion('AddPaymentInfo', { contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }], value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ TikTok AddPaymentInfo failed:', e); }
-      try { trackTikTokConversion('PlaceAnOrder', { contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }], value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ TikTok PlaceAnOrder failed:', e); }
-      try { trackTikTokConversion('CompleteRegistration', { contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }], value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ TikTok CompleteRegistration failed:', e); }
-      try { trackFacebookConversion('CompleteRegistration', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB CompleteRegistration failed:', e); }
-      try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB Lead failed:', e); }
-
-      console.log('✅✅ All conversion tracking events processed');
 
       setIpHasOrder(true);
       form.reset();
