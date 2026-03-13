@@ -56,7 +56,7 @@ const UnderArmour = () => {
   const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 299;
 
-  const productImages = [underArmourMain];
+  const productImages = [underArmourMain, underArmourGray, underArmourBlack, underArmourBlue];
 
   useEffect(() => {
     trackTikTokConversion('LandingPageView');
