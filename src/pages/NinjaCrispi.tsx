@@ -213,9 +213,17 @@ const NinjaCrispi = () => {
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-foreground leading-tight">
-              NINJA CRISPi - Freidora de Aire Portátil de Cristal (Pack 5 Recipientes) 🍗✨
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-foreground leading-tight">
+              Freidora de Aire Portátil de Cristal — CRISPi (Pack 5 Recipientes) 🍗✨
             </h1>
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <Badge className="bg-blue-600 text-white font-semibold text-xs px-2.5 py-1 border border-blue-700">
+                ✅ Producto Original Importado
+              </Badge>
+              <Badge className="bg-amber-600 text-white font-semibold text-xs px-2.5 py-1 border border-amber-700">
+                🏷️ Distribuidor Autorizado
+              </Badge>
+            </div>
 
             {/* Price Section */}
             <div className="mb-4 sm:mb-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
