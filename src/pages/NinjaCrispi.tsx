@@ -213,9 +213,17 @@ const NinjaCrispi = () => {
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-foreground leading-tight">
-              NINJA CRISPi - Freidora de Aire Portátil de Cristal (Pack 5 Recipientes) 🍗✨
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-foreground leading-tight">
+              Freidora de Aire Portátil de Cristal — CRISPi (Pack 5 Recipientes) 🍗✨
             </h1>
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <Badge className="bg-blue-600 text-white font-semibold text-xs px-2.5 py-1 border border-blue-700">
+                ✅ Producto Original Importado
+              </Badge>
+              <Badge className="bg-amber-600 text-white font-semibold text-xs px-2.5 py-1 border border-amber-700">
+                🏷️ Distribuidor Autorizado
+              </Badge>
+            </div>
 
             {/* Price Section */}
             <div className="mb-4 sm:mb-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
@@ -407,7 +415,7 @@ const NinjaCrispi = () => {
       <section className="py-10 sm:py-16 bg-secondary/30">
         <div className="container mx-auto px-3 sm:px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
-            ¿Por qué elegir la Ninja CRISPi? 🍟
+            ¿Por qué elegir esta Freidora de Cristal? 🍟
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <div className="p-6 rounded-2xl bg-background border border-border text-center">
@@ -533,7 +541,7 @@ const NinjaCrispi = () => {
                 ¿Cuántas funciones tiene?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                La Ninja CRISPi es multiusos: puedes freír con aire, asar, dorar y mantener caliente. Todo en un solo aparato compacto que no ocupa mucho espacio en tu cocina.
+                Esta freidora es multiusos: puedes freír con aire, asar, dorar y mantener caliente. Todo en un solo aparato compacto que no ocupa mucho espacio en tu cocina.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
@@ -559,6 +567,7 @@ const NinjaCrispi = () => {
       {/* Final CTA */}
       <section className="py-10 sm:py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
+          <p className="text-xs opacity-70 mb-3">✅ Producto original importado — Distribuidor autorizado en Guatemala</p>
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             ¡Cocina más saludable hoy! 🍗🇬🇹
           </h2>
@@ -578,6 +587,16 @@ const NinjaCrispi = () => {
           </Dialog>
         </div>
       </section>
+
+      {/* Disclaimer */}
+      <div className="bg-secondary/50 py-4">
+        <div className="container mx-auto px-3 sm:px-4 text-center">
+          <p className="text-xs text-muted-foreground">
+            Producto original importado. MAX Guatemala es distribuidor autorizado de productos electrónicos de cocina. 
+            Las marcas y logos mencionados pertenecen a sus respectivos propietarios. Este producto cuenta con garantía de 1 año.
+          </p>
+        </div>
+      </div>
 
       <LegalFooter />
     </div>
