@@ -25,10 +25,9 @@ import {
   Shirt,
 } from "lucide-react";
 import underArmourMain from "@/assets/under-armour-main.png";
-import underArmourGray from "@/assets/under-armour-gray.png";
-import underArmourBlack from "@/assets/under-armour-black.png";
-import underArmourBlue from "@/assets/under-armour-blue.png";
-import underArmourPromo from "@/assets/under-armour-promo.jpg";
+import uaBlue from "@/assets/ua-blue.jpg";
+import uaBlack from "@/assets/ua-black.jpg";
+import uaGray from "@/assets/ua-gray.jpg";
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
@@ -56,7 +55,7 @@ const UnderArmour = () => {
   const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 299;
 
-  const productImages = [underArmourMain];
+  const productImages = [underArmourMain, uaBlue, uaBlack, uaGray];
 
   useEffect(() => {
     trackTikTokConversion('LandingPageView');
@@ -191,6 +190,17 @@ const UnderArmour = () => {
                 alt="Conjuntos Deportivos Kit 3 en 1"
                 className="w-full h-auto object-contain aspect-square"
               />
+            </div>
+            <div className="grid grid-cols-4 gap-2 mt-2">
+              {productImages.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedImage(idx)}
+                  className={`border-2 rounded-lg overflow-hidden transition-all ${selectedImage === idx ? 'border-primary ring-2 ring-primary/30' : 'border-border opacity-70 hover:opacity-100'}`}
+                >
+                  <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-auto object-cover aspect-square" />
+                </button>
+              ))}
             </div>
           </div>
 
