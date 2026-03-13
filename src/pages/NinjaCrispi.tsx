@@ -567,6 +567,7 @@ const NinjaCrispi = () => {
       {/* Final CTA */}
       <section className="py-10 sm:py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
+          <p className="text-xs opacity-70 mb-3">✅ Producto original importado — Distribuidor autorizado en Guatemala</p>
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             ¡Cocina más saludable hoy! 🍗🇬🇹
           </h2>
