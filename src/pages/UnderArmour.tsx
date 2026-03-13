@@ -192,6 +192,19 @@ const UnderArmour = () => {
                 className="w-full h-auto object-contain aspect-square"
               />
             </div>
+            <div className="grid grid-cols-4 gap-2">
+              {productImages.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedImage(idx)}
+                  className={`rounded-lg overflow-hidden border-2 transition-all ${
+                    selectedImage === idx ? "border-primary shadow-md" : "border-border opacity-70 hover:opacity-100"
+                  }`}
+                >
+                  <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-auto object-cover aspect-square bg-white" />
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Product Info */}
