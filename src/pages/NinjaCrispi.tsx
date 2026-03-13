@@ -70,7 +70,7 @@ const NinjaCrispi = () => {
         currency: 'GTQ'
       });
       trackTikTokConversion('AddToWishlist', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Ninja CRISPi Freidora de Aire' }],
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'CRISPi Freidora de Aire' }],
         value: PRODUCT_PRICE,
         currency: 'GTQ'
       });
