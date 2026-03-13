@@ -32,8 +32,9 @@ import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
+import { Ruler } from "lucide-react";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
@@ -328,7 +329,56 @@ const UnderArmour = () => {
 
             {/* Size Selectors */}
             <div className="mb-4 sm:mb-6 space-y-4">
-              <label className="block font-semibold text-foreground text-sm sm:text-base">Selecciona la talla de cada conjunto:</label>
+              <div className="flex items-center justify-between">
+                <label className="block font-semibold text-foreground text-sm sm:text-base">Selecciona la talla de cada conjunto:</label>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="flex items-center gap-1 text-xs font-semibold text-primary hover:underline">
+                      <Ruler className="w-3.5 h-3.5" />
+                      Guía de tallas
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="w-[90vw] max-w-md p-4 sm:p-6 rounded-xl">
+                    <DialogHeader>
+                      <DialogTitle className="text-base sm:text-lg">📏 Guía de Tallas</DialogTitle>
+                    </DialogHeader>
+                    <div className="mt-2">
+                      <p className="text-xs text-muted-foreground mb-3">Medidas en centímetros (cm). Mide tu cuerpo y compara con la tabla.</p>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs border-collapse">
+                          <thead>
+                            <tr className="bg-secondary">
+                              <th className="border border-border px-2 py-1.5 text-left font-bold">Talla</th>
+                              <th className="border border-border px-2 py-1.5 text-center font-bold">Pecho</th>
+                              <th className="border border-border px-2 py-1.5 text-center font-bold">Cintura</th>
+                              <th className="border border-border px-2 py-1.5 text-center font-bold">Cadera</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {[
+                              { talla: "XS", pecho: "82-86", cintura: "66-70", cadera: "82-86" },
+                              { talla: "S", pecho: "86-92", cintura: "70-76", cadera: "86-92" },
+                              { talla: "M", pecho: "92-98", cintura: "76-82", cadera: "92-98" },
+                              { talla: "L", pecho: "98-104", cintura: "82-88", cadera: "98-104" },
+                              { talla: "XL", pecho: "104-112", cintura: "88-96", cadera: "104-112" },
+                              { talla: "XXL", pecho: "112-120", cintura: "96-104", cadera: "112-120" },
+                              { talla: "XXXL", pecho: "120-128", cintura: "104-112", cadera: "120-128" },
+                            ].map((row) => (
+                              <tr key={row.talla} className="hover:bg-secondary/50">
+                                <td className="border border-border px-2 py-1.5 font-bold">{row.talla}</td>
+                                <td className="border border-border px-2 py-1.5 text-center">{row.pecho}</td>
+                                <td className="border border-border px-2 py-1.5 text-center">{row.cintura}</td>
+                                <td className="border border-border px-2 py-1.5 text-center">{row.cadera}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="text-[10px] text-muted-foreground mt-3">💡 Si estás entre dos tallas, recomendamos elegir la talla más grande para mayor comodidad.</p>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
               {SETS.map((set, idx) => (
                 <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
                   <div className="flex items-center gap-3 mb-2">
