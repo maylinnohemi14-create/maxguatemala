@@ -53,7 +53,7 @@ const UnderArmour = () => {
   const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 299;
 
-  const productImages = [underArmourMain, underArmourPromo];
+  const productImages = [underArmourMain];
 
   useEffect(() => {
     trackTikTokConversion('LandingPageView');
@@ -188,19 +188,6 @@ const UnderArmour = () => {
                 alt="Conjuntos Deportivos Kit 3 en 1"
                 className="w-full h-auto object-contain aspect-square"
               />
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              {productImages.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`rounded-lg overflow-hidden border-2 transition-all ${
-                    selectedImage === idx ? "border-primary shadow-md" : "border-border opacity-70 hover:opacity-100"
-                  }`}
-                >
-                  <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-auto object-cover aspect-video bg-white" />
-                </button>
-              ))}
             </div>
           </div>
 
