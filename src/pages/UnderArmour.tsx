@@ -312,7 +312,7 @@ const UnderArmour = () => {
               {[
                 { text: "Kit completo con", bold: "3 conjuntos deportivos de alta calidad", suffix: "" },
                 { text: "Material", bold: "transpirable y de secado rápido", suffix: "" },
-                { text: "Diseño moderno", bold: "inspirado en Under Armour", suffix: "" },
+                { text: "Diseño moderno", bold: "estilo deportivo premium", suffix: "" },
                 { text: "Ideal para", bold: "gimnasio, running y actividades al aire libre", suffix: "" },
                 { text: "Envío", bold: "100% gratis", suffix: "a toda Guatemala" },
               ].map((benefit, idx) => (
