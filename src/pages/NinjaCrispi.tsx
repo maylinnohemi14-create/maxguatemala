@@ -245,12 +245,8 @@ const NinjaCrispi = () => {
                 
                 <div className="flex flex-wrap items-center gap-2">
                   <div className="inline-flex items-center gap-1.5 bg-success text-success-foreground font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full shadow-md">
-                    <span className="text-base">💰</span>
-                    <span>AHORRAS Q191</span>
-                  </div>
-                  <div className="inline-flex items-center gap-1.5 bg-destructive/10 text-destructive font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full border border-destructive/30">
                     <span className="text-base">🔥</span>
-                    <span>-37% OFF</span>
+                    <span>¡APROVECHA LA PROMOCIÓN!</span>
                   </div>
                 </div>
               </div>
