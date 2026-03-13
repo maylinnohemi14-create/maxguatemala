@@ -188,11 +188,6 @@ const UnderArmour = () => {
           {/* Product Images */}
           <div className="animate-fade-in">
             <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
-              <div className="absolute top-3 left-3 z-10">
-                <Badge className="bg-destructive text-destructive-foreground font-bold text-sm px-3 py-1.5">
-                  75% OFF
-                </Badge>
-              </div>
               <img
                 src={productImages[selectedImage]}
                 alt="Conjuntos Deportivos Kit 3 en 1"
