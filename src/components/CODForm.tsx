@@ -506,12 +506,10 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         <div className="text-center bg-destructive text-destructive-foreground rounded-lg px-3 py-2 sm:px-4 sm:py-3">
           <p className="text-xs sm:text-sm md:text-base font-bold flex items-center justify-center gap-2">
             <span>⚠️</span>
-            <span>¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta el {(() => {
-              const tomorrow = new Date();
-              tomorrow.setDate(tomorrow.getDate() + 1);
-              const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+            <span>¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta hoy {(() => {
+              const hoy = new Date();
               const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-              return `${diasSemana[tomorrow.getDay()]} ${tomorrow.getDate()} de ${meses[tomorrow.getMonth()]}`;
+              return `${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
             })()}. ¡Asegura el tuyo ahora!</span>
             <span>⚠️</span>
           </p>
