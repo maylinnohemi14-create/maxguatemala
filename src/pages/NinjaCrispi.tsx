@@ -49,14 +49,14 @@ const NinjaCrispi = () => {
   useEffect(() => {
     trackTikTokConversion('LandingPageView');
     trackTikTokConversion('ViewContent', {
-      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Ninja CRISPi Freidora de Aire' }],
+      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'CRISPi Freidora de Aire' }],
       value: PRODUCT_PRICE,
       currency: 'GTQ'
     });
     trackFacebookConversion('ViewContent', {
       content_ids: [PRODUCT_ID],
       content_type: 'product',
-      content_name: 'Ninja CRISPi Freidora de Aire',
+      content_name: 'CRISPi Freidora de Aire',
       value: PRODUCT_PRICE,
       currency: 'GTQ'
     });
@@ -65,12 +65,12 @@ const NinjaCrispi = () => {
   const handleDialogChange = (open: boolean) => {
     if (open) {
       trackTikTokConversion('AddToCart', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Ninja CRISPi Freidora de Aire' }],
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'CRISPi Freidora de Aire' }],
         value: PRODUCT_PRICE,
         currency: 'GTQ'
       });
       trackTikTokConversion('AddToWishlist', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Ninja CRISPi Freidora de Aire' }],
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'CRISPi Freidora de Aire' }],
         value: PRODUCT_PRICE,
         currency: 'GTQ'
       });
@@ -174,7 +174,7 @@ const NinjaCrispi = () => {
             <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
               <img
                 src={productImages[selectedImage]}
-                alt="Ninja CRISPi Freidora de Aire Portátil de Cristal"
+                alt="CRISPi Freidora de Aire Portátil de Cristal"
                 className="w-full h-auto object-contain aspect-square"
               />
             </div>
@@ -361,7 +361,7 @@ const NinjaCrispi = () => {
                     <CODFormGuatemala
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
-                      productName="Ninja CRISPi Freidora de Aire (Pack 5 Recipientes)"
+                      productName="CRISPi Freidora de Aire (Pack 5 Recipientes)"
                       productImage={ninjaCrispiMain}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
