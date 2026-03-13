@@ -167,6 +167,7 @@ const Admin = () => {
   const PRODUCTS = [
     { id: 'PROYECTOR-VEVSHAO-A10-GT', label: 'Proyector Vevshao', nota: 'PROYECTOR VEV', idProducto: '179', transportadora: 'FORZA' },
     { id: 'NINJA-CRISPI-GT', label: 'Ninja CRISPi', nota: 'NINJA CRISPI', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'UA-KIT3EN1-GT', label: 'Conjuntos Under Armour', nota: 'CONJUNTOS UA KIT 3EN1', idProducto: '179', transportadora: 'FORZA' },
   ];
 
   const clearProductOrders = async (product: typeof PRODUCTS[0]) => {
