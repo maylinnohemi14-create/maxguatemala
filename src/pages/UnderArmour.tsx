@@ -57,6 +57,14 @@ const UnderArmour = () => {
 
   const productImages = [uaBlue, uaBlack, uaGray];
 
+  // Auto-rotate images every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedImage(prev => (prev + 1) % productImages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [productImages.length]);
+
   useEffect(() => {
     trackTikTokConversion('LandingPageView');
     trackTikTokConversion('ViewContent', {
