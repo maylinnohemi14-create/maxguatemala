@@ -56,7 +56,7 @@ const NinjaCrispi = () => {
     trackFacebookConversion('ViewContent', {
       content_ids: [PRODUCT_ID],
       content_type: 'product',
-      content_name: 'Ninja CRISPi Freidora de Aire',
+      content_name: 'CRISPi Freidora de Aire',
       value: PRODUCT_PRICE,
       currency: 'GTQ'
     });
