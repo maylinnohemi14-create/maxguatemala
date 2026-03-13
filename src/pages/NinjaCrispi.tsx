@@ -174,7 +174,7 @@ const NinjaCrispi = () => {
             <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
               <img
                 src={productImages[selectedImage]}
-                alt="Ninja CRISPi Freidora de Aire Portátil de Cristal"
+                alt="CRISPi Freidora de Aire Portátil de Cristal"
                 className="w-full h-auto object-contain aspect-square"
               />
             </div>
