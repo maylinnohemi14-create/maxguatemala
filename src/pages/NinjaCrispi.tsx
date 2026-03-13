@@ -361,7 +361,7 @@ const NinjaCrispi = () => {
                     <CODFormGuatemala
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
-                      productName="Ninja CRISPi Freidora de Aire (Pack 5 Recipientes)"
+                      productName="CRISPi Freidora de Aire (Pack 5 Recipientes)"
                       productImage={ninjaCrispiMain}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
