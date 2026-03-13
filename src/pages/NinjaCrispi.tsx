@@ -541,7 +541,7 @@ const NinjaCrispi = () => {
                 ¿Cuántas funciones tiene?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                La Ninja CRISPi es multiusos: puedes freír con aire, asar, dorar y mantener caliente. Todo en un solo aparato compacto que no ocupa mucho espacio en tu cocina.
+                Esta freidora es multiusos: puedes freír con aire, asar, dorar y mantener caliente. Todo en un solo aparato compacto que no ocupa mucho espacio en tu cocina.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
