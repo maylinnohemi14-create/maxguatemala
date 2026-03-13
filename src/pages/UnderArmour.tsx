@@ -25,10 +25,9 @@ import {
   Shirt,
 } from "lucide-react";
 import underArmourMain from "@/assets/under-armour-main.png";
-import underArmourGray from "@/assets/under-armour-gray.png";
-import underArmourBlack from "@/assets/under-armour-black.png";
-import underArmourBlue from "@/assets/under-armour-blue.png";
-import underArmourPromo from "@/assets/under-armour-promo.jpg";
+import uaBlue from "@/assets/ua-blue.jpg";
+import uaBlack from "@/assets/ua-black.jpg";
+import uaGray from "@/assets/ua-gray.jpg";
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
