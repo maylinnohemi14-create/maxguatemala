@@ -588,6 +588,16 @@ const NinjaCrispi = () => {
         </div>
       </section>
 
+      {/* Disclaimer */}
+      <div className="bg-secondary/50 py-4">
+        <div className="container mx-auto px-3 sm:px-4 text-center">
+          <p className="text-xs text-muted-foreground">
+            Producto original importado. MAX Guatemala es distribuidor autorizado de productos electrónicos de cocina. 
+            Las marcas y logos mencionados pertenecen a sus respectivos propietarios. Este producto cuenta con garantía de 1 año.
+          </p>
+        </div>
+      </div>
+
       <LegalFooter />
     </div>
   );
