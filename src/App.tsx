@@ -19,6 +19,7 @@ import PoliticaEnvios from "./pages/PoliticaEnvios";
 import PoliticaDevoluciones from "./pages/PoliticaDevoluciones";
 import Contacto from "./pages/Contacto";
 import NinjaCrispi from "./pages/NinjaCrispi";
+import UnderArmour from "./pages/UnderArmour";
 
 const queryClient = new QueryClient();
 
