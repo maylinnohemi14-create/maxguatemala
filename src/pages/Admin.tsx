@@ -197,7 +197,7 @@ const Admin = () => {
     return ordersToFormat.map((order) => ({
       'NOMBRES': order.nombres,
       'APELLIDOS': order.apellidos,
-      'DIRECCIÓN Y BARRIO': order.direccion_y_barrio,
+      'DIRECCIÓN Y BARRIO': order.colonia ? `${order.direccion_y_barrio}, ${order.colonia}` : order.direccion_y_barrio,
       'DEPARTAMENTO': order.departamento,
       'CIUDAD': order.ciudad,
       'TELÉFONO': order.telefono,
@@ -211,7 +211,7 @@ const Admin = () => {
       'CODIGO POSTAL (OPCIONAL)': '',
       'TRANSPORTADORA (OPCIONAL)': product?.transportadora || 'FORZA',
       'CEDULA (OPCIONAL)': order.cedula || '',
-      'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': order.colonia || '',
+      'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': '',
       'SEGURO (SOLO APLICA PARA ENVIA)': ''
     }));
   };
