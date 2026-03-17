@@ -207,7 +207,7 @@ const Admin = () => {
       'CON RECAUDO': 'SI',
       'NOTA': product?.nota || order.nota || 'PROYECTOR VEV',
       'EMAIL (OPCIONAL)': order.email || '',
-      'ID DE VARIABLE (OPCIONAL)': '',
+      'ID DE VARIABLE (OPCIONAL)': product?.idVariable || '',
       'CODIGO POSTAL (OPCIONAL)': '',
       'TRANSPORTADORA (OPCIONAL)': product?.transportadora || 'FORZA',
       'CEDULA (OPCIONAL)': order.cedula || '',
