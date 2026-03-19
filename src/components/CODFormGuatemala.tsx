@@ -194,6 +194,22 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
 
     setIsSubmitting(true);
 
+    // === Double-check IP before submitting (server-side safeguard) ===
+    try {
+      const { data: ipCheck } = await supabase.functions.invoke('get-client-ip');
+      if (ipCheck?.hasOrder) {
+        setIpHasOrder(true);
+        toast.error("Ya realizaste una compra anteriormente", {
+          description: "Solo se permite una compra por persona.",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      if (ipCheck?.ip) setClientIp(ipCheck.ip);
+    } catch (e) {
+      console.error('Error re-checking IP:', e);
+    }
+
     // === FIRE CONVERSION EVENTS IMMEDIATELY (before DB insert) for maximum reliability ===
     console.log('🔔 TRACKING: Firing conversion events BEFORE DB insert for reliability...');
 
