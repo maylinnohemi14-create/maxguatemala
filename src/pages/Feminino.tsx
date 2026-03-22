@@ -7,6 +7,7 @@ import { Truck, CreditCard, Shield, Star, ShoppingBag } from "lucide-react";
 import vestidoAmareloFrente from "@/assets/vestido-amarelo-frente.jpg";
 import vestidoRendaFrente from "@/assets/vestido-renda-frente.jpg";
 import vestidoVerde2Frente from "@/assets/vestido-verde2-frente.jpg";
+import vestidoBolinha2Frente from "@/assets/vestido-bolinha2-frente.jpg";
 
 interface Product {
   id: string;
