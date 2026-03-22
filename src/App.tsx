@@ -20,6 +20,8 @@ import PoliticaDevoluciones from "./pages/PoliticaDevoluciones";
 import Contacto from "./pages/Contacto";
 import NinjaCrispi from "./pages/NinjaCrispi";
 import UnderArmour from "./pages/UnderArmour";
+import Feminino from "./pages/Feminino";
+import VestidoKit4 from "./pages/VestidoKit4";
 
 const queryClient = new QueryClient();
 
