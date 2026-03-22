@@ -146,10 +146,11 @@ const Feminino = () => {
                     <span className="text-lg sm:text-xl font-extrabold text-destructive">Q{product.price}</span>
                     <span className="text-xs sm:text-sm text-muted-foreground line-through">Q{product.originalPrice}</span>
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-2 space-y-1.5">
                     <span className="inline-block w-full text-center bg-foreground text-background text-xs sm:text-sm font-bold py-2 rounded-lg group-hover:bg-primary transition-colors">
                       Ver Producto
                     </span>
+                    <p className="text-[10px] sm:text-xs text-center text-muted-foreground font-medium">💵 Solo pagas al recibir</p>
                   </div>
                 </div>
               </Link>
