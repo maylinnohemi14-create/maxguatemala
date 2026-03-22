@@ -5,6 +5,7 @@ import maxHeader from "@/assets/max-header.png";
 import { Truck, CreditCard, Shield, Star, ShoppingBag } from "lucide-react";
 
 import vestidoAmareloFrente from "@/assets/vestido-amarelo-frente.jpg";
+import vestidoRendaFrente from "@/assets/vestido-renda-frente.jpg";
 
 interface Product {
   id: string;
@@ -25,6 +26,15 @@ const products: Product[] = [
     image: vestidoAmareloFrente,
     route: "/feminino/vestido-kit4",
     badge: "🔥 MÁS VENDIDO",
+  },
+  {
+    id: "vestido-kit3",
+    name: "Vestido Premium Kit 3 en 1",
+    price: 299,
+    originalPrice: 499,
+    image: vestidoRendaFrente,
+    route: "/feminino/vestido-kit3",
+    badge: "✨ NUEVO",
   },
 ];
 
