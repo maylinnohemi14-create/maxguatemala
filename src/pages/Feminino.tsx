@@ -47,6 +47,15 @@ const products: Product[] = [
     route: "/feminino/elegance",
     badge: "💎 EXCLUSIVO",
   },
+  {
+    id: "vestido-glam",
+    name: "Vestido Glam Kit 4 en 1",
+    price: 299,
+    originalPrice: 599,
+    image: vestidoBolinha2Frente,
+    route: "/feminino/glam",
+    badge: "🔥 TOP VENTAS",
+  },
 ];
 
 const Feminino = () => {
