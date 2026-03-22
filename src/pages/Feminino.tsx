@@ -27,6 +27,15 @@ const products: Product[] = [
     route: "/feminino/vestido-kit4",
     badge: "🔥 MÁS VENDIDO",
   },
+  {
+    id: "vestido-kit3",
+    name: "Vestido Premium Kit 3 en 1",
+    price: 299,
+    originalPrice: 499,
+    image: vestidoRendaFrente,
+    route: "/feminino/vestido-kit3",
+    badge: "✨ NUEVO",
+  },
 ];
 
 const Feminino = () => {
