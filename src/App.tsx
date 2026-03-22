@@ -23,6 +23,7 @@ import UnderArmour from "./pages/UnderArmour";
 import Feminino from "./pages/Feminino";
 import VestidoKit4 from "./pages/VestidoKit4";
 import VestidoKit3 from "./pages/VestidoKit3";
+import VestidoElegance from "./pages/VestidoElegance";
 
 const queryClient = new QueryClient();
 
