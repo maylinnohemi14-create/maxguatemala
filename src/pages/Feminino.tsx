@@ -10,6 +10,7 @@ import vestidoVerde2Frente from "@/assets/vestido-verde2-frente.jpg";
 import vestidoBolinha2Frente from "@/assets/vestido-bolinha2-frente.jpg";
 import vestidoBrancoLargo1 from "@/assets/vestido-branco-largo-1.jpg";
 import vestidoCorsetBranco1 from "@/assets/vestido-corset-branco-1.jpg";
+import vestidoEncajeNegro2_1 from "@/assets/vestido-encaje-negro2-1.jpg";
 
 interface Product {
   id: string;
@@ -75,6 +76,15 @@ const products: Product[] = [
     image: vestidoCorsetBranco1,
     route: "/feminino/corset",
     badge: "👑 PREMIUM",
+  },
+  {
+    id: "vestido-noche",
+    name: "Vestido Noche Kit 3 en 1",
+    price: 299,
+    originalPrice: 499,
+    image: vestidoEncajeNegro2_1,
+    route: "/feminino/noche",
+    badge: "🌙 DE GALA",
   },
 ];
 
