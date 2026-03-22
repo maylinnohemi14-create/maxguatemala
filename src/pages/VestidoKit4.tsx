@@ -311,7 +311,7 @@ const VestidoKit4 = () => {
               {DRESSES.map((dress, idx) => (
                 <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-6 h-6 rounded-full ${dress.color} border border-border`} />
+                    <img src={dress.image} alt={dress.name} className="w-10 h-10 rounded-lg object-cover border border-border flex-shrink-0" />
                     <div className="min-w-0 flex-1">
                       <span className="font-bold text-xs sm:text-sm text-foreground block truncate">{dress.name}</span>
                       <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{dress.description}</p>
