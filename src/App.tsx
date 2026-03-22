@@ -25,6 +25,7 @@ import VestidoKit4 from "./pages/VestidoKit4";
 import VestidoKit3 from "./pages/VestidoKit3";
 import VestidoElegance from "./pages/VestidoElegance";
 import VestidoGlam from "./pages/VestidoGlam";
+import VestidoDuo from "./pages/VestidoDuo";
 
 const queryClient = new QueryClient();
 
