@@ -40,6 +40,8 @@ const App = () => (
           
           <Route path="/crispi" element={<NinjaCrispi />} />
           <Route path="/conjuntos" element={<UnderArmour />} />
+          <Route path="/feminino" element={<Feminino />} />
+          <Route path="/feminino/vestido-kit4" element={<VestidoKit4 />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/download-departamentos" element={<DownloadDepartamentos />} />
