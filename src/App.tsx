@@ -23,6 +23,7 @@ import UnderArmour from "./pages/UnderArmour";
 import Feminino from "./pages/Feminino";
 import VestidoKit4 from "./pages/VestidoKit4";
 import VestidoKit3 from "./pages/VestidoKit3";
+import VestidoElegance from "./pages/VestidoElegance";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/feminino" element={<Feminino />} />
           <Route path="/feminino/vestido-kit4" element={<VestidoKit4 />} />
           <Route path="/feminino/vestido-kit3" element={<VestidoKit3 />} />
+          <Route path="/feminino/elegance" element={<VestidoElegance />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/download-departamentos" element={<DownloadDepartamentos />} />
