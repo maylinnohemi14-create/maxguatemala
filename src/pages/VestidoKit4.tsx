@@ -33,10 +33,10 @@ import vestidoAzulMiniFrente from "@/assets/vestido-azul-mini-frente.jpg";
 const SIZES = ["S", "M", "L", "XL"];
 
 const DRESSES = [
-  { name: "Vestido Largo Amarillo con Encaje", color: "bg-yellow-300", description: "Elegante vestido largo con detalle de encaje" },
-  { name: "Vestido Largo Azul con Abertura", color: "bg-blue-400", description: "Vestido largo con abertura lateral" },
-  { name: "Vestido Largo Dorado Espalda Abierta", color: "bg-amber-300", description: "Vestido con espalda descubierta y lazos" },
-  { name: "Mini Vestido Azul con Estrellas", color: "bg-blue-500", description: "Mini vestido brillante con aplicaciones" },
+  { name: "Vestido Largo Amarillo con Encaje", image: vestidoAmareloFrente, description: "Elegante vestido largo con detalle de encaje" },
+  { name: "Vestido Largo Azul con Abertura", image: vestidoAzulCostas, description: "Vestido largo con abertura lateral" },
+  { name: "Vestido Largo Dorado Espalda Abierta", image: vestidoAmareloCostas2, description: "Vestido con espalda descubierta y lazos" },
+  { name: "Mini Vestido Azul con Estrellas", image: vestidoAzulMiniFrente, description: "Mini vestido brillante con aplicaciones" },
 ];
 
 const VestidoKit4 = () => {
@@ -311,7 +311,7 @@ const VestidoKit4 = () => {
               {DRESSES.map((dress, idx) => (
                 <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-6 h-6 rounded-full ${dress.color} border border-border`} />
+                    <img src={dress.image} alt={dress.name} className="w-10 h-10 rounded-lg object-cover border border-border flex-shrink-0" />
                     <div className="min-w-0 flex-1">
                       <span className="font-bold text-xs sm:text-sm text-foreground block truncate">{dress.name}</span>
                       <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{dress.description}</p>
