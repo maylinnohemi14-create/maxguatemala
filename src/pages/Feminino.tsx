@@ -67,6 +67,15 @@ const products: Product[] = [
     route: "/feminino/duo",
     badge: "💫 NUEVO",
   },
+  {
+    id: "vestido-corset",
+    name: "Vestido Corset Kit 3 en 1",
+    price: 299,
+    originalPrice: 499,
+    image: vestidoCorsetBranco1,
+    route: "/feminino/corset",
+    badge: "👑 PREMIUM",
+  },
 ];
 
 const Feminino = () => {
