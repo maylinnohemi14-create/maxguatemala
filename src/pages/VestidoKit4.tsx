@@ -34,8 +34,8 @@ const SIZES = ["S", "M", "L", "XL"];
 
 const DRESSES = [
   { name: "Vestido Largo Amarillo con Encaje", image: vestidoAmareloFrente, description: "Elegante vestido largo con detalle de encaje" },
-  { name: "Vestido Largo Azul con Abertura", image: vestidoAzulCostas, description: "Vestido largo con abertura lateral" },
-  { name: "Vestido Largo Dorado Espalda Abierta", image: vestidoAmareloCostas2, description: "Vestido con espalda descubierta y lazos" },
+  { name: "Vestido Largo Azul con Abertura", image: vestidoAzulFrente, description: "Vestido largo con abertura lateral" },
+  { name: "Vestido Largo Dorado Espalda Abierta", image: vestidoAmareloFrente3, description: "Vestido con espalda descubierta y lazos" },
   { name: "Mini Vestido Azul con Estrellas", image: vestidoAzulMiniFrente, description: "Mini vestido brillante con aplicaciones" },
 ];
 
