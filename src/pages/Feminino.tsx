@@ -8,6 +8,7 @@ import vestidoAmareloFrente from "@/assets/vestido-amarelo-frente.jpg";
 import vestidoRendaFrente from "@/assets/vestido-renda-frente.jpg";
 import vestidoVerde2Frente from "@/assets/vestido-verde2-frente.jpg";
 import vestidoBolinha2Frente from "@/assets/vestido-bolinha2-frente.jpg";
+import vestidoBrancoLargo1 from "@/assets/vestido-branco-largo-1.jpg";
 
 interface Product {
   id: string;
@@ -55,6 +56,15 @@ const products: Product[] = [
     image: vestidoBolinha2Frente,
     route: "/feminino/glam",
     badge: "🔥 TOP VENTAS",
+  },
+  {
+    id: "vestido-duo",
+    name: "Vestido Duo Kit 2 en 1",
+    price: 249,
+    originalPrice: 399,
+    image: vestidoBrancoLargo1,
+    route: "/feminino/duo",
+    badge: "💫 NUEVO",
   },
 ];
 
