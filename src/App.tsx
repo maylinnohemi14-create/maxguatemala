@@ -26,6 +26,7 @@ import VestidoKit3 from "./pages/VestidoKit3";
 import VestidoElegance from "./pages/VestidoElegance";
 import VestidoGlam from "./pages/VestidoGlam";
 import VestidoDuo from "./pages/VestidoDuo";
+import VestidoCorset from "./pages/VestidoCorset";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/feminino/elegance" element={<VestidoElegance />} />
           <Route path="/feminino/glam" element={<VestidoGlam />} />
           <Route path="/feminino/duo" element={<VestidoDuo />} />
+          <Route path="/feminino/corset" element={<VestidoCorset />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/download-departamentos" element={<DownloadDepartamentos />} />
