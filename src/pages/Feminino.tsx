@@ -57,6 +57,15 @@ const products: Product[] = [
     route: "/feminino/glam",
     badge: "🔥 TOP VENTAS",
   },
+  {
+    id: "vestido-duo",
+    name: "Vestido Duo Kit 2 en 1",
+    price: 249,
+    originalPrice: 399,
+    image: vestidoBrancoLargo1,
+    route: "/feminino/duo",
+    badge: "💫 NUEVO",
+  },
 ];
 
 const Feminino = () => {
