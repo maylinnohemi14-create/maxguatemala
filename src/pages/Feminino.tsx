@@ -10,6 +10,7 @@ import vestidoVerde2Frente from "@/assets/vestido-verde2-frente.jpg";
 import vestidoBolinha2Frente from "@/assets/vestido-bolinha2-frente.jpg";
 import vestidoBrancoLargo1 from "@/assets/vestido-branco-largo-1.jpg";
 import vestidoCorsetBranco1 from "@/assets/vestido-corset-branco-1.jpg";
+import vestidoEncajeNegro2_1 from "@/assets/vestido-encaje-negro2-1.jpg";
 
 interface Product {
   id: string;
