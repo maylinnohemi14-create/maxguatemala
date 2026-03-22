@@ -6,6 +6,7 @@ import { Truck, CreditCard, Shield, Star, ShoppingBag } from "lucide-react";
 
 import vestidoAmareloFrente from "@/assets/vestido-amarelo-frente.jpg";
 import vestidoRendaFrente from "@/assets/vestido-renda-frente.jpg";
+import vestidoVerde2Frente from "@/assets/vestido-verde2-frente.jpg";
 
 interface Product {
   id: string;
@@ -35,6 +36,15 @@ const products: Product[] = [
     image: vestidoRendaFrente,
     route: "/feminino/vestido-kit3",
     badge: "✨ NUEVO",
+  },
+  {
+    id: "vestido-elegance",
+    name: "Vestido Elegance Kit 3 en 1",
+    price: 299,
+    originalPrice: 499,
+    image: vestidoVerde2Frente,
+    route: "/feminino/elegance",
+    badge: "💎 EXCLUSIVO",
   },
 ];
 
