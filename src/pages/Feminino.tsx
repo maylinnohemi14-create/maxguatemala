@@ -7,6 +7,7 @@ import { Truck, CreditCard, Shield, Star, ShoppingBag } from "lucide-react";
 import vestidoAmareloFrente from "@/assets/vestido-amarelo-frente.jpg";
 import vestidoRendaFrente from "@/assets/vestido-renda-frente.jpg";
 import vestidoVerde2Frente from "@/assets/vestido-verde2-frente.jpg";
+import vestidoBolinha2Frente from "@/assets/vestido-bolinha2-frente.jpg";
 
 interface Product {
   id: string;
@@ -45,6 +46,15 @@ const products: Product[] = [
     image: vestidoVerde2Frente,
     route: "/feminino/elegance",
     badge: "💎 EXCLUSIVO",
+  },
+  {
+    id: "vestido-glam",
+    name: "Vestido Glam Kit 4 en 1",
+    price: 299,
+    originalPrice: 599,
+    image: vestidoBolinha2Frente,
+    route: "/feminino/glam",
+    badge: "🔥 TOP VENTAS",
   },
 ];
 
