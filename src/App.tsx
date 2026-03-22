@@ -53,6 +53,7 @@ const App = () => (
           <Route path="/feminino/glam" element={<VestidoGlam />} />
           <Route path="/feminino/duo" element={<VestidoDuo />} />
           <Route path="/feminino/corset" element={<VestidoCorset />} />
+          <Route path="/feminino/noche" element={<VestidoNoche />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/download-departamentos" element={<DownloadDepartamentos />} />

@@ -77,6 +77,15 @@ const products: Product[] = [
     route: "/feminino/corset",
     badge: "👑 PREMIUM",
   },
+  {
+    id: "vestido-noche",
+    name: "Vestido Noche Kit 3 en 1",
+    price: 299,
+    originalPrice: 499,
+    image: vestidoEncajeNegro2_1,
+    route: "/feminino/noche",
+    badge: "🌙 DE GALA",
+  },
 ];
 
 const Feminino = () => {
