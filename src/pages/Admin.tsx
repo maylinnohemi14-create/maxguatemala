@@ -168,6 +168,13 @@ const Admin = () => {
     { id: 'PROYECTOR-VEVSHAO-A10-GT', label: 'Proyector Vevshao', nota: 'PROYECTOR VEV', idProducto: '179', transportadora: 'FORZA' },
     { id: 'NINJA-CRISPI-GT', label: 'Ninja CRISPi', nota: 'NINJA CRISPI', idProducto: '179', transportadora: 'FORZA' },
     { id: 'UA-KIT3EN1-GT', label: 'Conjuntos Under Armour', nota: 'CONJUNTOS UA KIT 3EN1', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
+    { id: 'VESTIDO-KIT4-GT', label: 'Vestido Kit 4 en 1', nota: 'VESTIDO KIT 4EN1', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'VESTIDO-KIT3-GT', label: 'Vestido Kit 3 en 1', nota: 'VESTIDO KIT 3EN1', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'VESTIDO-ELEGANCE-GT', label: 'Vestido Elegance', nota: 'VESTIDO ELEGANCE', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'VESTIDO-GLAM4-GT', label: 'Vestido Glam Kit 4', nota: 'VESTIDO GLAM KIT 4', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'VESTIDO-DUO2-GT', label: 'Vestido Dúo', nota: 'VESTIDO DUO', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'VESTIDO-CORSET3-GT', label: 'Vestido Corset Kit 3', nota: 'VESTIDO CORSET KIT 3', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'VESTIDO-NOCHE3-GT', label: 'Vestido Noche Kit 3', nota: 'VESTIDO NOCHE KIT 3', idProducto: '179', transportadora: 'FORZA' },
   ];
 
   const clearProductOrders = async (product: typeof PRODUCTS[0]) => {
