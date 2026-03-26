@@ -157,8 +157,8 @@ const UnderArmour = () => {
     },
   ];
 
-  const sizesNote = Object.entries(selectedSizes)
-    .map(([idx, size]) => `${SETS[Number(idx)].name}: Talla ${size}`)
+  const sizesNote = Object.entries(selectedTopSizes)
+    .map(([idx, topSize]) => `${SETS[Number(idx)].name}: Arriba ${topSize} / Abajo ${selectedBottomSizes[Number(idx)]}`)
     .join(" | ");
 
   return (
