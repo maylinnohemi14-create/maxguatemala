@@ -46,7 +46,13 @@ const SETS = [
 ];
 
 const ConjuntosKit4 = () => {
-  const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>({
+  const [selectedTopSizes, setSelectedTopSizes] = useState<Record<number, string>>({
+    0: "M",
+    1: "M",
+    2: "M",
+    3: "M",
+  });
+  const [selectedBottomSizes, setSelectedBottomSizes] = useState<Record<number, string>>({
     0: "M",
     1: "M",
     2: "M",

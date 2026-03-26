@@ -45,7 +45,12 @@ const SETS = [
 ];
 
 const UnderArmour = () => {
-  const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>({
+  const [selectedTopSizes, setSelectedTopSizes] = useState<Record<number, string>>({
+    0: "M",
+    1: "M",
+    2: "M",
+  });
+  const [selectedBottomSizes, setSelectedBottomSizes] = useState<Record<number, string>>({
     0: "M",
     1: "M",
     2: "M",
