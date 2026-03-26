@@ -514,16 +514,34 @@ const ConjuntosKit4 = () => {
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
             ¿Qué incluye tu kit? 📦
           </h2>
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 text-center">
-              <span className="text-4xl mb-4 block">👕</span>
-              <h3 className="font-bold text-lg mb-2">4 Camisetas Deportivas</h3>
-              <p className="text-muted-foreground text-sm">Camisetas con tecnología de secado rápido y estampado holográfico premium en 4 colores.</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
+              <img src={conjunto4Negro} alt="Conjunto Negro" className="w-full aspect-square object-cover" />
+              <div className="p-3 text-center">
+                <h3 className="font-bold text-sm sm:text-base">Conjunto Negro</h3>
+                <p className="text-muted-foreground text-xs">Camiseta + Pantaloneta</p>
+              </div>
             </div>
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-800/10 to-gray-900/5 border border-gray-800/20 text-center">
-              <span className="text-4xl mb-4 block">🩳</span>
-              <h3 className="font-bold text-lg mb-2">4 Pantalonetas Deportivas</h3>
-              <p className="text-muted-foreground text-sm">Pantalonetas con ajuste cómodo, elástico en cintura y detalles deportivos en cada color.</p>
+            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
+              <img src={conjunto4Blanco} alt="Conjunto Blanco" className="w-full aspect-square object-cover" />
+              <div className="p-3 text-center">
+                <h3 className="font-bold text-sm sm:text-base">Conjunto Blanco</h3>
+                <p className="text-muted-foreground text-xs">Camiseta + Pantaloneta</p>
+              </div>
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
+              <img src={conjunto4Azul} alt="Conjunto Azul" className="w-full aspect-square object-cover" />
+              <div className="p-3 text-center">
+                <h3 className="font-bold text-sm sm:text-base">Conjunto Azul</h3>
+                <p className="text-muted-foreground text-xs">Camiseta + Pantaloneta</p>
+              </div>
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
+              <img src={conjunto4Gris} alt="Conjunto Gris/Negro" className="w-full aspect-square object-cover" />
+              <div className="p-3 text-center">
+                <h3 className="font-bold text-sm sm:text-base">Conjunto Gris</h3>
+                <p className="text-muted-foreground text-xs">Camiseta + Pantaloneta</p>
+              </div>
             </div>
           </div>
         </div>
