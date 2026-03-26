@@ -458,7 +458,16 @@ const ConjuntosKit4 = () => {
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE}
                       productName={`Conjuntos Deportivos Kit 4 en 1 (${sizesNote})`}
+                      productDisplayName="Conjuntos Deportivos Kit 4 en 1"
                       productImage={conjunto4Banner}
+                      sizeDetails={SETS.map((set, idx) => ({
+                        name: set.name,
+                        image: set.image,
+                        topSize: selectedTopSizes[idx],
+                        bottomSize: selectedBottomSizes[idx],
+                        topLabel: 'Camiseta',
+                        bottomLabel: 'Pantaloneta',
+                      }))}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'kit', icon: '👕', title: '4 Conjuntos Completos', description: 'Negro + Blanco + Azul + Gris' },

@@ -92,6 +92,15 @@ export interface IncludedItem {
   description: string;
 }
 
+export interface SizeDetail {
+  name: string;
+  image: string;
+  topSize: string;
+  bottomSize: string;
+  topLabel?: string;
+  bottomLabel?: string;
+}
+
 interface CODFormGuatemalaProps {
   productId: string;
   productPrice: number;
@@ -99,13 +108,15 @@ interface CODFormGuatemalaProps {
   productImage?: string;
   onOrderComplete?: () => void;
   includedItems?: IncludedItem[];
+  sizeDetails?: SizeDetail[];
+  productDisplayName?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS }: CODFormGuatemalaProps) {
+export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName }: CODFormGuatemalaProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [ipHasOrder, setIpHasOrder] = useState(false);
@@ -415,18 +426,35 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
 
       {/* Order Summary */}
       <div className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30">
-        <div className="flex items-center gap-3 sm:gap-4 mb-4">
-          {productImage && (
-            <img src={productImage} alt={productName} className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-lg bg-white" />
-          )}
-          <div className="flex-1">
-            <h3 className="font-bold text-base sm:text-lg text-foreground">{productName}</h3>
-            <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-2xl sm:text-3xl font-extrabold text-destructive">
-                Q{productPrice}
-              </span>
+        <div className="mb-4">
+          <div className="flex items-center gap-3 sm:gap-4">
+            {productImage && !sizeDetails && (
+              <img src={productImage} alt={productName} className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-lg bg-white" />
+            )}
+            <div className="flex-1">
+              <h3 className="font-bold text-base sm:text-lg text-foreground">{productDisplayName || productName}</h3>
+              <div className="flex items-baseline gap-2 mt-1">
+                <span className="text-2xl sm:text-3xl font-extrabold text-destructive">
+                  Q{productPrice}
+                </span>
+              </div>
             </div>
           </div>
+          {sizeDetails && sizeDetails.length > 0 && (
+            <div className="grid grid-cols-2 gap-2 mt-3">
+              {sizeDetails.map((detail, i) => (
+                <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-background border border-border">
+                  <img src={detail.image} alt={detail.name} className="w-10 h-10 rounded-md object-cover" />
+                  <div className="text-xs">
+                    <span className="font-bold text-foreground block">{detail.name}</span>
+                    <span className="text-muted-foreground">{detail.topLabel || 'Camiseta'}: {detail.topSize}</span>
+                    <br />
+                    <span className="text-muted-foreground">{detail.bottomLabel || 'Pantaloneta'}: {detail.bottomSize}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Included Items */}
