@@ -175,6 +175,7 @@ const Admin = () => {
     { id: 'VESTIDO-DUO2-GT', label: 'Vestido Dúo', nota: 'VESTIDO DUO', idProducto: '179', transportadora: 'FORZA' },
     { id: 'VESTIDO-CORSET3-GT', label: 'Vestido Corset Kit 3', nota: 'VESTIDO CORSET KIT 3', idProducto: '179', transportadora: 'FORZA' },
     { id: 'VESTIDO-NOCHE3-GT', label: 'Vestido Noche Kit 3', nota: 'VESTIDO NOCHE KIT 3', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'UA-KIT4EN1-GT', label: 'Conjuntos UA Kit 4 en 1', nota: 'CONJUNTOS UA KIT 4EN1', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
   ];
 
   const clearProductOrders = async (product: typeof PRODUCTS[0]) => {
