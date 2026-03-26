@@ -39,10 +39,10 @@ import { Ruler } from "lucide-react";
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const SETS = [
-  { name: "Conjunto Negro", color: "bg-gray-900", description: "Camiseta + Pantaloneta" },
-  { name: "Conjunto Blanco", color: "bg-white border-2", description: "Camiseta + Pantaloneta" },
-  { name: "Conjunto Azul", color: "bg-blue-800", description: "Camiseta + Pantaloneta" },
-  { name: "Conjunto Gris/Negro", color: "bg-gray-400", description: "Camiseta Gris + Pantaloneta Negra" },
+  { name: "Conjunto Negro", image: conjunto4Negro, description: "Camiseta + Pantaloneta" },
+  { name: "Conjunto Blanco", image: conjunto4Blanco, description: "Camiseta + Pantaloneta" },
+  { name: "Conjunto Azul", image: conjunto4Azul, description: "Camiseta + Pantaloneta" },
+  { name: "Conjunto Gris/Negro", image: conjunto4Gris, description: "Camiseta Gris + Pantaloneta Negra" },
 ];
 
 const ConjuntosKit4 = () => {
@@ -383,7 +383,7 @@ const ConjuntosKit4 = () => {
               {SETS.map((set, idx) => (
                 <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-6 h-6 rounded-full ${set.color} border border-border`} />
+                    <img src={set.image} alt={set.name} className="w-10 h-10 rounded-lg object-cover border border-border" />
                     <div>
                       <span className="font-bold text-sm text-foreground">{set.name}</span>
                       <p className="text-xs text-muted-foreground">{set.description}</p>
