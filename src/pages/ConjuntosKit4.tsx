@@ -397,7 +397,7 @@ const ConjuntosKit4 = () => {
                   </div>
                   <div className="space-y-2">
                     <div>
-                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">👕 Camiseta: <span className="text-foreground">{selectedTopSizes[idx]}</span></span>
+                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">Camiseta: <span className="text-foreground">{selectedTopSizes[idx]}</span></span>
                       <div className="flex gap-1.5 flex-wrap">
                         {SIZES.map((size) => (
                           <button
@@ -415,7 +415,7 @@ const ConjuntosKit4 = () => {
                       </div>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">🩳 Pantaloneta: <span className="text-foreground">{selectedBottomSizes[idx]}</span></span>
+                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">Pantaloneta: <span className="text-foreground">{selectedBottomSizes[idx]}</span></span>
                       <div className="flex gap-1.5 flex-wrap">
                         {SIZES.map((size) => (
                           <button
