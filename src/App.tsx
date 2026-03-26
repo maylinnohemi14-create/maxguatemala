@@ -47,6 +47,7 @@ const App = () => (
           
           <Route path="/crispi" element={<NinjaCrispi />} />
           <Route path="/conjuntos" element={<UnderArmour />} />
+          <Route path="/conjuntos-kit4" element={<ConjuntosKit4 />} />
           <Route path="/feminino" element={<Feminino />} />
           <Route path="/feminino/vestido-kit4" element={<VestidoKit4 />} />
           <Route path="/feminino/vestido-kit3" element={<VestidoKit3 />} />
