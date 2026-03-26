@@ -434,6 +434,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
             <div className="flex-1">
               <h3 className="font-bold text-base sm:text-lg text-foreground">{productDisplayName || productName}</h3>
               <div className="flex items-baseline gap-2 mt-1">
+                <span className="text-sm font-semibold text-muted-foreground">Total a pagar:</span>
                 <span className="text-2xl sm:text-3xl font-extrabold text-destructive">
                   Q{productPrice}
                 </span>
