@@ -39,9 +39,9 @@ import { Ruler } from "lucide-react";
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const SETS = [
-  { name: "Conjunto Gris", color: "bg-gray-400", description: "Buzo Zípper + Camiseta + Pantalón" },
-  { name: "Conjunto Negro", color: "bg-gray-800", description: "Buzo Zípper + Camiseta + Pantalón" },
-  { name: "Conjunto Azul", color: "bg-blue-800", description: "Buzo Zípper + Camiseta + Pantalón" },
+  { name: "Conjunto Gris", image: uaGray, description: "Buzo Zípper + Camiseta + Pantalón" },
+  { name: "Conjunto Negro", image: uaBlack, description: "Buzo Zípper + Camiseta + Pantalón" },
+  { name: "Conjunto Azul", image: uaBlue, description: "Buzo Zípper + Camiseta + Pantalón" },
 ];
 
 const UnderArmour = () => {

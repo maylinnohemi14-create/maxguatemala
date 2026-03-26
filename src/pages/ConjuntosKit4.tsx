@@ -39,10 +39,10 @@ import { Ruler } from "lucide-react";
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const SETS = [
-  { name: "Conjunto Negro", color: "bg-gray-900", description: "Camiseta + Pantaloneta" },
-  { name: "Conjunto Blanco", color: "bg-white border-2", description: "Camiseta + Pantaloneta" },
-  { name: "Conjunto Azul", color: "bg-blue-800", description: "Camiseta + Pantaloneta" },
-  { name: "Conjunto Gris/Negro", color: "bg-gray-400", description: "Camiseta Gris + Pantaloneta Negra" },
+  { name: "Conjunto Negro", image: conjunto4Negro, description: "Camiseta + Pantaloneta" },
+  { name: "Conjunto Blanco", image: conjunto4Blanco, description: "Camiseta + Pantaloneta" },
+  { name: "Conjunto Azul", image: conjunto4Azul, description: "Camiseta + Pantaloneta" },
+  { name: "Conjunto Gris/Negro", image: conjunto4Gris, description: "Camiseta Gris + Pantaloneta Negra" },
 ];
 
 const ConjuntosKit4 = () => {
