@@ -170,9 +170,10 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   const handleFormInteraction = () => {
     if (!hasTrackedInitiateCheckout) {
       trackTikTokConversion('InitiateCheckout', {
-        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId }],
+        contents: [{ content_id: productId, content_type: 'product', content_name: productName || productId, quantity: 1, price: productPrice }],
         value: productPrice,
-        currency: 'GTQ'
+        currency: 'GTQ',
+        content_category: 'Conjuntos Deportivos',
       });
       trackFacebookConversion('InitiateCheckout', {
         content_ids: [productId],
@@ -263,8 +264,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       console.log('✅ Facebook Purchase fired');
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
-    // Facebook: Lead (secondary)
-    try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB Lead failed:', e); }
+    // Removed redundant Facebook Lead event — only Purchase matters for CPA optimization
 
     console.log('✅✅ All conversion tracking events processed');
 

@@ -72,11 +72,11 @@ const UnderArmour = () => {
   }, [productImages.length]);
 
   useEffect(() => {
-    trackTikTokConversion('LandingPageView');
     trackTikTokConversion('ViewContent', {
-      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 3 en 1' }],
+      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 3 en 1', quantity: 1, price: PRODUCT_PRICE }],
       value: PRODUCT_PRICE,
-      currency: 'GTQ'
+      currency: 'GTQ',
+      content_category: 'Conjuntos Deportivos',
     });
     trackFacebookConversion('ViewContent', {
       content_ids: [PRODUCT_ID],
@@ -90,9 +90,10 @@ const UnderArmour = () => {
   const handleDialogChange = (open: boolean) => {
     if (open) {
       trackTikTokConversion('AddToCart', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 3 en 1' }],
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 3 en 1', quantity: 1, price: PRODUCT_PRICE }],
         value: PRODUCT_PRICE,
-        currency: 'GTQ'
+        currency: 'GTQ',
+        content_category: 'Conjuntos Deportivos',
       });
       trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
     }
