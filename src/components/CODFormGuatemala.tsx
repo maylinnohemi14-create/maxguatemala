@@ -264,9 +264,36 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       console.log('✅ Facebook Purchase fired');
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
-    // Removed redundant Facebook Lead event — only Purchase matters for CPA optimization
+    // === SERVER-SIDE TikTok Events API (improves match rate & reduces CPA) ===
+    try {
+      const eventId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      await supabase.functions.invoke('tiktok-events-api', {
+        body: {
+          pixel_id: 'D4LK3U3C77U1VUV8SRF0',
+          event: 'CompletePayment',
+          event_id: eventId,
+          timestamp: Math.floor(Date.now() / 1000),
+          user_agent: navigator.userAgent,
+          ip: clientIp || undefined,
+          page_url: window.location.href,
+          page_referrer: document.referrer || '',
+          email: data.email || undefined,
+          phone: data.telefono,
+          external_id: data.telefono,
+          ttclid: new URLSearchParams(window.location.search).get('ttclid') || '',
+          ttp: document.cookie.match(/(?:^| )_ttp=([^;]+)/)?.[1] || '',
+          content_id: productId,
+          content_name: productName || productId,
+          content_type: 'product',
+          value: productPrice,
+          currency: 'GTQ',
+          quantity: 1,
+        },
+      });
+      console.log('✅ TikTok Server-Side CompletePayment sent');
+    } catch (e) { console.error('❌ TikTok Server-Side event failed:', e); }
 
-    console.log('✅✅ All conversion tracking events processed');
+    console.log('✅✅ All conversion tracking events processed (browser + server)');
 
     // === NOW insert order into database ===
     try {
