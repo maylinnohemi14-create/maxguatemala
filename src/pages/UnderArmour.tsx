@@ -382,7 +382,7 @@ const UnderArmour = () => {
               {SETS.map((set, idx) => (
                 <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-6 h-6 rounded-full ${set.color} border border-border`} />
+                    <img src={set.image} alt={set.name} className="w-10 h-10 rounded-lg object-cover border border-border" />
                     <div>
                       <span className="font-bold text-sm text-foreground">{set.name}</span>
                       <p className="text-xs text-muted-foreground">{set.description}</p>
