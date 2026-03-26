@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import selosConfianza from "@/assets/selos-confianza.jpg";
 import { trackTikTokConversion, trackFacebookConversion, identifyTikTokUser, trackTikTokPurchase } from "@/hooks/useTrackingPixels";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -662,6 +663,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
               <Truck className="w-4 h-4" />
               <span>Envío gratis a toda Guatemala</span>
             </div>
+            <img src={selosConfianza} alt="Sellos de confianza - Clientes satisfechos, Envíos prioritarios, Pagos seguros, Pago contra entrega" className="w-full max-w-md mx-auto mt-4" />
           </div>
         </form>
       </Form>
