@@ -386,30 +386,50 @@ const UnderArmour = () => {
               </div>
               {SETS.map((set, idx) => (
                 <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 mb-3">
                     <img src={set.image} alt={set.name} className="w-10 h-10 rounded-lg object-cover border border-border" />
                     <div>
                       <span className="font-bold text-sm text-foreground">{set.name}</span>
                       <p className="text-xs text-muted-foreground">{set.description}</p>
                     </div>
-                    <span className="ml-auto text-xs font-semibold text-muted-foreground">
-                      Talla: <span className="text-foreground">{selectedSizes[idx]}</span>
-                    </span>
                   </div>
-                  <div className="flex gap-1.5 flex-wrap">
-                    {SIZES.map((size) => (
-                      <button
-                        key={size}
-                        onClick={() => setSelectedSizes(prev => ({ ...prev, [idx]: size }))}
-                        className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all border ${
-                          selectedSizes[idx] === size
-                            ? "bg-foreground text-background border-foreground"
-                            : "bg-background text-foreground border-border hover:border-foreground/50"
-                        }`}
-                      >
-                        {size}
-                      </button>
-                    ))}
+                  <div className="space-y-2">
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">👕 Parte de arriba: <span className="text-foreground">{selectedTopSizes[idx]}</span></span>
+                      <div className="flex gap-1.5 flex-wrap">
+                        {SIZES.map((size) => (
+                          <button
+                            key={size}
+                            onClick={() => setSelectedTopSizes(prev => ({ ...prev, [idx]: size }))}
+                            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all border ${
+                              selectedTopSizes[idx] === size
+                                ? "bg-foreground text-background border-foreground"
+                                : "bg-background text-foreground border-border hover:border-foreground/50"
+                            }`}
+                          >
+                            {size}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">🩳 Parte de abajo: <span className="text-foreground">{selectedBottomSizes[idx]}</span></span>
+                      <div className="flex gap-1.5 flex-wrap">
+                        {SIZES.map((size) => (
+                          <button
+                            key={`bottom-${size}`}
+                            onClick={() => setSelectedBottomSizes(prev => ({ ...prev, [idx]: size }))}
+                            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all border ${
+                              selectedBottomSizes[idx] === size
+                                ? "bg-foreground text-background border-foreground"
+                                : "bg-background text-foreground border-border hover:border-foreground/50"
+                            }`}
+                          >
+                            {size}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
