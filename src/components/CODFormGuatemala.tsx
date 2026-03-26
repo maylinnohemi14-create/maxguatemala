@@ -92,6 +92,15 @@ export interface IncludedItem {
   description: string;
 }
 
+export interface SizeDetail {
+  name: string;
+  image: string;
+  topSize: string;
+  bottomSize: string;
+  topLabel?: string;
+  bottomLabel?: string;
+}
+
 interface CODFormGuatemalaProps {
   productId: string;
   productPrice: number;
@@ -99,6 +108,8 @@ interface CODFormGuatemalaProps {
   productImage?: string;
   onOrderComplete?: () => void;
   includedItems?: IncludedItem[];
+  sizeDetails?: SizeDetail[];
+  productDisplayName?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
