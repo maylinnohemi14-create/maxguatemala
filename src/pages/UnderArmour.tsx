@@ -456,7 +456,16 @@ const UnderArmour = () => {
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE}
                       productName={`Conjuntos Deportivos Kit 3 en 1 (${sizesNote})`}
+                      productDisplayName="Conjuntos Deportivos Kit 3 en 1"
                       productImage={underArmourMain}
+                      sizeDetails={SETS.map((set, idx) => ({
+                        name: set.name,
+                        image: set.image,
+                        topSize: selectedTopSizes[idx],
+                        bottomSize: selectedBottomSizes[idx],
+                        topLabel: 'Camiseta',
+                        bottomLabel: 'Pantalón',
+                      }))}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'kit', icon: '👕', title: '3 Conjuntos Completos', description: 'Gris + Negro + Azul' },
