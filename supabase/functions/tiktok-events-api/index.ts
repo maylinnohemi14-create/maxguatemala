@@ -80,7 +80,6 @@ serve(async (req) => {
 
     const payload = {
       pixel_code: pixel_id,
-      partner_name: 'Lovable',
       event_source: 'web',
       event_source_id: pixel_id,
       data: [{
