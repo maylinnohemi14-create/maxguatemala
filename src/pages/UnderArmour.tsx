@@ -472,6 +472,7 @@ const UnderArmour = () => {
                       productImage={underArmourMain}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
+                      sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,
                         image: set.image,
                         topSize: selectedTopSizes[idx],
