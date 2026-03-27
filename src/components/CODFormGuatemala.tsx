@@ -176,13 +176,13 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         value: productPrice,
         currency: 'GTQ',
         content_category: 'Conjuntos Deportivos',
-      });
+      }, tiktokPixelId);
       trackFacebookConversion('InitiateCheckout', {
         content_ids: [productId],
         content_type: 'product',
         value: productPrice,
         currency: 'GTQ'
-      });
+      }, facebookPixelId);
       setHasTrackedInitiateCheckout(true);
     }
   };
@@ -225,8 +225,12 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       console.error('Error re-checking IP:', e);
     }
 
+    const purchaseEventId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
     // === FIRE CONVERSION EVENTS IMMEDIATELY (before DB insert) for maximum reliability ===
-    console.log('🔔 TRACKING: Firing conversion events BEFORE DB insert for reliability...');
+    console.log('🔔 TRACKING: Firing conversion events BEFORE DB insert for reliability...', { purchaseEventId, tiktokPixelId });
 
     // TikTok: Identify user with hashed PII first
     try {
@@ -250,6 +254,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         externalId: data.telefono,
         ip: clientIp || undefined,
         pixelId: tiktokPixelId,
+        eventId: purchaseEventId,
       });
       console.log('✅ TikTok CompletePayment (scoped to', tiktokPixelId || 'all', ') fired');
     } catch (e) { console.error('❌ TikTok CompletePayment failed:', e); }
@@ -267,34 +272,37 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       console.log('✅ Facebook Purchase (scoped to', facebookPixelId || 'all', ') fired');
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
-    // === SERVER-SIDE TikTok Events API (improves match rate & reduces CPA) ===
-    try {
-      const eventId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-      await supabase.functions.invoke('tiktok-events-api', {
-        body: {
-          pixel_id: tiktokPixelId || 'D4LK3U3C77U1VUV8SRF0',
-          event: 'CompletePayment',
-          event_id: eventId,
-          timestamp: Math.floor(Date.now() / 1000),
-          user_agent: navigator.userAgent,
-          ip: clientIp || undefined,
-          page_url: window.location.href,
-          page_referrer: document.referrer || '',
-          email: data.email || undefined,
-          phone: data.telefono,
-          external_id: data.telefono,
-          ttclid: new URLSearchParams(window.location.search).get('ttclid') || '',
-          ttp: document.cookie.match(/(?:^| )_ttp=([^;]+)/)?.[1] || '',
-          content_id: productId,
-          content_name: productName || productId,
-          content_type: 'product',
-          value: productPrice,
-          currency: 'GTQ',
-          quantity: 1,
-        },
-      });
-      console.log('✅ TikTok Server-Side CompletePayment sent');
-    } catch (e) { console.error('❌ TikTok Server-Side event failed:', e); }
+    // === SERVER-SIDE TikTok Events API (deduped with same event_id) ===
+    if (tiktokPixelId) {
+      try {
+        await supabase.functions.invoke('tiktok-events-api', {
+          body: {
+            pixel_id: tiktokPixelId,
+            event: 'CompletePayment',
+            event_id: purchaseEventId,
+            timestamp: Math.floor(Date.now() / 1000),
+            user_agent: navigator.userAgent,
+            ip: clientIp || undefined,
+            page_url: window.location.href,
+            page_referrer: document.referrer || '',
+            email: data.email || undefined,
+            phone: data.telefono,
+            external_id: data.telefono,
+            ttclid: new URLSearchParams(window.location.search).get('ttclid') || '',
+            ttp: document.cookie.match(/(?:^| )_ttp=([^;]+)/)?.[1] || '',
+            content_id: productId,
+            content_name: productName || productId,
+            content_type: 'product',
+            value: productPrice,
+            currency: 'GTQ',
+            quantity: 1,
+          },
+        });
+        console.log('✅ TikTok Server-Side CompletePayment sent with shared event_id:', purchaseEventId);
+      } catch (e) { console.error('❌ TikTok Server-Side event failed:', e); }
+    } else {
+      console.warn('⚠️ TikTok Server-Side CompletePayment skipped: no page-specific pixel configured');
+    }
 
     console.log('✅✅ All conversion tracking events processed (browser + server)');
 
