@@ -217,11 +217,8 @@ const NinjaCrispi = () => {
               Freidora de Aire Portátil de Cristal — CRISPi (Pack 5 Recipientes) 🍗✨
             </h1>
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <Badge className="bg-blue-600 text-white font-semibold text-xs px-2.5 py-1 border border-blue-700">
-                ✅ Producto Original Importado
-              </Badge>
-              <Badge className="bg-amber-600 text-white font-semibold text-xs px-2.5 py-1 border border-amber-700">
-                🏷️ Distribuidor Autorizado
+              <Badge className="bg-primary text-primary-foreground font-bold text-xs px-3 py-1.5 animate-pulse-glow">
+                ⚡ PROMOCIÓN VÁLIDA HASTA HOY {new Date().toLocaleDateString('es-GT', { timeZone: 'America/Guatemala', day: 'numeric', month: 'long' }).toUpperCase()} - ¡NO TE LO PIERDAS!
               </Badge>
             </div>
 
@@ -563,7 +560,7 @@ const NinjaCrispi = () => {
       {/* Final CTA */}
       <section className="py-10 sm:py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
-          <p className="text-xs opacity-70 mb-3">✅ Producto original importado — Distribuidor autorizado en Guatemala</p>
+          <p className="text-xs opacity-70 mb-3">✅ Calidad garantizada — Envío a toda Guatemala</p>
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             ¡Cocina más saludable hoy! 🍗🇬🇹
           </h2>
@@ -588,8 +585,8 @@ const NinjaCrispi = () => {
       <div className="bg-secondary/50 py-4">
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <p className="text-xs text-muted-foreground">
-            Producto original importado. MAX Guatemala es distribuidor autorizado de productos electrónicos de cocina. 
-            Las marcas y logos mencionados pertenecen a sus respectivos propietarios. Este producto cuenta con garantía de 1 año.
+            MAX Guatemala — Tienda de electrónicos y hogar. Este producto cuenta con garantía de 1 año.
+            Las imágenes son de referencia. Consulta términos y condiciones.
           </p>
         </div>
       </div>
