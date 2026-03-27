@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TrustBadge } from "@/components/TrustBadge";
 import { TestimonialCard } from "@/components/TestimonialCard";
-import { toast } from "sonner";
+
 import {
   Accordion,
   AccordionContent,
