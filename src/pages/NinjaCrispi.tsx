@@ -49,14 +49,14 @@ const NinjaCrispi = () => {
   useEffect(() => {
     trackTikTokConversion('LandingPageView');
     trackTikTokConversion('ViewContent', {
-      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'CRISPi Freidora de Aire' }],
+      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Freidora de Aire de Cristal' }],
       value: PRODUCT_PRICE,
       currency: 'GTQ'
     });
     trackFacebookConversion('ViewContent', {
       content_ids: [PRODUCT_ID],
       content_type: 'product',
-      content_name: 'CRISPi Freidora de Aire',
+      content_name: 'Freidora de Aire de Cristal',
       value: PRODUCT_PRICE,
       currency: 'GTQ'
     });
@@ -65,12 +65,12 @@ const NinjaCrispi = () => {
   const handleDialogChange = (open: boolean) => {
     if (open) {
       trackTikTokConversion('AddToCart', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'CRISPi Freidora de Aire' }],
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Freidora de Aire de Cristal' }],
         value: PRODUCT_PRICE,
         currency: 'GTQ'
       });
       trackTikTokConversion('AddToWishlist', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'CRISPi Freidora de Aire' }],
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Freidora de Aire de Cristal' }],
         value: PRODUCT_PRICE,
         currency: 'GTQ'
       });
@@ -79,62 +79,30 @@ const NinjaCrispi = () => {
     setShowCODForm(open);
   };
 
-  const guatemalanNames = [
-    "María García de Ciudad de Guatemala",
-    "Carlos López de Mixco",
-    "Ana Martínez de Villa Nueva",
-    "José Rodríguez de Quetzaltenango",
-    "Laura Hernández de Escuintla",
-    "Pedro González de Petapa",
-    "Rosa Pérez de Antigua",
-    "Juan Morales de Cobán",
-    "Carmen Torres de Huehuetenango",
-    "Luis Castro de Chimaltenango",
-    "Sofía Ramírez de San Marcos",
-    "Diego Gutiérrez de Mazatenango",
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const randomName = guatemalanNames[Math.floor(Math.random() * guatemalanNames.length)];
-      
-      toast.success(
-        <div>
-          🍗 <span className="text-destructive font-bold">{randomName}</span> acaba de comprar
-        </div>,
-        {
-          description: "¡Quedan pocas unidades disponibles!",
-          duration: 4000,
-        }
-      );
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const testimonials = [
     {
       name: "María L.",
       rating: 5,
-      comment: "¡Increíble! Las alitas quedan súper crujientes sin aceite. Los recipientes de cristal son una maravilla, los meto directo al lavavajillas.",
+      comment: "Me encanta lo fácil que es cocinar con esta freidora. Los recipientes de cristal son muy prácticos para guardar la comida después.",
       date: "Hace 3 días",
     },
     {
       name: "Roberto C.",
-      rating: 5,
-      comment: "Cocino papas fritas perfectas en minutos. Lo mejor es que los recipientes sirven para guardar la comida en el refri con las tapas.",
+      rating: 4,
+      comment: "Buena calidad, cocina rápido y los recipientes son muy útiles. La uso casi todos los días para diferentes platillos.",
       date: "Hace 1 semana",
     },
     {
       name: "Patricia G.",
       rating: 5,
-      comment: "Es compacta y cabe perfecto en mi cocina. Los 5 recipientes de cristal son geniales, puedo preparar diferentes platillos a la vez.",
+      comment: "Compacta y funcional. Me gusta que los recipientes sirven para cocinar y luego guardar en el refri con las tapas.",
       date: "Hace 2 semanas",
     },
     {
       name: "Fernando A.",
-      rating: 5,
-      comment: "La mejor inversión para mi cocina. Consume mucho menos electricidad que mi horno y la comida queda deliciosa. Llegó rápido a zona 11.",
+      rating: 4,
+      comment: "Buen producto, llegó bien empacado. La comida queda rica y es fácil de limpiar. Recomendado.",
       date: "Hace 3 semanas",
     },
   ];
@@ -174,7 +142,7 @@ const NinjaCrispi = () => {
             <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
               <img
                 src={productImages[selectedImage]}
-                alt="CRISPi Freidora de Aire Portátil de Cristal"
+                alt="Freidora de Aire Portátil de Cristal"
                 className="w-full h-auto object-contain aspect-square"
               />
             </div>
@@ -214,7 +182,7 @@ const NinjaCrispi = () => {
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-foreground leading-tight">
-              Freidora de Aire Portátil de Cristal — CRISPi (Pack 5 Recipientes) 🍗✨
+              Freidora de Aire Portátil de Cristal (Pack 5 Recipientes) 🍗✨
             </h1>
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <Badge className="bg-primary text-primary-foreground font-bold text-xs px-3 py-1.5 animate-pulse-glow">
@@ -293,8 +261,8 @@ const NinjaCrispi = () => {
             <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
               {[
                 { text: "Superficie de cocción de", bold: "cristal libre de PFAS", suffix: "— más seguro para tu salud" },
-                { text: "Cocina con", bold: "hasta 75% menos de grasa", suffix: "usando la función Air Fry" },
-                { text: "Consume", bold: "50% menos electricidad", suffix: "que un horno convencional" },
+                { text: "Cocina con", bold: "menos grasa", suffix: "gracias a la tecnología de aire caliente" },
+                { text: "Diseñada para", bold: "mayor eficiencia energética", suffix: "comparado con hornos tradicionales" },
                 { text: "Incluye", bold: "5 recipientes de cristal con tapas", suffix: "— cocina y guarda" },
                 { text: "Función multiusos:", bold: "freír, asar, dorar y mantener caliente", suffix: "" },
                 { text: "Envío", bold: "100% gratis", suffix: "a toda Guatemala" },
@@ -354,7 +322,7 @@ const NinjaCrispi = () => {
                     <CODFormGuatemala
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
-                      productName="CRISPi Freidora de Aire (Pack 5 Recipientes)"
+                      productName="Freidora de Aire de Cristal (Pack 5 Recipientes)"
                       productImage={ninjaCrispiMain}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
@@ -422,15 +390,15 @@ const NinjaCrispi = () => {
               <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
                 <Flame className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">75% Menos Grasa</h3>
-              <p className="text-muted-foreground text-sm">Cocina con poco o nada de aceite. Disfruta de comidas crujientes y deliciosas de forma saludable.</p>
+              <h3 className="font-bold text-lg mb-2">Menos Grasa</h3>
+              <p className="text-muted-foreground text-sm">Cocina con poco o nada de aceite gracias al aire caliente. Comidas crujientes y más saludables.</p>
             </div>
             <div className="p-6 rounded-2xl bg-background border border-border text-center">
               <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
                 <Zap className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">50% Menos Electricidad</h3>
-              <p className="text-muted-foreground text-sm">Consume la mitad de electricidad que un horno de convección. Ahorra en tu factura de luz.</p>
+              <h3 className="font-bold text-lg mb-2">Mayor Eficiencia</h3>
+              <p className="text-muted-foreground text-sm">Diseñada para consumir menos energía que un horno tradicional. Ahorra en tu factura de luz.</p>
             </div>
             <div className="p-6 rounded-2xl bg-background border border-border text-center">
               <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
@@ -453,7 +421,7 @@ const NinjaCrispi = () => {
             <div className="p-6 rounded-2xl bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 text-center">
               <span className="text-4xl mb-4 block">🍗</span>
               <h3 className="font-bold text-lg mb-2">Pollo y Alitas</h3>
-              <p className="text-muted-foreground text-sm">Alitas crujientes, pechugas jugosas y pollo frito perfecto con hasta 75% menos de grasa.</p>
+              <p className="text-muted-foreground text-sm">Alitas crujientes, pechugas jugosas y pollo frito perfecto con menos grasa gracias al aire caliente.</p>
             </div>
             <div className="p-6 rounded-2xl bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 border border-yellow-500/20 text-center">
               <span className="text-4xl mb-4 block">🍟</span>
