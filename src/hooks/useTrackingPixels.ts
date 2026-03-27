@@ -179,12 +179,17 @@ export const identifyTikTokUser = async (data: { email?: string; phone?: string;
   }
 };
 
-// Track Facebook conversion
-export const trackFacebookConversion = (eventName: string, data?: any) => {
+// Track Facebook conversion - scoped to specific pixel if provided
+export const trackFacebookConversion = (eventName: string, data?: any, pixelId?: string) => {
   try {
     if (typeof window !== 'undefined' && window.fbq) {
-      console.log('Facebook Event:', eventName, data);
-      window.fbq('track', eventName, data);
+      if (pixelId) {
+        console.log('Facebook Event (scoped):', eventName, pixelId, data);
+        window.fbq('trackSingle', pixelId, eventName, data);
+      } else {
+        console.log('Facebook Event (global):', eventName, data);
+        window.fbq('track', eventName, data);
+      }
     } else {
       console.warn('Facebook fbq not available for event:', eventName);
     }
@@ -193,8 +198,8 @@ export const trackFacebookConversion = (eventName: string, data?: any) => {
   }
 };
 
-// Track TikTok conversion - ensures content_id is at root level AND inside contents array
-export const trackTikTokConversion = (eventName: string, data?: any) => {
+// Track TikTok conversion - scoped to specific pixel if provided
+export const trackTikTokConversion = (eventName: string, data?: any, pixelId?: string) => {
   try {
     if (typeof window !== 'undefined' && window.ttq) {
       const enrichedData = { ...data };
@@ -219,8 +224,13 @@ export const trackTikTokConversion = (eventName: string, data?: any) => {
       // Ensure quantity at root level too
       if (!enrichedData.quantity) enrichedData.quantity = 1;
       
-      console.log('TikTok Event:', eventName, enrichedData);
-      window.ttq.track(eventName, enrichedData);
+      if (pixelId && typeof window.ttq.instance === 'function') {
+        console.log('TikTok Event (scoped):', eventName, pixelId, enrichedData);
+        window.ttq.instance(pixelId).track(eventName, enrichedData);
+      } else {
+        console.log('TikTok Event (global):', eventName, enrichedData);
+        window.ttq.track(eventName, enrichedData);
+      }
     } else {
       console.warn('TikTok ttq not available for event:', eventName);
     }
@@ -248,7 +258,7 @@ const generateEventId = (): string => {
   return `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`;
 };
 
-// Enhanced TikTok Purchase event with ALL required parameters
+// Enhanced TikTok Purchase event with ALL required parameters - scoped to specific pixel
 export const trackTikTokPurchase = async (params: {
   productId: string;
   productName: string;
@@ -258,6 +268,7 @@ export const trackTikTokPurchase = async (params: {
   phone?: string;
   externalId?: string;
   ip?: string;
+  pixelId?: string;
 }) => {
   if (typeof window === 'undefined' || !window.ttq) return;
 
@@ -278,11 +289,15 @@ export const trackTikTokPurchase = async (params: {
   if (ttp) identifyData.ttp = ttp;
 
   if (Object.keys(identifyData).length > 0) {
-    window.ttq.identify(identifyData);
+    if (params.pixelId && typeof window.ttq.instance === 'function') {
+      window.ttq.instance(params.pixelId).identify(identifyData);
+    } else {
+      window.ttq.identify(identifyData);
+    }
     console.log('TikTok identify (Purchase):', identifyData);
   }
 
-  // Track Purchase with full parameters - content_id at root level for VSA
+  // Track Purchase with full parameters
   const eventData: Record<string, any> = {
     content_id: params.productId,
     content_type: 'product',
@@ -297,15 +312,21 @@ export const trackTikTokPurchase = async (params: {
     event_id: eventId,
   };
 
-  // Fire only CompletePayment (TikTok standard event)
+  // Fire CompletePayment scoped to specific pixel
   try {
-    window.ttq.track('CompletePayment', eventData);
-    console.log('TikTok CompletePayment (enhanced):', eventData);
-  } catch (e) { console.error('TikTok CompletePayment enhanced failed:', e); }
+    if (params.pixelId && typeof window.ttq.instance === 'function') {
+      window.ttq.instance(params.pixelId).track('CompletePayment', eventData);
+      console.log('TikTok CompletePayment (scoped to', params.pixelId, '):', eventData);
+    } else {
+      window.ttq.track('CompletePayment', eventData);
+      console.log('TikTok CompletePayment (global):', eventData);
+    }
+  } catch (e) { console.error('TikTok CompletePayment failed:', e); }
 
   console.log('TikTok enhanced purchase metadata:', {
     event_id: eventId,
     event_time: eventTime,
+    pixel_id: params.pixelId || 'all',
     url: window.location.href,
     user_agent: navigator.userAgent,
     ip: params.ip || 'collected server-side',
