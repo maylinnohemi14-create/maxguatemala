@@ -26,7 +26,7 @@ import mochilaDetails from "@/assets/mochila-details.jpg";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
 
 const Guatemala = () => {
   const [quantity, setQuantity] = useState(1);
@@ -35,37 +35,41 @@ const Guatemala = () => {
   
   const PRODUCT_ID = "MOCHILA-COMPACTA-GT";
   const PRODUCT_PRICE = 199;
+  const PAGE_ROUTE = "/conjuntos";
 
-  // TikTok: LandingPageView + ViewContent on mount
+  const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
+
   useEffect(() => {
-    trackTikTokConversion('LandingPageView');
-    trackTikTokConversion('ViewContent', {
-      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Mochila Compacta' }],
-      value: PRODUCT_PRICE,
-      currency: 'GTQ'
+    tiktokPixelIds.forEach(pid => {
+      trackTikTokConversion('ViewContent', {
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Mochila Compacta' }],
+        value: PRODUCT_PRICE,
+        currency: 'GTQ'
+      }, pid);
     });
-    trackFacebookConversion('ViewContent', {
-      content_ids: [PRODUCT_ID],
-      content_type: 'product',
-      content_name: 'Mochila Compacta',
-      value: PRODUCT_PRICE,
-      currency: 'GTQ'
+    facebookPixelIds.forEach(pid => {
+      trackFacebookConversion('ViewContent', {
+        content_ids: [PRODUCT_ID],
+        content_type: 'product',
+        content_name: 'Mochila Compacta',
+        value: PRODUCT_PRICE,
+        currency: 'GTQ'
+      }, pid);
     });
-  }, []);
+  }, [tiktokPixelIds, facebookPixelIds]);
 
   const handleDialogChange = (open: boolean) => {
     if (open) {
-      trackTikTokConversion('AddToCart', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Mochila Compacta' }],
-        value: PRODUCT_PRICE,
-        currency: 'GTQ'
+      tiktokPixelIds.forEach(pid => {
+        trackTikTokConversion('AddToCart', {
+          contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Mochila Compacta' }],
+          value: PRODUCT_PRICE,
+          currency: 'GTQ'
+        }, pid);
       });
-      trackTikTokConversion('AddToWishlist', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Mochila Compacta' }],
-        value: PRODUCT_PRICE,
-        currency: 'GTQ'
+      facebookPixelIds.forEach(pid => {
+        trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' }, pid);
       });
-      trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
     }
     setShowCODForm(open);
   };
@@ -358,6 +362,8 @@ const Guatemala = () => {
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Mochila Compacta con Puerto USB"
                       productImage={mochilaMain}
+                      tiktokPixelId={tiktokPixelIds[0]}
+                      facebookPixelId={facebookPixelIds[0]}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' }
                       ]}
