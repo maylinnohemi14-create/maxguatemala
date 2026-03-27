@@ -33,7 +33,7 @@ import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
-import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
 import { Ruler } from "lucide-react";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
