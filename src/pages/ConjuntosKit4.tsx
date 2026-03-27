@@ -125,10 +125,10 @@ const ConjuntosKit4 = () => {
         </div>,
         {
           description: "¡Quedan pocas unidades disponibles!",
-          duration: 4000,
+          duration: 1000,
         }
       );
-    }, 4000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
