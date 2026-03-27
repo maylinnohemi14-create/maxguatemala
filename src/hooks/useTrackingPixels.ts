@@ -135,6 +135,7 @@ export const usePagePixels = (route: string) => {
 
 // Track initialized pixels to prevent duplicates
 const initializedPixels = new Set<string>();
+const sentTikTokPurchaseEvents = new Set<string>();
 
 // Simple SHA-256 hash using Web Crypto API
 const sha256Hash = async (value: string): Promise<string> => {
@@ -273,6 +274,8 @@ const generateEventId = (): string => {
   return `${Date.now()}-${Math.random().toString(36).substring(2, 15)}`;
 };
 
+const getTikTokPurchaseDedupKey = (pixelId: string | undefined, eventId: string) => `${pixelId || 'global'}:${eventId}`;
+
 // Enhanced TikTok Purchase event with ALL required parameters - scoped to specific pixel
 export const trackTikTokPurchase = async (params: {
   productId: string;
@@ -284,10 +287,18 @@ export const trackTikTokPurchase = async (params: {
   externalId?: string;
   ip?: string;
   pixelId?: string;
+  eventId?: string;
 }) => {
   if (typeof window === 'undefined' || !window.ttq) return;
 
-  const eventId = generateEventId();
+  const eventId = params.eventId || generateEventId();
+  const dedupKey = getTikTokPurchaseDedupKey(params.pixelId, eventId);
+
+  if (sentTikTokPurchaseEvents.has(dedupKey)) {
+    console.warn('TikTok CompletePayment skipped (duplicate event_id):', dedupKey);
+    return;
+  }
+
   const eventTime = Math.floor(Date.now() / 1000);
 
   // Identify user with hashed PII before the event
@@ -321,9 +332,12 @@ export const trackTikTokPurchase = async (params: {
       content_id: params.productId,
       content_type: 'product',
       content_name: params.productName,
+      quantity: 1,
+      price: params.value,
     }],
     value: params.value,
     currency: params.currency,
+    quantity: 1,
     event_id: eventId,
   };
 
@@ -336,7 +350,11 @@ export const trackTikTokPurchase = async (params: {
       window.ttq.track('CompletePayment', eventData);
       console.log('TikTok CompletePayment (global):', eventData);
     }
-  } catch (e) { console.error('TikTok CompletePayment failed:', e); }
+
+    sentTikTokPurchaseEvents.add(dedupKey);
+  } catch (e) {
+    console.error('TikTok CompletePayment failed:', e);
+  }
 
   console.log('TikTok enhanced purchase metadata:', {
     event_id: eventId,
