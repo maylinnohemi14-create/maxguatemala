@@ -470,7 +470,8 @@ const UnderArmour = () => {
                       productName={`Conjuntos Deportivos Kit 3 en 1 (${sizesNote})`}
                       productDisplayName="Conjuntos Deportivos Kit 3 en 1"
                       productImage={underArmourMain}
-                      sizeDetails={SETS.map((set, idx) => ({
+                      tiktokPixelId={tiktokPixelIds[0]}
+                      facebookPixelId={facebookPixelIds[0]}
                         name: set.name,
                         image: set.image,
                         topSize: selectedTopSizes[idx],
