@@ -34,7 +34,7 @@ import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
+import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
 
 const NinjaCrispi = () => {
   const [quantity, setQuantity] = useState(1);
@@ -43,39 +43,43 @@ const NinjaCrispi = () => {
   
   const PRODUCT_ID = "NINJA-CRISPI-GT";
   const PRODUCT_PRICE = 319;
+  const PAGE_ROUTE = "/ninja-crispi";
+
+  const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
   const productImages = [ninjaCrispiMain, ninjaCrispiDetail1, ninjaCrispiDetail2, ninjaCrispiLifestyle];
 
-  // TikTok: LandingPageView + ViewContent on mount
   useEffect(() => {
-    trackTikTokConversion('LandingPageView');
-    trackTikTokConversion('ViewContent', {
-      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Freidora de Aire de Cristal' }],
-      value: PRODUCT_PRICE,
-      currency: 'GTQ'
+    tiktokPixelIds.forEach(pid => {
+      trackTikTokConversion('ViewContent', {
+        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Freidora de Aire de Cristal' }],
+        value: PRODUCT_PRICE,
+        currency: 'GTQ'
+      }, pid);
     });
-    trackFacebookConversion('ViewContent', {
-      content_ids: [PRODUCT_ID],
-      content_type: 'product',
-      content_name: 'Freidora de Aire de Cristal',
-      value: PRODUCT_PRICE,
-      currency: 'GTQ'
+    facebookPixelIds.forEach(pid => {
+      trackFacebookConversion('ViewContent', {
+        content_ids: [PRODUCT_ID],
+        content_type: 'product',
+        content_name: 'Freidora de Aire de Cristal',
+        value: PRODUCT_PRICE,
+        currency: 'GTQ'
+      }, pid);
     });
-  }, []);
+  }, [tiktokPixelIds, facebookPixelIds]);
 
   const handleDialogChange = (open: boolean) => {
     if (open) {
-      trackTikTokConversion('AddToCart', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Freidora de Aire de Cristal' }],
-        value: PRODUCT_PRICE,
-        currency: 'GTQ'
+      tiktokPixelIds.forEach(pid => {
+        trackTikTokConversion('AddToCart', {
+          contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Freidora de Aire de Cristal' }],
+          value: PRODUCT_PRICE,
+          currency: 'GTQ'
+        }, pid);
       });
-      trackTikTokConversion('AddToWishlist', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Freidora de Aire de Cristal' }],
-        value: PRODUCT_PRICE,
-        currency: 'GTQ'
+      facebookPixelIds.forEach(pid => {
+        trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' }, pid);
       });
-      trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
     }
     setShowCODForm(open);
   };
@@ -325,6 +329,8 @@ const NinjaCrispi = () => {
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Freidora de Aire de Cristal (Pack 5 Recipientes)"
                       productImage={ninjaCrispiMain}
+                      tiktokPixelId={tiktokPixelIds[0]}
+                      facebookPixelId={facebookPixelIds[0]}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'recipientes', icon: '🥘', title: '5 Recipientes de Cristal', description: '4x 1.4L + 1x 3.8L con tapas' },
