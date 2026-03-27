@@ -63,6 +63,9 @@ const ConjuntosKit4 = () => {
 
   const PRODUCT_ID = "UA-KIT4EN1-GT";
   const PRODUCT_PRICE = 299;
+  const PAGE_ROUTE = "/conjuntosdeportivo";
+
+  const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
   const productImages = [conjunto4Negro, conjunto4Blanco, conjunto4Azul, conjunto4Gris, conjunto4Banner];
 
@@ -74,29 +77,37 @@ const ConjuntosKit4 = () => {
   }, [productImages.length]);
 
   useEffect(() => {
-    trackTikTokConversion('LandingPageView');
-    trackTikTokConversion('ViewContent', {
-      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 4 en 1' }],
-      value: PRODUCT_PRICE,
-      currency: 'GTQ'
-    });
-    trackFacebookConversion('ViewContent', {
-      content_ids: [PRODUCT_ID],
-      content_type: 'product',
-      content_name: 'Conjuntos Deportivos Kit 4 en 1',
-      value: PRODUCT_PRICE,
-      currency: 'GTQ'
-    });
-  }, []);
-
-  const handleDialogChange = (open: boolean) => {
-    if (open) {
-      trackTikTokConversion('AddToCart', {
+    // Fire events only on page-specific pixels
+    tiktokPixelIds.forEach(pid => {
+      trackTikTokConversion('ViewContent', {
         contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 4 en 1' }],
         value: PRODUCT_PRICE,
         currency: 'GTQ'
+      }, pid);
+    });
+    facebookPixelIds.forEach(pid => {
+      trackFacebookConversion('ViewContent', {
+        content_ids: [PRODUCT_ID],
+        content_type: 'product',
+        content_name: 'Conjuntos Deportivos Kit 4 en 1',
+        value: PRODUCT_PRICE,
+        currency: 'GTQ'
+      }, pid);
+    });
+  }, [tiktokPixelIds, facebookPixelIds]);
+
+  const handleDialogChange = (open: boolean) => {
+    if (open) {
+      tiktokPixelIds.forEach(pid => {
+        trackTikTokConversion('AddToCart', {
+          contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 4 en 1' }],
+          value: PRODUCT_PRICE,
+          currency: 'GTQ'
+        }, pid);
       });
-      trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
+      facebookPixelIds.forEach(pid => {
+        trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' }, pid);
+      });
     }
     setShowCODForm(open);
   };
