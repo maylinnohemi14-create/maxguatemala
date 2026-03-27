@@ -272,7 +272,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       const eventId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       await supabase.functions.invoke('tiktok-events-api', {
         body: {
-          pixel_id: 'D4LK3U3C77U1VUV8SRF0',
+          pixel_id: tiktokPixelId || 'D4LK3U3C77U1VUV8SRF0',
           event: 'CompletePayment',
           event_id: eventId,
           timestamp: Math.floor(Date.now() / 1000),
