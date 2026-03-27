@@ -118,6 +118,21 @@ export const useTrackingPixels = () => {
   return pixels;
 };
 
+// Hook to get pixel IDs for the current page route
+export const usePagePixels = (route: string) => {
+  const pixels = useTrackingPixels();
+  
+  const tiktokPixelIds = pixels
+    .filter(p => p.platform === 'tiktok' && (p.page_route === route))
+    .map(p => p.pixel_id);
+  
+  const facebookPixelIds = pixels
+    .filter(p => p.platform === 'facebook' && (p.page_route === route))
+    .map(p => p.pixel_id);
+  
+  return { tiktokPixelIds, facebookPixelIds, pixels };
+};
+
 // Track initialized pixels to prevent duplicates
 const initializedPixels = new Set<string>();
 
