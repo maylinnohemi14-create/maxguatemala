@@ -360,10 +360,10 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-4 sm:space-y-6 w-full max-w-full overflow-x-hidden">
       {/* Success Dialog */}
       <Dialog open={showSuccessDialog} onOpenChange={handleCloseSuccessDialog}>
-        <DialogContent className="w-[95vw] sm:max-w-lg max-h-[95vh] overflow-y-auto p-4 sm:p-6 rounded-xl">
+        <DialogContent className="w-[calc(100vw-16px)] max-w-lg max-h-[95dvh] overflow-x-hidden overflow-y-auto p-4 sm:p-6 rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-center">
               <div className="flex justify-center mb-3 sm:mb-4">
@@ -373,25 +373,25 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
               </div>
             </DialogTitle>
           </DialogHeader>
-          
-          <div className="text-center space-y-3 sm:space-y-4 py-2">
+
+          <div className="text-center space-y-3 sm:space-y-4 py-2 max-w-full overflow-x-hidden">
             <h2 className="text-lg sm:text-2xl font-bold text-foreground flex items-center justify-center gap-1 sm:gap-2">
               <span>🎉</span>
               <span>¡Su compra se ha realizado con éxito!</span>
               <span>🎉</span>
             </h2>
-            
+
             <p className="text-muted-foreground text-base sm:text-lg">
               Su pedido llegará a su casa en un plazo de 3 a 5 días
             </p>
-            
+
             <div className="bg-green-50 border-2 border-green-200 rounded-xl p-3 sm:p-4 animate-pulse">
               <p className="text-green-700 font-semibold flex items-center justify-center gap-2 text-base sm:text-lg">
                 <span className="text-green-600">✅</span>
                 Contamos con 2 años de garantía
               </p>
             </div>
-            
+
             <div className="pt-2">
               <p className="text-muted-foreground mb-2 sm:mb-3 text-sm sm:text-base">
                 Para cualquier duda llama al WhatsApp
@@ -400,42 +400,42 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
                 href="https://wa.me/50212345678?text=Hola,%20acabo%20de%20realizar%20una%20compra%20y%20tengo%20una%20consulta"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 sm:py-3 px-5 sm:px-8 rounded-full transition-colors text-base sm:text-lg animate-pulse"
+                className="inline-flex max-w-full items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 sm:py-3 px-5 sm:px-8 rounded-full transition-colors text-base sm:text-lg animate-pulse text-center"
               >
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
-                WhatsApp Guatemala
+                <span className="break-words">WhatsApp Guatemala</span>
               </a>
             </div>
-            
-            <div className="grid grid-cols-4 gap-1 sm:gap-2 pt-3 sm:pt-4 border-t">
-              <div className="flex flex-col items-center p-1.5 sm:p-2">
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2 pt-3 sm:pt-4 border-t">
+              <div className="flex flex-col items-center p-1.5 sm:p-2 min-w-0">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-green-100 flex items-center justify-center mb-1">
                   <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
                 </div>
-                <span className="text-[10px] sm:text-xs font-semibold text-center">Producto Original</span>
+                <span className="text-[10px] sm:text-xs font-semibold text-center break-words">Producto Original</span>
               </div>
-              <div className="flex flex-col items-center p-1.5 sm:p-2">
+              <div className="flex flex-col items-center p-1.5 sm:p-2 min-w-0">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-orange-100 flex items-center justify-center mb-1">
                   <Truck className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
                 </div>
-                <span className="text-[10px] sm:text-xs font-semibold text-center">Envío Gratis</span>
+                <span className="text-[10px] sm:text-xs font-semibold text-center break-words">Envío Gratis</span>
               </div>
-              <div className="flex flex-col items-center p-1.5 sm:p-2">
+              <div className="flex flex-col items-center p-1.5 sm:p-2 min-w-0">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-red-100 flex items-center justify-center mb-1">
                   <Award className="w-4 h-4 sm:w-5 sm:h-5 text-red-600" />
                 </div>
-                <span className="text-[10px] sm:text-xs font-semibold text-center">2 Años Garantía</span>
+                <span className="text-[10px] sm:text-xs font-semibold text-center break-words">2 Años Garantía</span>
               </div>
-              <div className="flex flex-col items-center p-1.5 sm:p-2">
+              <div className="flex flex-col items-center p-1.5 sm:p-2 min-w-0">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-red-100 flex items-center justify-center mb-1">
                   <LockKeyhole className="w-4 h-4 sm:w-5 sm:h-5 text-red-600" />
                 </div>
-                <span className="text-[10px] sm:text-xs font-semibold text-center">Pago Seguro</span>
+                <span className="text-[10px] sm:text-xs font-semibold text-center break-words">Pago Seguro</span>
               </div>
             </div>
-            
+
             <div className="bg-muted/50 rounded-lg p-3 sm:p-4 mt-2">
               <p className="font-semibold text-foreground text-sm sm:text-base">¡Gracias por confiar en nosotros!</p>
             </div>
@@ -444,23 +444,23 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       </Dialog>
 
       {/* Live Viewers */}
-      <div className="flex items-center justify-center gap-2 py-2 px-4 bg-destructive/10 rounded-lg border border-destructive/20">
-        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-        <span className="text-sm font-medium text-destructive">
+      <div className="flex max-w-full items-center justify-center gap-2 py-2 px-4 bg-destructive/10 rounded-lg border border-destructive/20 overflow-x-hidden">
+        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shrink-0"></div>
+        <span className="text-sm font-medium text-destructive text-center break-words">
           {viewerCount} personas están viendo este producto
         </span>
       </div>
 
       {/* Order Summary */}
-      <div className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30">
+      <div className="p-4 sm:p-6 rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 w-full max-w-full overflow-x-hidden">
         <div className="mb-4">
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
             {productImage && !sizeDetails && (
-              <img src={productImage} alt={productName} className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-lg bg-white" />
+              <img src={productImage} alt={productName} className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-lg bg-white shrink-0" />
             )}
-            <div className="flex-1">
-              <h3 className="font-bold text-base sm:text-lg text-foreground">{productDisplayName || productName}</h3>
-              <div className="flex items-baseline gap-2 mt-1">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-base sm:text-lg text-foreground break-words">{productDisplayName || productName}</h3>
+              <div className="flex flex-wrap items-baseline gap-2 mt-1">
                 <span className="text-sm font-semibold text-muted-foreground">Total a pagar:</span>
                 <span className="text-2xl sm:text-3xl font-extrabold text-destructive">
                   Q{productPrice}
@@ -469,15 +469,15 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
             </div>
           </div>
           {sizeDetails && sizeDetails.length > 0 && (
-            <div className="grid grid-cols-2 gap-2 mt-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
               {sizeDetails.map((detail, i) => (
-                <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-background border border-border">
-                  <img src={detail.image} alt={detail.name} className="w-10 h-10 rounded-md object-cover" />
-                  <div className="text-xs">
-                    <span className="font-bold text-foreground block">{detail.name}</span>
-                    <span className="text-muted-foreground">{detail.topLabel || 'Camiseta'}: {detail.topSize}</span>
+                <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-background border border-border min-w-0">
+                  <img src={detail.image} alt={detail.name} className="w-10 h-10 rounded-md object-cover shrink-0" />
+                  <div className="text-xs min-w-0">
+                    <span className="font-bold text-foreground block break-words">{detail.name}</span>
+                    <span className="text-muted-foreground break-words">{detail.topLabel || 'Camiseta'}: {detail.topSize}</span>
                     <br />
-                    <span className="text-muted-foreground">{detail.bottomLabel || 'Pantaloneta'}: {detail.bottomSize}</span>
+                    <span className="text-muted-foreground break-words">{detail.bottomLabel || 'Pantaloneta'}: {detail.bottomSize}</span>
                   </div>
                 </div>
               ))}
@@ -489,19 +489,19 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         <div className="space-y-2 pt-4 border-t border-border">
           <p className="text-xs sm:text-sm font-semibold text-foreground">Incluye GRATIS:</p>
           {includedItems.map((item) => (
-            <div key={item.id} className="flex items-center gap-2 py-1.5 px-2 rounded-lg bg-success/10 border border-success/20">
+            <div key={item.id} className="flex items-center gap-2 py-1.5 px-2 rounded-lg bg-success/10 border border-success/20 min-w-0">
               <Checkbox
                 id={item.id}
                 checked={upsells[item.id]}
                 onCheckedChange={(checked) => setUpsells(prev => ({ ...prev, [item.id]: !!checked }))}
-                className="border-success data-[state=checked]:bg-success"
+                className="border-success data-[state=checked]:bg-success shrink-0"
               />
-              <label htmlFor={item.id} className="flex-1 cursor-pointer">
-                <span className="text-sm font-medium flex items-center gap-1.5">
-                  <span>{item.icon}</span>
-                  <span>{item.title}</span>
+              <label htmlFor={item.id} className="flex-1 cursor-pointer min-w-0">
+                <span className="text-sm font-medium flex items-center gap-1.5 min-w-0">
+                  <span className="shrink-0">{item.icon}</span>
+                  <span className="break-words">{item.title}</span>
                 </span>
-                <p className="text-xs text-muted-foreground">{item.description}</p>
+                <p className="text-xs text-muted-foreground break-words">{item.description}</p>
               </label>
             </div>
           ))}
@@ -510,19 +510,19 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
 
       {/* Form */}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleFormInteraction} className="space-y-3 sm:space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleFormInteraction} className="space-y-3 sm:space-y-4 w-full max-w-full overflow-x-hidden">
           {/* Name Fields */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="nombres"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="min-w-0">
                   <FormLabel className="text-xs sm:text-sm">Nombres *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Tu nombre" {...field} className="text-sm" />
+                    <Input placeholder="Tu nombre" {...field} className="w-full text-base" />
                   </FormControl>
-                  <FormMessage className="text-xs" />
+                  <FormMessage className="text-xs break-words" />
                 </FormItem>
               )}
             />
@@ -530,35 +530,35 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
               control={form.control}
               name="apellidos"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="min-w-0">
                   <FormLabel className="text-xs sm:text-sm">Apellidos *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Tus apellidos" {...field} className="text-sm" />
+                    <Input placeholder="Tus apellidos" {...field} className="w-full text-base" />
                   </FormControl>
-                  <FormMessage className="text-xs" />
+                  <FormMessage className="text-xs break-words" />
                 </FormItem>
               )}
             />
           </div>
 
           {/* Departamento & Municipio */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="departamento"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="min-w-0">
                   <FormLabel className="text-xs sm:text-sm">Departamento *</FormLabel>
                   <Select onValueChange={(value) => {
                     field.onChange(value);
                     form.setValue("municipio", "");
                   }} value={field.value}>
                     <FormControl>
-                      <SelectTrigger className="text-sm bg-background">
+                      <SelectTrigger className="w-full text-base bg-background min-w-0">
                         <SelectValue placeholder="Selecciona" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent className="bg-background z-50 max-h-[200px]">
+                    <SelectContent className="bg-background z-50 max-h-[200px] max-w-[calc(100vw-24px)]">
                       {DEPARTAMENTOS.map((dep) => (
                         <SelectItem key={dep} value={dep} className="text-sm">
                           {dep}
@@ -566,7 +566,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
                       ))}
                     </SelectContent>
                   </Select>
-                  <FormMessage className="text-xs" />
+                  <FormMessage className="text-xs break-words" />
                 </FormItem>
               )}
             />
@@ -574,15 +574,15 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
               control={form.control}
               name="municipio"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="min-w-0">
                   <FormLabel className="text-xs sm:text-sm">Municipio *</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value} disabled={!selectedDepartamento}>
                     <FormControl>
-                      <SelectTrigger className="text-sm bg-background">
+                      <SelectTrigger className="w-full text-base bg-background min-w-0">
                         <SelectValue placeholder="Selecciona" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent className="bg-background z-50 max-h-[200px]">
+                    <SelectContent className="bg-background z-50 max-h-[200px] max-w-[calc(100vw-24px)]">
                       {availableMunicipios.map((mun) => (
                         <SelectItem key={mun} value={mun} className="text-sm">
                           {mun}
@@ -590,7 +590,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
                       ))}
                     </SelectContent>
                   </Select>
-                  <FormMessage className="text-xs" />
+                  <FormMessage className="text-xs break-words" />
                 </FormItem>
               )}
             />
@@ -601,21 +601,21 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
             control={form.control}
             name="direccion"
             render={({ field }) => (
-              <FormItem>
-                <div className="flex flex-col gap-1">
+              <FormItem className="min-w-0">
+                <div className="flex flex-col gap-1 min-w-0">
                   <FormLabel className="text-xs sm:text-sm">Dirección completa *</FormLabel>
-                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs bg-red-600 text-white px-2 py-0.5 rounded-md w-fit font-medium">
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs bg-red-600 text-white px-2 py-0.5 rounded-md w-fit max-w-full font-medium break-words">
                     📍 Incluye dirección completa para garantizar la entrega
                   </span>
                 </div>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Calle, número, zona, colonia o barrio, referencias" 
-                    {...field} 
-                    className="text-sm min-h-[80px]"
+                  <Textarea
+                    placeholder="Calle, número, zona, colonia o barrio, referencias"
+                    {...field}
+                    className="w-full text-base min-h-[80px] resize-none"
                   />
                 </FormControl>
-                <FormMessage className="text-xs" />
+                <FormMessage className="text-xs break-words" />
               </FormItem>
             )}
           />
@@ -625,28 +625,28 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
             control={form.control}
             name="complemento"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="min-w-0">
                 <FormLabel className="text-xs sm:text-sm">Complemento (opcional)</FormLabel>
                 <FormControl>
-                  <Input placeholder="Apartamento, casa, edificio..." {...field} className="text-sm" />
+                  <Input placeholder="Apartamento, casa, edificio..." {...field} className="w-full text-base" />
                 </FormControl>
-                <FormMessage className="text-xs" />
+                <FormMessage className="text-xs break-words" />
               </FormItem>
             )}
           />
 
           {/* Phone & Email */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <FormField
               control={form.control}
               name="telefono"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="min-w-0">
                   <FormLabel className="text-xs sm:text-sm">Teléfono *</FormLabel>
                   <FormControl>
-                    <Input placeholder="12345678" {...field} className="text-sm" maxLength={15} />
+                    <Input placeholder="12345678" {...field} className="w-full text-base" maxLength={15} />
                   </FormControl>
-                  <FormMessage className="text-xs" />
+                  <FormMessage className="text-xs break-words" />
                 </FormItem>
               )}
             />
@@ -654,12 +654,12 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="min-w-0">
                   <FormLabel className="text-xs sm:text-sm">Email (opcional)</FormLabel>
                   <FormControl>
-                    <Input placeholder="tu@email.com" {...field} className="text-sm" />
+                    <Input placeholder="tu@email.com" {...field} className="w-full text-base" />
                   </FormControl>
-                  <FormMessage className="text-xs" />
+                  <FormMessage className="text-xs break-words" />
                 </FormItem>
               )}
             />
@@ -670,16 +670,16 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
             control={form.control}
             name="nota"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="min-w-0">
                 <FormLabel className="text-xs sm:text-sm">Nota adicional (opcional)</FormLabel>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Instrucciones especiales para la entrega..." 
-                    {...field} 
-                    className="text-sm min-h-[60px]"
+                  <Textarea
+                    placeholder="Instrucciones especiales para la entrega..."
+                    {...field}
+                    className="w-full text-base min-h-[60px] resize-none"
                   />
                 </FormControl>
-                <FormMessage className="text-xs" />
+                <FormMessage className="text-xs break-words" />
               </FormItem>
             )}
           />
@@ -710,14 +710,14 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
           </Button>
 
           {/* Trust elements */}
-          <div className="text-center space-y-2 pt-4">
+          <div className="text-center space-y-2 pt-4 max-w-full overflow-x-hidden">
             <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-muted-foreground">
-              <LockKeyhole className="w-4 h-4" />
-              <span>Pago seguro contra entrega</span>
+              <LockKeyhole className="w-4 h-4 shrink-0" />
+              <span className="break-words">Pago seguro contra entrega</span>
             </div>
             <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-muted-foreground">
-              <Truck className="w-4 h-4" />
-              <span>Envío gratis a toda Guatemala</span>
+              <Truck className="w-4 h-4 shrink-0" />
+              <span className="break-words">Envío gratis a toda Guatemala</span>
             </div>
             <img src={selosConfianza} alt="Sellos de confianza - Clientes satisfechos, Envíos prioritarios, Pagos seguros, Pago contra entrega" className="w-full max-w-md mx-auto mt-4" />
           </div>
