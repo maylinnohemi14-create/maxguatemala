@@ -362,6 +362,8 @@ const Guatemala = () => {
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Mochila Compacta con Puerto USB"
                       productImage={mochilaMain}
+                      tiktokPixelId={tiktokPixelIds[0]}
+                      facebookPixelId={facebookPixelIds[0]}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' }
                       ]}
