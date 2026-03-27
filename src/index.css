@@ -136,7 +136,6 @@ All colors MUST be HSL.
     max-width: 100%;
     overflow-x: hidden;
   }
-  }
 
   /* Prevent mobile browser zoom on input focus */
   input, select, textarea {
