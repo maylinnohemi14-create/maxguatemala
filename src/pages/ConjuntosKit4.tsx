@@ -164,7 +164,7 @@ const ConjuntosKit4 = () => {
     .join(" | ");
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background overflow-x-hidden max-w-[100vw]">
       {/* MAX Header */}
       <div className="w-full bg-white">
         <img src={maxHeader} alt="MAX Guatemala - Tienda Online" className="w-full h-auto object-contain sm:object-cover max-h-[120px] sm:max-h-none mx-auto sm:mx-0 p-2 sm:p-0" />
@@ -191,7 +191,7 @@ const ConjuntosKit4 = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-3 sm:px-4 py-6 sm:py-12">
+      <section className="container mx-auto px-4 sm:px-4 py-6 sm:py-12 max-w-[100vw]">
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
           {/* Product Images */}
           <div className="animate-fade-in">
@@ -237,12 +237,12 @@ const ConjuntosKit4 = () => {
               </Badge>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-foreground leading-tight">
+            <h1 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-2 text-foreground leading-tight break-words">
               CONJUNTOS DEPORTIVOS KIT 4 EN 1 👟🔥
             </h1>
 
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <Badge className="bg-primary text-primary-foreground font-bold text-xs px-3 py-1.5 animate-pulse-glow">
+              <Badge className="bg-primary text-primary-foreground font-bold text-[10px] sm:text-xs px-2 sm:px-3 py-1.5 animate-pulse-glow whitespace-normal text-center leading-tight">
                 ⚡ PROMOCIÓN VÁLIDA HASTA HOY {new Date().toLocaleDateString('es-GT', { timeZone: 'America/Guatemala', day: 'numeric', month: 'long' }).toUpperCase()} - ¡NO TE LO PIERDAS!
               </Badge>
             </div>
@@ -252,7 +252,7 @@ const ConjuntosKit4 = () => {
             </p>
 
             {/* Price Section */}
-            <div className="mb-4 sm:mb-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
+            <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
               <div className="relative">
                 <div className="flex items-center gap-2 mb-1">
