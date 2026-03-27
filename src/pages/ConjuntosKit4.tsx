@@ -61,7 +61,7 @@ const ConjuntosKit4 = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
 
-  const PRODUCT_ID = "UA-KIT4EN1-GT";
+  const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 299;
   const PAGE_ROUTE = "/conjuntosdeportivo";
 
