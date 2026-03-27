@@ -110,13 +110,15 @@ interface CODFormGuatemalaProps {
   includedItems?: IncludedItem[];
   sizeDetails?: SizeDetail[];
   productDisplayName?: string;
+  tiktokPixelId?: string;
+  facebookPixelId?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName }: CODFormGuatemalaProps) {
+export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId }: CODFormGuatemalaProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [ipHasOrder, setIpHasOrder] = useState(false);
@@ -236,7 +238,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       console.log('✅ TikTok identify done');
     } catch (e) { console.error('❌ TikTok identify failed:', e); }
 
-    // TikTok: CompletePayment (THE primary conversion event)
+    // TikTok: CompletePayment (THE primary conversion event) - SCOPED to page pixel
     try {
       await trackTikTokPurchase({
         productId,
@@ -247,11 +249,12 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         phone: data.telefono,
         externalId: data.telefono,
         ip: clientIp || undefined,
+        pixelId: tiktokPixelId,
       });
-      console.log('✅ TikTok CompletePayment (enhanced) fired');
+      console.log('✅ TikTok CompletePayment (scoped to', tiktokPixelId || 'all', ') fired');
     } catch (e) { console.error('❌ TikTok CompletePayment failed:', e); }
 
-    // Facebook: Purchase
+    // Facebook: Purchase - SCOPED to page pixel
     try {
       trackFacebookConversion('Purchase', {
         content_ids: [productId],
@@ -260,8 +263,8 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         value: productPrice,
         currency: 'GTQ',
         num_items: 1
-      });
-      console.log('✅ Facebook Purchase fired');
+      }, facebookPixelId);
+      console.log('✅ Facebook Purchase (scoped to', facebookPixelId || 'all', ') fired');
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
     // === SERVER-SIDE TikTok Events API (improves match rate & reduces CPA) ===
