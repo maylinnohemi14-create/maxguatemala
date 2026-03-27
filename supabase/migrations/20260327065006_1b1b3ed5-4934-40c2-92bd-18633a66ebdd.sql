@@ -1,0 +1,1 @@
+UPDATE tracking_pixels SET page_route = '/conjuntosdeportivo' WHERE id = 'dd2f3459-b7bb-413a-8353-cdef36b9614b';
