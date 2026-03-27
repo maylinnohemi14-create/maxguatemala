@@ -128,7 +128,7 @@ const ConjuntosKit4 = () => {
           duration: 4000,
         }
       );
-    }, 6000);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -449,9 +449,16 @@ const ConjuntosKit4 = () => {
                     Pedir con pago Contra Entrega + Envío Gratis
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
+                <DialogContent className="w-[100vw] sm:w-[95vw] max-w-2xl h-[100dvh] sm:h-auto sm:max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-none sm:rounded-xl fixed inset-0 sm:inset-auto sm:left-[50%] sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] overscroll-contain">
+                  <button
+                    onClick={() => setShowCODForm(false)}
+                    className="absolute right-3 top-3 z-50 w-8 h-8 rounded-full bg-destructive text-white flex items-center justify-center shadow-lg hover:bg-destructive/90 transition-colors"
+                    aria-label="Cerrar"
+                  >
+                    ✕
+                  </button>
                   <DialogHeader>
-                    <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
+                    <DialogTitle className="text-base sm:text-lg pr-10">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
                   </DialogHeader>
                   {showCODForm && (
                     <CODFormGuatemala
