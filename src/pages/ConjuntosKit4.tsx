@@ -28,7 +28,7 @@ import conjunto4Negro from "@/assets/conjunto4-negro-gen.webp";
 import conjunto4Blanco from "@/assets/conjunto4-blanco-gen.webp";
 import conjunto4Azul from "@/assets/conjunto4-azul-gen.webp";
 import conjunto4Gris from "@/assets/conjunto4-gris-gen.webp";
-import conjunto4Banner from "@/assets/conjunto4-banner-gen.jpg";
+
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
@@ -67,7 +67,7 @@ const ConjuntosKit4 = () => {
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
-  const productImages = [conjunto4Negro, conjunto4Blanco, conjunto4Azul, conjunto4Gris, conjunto4Banner];
+  const productImages = [conjunto4Negro, conjunto4Blanco, conjunto4Azul, conjunto4Gris];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -477,7 +477,7 @@ const ConjuntosKit4 = () => {
                       productPrice={PRODUCT_PRICE}
                       productName={`Conjuntos Deportivos Kit 4 en 1 (${sizesNote})`}
                       productDisplayName="Conjuntos Deportivos Kit 4 en 1"
-                      productImage={conjunto4Banner}
+                      productImage={conjunto4Negro}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
                       sizeDetails={SETS.map((set, idx) => ({
