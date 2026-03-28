@@ -24,11 +24,11 @@ import {
   Zap,
   Shirt,
 } from "lucide-react";
-import conjunto4Negro from "@/assets/conjunto4-negro.webp";
-import conjunto4Blanco from "@/assets/conjunto4-blanco.webp";
-import conjunto4Azul from "@/assets/conjunto4-azul.webp";
-import conjunto4Gris from "@/assets/conjunto4-gris.webp";
-import conjunto4Banner from "@/assets/conjunto4-banner.webp";
+import conjunto4Negro from "@/assets/conjunto4-negro-gen.jpg";
+import conjunto4Blanco from "@/assets/conjunto4-blanco-gen.jpg";
+import conjunto4Azul from "@/assets/conjunto4-azul-gen.jpg";
+import conjunto4Gris from "@/assets/conjunto4-gris-gen.jpg";
+import conjunto4Banner from "@/assets/conjunto4-banner-gen.jpg";
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
