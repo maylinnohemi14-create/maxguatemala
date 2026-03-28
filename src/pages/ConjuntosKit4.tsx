@@ -212,6 +212,22 @@ const ConjuntosKit4 = () => {
                 alt="Conjuntos Deportivos Kit 4 en 1"
                 className="w-full h-auto object-contain aspect-square"
               />
+              {/* Diagonal ribbon */}
+              <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+                <div
+                  className="absolute bg-primary text-primary-foreground font-bold text-[10px] sm:text-xs md:text-sm text-center py-1 sm:py-1.5"
+                  style={{
+                    width: '280px',
+                    top: '28px',
+                    left: '-70px',
+                    transform: 'rotate(-45deg)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                    letterSpacing: '0.5px',
+                  }}
+                >
+                  💰 PAGO CONTRA ENTREGA
+                </div>
+              </div>
             </div>
             <div className="grid grid-cols-5 gap-2 mt-2">
               {productImages.map((img, idx) => (
