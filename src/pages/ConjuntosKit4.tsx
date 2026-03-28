@@ -686,7 +686,7 @@ const ConjuntosKit4 = () => {
       <div className="bg-secondary/50 py-4">
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <p className="text-xs text-muted-foreground">
-            Producto original importado. MAX Guatemala es distribuidor autorizado de productos deportivos de alta calidad.
+            Producto importado de alta calidad. MAX Guatemala - Tienda online de productos deportivos premium.
             Todos los derechos reservados.
           </p>
         </div>
