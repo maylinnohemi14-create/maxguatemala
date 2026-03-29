@@ -58,7 +58,6 @@ const ConjuntosKit4 = () => {
     2: "M",
     3: "M",
   });
-  const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
 
   const PRODUCT_ID = "UA-KIT3EN1-GT";
@@ -66,15 +65,6 @@ const ConjuntosKit4 = () => {
   const PAGE_ROUTE = "/conjuntosdeportivo";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
-
-  const productImages = [conjunto4Negro, conjunto4Blanco, conjunto4Azul, conjunto4Gris];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelectedImage(prev => (prev + 1) % productImages.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [productImages.length]);
 
   useEffect(() => {
     // Fire events only on page-specific pixels
@@ -203,45 +193,7 @@ const ConjuntosKit4 = () => {
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 sm:px-4 py-6 sm:py-12 max-w-[100vw]">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
-          {/* Product Images */}
-          <div className="animate-fade-in">
-            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
-              <img
-                src={productImages[selectedImage]}
-                alt="Conjuntos Deportivos Kit 4 en 1"
-                className="w-full h-auto object-contain aspect-square"
-              />
-              {/* Diagonal ribbon */}
-              <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-                <div
-                  className="absolute bg-primary text-primary-foreground font-bold text-[10px] sm:text-xs md:text-sm text-center py-1 sm:py-1.5"
-                  style={{
-                    width: '280px',
-                    top: '28px',
-                    left: '-70px',
-                    transform: 'rotate(-45deg)',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-                    letterSpacing: '0.5px',
-                  }}
-                >
-                  💰 PAGO CONTRA ENTREGA
-                </div>
-              </div>
-            </div>
-            <div className="grid grid-cols-5 gap-2 mt-2">
-              {productImages.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`border-2 rounded-lg overflow-hidden transition-all ${selectedImage === idx ? 'border-primary ring-2 ring-primary/30' : 'border-border opacity-70 hover:opacity-100'}`}
-                >
-                  <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-auto object-cover aspect-square" />
-                </button>
-              ))}
-            </div>
-          </div>
-
+        <div className="max-w-3xl mx-auto">
           {/* Product Info */}
           <div className="animate-scale-in">
             <div className="mb-3">
