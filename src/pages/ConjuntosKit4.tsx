@@ -28,6 +28,7 @@ import conjunto4Negro from "@/assets/conjunto4-negro-gen.webp";
 import conjunto4Blanco from "@/assets/conjunto4-blanco-gen.webp";
 import conjunto4Azul from "@/assets/conjunto4-azul-gen.webp";
 import conjunto4Gris from "@/assets/conjunto4-gris-gen.webp";
+import conjuntoPrincipal from "@/assets/conjunto4-principal.jpeg";
 
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
