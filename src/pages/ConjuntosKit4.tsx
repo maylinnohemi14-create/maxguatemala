@@ -65,7 +65,7 @@ const ConjuntosKit4 = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setStockCount((prev) => (prev <= 2 ? 15 : prev - 1));
-    }, 10000);
+    }, 20000);
     return () => clearInterval(interval);
   }, []);
 
