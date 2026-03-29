@@ -531,41 +531,22 @@ const ConjuntosKit4 = () => {
         </div>
       </section>
 
-      {/* What's Included Section */}
+      {/* What's Included Section - Text only */}
       <section className="py-10 sm:py-16">
         <div className="container mx-auto px-3 sm:px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
             ¿Qué incluye tu kit? 📦
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
-              <img src={conjunto4Negro} alt="Conjunto Negro" className="w-full aspect-square object-cover" />
-              <div className="p-3 text-center">
-                <h3 className="font-bold text-sm sm:text-base">Conjunto Negro</h3>
+            {["Negro", "Blanco", "Azul", "Gris/Negro"].map((color) => (
+              <div key={color} className="p-4 rounded-2xl border border-border bg-card shadow-sm text-center">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                  <Shirt className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-bold text-sm sm:text-base">Conjunto {color}</h3>
                 <p className="text-muted-foreground text-xs">Camiseta + Pantaloneta</p>
               </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
-              <img src={conjunto4Blanco} alt="Conjunto Blanco" className="w-full aspect-square object-cover" />
-              <div className="p-3 text-center">
-                <h3 className="font-bold text-sm sm:text-base">Conjunto Blanco</h3>
-                <p className="text-muted-foreground text-xs">Camiseta + Pantaloneta</p>
-              </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
-              <img src={conjunto4Azul} alt="Conjunto Azul" className="w-full aspect-square object-cover" />
-              <div className="p-3 text-center">
-                <h3 className="font-bold text-sm sm:text-base">Conjunto Azul</h3>
-                <p className="text-muted-foreground text-xs">Camiseta + Pantaloneta</p>
-              </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-sm">
-              <img src={conjunto4Gris} alt="Conjunto Gris/Negro" className="w-full aspect-square object-cover" />
-              <div className="p-3 text-center">
-                <h3 className="font-bold text-sm sm:text-base">Conjunto Gris</h3>
-                <p className="text-muted-foreground text-xs">Camiseta + Pantaloneta</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
