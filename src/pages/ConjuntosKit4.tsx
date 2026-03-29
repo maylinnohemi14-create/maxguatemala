@@ -60,6 +60,14 @@ const ConjuntosKit4 = () => {
     3: "M",
   });
   const [showCODForm, setShowCODForm] = useState(false);
+  const [stockCount, setStockCount] = useState(15);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStockCount((prev) => (prev <= 2 ? 15 : prev - 1));
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 299;
