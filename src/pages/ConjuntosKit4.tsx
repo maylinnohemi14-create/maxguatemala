@@ -254,7 +254,7 @@ const ConjuntosKit4 = () => {
               <div className="absolute bottom-0 left-0 right-0 bg-foreground/85 backdrop-blur-sm px-3 py-2 flex items-center justify-center gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-destructive animate-pulse-scale" />
                 <p className="text-background text-xs sm:text-sm font-semibold">
-                  ¡Solo quedan 15 kits! <span className="font-normal text-background/70">— Stock actualizado hoy</span>
+                  ¡Solo quedan {stockCount} kits! <span className="font-normal text-background/70">— Stock actualizado hoy</span>
                 </p>
               </div>
             </div>
