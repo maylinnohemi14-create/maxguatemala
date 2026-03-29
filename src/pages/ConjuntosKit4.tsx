@@ -28,6 +28,7 @@ import conjunto4Negro from "@/assets/conjunto4-negro-gen.webp";
 import conjunto4Blanco from "@/assets/conjunto4-blanco-gen.webp";
 import conjunto4Azul from "@/assets/conjunto4-azul-gen.webp";
 import conjunto4Gris from "@/assets/conjunto4-gris-gen.webp";
+import conjuntoPrincipal from "@/assets/conjunto4-principal.jpeg";
 
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
@@ -229,6 +230,16 @@ const ConjuntosKit4 = () => {
             <p className="text-sm sm:text-base text-muted-foreground mb-4">
               Renueva tu guardarropa deportivo con este increíble kit de 4 conjuntos premium. Camiseta + Pantaloneta en 4 colores diferentes para toda la semana.
             </p>
+
+            {/* Main Product Image */}
+            <div className="mb-4 sm:mb-6 rounded-2xl overflow-hidden border border-border shadow-lg">
+              <img 
+                src={conjuntoPrincipal} 
+                alt="Kit 4 Conjuntos Deportivos" 
+                className="w-full h-auto object-contain bg-white"
+                loading="eager"
+              />
+            </div>
 
             {/* Price Section */}
             <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
