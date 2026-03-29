@@ -232,11 +232,11 @@ const ConjuntosKit4 = () => {
             </p>
 
             {/* Main Product Image */}
-            <div className="mb-4 sm:mb-6 rounded-2xl overflow-hidden border border-border shadow-lg">
+            <div className="mb-4 sm:mb-6 rounded-2xl overflow-hidden border border-border shadow-lg max-w-xs mx-auto">
               <img 
                 src={conjuntoPrincipal} 
                 alt="Kit 4 Conjuntos Deportivos" 
-                className="w-full h-auto object-contain bg-white"
+                className="w-full h-auto object-cover bg-white"
                 loading="eager"
               />
             </div>
