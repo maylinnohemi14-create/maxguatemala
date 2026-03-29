@@ -238,6 +238,10 @@ const ConjuntosKit4 = () => {
                 alt="Kit 4 Conjuntos Deportivos" 
                 className="w-full h-auto object-cover bg-white"
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width={320}
+                height={400}
               />
             </div>
 
