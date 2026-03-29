@@ -231,6 +231,16 @@ const ConjuntosKit4 = () => {
               Renueva tu guardarropa deportivo con este increíble kit de 4 conjuntos premium. Camiseta + Pantaloneta en 4 colores diferentes para toda la semana.
             </p>
 
+            {/* Main Product Image */}
+            <div className="mb-4 sm:mb-6 rounded-2xl overflow-hidden border border-border shadow-lg">
+              <img 
+                src={conjuntoPrincipal} 
+                alt="Kit 4 Conjuntos Deportivos" 
+                className="w-full h-auto object-contain bg-white"
+                loading="eager"
+              />
+            </div>
+
             {/* Price Section */}
             <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
