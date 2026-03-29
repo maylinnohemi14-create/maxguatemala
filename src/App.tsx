@@ -47,7 +47,7 @@ const App = () => (
           
           <Route path="/freidora" element={<NinjaCrispi />} />
           <Route path="/conjuntos" element={<UnderArmour />} />
-          <Route path="/conjuntosdeportivo" element={<ConjuntosKit4 />} />
+          <Route path="/contraentrega" element={<ConjuntosKit4 />} />
           <Route path="/feminino" element={<Feminino />} />
           <Route path="/feminino/vestido-kit4" element={<VestidoKit4 />} />
           <Route path="/feminino/vestido-kit3" element={<VestidoKit3 />} />
