@@ -60,6 +60,14 @@ const ConjuntosKit4 = () => {
     3: "M",
   });
   const [showCODForm, setShowCODForm] = useState(false);
+  const [stockCount, setStockCount] = useState(15);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStockCount((prev) => (prev <= 2 ? 15 : prev - 1));
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 299;
@@ -246,7 +254,7 @@ const ConjuntosKit4 = () => {
               <div className="absolute bottom-0 left-0 right-0 bg-foreground/85 backdrop-blur-sm px-3 py-2 flex items-center justify-center gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-destructive animate-pulse-scale" />
                 <p className="text-background text-xs sm:text-sm font-semibold">
-                  ¡Solo quedan 15 kits! <span className="font-normal text-background/70">— Stock actualizado hoy</span>
+                  ¡Solo quedan {stockCount} kits! <span className="font-normal text-background/70">— Stock actualizado hoy</span>
                 </p>
               </div>
             </div>
