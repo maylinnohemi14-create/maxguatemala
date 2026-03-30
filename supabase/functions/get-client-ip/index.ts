@@ -20,6 +20,15 @@ serve(async (req) => {
 
     console.log('Client IP detected:', clientIp);
 
+    // Parse request body for optional phone check
+    let phone: string | null = null;
+    try {
+      const body = await req.json();
+      phone = body?.phone || null;
+    } catch {
+      // No body or invalid JSON - that's fine, just check IP
+    }
+
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -37,14 +46,34 @@ serve(async (req) => {
       throw error;
     }
 
-    const hasOrder = existingOrder && existingOrder.length > 0;
+    const hasOrderByIp = existingOrder && existingOrder.length > 0;
 
-    console.log('IP has existing order:', hasOrder);
+    // Check if phone already has an order
+    let hasOrderByPhone = false;
+    if (phone) {
+      const { data: phoneOrder, error: phoneError } = await supabase
+        .from('orders')
+        .select('id')
+        .eq('telefono', phone)
+        .limit(1);
+
+      if (phoneError) {
+        console.error('Error checking phone:', phoneError);
+      } else {
+        hasOrderByPhone = phoneOrder && phoneOrder.length > 0;
+      }
+    }
+
+    const hasOrder = hasOrderByIp || hasOrderByPhone;
+
+    console.log('IP has existing order:', hasOrderByIp, '| Phone has existing order:', hasOrderByPhone);
 
     return new Response(
       JSON.stringify({ 
         ip: clientIp, 
-        hasOrder 
+        hasOrder,
+        hasOrderByIp,
+        hasOrderByPhone,
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );

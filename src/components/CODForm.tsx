@@ -196,9 +196,11 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
 
     setIsSubmitting(true);
 
-    // === Double-check IP before submitting (server-side safeguard) ===
+    // === Double-check IP and phone before submitting (server-side safeguard) ===
     try {
-      const { data: ipCheck } = await supabase.functions.invoke('get-client-ip');
+      const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
+        body: { phone: data.telefono },
+      });
       if (ipCheck?.hasOrder) {
         setIpHasOrder(true);
         toast.error("Ya realizaste una compra anteriormente", {
