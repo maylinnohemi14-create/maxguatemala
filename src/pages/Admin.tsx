@@ -138,6 +138,35 @@ const Admin = () => {
     }
   };
 
+  const fetchAbandonedCarts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('abandoned_carts')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setAbandonedCarts(data || []);
+    } catch (error: any) {
+      console.error('Error fetching abandoned carts:', error);
+    }
+  };
+
+  const clearAbandonedCarts = async () => {
+    try {
+      const { error } = await supabase
+        .from('abandoned_carts')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000');
+      
+      if (error) throw error;
+      setAbandonedCarts([]);
+      toast.success("Carrinhos abandonados limpos com sucesso!");
+    } catch (error: any) {
+      toast.error("Erro ao limpar carrinhos: " + error.message);
+    }
+  };
+
   const calculateStats = (ordersData: Order[]) => {
     // Total revenue
     const revenue = ordersData.reduce((sum, order) => {
