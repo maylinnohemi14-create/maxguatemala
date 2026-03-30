@@ -81,6 +81,7 @@ const Admin = () => {
   const [cityStats, setCityStats] = useState<CityStats[]>([]);
   const [departmentStats, setDepartmentStats] = useState<DepartmentStats[]>([]);
   const [totalRevenue, setTotalRevenue] = useState(0);
+  const [abandonedCarts, setAbandonedCarts] = useState<AbandonedCart[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
