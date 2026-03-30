@@ -171,6 +171,7 @@ export type Database = {
         Returns: boolean
       }
       ip_has_order: { Args: { client_ip: string }; Returns: boolean }
+      phone_has_order: { Args: { client_phone: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "user"
