@@ -196,6 +196,53 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     return () => clearInterval(interval);
   }, []);
 
+  // === Abandoned Cart Tracking ===
+  const orderSubmittedRef = useRef(false);
+  const abandonedCartSavedRef = useRef(false);
+
+  const saveAbandonedCart = useCallback(() => {
+    if (orderSubmittedRef.current || ipHasOrder || abandonedCartSavedRef.current) return;
+    const telefono = form.getValues('telefono');
+    if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
+    
+    const nombres = form.getValues('nombres') || '';
+    abandonedCartSavedRef.current = true;
+    
+    const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/save-abandoned-cart`;
+    const payload = JSON.stringify({
+      nombres,
+      telefono,
+      page_url: window.location.pathname,
+      product_id: productId,
+    });
+    
+    const sent = navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
+    if (!sent) {
+      supabase.functions.invoke('save-abandoned-cart', {
+        body: { nombres, telefono, page_url: window.location.pathname, product_id: productId },
+      }).catch(() => {});
+    }
+  }, [ipHasOrder, productId, form]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        saveAbandonedCart();
+      }
+    };
+    const handleBeforeUnload = () => {
+      saveAbandonedCart();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [saveAbandonedCart]);
+
   const selectedDepartamento = form.watch("departamento");
   const availableMunicipios = selectedDepartamento ? MUNICIPIOS_POR_DEPARTAMENTO[selectedDepartamento] || [] : [];
 
