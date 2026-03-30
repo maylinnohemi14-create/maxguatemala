@@ -289,6 +289,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     }
 
     setIsSubmitting(true);
+    orderSubmittedRef.current = true; // Prevent abandoned cart saves during submission
 
     // === Double-check IP and phone before submitting (server-side safeguard) ===
     try {
@@ -423,7 +424,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      orderSubmittedRef.current = true;
       setIpHasOrder(true);
       
       // Remove abandoned cart since order was completed

@@ -1,0 +1,1 @@
+DELETE FROM abandoned_carts WHERE telefono IN (SELECT telefono FROM orders);
