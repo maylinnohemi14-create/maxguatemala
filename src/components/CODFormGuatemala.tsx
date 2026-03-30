@@ -389,7 +389,14 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         console.error('Error sending Telegram notification:', telegramError);
       }
 
+      orderSubmittedRef.current = true;
       setIpHasOrder(true);
+      
+      // Remove abandoned cart since order was completed
+      try {
+        await supabase.from('abandoned_carts').delete().eq('telefono', data.telefono);
+      } catch (e) { console.error('Error cleaning abandoned cart:', e); }
+      
       form.reset();
       setShowSuccessDialog(true);
     } catch (error: any) {
