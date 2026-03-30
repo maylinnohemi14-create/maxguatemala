@@ -187,7 +187,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   const abandonedCartSavedRef = useRef(false);
 
   const saveAbandonedCart = useCallback(() => {
-    if (orderSubmittedRef.current || ipHasOrder || abandonedCartSavedRef.current) return;
+    if (orderSubmittedRef.current || abandonedCartSavedRef.current) return;
     const telefono = form.getValues('telefono');
     if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
     
@@ -210,7 +210,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         body: { nombres, telefono, page_url: window.location.pathname, product_id: productId },
       }).catch(() => {});
     }
-  }, [ipHasOrder, productId, form]);
+  }, [productId, form]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
