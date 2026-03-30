@@ -113,7 +113,34 @@ const Admin = () => {
       }
     });
 
-    return () => subscription.unsubscribe();
+    // Realtime subscriptions for orders and abandoned carts
+    const ordersChannel = supabase
+      .channel('admin-orders')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'orders' },
+        () => {
+          fetchOrders();
+        }
+      )
+      .subscribe();
+
+    const cartsChannel = supabase
+      .channel('admin-abandoned-carts')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'abandoned_carts' },
+        () => {
+          fetchAbandonedCarts();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      subscription.unsubscribe();
+      supabase.removeChannel(ordersChannel);
+      supabase.removeChannel(cartsChannel);
+    };
   }, [navigate]);
 
   const fetchOrders = async () => {
