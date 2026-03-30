@@ -376,7 +376,6 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      orderSubmittedRef.current = true;
       setIpHasOrder(true);
       
       // Remove abandoned cart since order was completed
