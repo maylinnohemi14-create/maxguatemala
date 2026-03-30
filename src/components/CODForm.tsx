@@ -190,28 +190,37 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
 
   const saveAbandonedCart = useCallback(() => {
     if (orderSubmittedRef.current || ipHasOrder || abandonedCartSavedRef.current) return;
+
     const telefono = normalizePhone(form.getValues('telefono') || '');
     if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
-    
+
     const nombres = form.getValues('nombres') || '';
-    abandonedCartSavedRef.current = true;
-    
-    // Use sendBeacon for reliability on page close
+    const page_url = window.location.pathname;
+    const body = { nombres, telefono, page_url, product_id: productId };
+    const payload = JSON.stringify(body);
     const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/save-abandoned-cart`;
-    const payload = JSON.stringify({
-      nombres,
-      telefono,
-      page_url: window.location.pathname,
-      product_id: productId,
+    const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+    abandonedCartSavedRef.current = true;
+
+    void fetch(url, {
+      method: 'POST',
+      keepalive: true,
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: publishableKey,
+        Authorization: `Bearer ${publishableKey}`,
+      },
+      body: payload,
+    }).catch(() => {
+      const sent = navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
+
+      if (!sent) {
+        supabase.functions.invoke('save-abandoned-cart', { body }).catch(() => {
+          abandonedCartSavedRef.current = false;
+        });
+      }
     });
-    
-    const sent = navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
-    if (!sent) {
-      // Fallback
-      supabase.functions.invoke('save-abandoned-cart', {
-        body: { nombres, telefono, page_url: window.location.pathname, product_id: productId },
-      }).catch(() => {});
-    }
   }, [ipHasOrder, productId, form]);
 
   useEffect(() => {
@@ -223,13 +232,18 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     const handleBeforeUnload = () => {
       saveAbandonedCart();
     };
+    const handlePageHide = () => {
+      saveAbandonedCart();
+    };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('pagehide', handlePageHide);
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('pagehide', handlePageHide);
     };
   }, [saveAbandonedCart]);
 
