@@ -289,6 +289,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     }
 
     setIsSubmitting(true);
+    orderSubmittedRef.current = true; // Prevent abandoned cart saves during submission
 
     // === Double-check IP and phone before submitting (server-side safeguard) ===
     try {
