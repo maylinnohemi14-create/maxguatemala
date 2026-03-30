@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      abandoned_carts: {
+        Row: {
+          created_at: string
+          id: string
+          ip_address: string | null
+          nombres: string | null
+          page_url: string | null
+          product_id: string | null
+          telefono: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          nombres?: string | null
+          page_url?: string | null
+          product_id?: string | null
+          telefono: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          nombres?: string | null
+          page_url?: string | null
+          product_id?: string | null
+          telefono?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           apellidos: string
