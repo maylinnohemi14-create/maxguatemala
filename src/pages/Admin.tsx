@@ -108,6 +108,7 @@ const Admin = () => {
         // Fetch orders when authenticated
         setTimeout(() => {
           fetchOrders();
+          fetchAbandonedCarts();
         }, 0);
       }
     });
