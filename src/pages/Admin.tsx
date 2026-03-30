@@ -605,6 +605,88 @@ const Admin = () => {
           </Card>
         </div>
 
+        {/* Abandoned Carts Section */}
+        <div className="mb-8">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <ShoppingCart className="h-5 w-5" />
+                    Carrinhos Abandonados
+                  </CardTitle>
+                  <CardDescription>
+                    Clientes que preencheram o telefone mas não finalizaram o pedido ({abandonedCarts.length})
+                  </CardDescription>
+                </div>
+                {abandonedCarts.length > 0 && (
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="destructive" size="sm">
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Limpar
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Limpar carrinhos abandonados?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Isso irá deletar todos os {abandonedCarts.length} registros de carrinhos abandonados.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                        <AlertDialogAction onClick={clearAbandonedCarts}>
+                          Sim, limpar
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
+              </div>
+            </CardHeader>
+            <CardContent className="p-0">
+              {abandonedCarts.length === 0 ? (
+                <div className="p-8 text-center">
+                  <ShoppingCart className="h-12 w-12 text-muted-foreground mx-auto mb-3 opacity-50" />
+                  <p className="text-muted-foreground">Nenhum carrinho abandonado</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Data</TableHead>
+                        <TableHead>Nome</TableHead>
+                        <TableHead>Telefone</TableHead>
+                        <TableHead>Página</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {abandonedCarts.map((cart) => (
+                        <TableRow key={cart.id}>
+                          <TableCell className="whitespace-nowrap">
+                            {new Date(cart.created_at).toLocaleDateString('pt-BR', {
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </TableCell>
+                          <TableCell>{cart.nombres || '—'}</TableCell>
+                          <TableCell className="font-medium">{cart.telefono}</TableCell>
+                          <TableCell className="text-muted-foreground">{cart.page_url || '—'}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Pixel Management Section */}
         <div className="mb-8">
           <PixelManager />
