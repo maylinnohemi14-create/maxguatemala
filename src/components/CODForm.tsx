@@ -210,7 +210,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         body: { nombres, telefono, page_url: window.location.pathname, product_id: productId },
       }).catch(() => {});
     }
-  }, [ipHasOrder, productId, form]);
+  }, [productId, form]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
