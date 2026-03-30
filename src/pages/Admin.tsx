@@ -62,6 +62,15 @@ interface DepartmentStats {
   value: number;
 }
 
+interface AbandonedCart {
+  id: string;
+  nombres: string | null;
+  telefono: string;
+  page_url: string | null;
+  product_id: string | null;
+  created_at: string;
+}
+
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D', '#FFC658', '#FF6B9D'];
 
 const Admin = () => {
