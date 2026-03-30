@@ -186,13 +186,14 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
 
   // === Abandoned Cart Tracking ===
   const orderSubmittedRef = useRef(false);
-  const abandonedCartSavedRef = useRef(false);
+  const lastSavedAbandonedPhoneRef = useRef<string | null>(null);
 
-  const saveAbandonedCart = useCallback(() => {
-    if (orderSubmittedRef.current || ipHasOrder || abandonedCartSavedRef.current) return;
+  const saveAbandonedCart = useCallback(async ({ keepalive = false }: { keepalive?: boolean } = {}) => {
+    if (orderSubmittedRef.current || ipHasOrder) return;
 
     const telefono = normalizePhone(form.getValues('telefono') || '');
     if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
+    if (lastSavedAbandonedPhoneRef.current === telefono) return;
 
     const nombres = form.getValues('nombres') || '';
     const page_url = window.location.pathname;
@@ -201,39 +202,41 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/save-abandoned-cart`;
     const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-    abandonedCartSavedRef.current = true;
+    lastSavedAbandonedPhoneRef.current = telefono;
 
-    void fetch(url, {
-      method: 'POST',
-      keepalive: true,
-      headers: {
-        'Content-Type': 'application/json',
-        apikey: publishableKey,
-        Authorization: `Bearer ${publishableKey}`,
-      },
-      body: payload,
-    }).catch(() => {
-      const sent = navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        keepalive,
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: publishableKey,
+          Authorization: `Bearer ${publishableKey}`,
+        },
+        body: payload,
+      });
 
-      if (!sent) {
-        supabase.functions.invoke('save-abandoned-cart', { body }).catch(() => {
-          abandonedCartSavedRef.current = false;
-        });
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || `HTTP ${response.status}`);
       }
-    });
+    } catch (error) {
+      lastSavedAbandonedPhoneRef.current = null;
+      console.error('Error saving abandoned cart:', error);
+    }
   }, [ipHasOrder, productId, form]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
-        saveAbandonedCart();
+        void saveAbandonedCart({ keepalive: true });
       }
     };
     const handleBeforeUnload = () => {
-      saveAbandonedCart();
+      void saveAbandonedCart({ keepalive: true });
     };
     const handlePageHide = () => {
-      saveAbandonedCart();
+      void saveAbandonedCart({ keepalive: true });
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
@@ -247,8 +250,21 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     };
   }, [saveAbandonedCart]);
 
+  const watchedPhone = form.watch('telefono');
   const selectedDepartamento = form.watch("departamento");
   const availableCiudades = selectedDepartamento ? CIUDADES_POR_DEPARTAMENTO[selectedDepartamento] || [] : [];
+
+  useEffect(() => {
+    const telefono = normalizePhone(watchedPhone || '');
+
+    if (orderSubmittedRef.current || ipHasOrder || !/^[0-9]{4,15}$/.test(telefono)) return;
+
+    const timeoutId = window.setTimeout(() => {
+      void saveAbandonedCart();
+    }, 600);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [watchedPhone, ipHasOrder, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
     // Check if IP already has an order
@@ -364,7 +380,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       
       // Remove abandoned cart since order was completed
       try {
-        await supabase.from('abandoned_carts').delete().eq('telefono', data.telefono);
+        await supabase.from('abandoned_carts').delete().eq('telefono', normalizePhone(data.telefono));
       } catch (e) { console.error('Error cleaning abandoned cart:', e); }
       
       form.reset();
