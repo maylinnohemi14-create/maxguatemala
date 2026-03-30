@@ -276,6 +276,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     }
 
     setIsSubmitting(true);
+    orderSubmittedRef.current = true; // Prevent abandoned cart saves during submission
 
     // === Double-check IP and phone before submitting (server-side safeguard) ===
     try {
