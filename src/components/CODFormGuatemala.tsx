@@ -83,6 +83,8 @@ const formSchema = z.object({
   nota: z.string().max(500).optional(),
 });
 
+const normalizePhone = (value: string) => value.replace(/\D/g, "").slice(0, 15);
+
 type FormValues = z.infer<typeof formSchema>;
 
 export interface IncludedItem {
@@ -202,7 +204,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
 
   const saveAbandonedCart = useCallback(() => {
     if (orderSubmittedRef.current || ipHasOrder || abandonedCartSavedRef.current) return;
-    const telefono = form.getValues('telefono');
+    const telefono = normalizePhone(form.getValues('telefono') || '');
     if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
     
     const nombres = form.getValues('nombres') || '';
@@ -711,7 +713,16 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
                 <FormItem className="min-w-0">
                   <FormLabel className="text-xs sm:text-sm">Teléfono *</FormLabel>
                   <FormControl>
-                    <Input placeholder="12345678" {...field} className="w-full text-base" maxLength={15} />
+                    <Input
+                      placeholder="12345678"
+                      {...field}
+                      value={field.value ?? ""}
+                      onChange={(event) => field.onChange(normalizePhone(event.target.value))}
+                      inputMode="numeric"
+                      autoComplete="tel"
+                      className="w-full text-base"
+                      maxLength={15}
+                    />
                   </FormControl>
                   <FormMessage className="text-xs break-words" />
                 </FormItem>
