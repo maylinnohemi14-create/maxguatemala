@@ -25,7 +25,7 @@ import {
   Zap,
   Leaf,
 } from "lucide-react";
-import ninjaCrispiMain from "@/assets/ninja-crispi-main.png";
+// ninjaCrispiMain removed
 import ninjaCrispiDetail1 from "@/assets/ninja-crispi-detail1.png";
 import ninjaCrispiDetail2 from "@/assets/ninja-crispi-detail2.png";
 import ninjaCrispiLifestyle from "@/assets/ninja-crispi-lifestyle.png";
@@ -47,7 +47,15 @@ const NinjaCrispi = () => {
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
-  const productImages = [ninjaCrispiMain, ninjaCrispiDetail1, ninjaCrispiDetail2, ninjaCrispiLifestyle];
+  const productImages = [ninjaCrispiLifestyle, ninjaCrispiDetail1, ninjaCrispiDetail2];
+
+  // Auto-rotate images every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedImage(prev => (prev + 1) % productImages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [productImages.length]);
 
   useEffect(() => {
     tiktokPixelIds.forEach(pid => {
@@ -328,7 +336,7 @@ const NinjaCrispi = () => {
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Freidora de Aire de Cristal (Pack 5 Recipientes)"
-                      productImage={ninjaCrispiMain}
+                      productImage={ninjaCrispiLifestyle}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
                       includedItems={[
