@@ -25,7 +25,7 @@ import {
   Zap,
   Leaf,
 } from "lucide-react";
-import ninjaCrispiMain from "@/assets/ninja-crispi-main.png";
+// ninjaCrispiMain removed
 import ninjaCrispiDetail1 from "@/assets/ninja-crispi-detail1.png";
 import ninjaCrispiDetail2 from "@/assets/ninja-crispi-detail2.png";
 import ninjaCrispiLifestyle from "@/assets/ninja-crispi-lifestyle.png";
