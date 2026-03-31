@@ -804,6 +804,29 @@ const Admin = () => {
                         <TableCell className="font-semibold text-right">
                           ${parseInt(order.precio_total).toLocaleString('es-CO')}
                         </TableCell>
+                        <TableCell className="text-center">
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive hover:text-destructive">
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Excluir pedido?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Deseja excluir o pedido de {order.nombres} {order.apellidos} ({order.telefono})?
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => deleteOrder(order.id)}>
+                                  Sim, excluir
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
