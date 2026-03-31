@@ -373,6 +373,24 @@ const Admin = () => {
     toast.success(`Excel dividido em 2 arquivos: ${firstHalf.length} pedidos na parte 1 e ${secondHalf.length} pedidos na parte 2`);
   };
 
+  const deleteOrder = async (orderId: string) => {
+    try {
+      const { error } = await supabase
+        .from('orders')
+        .delete()
+        .eq('id', orderId);
+      
+      if (error) throw error;
+      
+      const remaining = orders.filter(o => o.id !== orderId);
+      setOrders(remaining);
+      calculateStats(remaining);
+      toast.success("Pedido excluído com sucesso!");
+    } catch (error: any) {
+      toast.error("Erro ao excluir pedido: " + error.message);
+    }
+  };
+
   const clearAllOrders = async () => {
     try {
       const { error } = await supabase
