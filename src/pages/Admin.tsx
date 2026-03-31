@@ -173,7 +173,28 @@ const Admin = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setAbandonedCarts(data || []);
+
+      // Filter out abandoned carts whose phone already has a completed order
+      const carts = data || [];
+      if (carts.length > 0) {
+        const { data: orderPhones } = await supabase
+          .from('orders')
+          .select('telefono');
+        
+        const orderedPhones = new Set((orderPhones || []).map(o => o.telefono));
+        
+        // Delete abandoned carts that have completed orders
+        const toDelete = carts.filter(c => orderedPhones.has(c.telefono));
+        if (toDelete.length > 0) {
+          const idsToDelete = toDelete.map(c => c.id);
+          await supabase.from('abandoned_carts').delete().in('id', idsToDelete);
+        }
+        
+        // Only show carts without completed orders
+        setAbandonedCarts(carts.filter(c => !orderedPhones.has(c.telefono)));
+      } else {
+        setAbandonedCarts([]);
+      }
     } catch (error: any) {
       console.error('Error fetching abandoned carts:', error);
     }
