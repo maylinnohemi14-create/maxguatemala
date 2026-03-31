@@ -336,7 +336,7 @@ const NinjaCrispi = () => {
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Freidora de Aire de Cristal (Pack 5 Recipientes)"
-                      productImage={ninjaCrispiMain}
+                      productImage={ninjaCrispiLifestyle}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
                       includedItems={[
