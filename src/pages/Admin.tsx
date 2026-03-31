@@ -373,6 +373,24 @@ const Admin = () => {
     toast.success(`Excel dividido em 2 arquivos: ${firstHalf.length} pedidos na parte 1 e ${secondHalf.length} pedidos na parte 2`);
   };
 
+  const deleteOrder = async (orderId: string) => {
+    try {
+      const { error } = await supabase
+        .from('orders')
+        .delete()
+        .eq('id', orderId);
+      
+      if (error) throw error;
+      
+      const remaining = orders.filter(o => o.id !== orderId);
+      setOrders(remaining);
+      calculateStats(remaining);
+      toast.success("Pedido excluído com sucesso!");
+    } catch (error: any) {
+      toast.error("Erro ao excluir pedido: " + error.message);
+    }
+  };
+
   const clearAllOrders = async () => {
     try {
       const { error } = await supabase
@@ -763,6 +781,7 @@ const Admin = () => {
                       <TableHead>Cidade</TableHead>
                       <TableHead>Departamento</TableHead>
                       <TableHead className="text-right">Valor</TableHead>
+                      <TableHead className="text-center w-[60px]">Ação</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -785,6 +804,29 @@ const Admin = () => {
                         <TableCell>{order.departamento}</TableCell>
                         <TableCell className="font-semibold text-right">
                           ${parseInt(order.precio_total).toLocaleString('es-CO')}
+                        </TableCell>
+                        <TableCell className="text-center">
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive hover:text-destructive">
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Excluir pedido?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Deseja excluir o pedido de {order.nombres} {order.apellidos} ({order.telefono})?
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => deleteOrder(order.id)}>
+                                  Sim, excluir
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
                         </TableCell>
                       </TableRow>
                     ))}
