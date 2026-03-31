@@ -47,7 +47,15 @@ const NinjaCrispi = () => {
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
-  const productImages = [ninjaCrispiMain, ninjaCrispiDetail1, ninjaCrispiDetail2, ninjaCrispiLifestyle];
+  const productImages = [ninjaCrispiLifestyle, ninjaCrispiDetail1, ninjaCrispiDetail2];
+
+  // Auto-rotate images every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedImage(prev => (prev + 1) % productImages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [productImages.length]);
 
   useEffect(() => {
     tiktokPixelIds.forEach(pid => {
