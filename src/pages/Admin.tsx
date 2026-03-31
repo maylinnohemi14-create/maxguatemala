@@ -781,6 +781,7 @@ const Admin = () => {
                       <TableHead>Cidade</TableHead>
                       <TableHead>Departamento</TableHead>
                       <TableHead className="text-right">Valor</TableHead>
+                      <TableHead className="text-center w-[60px]">Ação</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
