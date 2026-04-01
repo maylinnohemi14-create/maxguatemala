@@ -21,6 +21,7 @@ import Contacto from "./pages/Contacto";
 import NinjaCrispi from "./pages/NinjaCrispi";
 import UnderArmour from "./pages/UnderArmour";
 import ConjuntosKit4 from "./pages/ConjuntosKit4";
+import ConjuntosCL from "./pages/ConjuntosCL";
 import Feminino from "./pages/Feminino";
 import VestidoKit4 from "./pages/VestidoKit4";
 import VestidoKit3 from "./pages/VestidoKit3";
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/conjuntos" element={<UnderArmour />} />
           <Route path="/contraentrega" element={<ConjuntosKit4 />} />
           <Route path="/feminino" element={<Feminino />} />
+          <Route path="/conjuntoscl" element={<ConjuntosCL />} />
           <Route path="/feminino/vestido-kit4" element={<VestidoKit4 />} />
           <Route path="/feminino/vestido-kit3" element={<VestidoKit3 />} />
           <Route path="/feminino/elegance" element={<VestidoElegance />} />
