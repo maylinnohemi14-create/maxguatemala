@@ -21,6 +21,7 @@ import Contacto from "./pages/Contacto";
 import NinjaCrispi from "./pages/NinjaCrispi";
 import UnderArmour from "./pages/UnderArmour";
 import ConjuntosKit4 from "./pages/ConjuntosKit4";
+import ConjuntosCL from "./pages/ConjuntosCL";
 import Feminino from "./pages/Feminino";
 import VestidoKit4 from "./pages/VestidoKit4";
 import VestidoKit3 from "./pages/VestidoKit3";
