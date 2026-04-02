@@ -31,6 +31,7 @@ import VestidoDuo from "./pages/VestidoDuo";
 import VestidoCorset from "./pages/VestidoCorset";
 import VestidoNoche from "./pages/VestidoNoche";
 import Refletiva from "./pages/Refletiva";
+import Catalogo from "./pages/Catalogo";
 
 const queryClient = new QueryClient();
 
