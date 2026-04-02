@@ -39,11 +39,10 @@ const products = [
 const Catalogo = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-[#1a1a1a] py-3 px-4">
-        <div className="max-w-4xl mx-auto flex items-center justify-center">
-          <img src={maxHeader} alt="MAX Guatemala" className="h-10 sm:h-12" />
-        </div>
+      {/* UA Header */}
+      <div className="w-full bg-[#1a1a1a]">
+        <img src={headerDesktop} alt="Under Armour" className="hidden sm:block w-full h-auto object-cover" />
+        <img src={headerMobile} alt="Under Armour" className="block sm:hidden w-full h-auto object-cover" />
       </div>
 
       {/* Banner */}
