@@ -43,7 +43,7 @@ const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const SHIRTS = [
   { name: "Camiseta Negra #1", image: refletivaNegro },
-  { name: "Camiseta Negra #2", image: refletivaNegro },
+  { name: "Camiseta Carbón", image: refletivaNegro },
   { name: "Camiseta Vino", image: refletivaVino },
   { name: "Camiseta Roja", image: refletivaRojo },
   { name: "Camiseta Verde", image: refletivaVerde },
