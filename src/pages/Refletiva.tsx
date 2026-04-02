@@ -568,10 +568,10 @@ const Refletiva = () => {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Las 8 camisetas vienen incluidas por Q399?
+                ¿Las 8 camisetas vienen incluidas por Q359?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                ¡Sí! Por Q399 recibes las 8 camisetas reflectivas completas en diferentes colores. Cada una con estampado holográfico premium.
+                ¡Sí! Por Q359 recibes las 8 camisetas reflectivas completas en diferentes colores. Cada una con estampado holográfico premium.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
