@@ -606,7 +606,7 @@ const Refletiva = () => {
       <section className="py-10 sm:py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            ¡Lleva las 8 camisetas reflectivas por solo Q399! 👕🇬🇹
+            ¡Lleva las 8 camisetas reflectivas por solo Q359! 👕🇬🇹
           </h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega + 8 camisetas premium
