@@ -45,11 +45,11 @@ const SHIRTS = [
   { name: "Camiseta Negra", image: refletivaNegro },
   { name: "Camiseta Blanca", image: refletivaBlanco },
   { name: "Camiseta Gris", image: refletivaGris },
+  { name: "Camiseta Azul", image: refletivaAzul },
   { name: "Camiseta Carbón", image: refletivaNegro },
   { name: "Camiseta Vino", image: refletivaVino },
   { name: "Camiseta Roja", image: refletivaRojo },
   { name: "Camiseta Verde", image: refletivaVerde },
-  { name: "Camiseta Azul", image: refletivaAzul },
 ];
 
 const Refletiva = () => {
