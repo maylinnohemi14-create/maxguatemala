@@ -383,15 +383,13 @@ const Refletiva = () => {
                   </DialogContent>
                 </Dialog>
               </div>
-              {COLORS.map((color, idx) => (
+              {SHIRTS.map((shirt, idx) => (
                 <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-border">
-                      <Shirt className="w-5 h-5 text-primary" />
-                    </div>
+                    <img src={shirt.image} alt={shirt.name} className="w-10 h-10 rounded-lg object-cover border border-border" />
                     <div>
-                      <span className="font-bold text-sm text-foreground">Camiseta {color}</span>
-                      <p className="text-xs text-muted-foreground">Estampado reflectivo holográfico</p>
+                      <span className="font-bold text-sm text-foreground">{shirt.name}</span>
+                      <p className="text-xs text-muted-foreground">Reflectiva holográfica</p>
                     </div>
                   </div>
                   <div>
