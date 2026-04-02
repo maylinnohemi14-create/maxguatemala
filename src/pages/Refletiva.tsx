@@ -47,7 +47,7 @@ const SHIRTS = [
 
 const Refletiva = () => {
   const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>(
-    Object.fromEntries(COLORS.map((_, i) => [i, "M"]))
+    Object.fromEntries(SHIRTS.map((_, i) => [i, "M"]))
   );
   const [showCODForm, setShowCODForm] = useState(false);
   const [stockCount, setStockCount] = useState(15);
