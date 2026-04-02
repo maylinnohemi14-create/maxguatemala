@@ -1,0 +1,1 @@
+UPDATE tracking_pixels SET pixel_id = 'D4LK3U3C77U1VUV8SRF0', updated_at = now() WHERE id = 'e7a4f1a8-4410-45fa-b40f-72ec6e632810';
