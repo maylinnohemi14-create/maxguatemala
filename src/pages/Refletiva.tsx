@@ -172,9 +172,10 @@ const Refletiva = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden max-w-[100vw]">
-      {/* MAX Header */}
-      <div className="w-full bg-white">
-        <img src={maxHeader} alt="MAX Guatemala - Tienda Online" className="w-full h-auto object-contain sm:object-cover max-h-[120px] sm:max-h-none mx-auto sm:mx-0 p-2 sm:p-0" />
+      {/* UA Header */}
+      <div className="w-full bg-[#1a1a1a]">
+        <img src={headerDesktop} alt="Under Armour" className="hidden sm:block w-full h-auto object-cover" />
+        <img src={headerMobile} alt="Under Armour" className="block sm:hidden w-full h-auto object-cover" />
       </div>
 
       {/* Trust Bar */}
