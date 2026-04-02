@@ -34,20 +34,20 @@ import { Ruler } from "lucide-react";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
-const COLORS = [
-  "Negro",
-  "Blanco",
-  "Azul",
-  "Gris",
-  "Negro c/ Azul",
-  "Negro c/ Blanco",
-  "Azul c/ Gris",
-  "Gris c/ Negro",
+const SHIRTS = [
+  { name: "Camiseta Negra #1", image: camisetasPrincipal },
+  { name: "Camiseta Negra #2", image: camisetasPrincipal },
+  { name: "Camiseta Blanca #1", image: camisetasPrincipal },
+  { name: "Camiseta Blanca #2", image: camisetasPrincipal },
+  { name: "Camiseta Azul #1", image: camisetasPrincipal },
+  { name: "Camiseta Azul #2", image: camisetasPrincipal },
+  { name: "Camiseta Gris #1", image: camisetasPrincipal },
+  { name: "Camiseta Gris #2", image: camisetasPrincipal },
 ];
 
 const Refletiva = () => {
   const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>(
-    Object.fromEntries(COLORS.map((_, i) => [i, "M"]))
+    Object.fromEntries(SHIRTS.map((_, i) => [i, "M"]))
   );
   const [showCODForm, setShowCODForm] = useState(false);
   const [stockCount, setStockCount] = useState(15);
@@ -159,7 +159,7 @@ const Refletiva = () => {
   ];
 
   const sizesNote = Object.entries(selectedSizes)
-    .map(([idx, size]) => `${COLORS[Number(idx)]}: ${size}`)
+    .map(([idx, size]) => `${SHIRTS[Number(idx)].name}: ${size}`)
     .join(" | ");
 
   return (
@@ -383,15 +383,13 @@ const Refletiva = () => {
                   </DialogContent>
                 </Dialog>
               </div>
-              {COLORS.map((color, idx) => (
+              {SHIRTS.map((shirt, idx) => (
                 <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-border">
-                      <Shirt className="w-5 h-5 text-primary" />
-                    </div>
+                    <img src={shirt.image} alt={shirt.name} className="w-10 h-10 rounded-lg object-cover border border-border" />
                     <div>
-                      <span className="font-bold text-sm text-foreground">Camiseta {color}</span>
-                      <p className="text-xs text-muted-foreground">Estampado reflectivo holográfico</p>
+                      <span className="font-bold text-sm text-foreground">{shirt.name}</span>
+                      <p className="text-xs text-muted-foreground">Reflectiva holográfica</p>
                     </div>
                   </div>
                   <div>
@@ -530,8 +528,8 @@ const Refletiva = () => {
             ¿Qué incluye tu kit? 📦
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {COLORS.map((color) => (
-              <div key={color} className="p-4 rounded-2xl border border-border bg-card shadow-sm text-center">
+            {["Negra", "Negra", "Blanca", "Blanca", "Azul", "Azul", "Gris", "Gris"].map((color, idx) => (
+              <div key={idx} className="p-4 rounded-2xl border border-border bg-card shadow-sm text-center">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
                   <Shirt className="w-6 h-6 text-primary" />
                 </div>
