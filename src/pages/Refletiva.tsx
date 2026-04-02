@@ -64,7 +64,7 @@ const Refletiva = () => {
   }, []);
 
   const PRODUCT_ID = "UA-KIT8-REFLETIVA-GT";
-  const PRODUCT_PRICE = 399;
+  const PRODUCT_PRICE = 359;
   const PAGE_ROUTE = "/refletiva";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
