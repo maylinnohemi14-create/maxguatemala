@@ -30,6 +30,7 @@ import VestidoGlam from "./pages/VestidoGlam";
 import VestidoDuo from "./pages/VestidoDuo";
 import VestidoCorset from "./pages/VestidoCorset";
 import VestidoNoche from "./pages/VestidoNoche";
+import Refletiva from "./pages/Refletiva";
 
 const queryClient = new QueryClient();
 
