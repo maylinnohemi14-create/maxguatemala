@@ -618,7 +618,7 @@ const Refletiva = () => {
                 className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
               >
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q399
+                PEDIR AHORA - Q359
               </Button>
             </DialogTrigger>
           </Dialog>
