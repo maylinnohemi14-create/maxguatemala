@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { LegalFooter } from "@/components/LegalFooter";
-import maxHeader from "@/assets/max-header.png";
+import headerDesktop from "@/assets/refletiva-header-desktop.png";
+import headerMobile from "@/assets/refletiva-header-mobile.jpg";
 import underArmourMain from "@/assets/under-armour-main.png";
 import conjunto4Negro from "@/assets/conjunto4-negro-gen.webp";
 import refletivaHero from "@/assets/refletiva-hero.jpg";
