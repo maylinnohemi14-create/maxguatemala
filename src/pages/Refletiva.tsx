@@ -25,6 +25,10 @@ import {
   Shirt,
 } from "lucide-react";
 import camisetasPrincipal from "@/assets/camisetas-refletivas-principal.jpg";
+import refletivaNegro from "@/assets/refletiva-negro.webp";
+import refletivaBlanco from "@/assets/refletiva-blanco.webp";
+import refletivaAzul from "@/assets/refletiva-azul.webp";
+import refletivaGris from "@/assets/refletiva-gris.webp";
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
@@ -35,14 +39,14 @@ import { Ruler } from "lucide-react";
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const SHIRTS = [
-  { name: "Camiseta Negra #1", image: camisetasPrincipal },
-  { name: "Camiseta Negra #2", image: camisetasPrincipal },
-  { name: "Camiseta Blanca #1", image: camisetasPrincipal },
-  { name: "Camiseta Blanca #2", image: camisetasPrincipal },
-  { name: "Camiseta Azul #1", image: camisetasPrincipal },
-  { name: "Camiseta Azul #2", image: camisetasPrincipal },
-  { name: "Camiseta Gris #1", image: camisetasPrincipal },
-  { name: "Camiseta Gris #2", image: camisetasPrincipal },
+  { name: "Conjunto Negro #1", image: refletivaNegro },
+  { name: "Conjunto Negro #2", image: refletivaNegro },
+  { name: "Conjunto Blanco #1", image: refletivaBlanco },
+  { name: "Conjunto Blanco #2", image: refletivaBlanco },
+  { name: "Conjunto Azul #1", image: refletivaAzul },
+  { name: "Conjunto Azul #2", image: refletivaAzul },
+  { name: "Conjunto Gris #1", image: refletivaGris },
+  { name: "Conjunto Gris #2", image: refletivaGris },
 ];
 
 const Refletiva = () => {
