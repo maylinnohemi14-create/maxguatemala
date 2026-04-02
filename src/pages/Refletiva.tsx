@@ -179,7 +179,7 @@ const Refletiva = () => {
       </div>
 
       {/* Trust Bar */}
-      <div className="bg-gradient-hero text-primary-foreground py-2">
+      <div className="bg-[#1a1a1a] text-white py-2">
         <div className="container mx-auto px-2 sm:px-4">
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium">
             <div className="flex items-center gap-1.5 sm:gap-2">
