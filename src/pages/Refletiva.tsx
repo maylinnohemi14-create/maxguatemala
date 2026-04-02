@@ -535,7 +535,7 @@ const Refletiva = () => {
             ¿Qué incluye tu kit? 📦
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {["Negra", "Negra", "Blanca", "Blanca", "Azul", "Azul", "Gris", "Gris"].map((color, idx) => (
+            {["Negra", "Carbón", "Blanca", "Blanca", "Azul", "Azul", "Gris", "Gris"].map((color, idx) => (
               <div key={idx} className="p-4 rounded-2xl border border-border bg-card shadow-sm text-center">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
                   <Shirt className="w-6 h-6 text-primary" />
