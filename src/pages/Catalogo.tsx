@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { LegalFooter } from "@/components/LegalFooter";
-import maxHeader from "@/assets/max-header.png";
+import headerDesktop from "@/assets/refletiva-header-desktop.png";
+import headerMobile from "@/assets/refletiva-header-mobile.jpg";
 import underArmourMain from "@/assets/under-armour-main.png";
 import conjunto4Negro from "@/assets/conjunto4-negro-gen.webp";
 import refletivaHero from "@/assets/refletiva-hero.jpg";
@@ -38,11 +39,10 @@ const products = [
 const Catalogo = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-[#1a1a1a] py-3 px-4">
-        <div className="max-w-4xl mx-auto flex items-center justify-center">
-          <img src={maxHeader} alt="MAX Guatemala" className="h-10 sm:h-12" />
-        </div>
+      {/* UA Header */}
+      <div className="w-full bg-[#1a1a1a]">
+        <img src={headerDesktop} alt="Under Armour" className="hidden sm:block w-full h-auto object-cover" />
+        <img src={headerMobile} alt="Under Armour" className="block sm:hidden w-full h-auto object-cover" />
       </div>
 
       {/* Banner */}
