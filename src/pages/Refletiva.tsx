@@ -24,7 +24,7 @@ import {
   Zap,
   Shirt,
 } from "lucide-react";
-import camisetasPrincipal from "@/assets/camisetas-refletivas-principal.jpg";
+import camisetasPrincipal from "@/assets/refletiva-hero.jpg";
 import refletivaNegro from "@/assets/refletiva-negro2.png";
 import refletivaBlanco from "@/assets/refletiva-blanco2.png";
 import refletivaAzul from "@/assets/refletiva-azul2.png";
