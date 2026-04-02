@@ -25,10 +25,13 @@ import {
   Shirt,
 } from "lucide-react";
 import camisetasPrincipal from "@/assets/camisetas-refletivas-principal.jpg";
-import refletivaNegro from "@/assets/refletiva-negro.webp";
-import refletivaBlanco from "@/assets/refletiva-blanco.webp";
-import refletivaAzul from "@/assets/refletiva-azul.webp";
-import refletivaGris from "@/assets/refletiva-gris.webp";
+import refletivaNegro from "@/assets/refletiva-negro2.png";
+import refletivaBlanco from "@/assets/refletiva-blanco2.png";
+import refletivaAzul from "@/assets/refletiva-azul2.png";
+import refletivaGris from "@/assets/refletiva-gris2.png";
+import refletivaVino from "@/assets/refletiva-vino.png";
+import refletivaRojo from "@/assets/refletiva-rojo.png";
+import refletivaVerde from "@/assets/refletiva-verde.png";
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
