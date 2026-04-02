@@ -159,7 +159,7 @@ const Refletiva = () => {
   ];
 
   const sizesNote = Object.entries(selectedSizes)
-    .map(([idx, size]) => `${COLORS[Number(idx)]}: ${size}`)
+    .map(([idx, size]) => `${SHIRTS[Number(idx)].name}: ${size}`)
     .join(" | ");
 
   return (
