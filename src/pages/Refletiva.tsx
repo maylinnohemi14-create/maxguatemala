@@ -25,6 +25,10 @@ import {
   Shirt,
 } from "lucide-react";
 import camisetasPrincipal from "@/assets/camisetas-refletivas-principal.jpg";
+import refletivaNegro from "@/assets/refletiva-negro.webp";
+import refletivaBlanco from "@/assets/refletiva-blanco.webp";
+import refletivaAzul from "@/assets/refletiva-azul.webp";
+import refletivaGris from "@/assets/refletiva-gris.webp";
 import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
@@ -35,14 +39,14 @@ import { Ruler } from "lucide-react";
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const SHIRTS = [
-  { name: "Camiseta Negra #1", image: camisetasPrincipal },
-  { name: "Camiseta Negra #2", image: camisetasPrincipal },
-  { name: "Camiseta Blanca #1", image: camisetasPrincipal },
-  { name: "Camiseta Blanca #2", image: camisetasPrincipal },
-  { name: "Camiseta Azul #1", image: camisetasPrincipal },
-  { name: "Camiseta Azul #2", image: camisetasPrincipal },
-  { name: "Camiseta Gris #1", image: camisetasPrincipal },
-  { name: "Camiseta Gris #2", image: camisetasPrincipal },
+  { name: "Conjunto Negro #1", image: refletivaNegro },
+  { name: "Conjunto Negro #2", image: refletivaNegro },
+  { name: "Conjunto Blanco #1", image: refletivaBlanco },
+  { name: "Conjunto Blanco #2", image: refletivaBlanco },
+  { name: "Conjunto Azul #1", image: refletivaAzul },
+  { name: "Conjunto Azul #2", image: refletivaAzul },
+  { name: "Conjunto Gris #1", image: refletivaGris },
+  { name: "Conjunto Gris #2", image: refletivaGris },
 ];
 
 const Refletiva = () => {
@@ -60,7 +64,7 @@ const Refletiva = () => {
   }, []);
 
   const PRODUCT_ID = "UA-KIT8-REFLETIVA-GT";
-  const PRODUCT_PRICE = 399;
+  const PRODUCT_PRICE = 359;
   const PAGE_ROUTE = "/refletiva";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
@@ -254,11 +258,11 @@ const Refletiva = () => {
               <div className="relative">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-sm sm:text-base text-muted-foreground">Precio normal:</span>
-                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q899</span>
+                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q799</span>
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
                   <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">
-                    Q399
+                    Q359
                   </span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
@@ -564,10 +568,10 @@ const Refletiva = () => {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Las 8 camisetas vienen incluidas por Q399?
+                ¿Las 8 camisetas vienen incluidas por Q359?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                ¡Sí! Por Q399 recibes las 8 camisetas reflectivas completas en diferentes colores. Cada una con estampado holográfico premium.
+                ¡Sí! Por Q359 recibes las 8 camisetas reflectivas completas en diferentes colores. Cada una con estampado holográfico premium.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
@@ -602,7 +606,7 @@ const Refletiva = () => {
       <section className="py-10 sm:py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            ¡Lleva las 8 camisetas reflectivas por solo Q399! 👕🇬🇹
+            ¡Lleva las 8 camisetas reflectivas por solo Q359! 👕🇬🇹
           </h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega + 8 camisetas premium
@@ -614,7 +618,7 @@ const Refletiva = () => {
                 className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
               >
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q399
+                PEDIR AHORA - Q359
               </Button>
             </DialogTrigger>
           </Dialog>
