@@ -42,14 +42,14 @@ import { Ruler } from "lucide-react";
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const SHIRTS = [
-  { name: "Camiseta Negra #1", image: refletivaNegro },
+  { name: "Camiseta Negra", image: refletivaNegro },
+  { name: "Camiseta Blanca", image: refletivaBlanco },
+  { name: "Camiseta Gris", image: refletivaGris },
   { name: "Camiseta Carbón", image: refletivaNegro },
   { name: "Camiseta Vino", image: refletivaVino },
   { name: "Camiseta Roja", image: refletivaRojo },
   { name: "Camiseta Verde", image: refletivaVerde },
-  { name: "Camiseta Gris", image: refletivaGris },
   { name: "Camiseta Azul", image: refletivaAzul },
-  { name: "Camiseta Blanca", image: refletivaBlanco },
 ];
 
 const Refletiva = () => {
