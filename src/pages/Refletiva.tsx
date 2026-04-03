@@ -277,7 +277,7 @@ const Refletiva = () => {
 
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <Badge className="bg-primary text-primary-foreground font-bold text-xs sm:text-sm px-2 sm:px-3 py-1.5 animate-pulse-glow whitespace-normal text-center leading-tight">
-                ⚡ PROMOCIÓN DE SEMANA SANTA VÁLIDA HASTA EL 5 DE ABRIL - ¡NO TE LO PIERDAS!
+                ⚡ PROMOCIÓN VÁLIDA HASTA HOY {new Date().toLocaleDateString('es-GT', { timeZone: 'America/Guatemala', day: 'numeric', month: 'long' }).toUpperCase()} - ¡NO TE LO PIERDAS!
               </Badge>
             </div>
 
