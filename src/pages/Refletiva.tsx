@@ -42,16 +42,18 @@ import { Ruler } from "lucide-react";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
-const SHIRTS = [
-  { name: "Camiseta Negra", image: refletivaNegro },
-  { name: "Camiseta Blanca", image: refletivaBlanco },
-  { name: "Camiseta Gris", image: refletivaGris },
-  { name: "Camiseta Azul", image: refletivaAzul },
-  { name: "Camiseta Carbón", image: refletivaNegro },
-  { name: "Camiseta Vino", image: refletivaVino },
-  { name: "Camiseta Roja", image: refletivaRojo },
-  { name: "Camiseta Verde", image: refletivaVerde },
+const COLORS = [
+  { name: "Negra", image: refletivaNegro },
+  { name: "Blanca", image: refletivaBlanco },
+  { name: "Gris", image: refletivaGris },
+  { name: "Azul", image: refletivaAzul },
+  { name: "Carbón", image: refletivaNegro },
+  { name: "Vino", image: refletivaVino },
+  { name: "Roja", image: refletivaRojo },
+  { name: "Verde", image: refletivaVerde },
 ];
+
+const DEFAULT_COLORS = ["Negra", "Blanca", "Gris", "Azul", "Carbón", "Vino", "Roja", "Verde"];
 
 const Refletiva = () => {
   const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>(
