@@ -59,6 +59,9 @@ const Refletiva = () => {
   );
   const [showCODForm, setShowCODForm] = useState(false);
   const [stockCount, setStockCount] = useState(15);
+  const [selectedImage, setSelectedImage] = useState(0);
+
+  const productImages = [camisetasPrincipal, refletivaNegro, refletivaBlanco, refletivaGris, refletivaAzul, refletivaVino, refletivaRojo, refletivaVerde];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,6 +69,13 @@ const Refletiva = () => {
     }, 20000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedImage(prev => (prev + 1) % productImages.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [productImages.length]);
 
   const PRODUCT_ID = "UA-KIT8-REFLETIVA-GT";
   const PRODUCT_PRICE = 359;
@@ -199,9 +209,39 @@ const Refletiva = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 sm:px-4 py-6 sm:py-12 max-w-[100vw]">
-        <div className="max-w-3xl mx-auto">
-          {/* Product Info */}
+      <section className="container mx-auto px-3 sm:px-4 py-6 sm:py-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
+          {/* Product Images - Left Column */}
+          <div className="animate-fade-in">
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
+              <img
+                src={productImages[selectedImage]}
+                alt="Kit 8 Camisetas Reflectivas"
+                className="w-full h-auto object-contain aspect-square"
+                loading="eager"
+                fetchPriority="high"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-foreground/85 backdrop-blur-sm px-3 py-2 flex items-center justify-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-destructive animate-pulse-scale" />
+                <p className="text-background text-xs sm:text-sm font-semibold">
+                  ¡Solo quedan {stockCount} kits! <span className="font-normal text-background/70">— Stock actualizado hoy</span>
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-4 gap-2 mt-2">
+              {productImages.slice(0, 8).map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedImage(idx)}
+                  className={`border-2 rounded-lg overflow-hidden transition-all ${selectedImage === idx ? 'border-primary ring-2 ring-primary/30' : 'border-border opacity-70 hover:opacity-100'}`}
+                >
+                  <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-auto object-cover aspect-square" />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Product Info - Right Column */}
           <div className="animate-scale-in">
             <div className="mb-3">
               <Badge className="bg-green-600 text-white font-bold text-xs sm:text-sm px-3 py-1.5 border-2 border-green-700">
@@ -223,7 +263,7 @@ const Refletiva = () => {
               </Badge>
             </div>
 
-            <h1 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-2 text-foreground leading-tight break-words">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-foreground leading-tight">
               CAMISETAS REFLECTIVAS KIT 8 EN 1 👕✨
             </h1>
 
@@ -236,26 +276,6 @@ const Refletiva = () => {
             <p className="text-sm sm:text-base text-muted-foreground mb-4">
               Renueva tu guardarropa con este increíble kit de 8 camisetas deportivas con estampado reflectivo holográfico. Estilo premium para toda la semana.
             </p>
-
-            {/* Main Product Image */}
-            <div className="mb-4 sm:mb-6 rounded-2xl overflow-hidden border border-border shadow-lg max-w-xs mx-auto relative">
-              <img 
-                src={camisetasPrincipal} 
-                alt="Kit 8 Camisetas Reflectivas" 
-                className="w-full h-auto object-cover bg-white"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                width={320}
-                height={400}
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-foreground/85 backdrop-blur-sm px-3 py-2 flex items-center justify-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-destructive animate-pulse-scale" />
-                <p className="text-background text-xs sm:text-sm font-semibold">
-                  ¡Solo quedan {stockCount} kits! <span className="font-normal text-background/70">— Stock actualizado hoy</span>
-                </p>
-              </div>
-            </div>
 
             {/* Price Section */}
             <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
