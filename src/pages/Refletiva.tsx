@@ -83,7 +83,7 @@ const Refletiva = () => {
   }, [productImages.length]);
 
   const PRODUCT_ID = "UA-KIT8-REFLETIVA-GT";
-  const PRODUCT_PRICE = 359;
+  const PRODUCT_PRICE = 279;
   const PAGE_ROUTE = "/refletiva";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
@@ -291,11 +291,11 @@ const Refletiva = () => {
               <div className="relative">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-sm sm:text-base text-muted-foreground">Precio normal:</span>
-                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q799</span>
+                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q599</span>
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
                   <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">
-                    Q359
+                    Q279
                   </span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
@@ -626,10 +626,10 @@ const Refletiva = () => {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Las 8 camisetas vienen incluidas por Q359?
+                ¿Las 8 camisetas vienen incluidas por Q279?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                ¡Sí! Por Q359 recibes las 8 camisetas reflectivas completas en diferentes colores. Cada una con estampado holográfico premium.
+                ¡Sí! Por Q279 recibes las 8 camisetas reflectivas completas en diferentes colores. Cada una con estampado holográfico premium.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
@@ -664,7 +664,7 @@ const Refletiva = () => {
       <section className="py-10 sm:py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            ¡Lleva las 8 camisetas reflectivas por solo Q359! 👕🇬🇹
+            ¡Lleva las 8 camisetas reflectivas por solo Q279! 👕🇬🇹
           </h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega + 8 camisetas premium
@@ -676,7 +676,7 @@ const Refletiva = () => {
                 className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
               >
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q359
+                PEDIR AHORA - Q279
               </Button>
             </DialogTrigger>
           </Dialog>
