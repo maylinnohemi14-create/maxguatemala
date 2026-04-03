@@ -420,35 +420,60 @@ const Refletiva = () => {
                   </DialogContent>
                 </Dialog>
               </div>
-              {SHIRTS.map((shirt, idx) => (
-                <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img src={shirt.image} alt={shirt.name} className="w-10 h-10 rounded-lg object-cover border border-border" />
+              {DEFAULT_COLORS.map((defaultColor, idx) => {
+                const currentColor = selectedColors[idx];
+                const colorData = COLORS.find(c => c.name === currentColor) || COLORS[0];
+                return (
+                  <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
+                    <div className="flex items-center gap-3 mb-3">
+                      <img src={colorData.image} alt={`Camiseta ${currentColor}`} className="w-10 h-10 rounded-lg object-cover border border-border" />
+                      <div>
+                        <span className="font-bold text-sm text-foreground">Camiseta {idx + 1}</span>
+                        <p className="text-xs text-muted-foreground">Reflectiva holográfica</p>
+                      </div>
+                    </div>
+                    {/* Color selector */}
+                    <div className="mb-2">
+                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">Color: <span className="text-foreground">{currentColor}</span></span>
+                      <div className="flex gap-1.5 flex-wrap">
+                        {COLORS.map((color) => (
+                          <button
+                            key={color.name}
+                            onClick={() => setSelectedColors(prev => ({ ...prev, [idx]: color.name }))}
+                            className={`w-8 h-8 rounded-md overflow-hidden border-2 transition-all ${
+                              currentColor === color.name
+                                ? "border-primary ring-2 ring-primary/30"
+                                : "border-border opacity-70 hover:opacity-100"
+                            }`}
+                            title={color.name}
+                          >
+                            <img src={color.image} alt={color.name} className="w-full h-full object-cover" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    {/* Size selector */}
                     <div>
-                      <span className="font-bold text-sm text-foreground">{shirt.name}</span>
-                      <p className="text-xs text-muted-foreground">Reflectiva holográfica</p>
+                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">Talla: <span className="text-foreground">{selectedSizes[idx]}</span></span>
+                      <div className="flex gap-1.5 flex-wrap">
+                        {SIZES.map((size) => (
+                          <button
+                            key={size}
+                            onClick={() => setSelectedSizes(prev => ({ ...prev, [idx]: size }))}
+                            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all border ${
+                              selectedSizes[idx] === size
+                                ? "bg-foreground text-background border-foreground"
+                                : "bg-background text-foreground border-border hover:border-foreground/50"
+                            }`}
+                          >
+                            {size}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <span className="text-xs font-semibold text-muted-foreground mb-1 block">Talla: <span className="text-foreground">{selectedSizes[idx]}</span></span>
-                    <div className="flex gap-1.5 flex-wrap">
-                      {SIZES.map((size) => (
-                        <button
-                          key={size}
-                          onClick={() => setSelectedSizes(prev => ({ ...prev, [idx]: size }))}
-                          className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all border ${
-                            selectedSizes[idx] === size
-                              ? "bg-foreground text-background border-foreground"
-                              : "bg-background text-foreground border-border hover:border-foreground/50"
-                          }`}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* CTA Button */}
