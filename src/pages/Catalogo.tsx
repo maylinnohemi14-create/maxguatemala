@@ -28,7 +28,7 @@ const products = [
   {
     title: "Kit 8 Camisetas Reflectivas",
     description: "8 camisetas reflectivas premium en colores: Negra, Blanca, Gris, Azul, Carbón, Vino, Roja y Verde.",
-    price: "Q359",
+    price: "Q279",
     originalPrice: "Q720",
     image: refletivaHero,
     link: "/refletiva",
