@@ -182,7 +182,10 @@ const Refletiva = () => {
   ];
 
   const sizesNote = Object.entries(selectedSizes)
-    .map(([idx, size]) => `${SHIRTS[Number(idx)].name}: ${size}`)
+    .map(([idx, size]) => {
+      const color = selectedColors[Number(idx)];
+      return `Camiseta ${color}: ${size}`;
+    })
     .join(" | ");
 
   return (
