@@ -64,9 +64,8 @@ const Refletiva = () => {
   );
   const [showCODForm, setShowCODForm] = useState(false);
   const [stockCount, setStockCount] = useState(15);
-  const [selectedImage, setSelectedImage] = useState(0);
-
-  const productImages = [camisetasPrincipal, refletivaNegro, refletivaBlanco, refletivaGris, refletivaAzul, refletivaVino, refletivaRojo, refletivaVerde];
+  const [selectedImage] = useState(0);
+  const productImages = [camisetasPrincipal];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,12 +74,7 @@ const Refletiva = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelectedImage(prev => (prev + 1) % productImages.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [productImages.length]);
+  // Auto-rotate disabled - single image only
 
   const PRODUCT_ID = "UA-KIT8-REFLETIVA-GT";
   const PRODUCT_PRICE = 279;
@@ -235,17 +229,6 @@ const Refletiva = () => {
                   ¡Solo quedan {stockCount} kits! <span className="font-normal text-background/70">— Stock actualizado hoy</span>
                 </p>
               </div>
-            </div>
-            <div className="grid grid-cols-4 gap-2 mt-2">
-              {productImages.slice(0, 8).map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`border-2 rounded-lg overflow-hidden transition-all ${selectedImage === idx ? 'border-primary ring-2 ring-primary/30' : 'border-border opacity-70 hover:opacity-100'}`}
-                >
-                  <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-auto object-cover aspect-square" />
-                </button>
-              ))}
             </div>
           </div>
 
