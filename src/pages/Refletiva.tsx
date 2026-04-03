@@ -70,6 +70,13 @@ const Refletiva = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelectedImage(prev => (prev + 1) % productImages.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [productImages.length]);
+
   const PRODUCT_ID = "UA-KIT8-REFLETIVA-GT";
   const PRODUCT_PRICE = 359;
   const PAGE_ROUTE = "/refletiva";
