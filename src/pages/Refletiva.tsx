@@ -230,17 +230,6 @@ const Refletiva = () => {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-2 mt-2">
-              {productImages.slice(0, 8).map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`border-2 rounded-lg overflow-hidden transition-all ${selectedImage === idx ? 'border-primary ring-2 ring-primary/30' : 'border-border opacity-70 hover:opacity-100'}`}
-                >
-                  <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-auto object-cover aspect-square" />
-                </button>
-              ))}
-            </div>
           </div>
 
           {/* Product Info - Right Column */}
