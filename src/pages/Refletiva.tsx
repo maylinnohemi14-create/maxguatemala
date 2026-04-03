@@ -74,12 +74,7 @@ const Refletiva = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelectedImage(prev => (prev + 1) % productImages.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [productImages.length]);
+  // Auto-rotate disabled - single image only
 
   const PRODUCT_ID = "UA-KIT8-REFLETIVA-GT";
   const PRODUCT_PRICE = 279;
