@@ -371,7 +371,7 @@ const Refletiva = () => {
             {/* Size Selectors */}
             <div className="mb-4 sm:mb-6 space-y-4">
               <div className="flex items-center justify-between">
-                <label className="block font-semibold text-foreground text-sm sm:text-base">Selecciona la talla de cada camiseta:</label>
+                <label className="block font-semibold text-foreground text-sm sm:text-base">Selecciona la talla y color de cada camiseta:</label>
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="flex items-center gap-1 text-xs font-semibold text-primary hover:underline">
