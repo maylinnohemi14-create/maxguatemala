@@ -295,7 +295,7 @@ const Refletiva = () => {
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
                   <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">
-                    Q359
+                    Q279
                   </span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
