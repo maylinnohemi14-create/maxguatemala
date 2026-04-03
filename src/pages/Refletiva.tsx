@@ -57,7 +57,10 @@ const DEFAULT_COLORS = ["Negra", "Blanca", "Gris", "Azul", "Carbón", "Vino", "R
 
 const Refletiva = () => {
   const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>(
-    Object.fromEntries(SHIRTS.map((_, i) => [i, "M"]))
+    Object.fromEntries(DEFAULT_COLORS.map((_, i) => [i, "M"]))
+  );
+  const [selectedColors, setSelectedColors] = useState<Record<number, string>>(
+    Object.fromEntries(DEFAULT_COLORS.map((c, i) => [i, c]))
   );
   const [showCODForm, setShowCODForm] = useState(false);
   const [stockCount, setStockCount] = useState(15);
