@@ -64,6 +64,7 @@ const Refletiva = () => {
   );
   const [showCODForm, setShowCODForm] = useState(false);
   const [stockCount, setStockCount] = useState(15);
+  const [selectedImage] = useState(0);
   const productImages = [camisetasPrincipal];
 
   useEffect(() => {
