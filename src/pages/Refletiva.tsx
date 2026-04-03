@@ -59,6 +59,9 @@ const Refletiva = () => {
   );
   const [showCODForm, setShowCODForm] = useState(false);
   const [stockCount, setStockCount] = useState(15);
+  const [selectedImage, setSelectedImage] = useState(0);
+
+  const productImages = [camisetasPrincipal, refletivaNegro, refletivaBlanco, refletivaGris, refletivaAzul, refletivaVino, refletivaRojo, refletivaVerde];
 
   useEffect(() => {
     const interval = setInterval(() => {
