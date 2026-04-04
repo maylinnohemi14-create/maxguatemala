@@ -32,8 +32,7 @@ import refletivaGris from "@/assets/refletiva-gris2.png";
 import refletivaVino from "@/assets/refletiva-vino.png";
 import refletivaRojo from "@/assets/refletiva-rojo.png";
 import refletivaVerde from "@/assets/refletiva-verde.png";
-import headerDesktop from "@/assets/refletiva-header-desktop.png";
-import headerMobile from "@/assets/refletiva-header-mobile.jpg";
+import maxHeader from "@/assets/max-header.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -184,10 +183,9 @@ const Refletiva = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden max-w-[100vw]">
-      {/* UA Header */}
-      <div className="w-full bg-[#1a1a1a]">
-        <img src={headerDesktop} alt="Under Armour" className="hidden sm:block w-full h-auto object-cover" />
-        <img src={headerMobile} alt="Under Armour" className="block sm:hidden w-full h-auto object-cover" />
+      {/* MAX Header */}
+      <div className="w-full bg-white">
+        <img src={maxHeader} alt="MAX Guatemala - Tienda Online" className="w-full h-auto object-contain sm:object-cover max-h-[120px] sm:max-h-none mx-auto sm:mx-0 p-2 sm:p-0" />
       </div>
 
       {/* Trust Bar */}
