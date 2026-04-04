@@ -264,7 +264,7 @@ const Admin = () => {
     { id: 'VESTIDO-CORSET3-GT', label: 'Vestido Corset Kit 3', nota: 'VESTIDO CORSET KIT 3', idProducto: '179', transportadora: 'FORZA' },
     { id: 'VESTIDO-NOCHE3-GT', label: 'Vestido Noche Kit 3', nota: 'VESTIDO NOCHE KIT 3', idProducto: '179', transportadora: 'FORZA' },
     { id: 'UA-KIT4EN1-GT', label: 'Conjuntos UA Kit 4 en 1', nota: 'CONJUNTOS UA KIT 4EN1', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
-    { id: 'UA-KIT8-REFLETIVA-GT', label: 'Camisetas Reflectivas Kit 8', nota: 'CAMISETAS REFLECTIVAS KIT 8', idProducto: '179', transportadora: 'FORZA' },
+    { id: 'UA-KIT8-REFLETIVA-GT', label: 'Camisetas Reflectivas Kit 8', nota: 'CAMISETAS REFLECTIVAS KIT 8', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
     // Chile
     { id: 'UA-KIT3EN1-CL', label: '🇨🇱 Conjuntos Chile', nota: 'CONJUNTOS CHILE', idProducto: '179', transportadora: '' },
   ];
