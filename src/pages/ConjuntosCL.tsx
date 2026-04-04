@@ -166,8 +166,8 @@ const ConjuntosCL = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       {/* MAX Header */}
-      <div className="w-full bg-white">
-        <img src={maxHeader} alt="MAX Chile - Tienda Online" className="w-full h-auto object-contain sm:object-cover max-h-[120px] sm:max-h-none mx-auto sm:mx-0 p-2 sm:p-0" />
+      <div className="w-full bg-white flex items-center justify-center">
+        <img src={maxHeader} alt="MAX Chile - Tienda Online" className="w-full h-auto object-contain max-h-[80px] sm:max-h-[120px] md:max-h-none p-1 sm:p-2" />
       </div>
 
       {/* Trust Bar */}
