@@ -28,7 +28,7 @@ import underArmourMain from "@/assets/under-armour-main.png";
 import uaBlue from "@/assets/ua-blue.jpg";
 import uaBlack from "@/assets/ua-black.jpg";
 import uaGray from "@/assets/ua-gray.jpg";
-import maxHeader from "@/assets/max-header.png";
+import maxHeader from "@/assets/max-header-chile.png";
 import { CODFormChile } from "@/components/CODFormChile";
 import { LegalFooter } from "@/components/LegalFooter";
 
