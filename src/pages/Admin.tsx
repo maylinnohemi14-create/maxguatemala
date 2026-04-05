@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Download, Loader2, LogOut, Package, TrendingUp, MapPin, DollarSign, Users, Trash2, ShoppingCart } from "lucide-react";
+import { Download, Loader2, LogOut, Package, TrendingUp, MapPin, DollarSign, Users, Trash2, ShoppingCart, Phone, Unlock } from "lucide-react";
 import * as XLSX from 'xlsx';
 import type { User, Session } from '@supabase/supabase-js';
 import {
@@ -71,6 +71,12 @@ interface AbandonedCart {
   created_at: string;
 }
 
+interface BlockedPhone {
+  id: string;
+  telefono: string;
+  created_at: string;
+}
+
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D', '#FFC658', '#FF6B9D'];
 
 const Admin = () => {
@@ -82,6 +88,7 @@ const Admin = () => {
   const [departmentStats, setDepartmentStats] = useState<DepartmentStats[]>([]);
   const [totalRevenue, setTotalRevenue] = useState(0);
   const [abandonedCarts, setAbandonedCarts] = useState<AbandonedCart[]>([]);
+  const [blockedPhones, setBlockedPhones] = useState<BlockedPhone[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -109,6 +116,7 @@ const Admin = () => {
         setTimeout(() => {
           fetchOrders();
           fetchAbandonedCarts();
+          fetchBlockedPhones();
         }, 0);
       }
     });
@@ -212,6 +220,41 @@ const Admin = () => {
       toast.success("Carrinhos abandonados limpos com sucesso!");
     } catch (error: any) {
       toast.error("Erro ao limpar carrinhos: " + error.message);
+    }
+  };
+
+  const fetchBlockedPhones = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blocked_phones')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      setBlockedPhones(data || []);
+    } catch (error: any) {
+      console.error('Error fetching blocked phones:', error);
+    }
+  };
+
+  const unblockPhone = async (id: string, telefono: string) => {
+    try {
+      const { error } = await supabase.from('blocked_phones').delete().eq('id', id);
+      if (error) throw error;
+      setBlockedPhones(prev => prev.filter(p => p.id !== id));
+      toast.success(`Telefone ${telefono} desbloqueado!`);
+    } catch (error: any) {
+      toast.error("Erro ao desbloquear: " + error.message);
+    }
+  };
+
+  const clearAllBlockedPhones = async () => {
+    try {
+      const { error } = await supabase.from('blocked_phones').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      if (error) throw error;
+      setBlockedPhones([]);
+      toast.success("Todos os telefones foram desbloqueados!");
+    } catch (error: any) {
+      toast.error("Erro ao limpar: " + error.message);
     }
   };
 
@@ -756,7 +799,108 @@ const Admin = () => {
           </Card>
         </div>
 
-        {/* Pixel Management Section */}
+        {/* Blocked Phones Section */}
+        <div className="mb-8">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Phone className="h-5 w-5" />
+                    Telefones Bloqueados
+                  </CardTitle>
+                  <CardDescription>
+                    Números que já realizaram uma compra e estão impedidos de comprar novamente ({blockedPhones.length})
+                  </CardDescription>
+                </div>
+                {blockedPhones.length > 0 && (
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="destructive" size="sm">
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Limpar Todos
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Desbloquear todos os telefones?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Isso irá permitir que todos os {blockedPhones.length} números comprem novamente.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                        <AlertDialogAction onClick={clearAllBlockedPhones}>
+                          Sim, desbloquear todos
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
+              </div>
+            </CardHeader>
+            <CardContent className="p-0">
+              {blockedPhones.length === 0 ? (
+                <div className="p-8 text-center">
+                  <Phone className="h-12 w-12 text-muted-foreground mx-auto mb-3 opacity-50" />
+                  <p className="text-muted-foreground">Nenhum telefone bloqueado</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Data de Bloqueio</TableHead>
+                        <TableHead>Telefone</TableHead>
+                        <TableHead className="text-center w-[100px]">Ação</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {blockedPhones.map((phone) => (
+                        <TableRow key={phone.id}>
+                          <TableCell className="whitespace-nowrap">
+                            {new Date(phone.created_at).toLocaleDateString('pt-BR', {
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </TableCell>
+                          <TableCell className="font-medium">{phone.telefono}</TableCell>
+                          <TableCell className="text-center">
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button variant="outline" size="sm" className="gap-1">
+                                  <Unlock className="h-3 w-3" />
+                                  Desbloquear
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>Desbloquear {phone.telefono}?</AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    Este número poderá realizar uma nova compra.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                                  <AlertDialogAction onClick={() => unblockPhone(phone.id, phone.telefono)}>
+                                    Sim, desbloquear
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
         <div className="mb-8">
           <PixelManager />
         </div>

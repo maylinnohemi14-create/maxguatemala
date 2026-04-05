@@ -7,77 +7,56 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // Get client IP from headers
     const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
                      req.headers.get('x-real-ip') || 
                      'unknown';
 
     console.log('Client IP detected:', clientIp);
 
-    // Parse request body for optional phone check
+    // Parse request body for phone check
     let phone: string | null = null;
     try {
       const body = await req.json();
       phone = body?.phone || null;
-      // Normalize phone: remove non-digit characters
       if (phone) {
         phone = phone.replace(/\D/g, '');
       }
     } catch {
-      // No body or invalid JSON - that's fine, just check IP
+      // No body or invalid JSON
     }
 
-    // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Check if this IP already has an order
-    const { data: existingOrder, error } = await supabase
-      .from('orders')
-      .select('id')
-      .eq('ip_address', clientIp)
-      .limit(1);
-
-    if (error) {
-      console.error('Error checking IP:', error);
-      throw error;
-    }
-
-    const hasOrderByIp = existingOrder && existingOrder.length > 0;
-
-    // Check if phone already has an order
-    let hasOrderByPhone = false;
+    // Check if phone is in the blocked_phones table (persistent, survives order deletion)
+    let isPhoneBlocked = false;
     if (phone) {
-      const { data: phoneOrder, error: phoneError } = await supabase
-        .from('orders')
+      const { data: blockedPhone, error: blockedError } = await supabase
+        .from('blocked_phones')
         .select('id')
         .eq('telefono', phone)
         .limit(1);
 
-      if (phoneError) {
-        console.error('Error checking phone:', phoneError);
+      if (blockedError) {
+        console.error('Error checking blocked phones:', blockedError);
       } else {
-        hasOrderByPhone = phoneOrder && phoneOrder.length > 0;
+        isPhoneBlocked = blockedPhone && blockedPhone.length > 0;
       }
     }
 
-    const hasOrder = hasOrderByIp || hasOrderByPhone;
-
-    console.log('IP has existing order:', hasOrderByIp, '| Phone has existing order:', hasOrderByPhone);
+    console.log('Phone blocked:', isPhoneBlocked, '| Phone:', phone);
 
     return new Response(
       JSON.stringify({ 
         ip: clientIp, 
-        hasOrder,
-        hasOrderByIp,
-        hasOrderByPhone,
+        hasOrder: isPhoneBlocked,
+        isPhoneBlocked,
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );

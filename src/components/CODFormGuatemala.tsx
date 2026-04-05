@@ -123,8 +123,7 @@ const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
 export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId }: CODFormGuatemalaProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
-  const [ipHasOrder, setIpHasOrder] = useState(false);
-  const [checkingIp, setCheckingIp] = useState(true);
+  const [phoneBlocked, setPhoneBlocked] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [upsells, setUpsells] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
@@ -150,23 +149,18 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     },
   });
 
-
-  // IP check enabled - blocks duplicate orders from same IP
+  // Get client IP on load (just for recording)
   useEffect(() => {
-    const checkClientIp = async () => {
+    const getIp = async () => {
       try {
         const { data, error } = await supabase.functions.invoke('get-client-ip');
         if (error) throw error;
         setClientIp(data.ip);
-        setIpHasOrder(data.hasOrder);
       } catch (error) {
-        console.error('Error checking IP:', error);
-      } finally {
-        setCheckingIp(false);
+        console.error('Error getting IP:', error);
       }
     };
-    
-    checkClientIp();
+    getIp();
   }, []);
 
   const [hasTrackedInitiateCheckout, setHasTrackedInitiateCheckout] = useState(false);
@@ -203,7 +197,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   const lastSavedAbandonedPhoneRef = useRef<string | null>(null);
 
   const saveAbandonedCart = useCallback(async ({ keepalive = false }: { keepalive?: boolean } = {}) => {
-    if (orderSubmittedRef.current || ipHasOrder) return;
+    if (orderSubmittedRef.current || phoneBlocked) return;
 
     const telefono = normalizePhone(form.getValues('telefono') || '');
     if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
@@ -238,7 +232,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       lastSavedAbandonedPhoneRef.current = null;
       console.error('Error saving abandoned cart:', error);
     }
-  }, [ipHasOrder, productId, form]);
+  }, [phoneBlocked, productId, form]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -271,17 +265,18 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   useEffect(() => {
     const telefono = normalizePhone(watchedPhone || '');
 
-    if (orderSubmittedRef.current || ipHasOrder || !/^[0-9]{4,15}$/.test(telefono)) return;
+    if (orderSubmittedRef.current || phoneBlocked || !/^[0-9]{4,15}$/.test(telefono)) return;
 
     const timeoutId = window.setTimeout(() => {
       void saveAbandonedCart();
     }, 600);
 
     return () => window.clearTimeout(timeoutId);
-  }, [watchedPhone, ipHasOrder, saveAbandonedCart]);
+  }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
-    if (ipHasOrder) {
+    if (isSubmitting) return;
+    if (phoneBlocked) {
       toast.error("Ya realizaste una compra anteriormente", {
         description: "Solo se permite una compra por persona.",
       });
@@ -296,8 +291,8 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
         body: { phone: normalizePhone(data.telefono) },
       });
-      if (ipCheck?.hasOrder) {
-        setIpHasOrder(true);
+      if (ipCheck?.isPhoneBlocked) {
+        setPhoneBlocked(true);
         toast.error("Ya realizaste una compra anteriormente", {
           description: "Solo se permite una compra por persona.",
         });
@@ -426,7 +421,12 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      setIpHasOrder(true);
+      setPhoneBlocked(true);
+      
+      // Save phone to blocked_phones table permanently
+      try {
+        await supabase.from('blocked_phones').insert({ telefono: normalizePhone(data.telefono) });
+      } catch (e) { console.error('Error saving blocked phone:', e); }
       
       // Remove abandoned cart since order was completed
       try {
@@ -443,7 +443,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     }
   };
 
-  if (ipHasOrder && !checkingIp && !showSuccessDialog) {
+  if (phoneBlocked && !showSuccessDialog) {
     return (
       <div className="space-y-6">
         <div className="flex flex-col items-center justify-center gap-4 bg-amber-500/10 border border-amber-500/30 rounded-lg p-8 text-center">
@@ -800,18 +800,13 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
           <Button
             type="submit"
             size="lg"
-            disabled={isSubmitting || checkingIp}
+            disabled={isSubmitting}
             className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#FFEB3B] hover:bg-[#FDD835] text-black hover:shadow-glow transition-all"
           >
             {isSubmitting ? (
               <>
                 <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                 Procesando...
-              </>
-            ) : checkingIp ? (
-              <>
-                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                Verificando...
               </>
             ) : (
               <>

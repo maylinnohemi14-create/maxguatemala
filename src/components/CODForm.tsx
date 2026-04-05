@@ -110,8 +110,7 @@ const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
 export function CODForm({ productId, productPrice, productName = "Proyector Vevshao A10", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS }: CODFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
-  const [ipHasOrder, setIpHasOrder] = useState(false);
-  const [checkingIp, setCheckingIp] = useState(true);
+  const [phoneBlocked, setPhoneBlocked] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [upsells, setUpsells] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
@@ -120,7 +119,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     });
     return initial;
   });
-  const [viewerCount, setViewerCount] = useState(() => Math.floor(Math.random() * 11) + 10); // 10-20
+  const [viewerCount, setViewerCount] = useState(() => Math.floor(Math.random() * 11) + 10);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -137,23 +136,18 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     },
   });
 
-
-  // IP check enabled - blocks duplicate orders from same IP
+  // Get client IP on load (just for recording, no blocking)
   useEffect(() => {
-    const checkClientIp = async () => {
+    const getIp = async () => {
       try {
         const { data, error } = await supabase.functions.invoke('get-client-ip');
         if (error) throw error;
         setClientIp(data.ip);
-        setIpHasOrder(data.hasOrder);
       } catch (error) {
-        console.error('Error checking IP:', error);
-      } finally {
-        setCheckingIp(false);
+        console.error('Error getting IP:', error);
       }
     };
-    
-    checkClientIp();
+    getIp();
   }, []);
 
   const [hasTrackedInitiateCheckout, setHasTrackedInitiateCheckout] = useState(false);
@@ -189,7 +183,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   const lastSavedAbandonedPhoneRef = useRef<string | null>(null);
 
   const saveAbandonedCart = useCallback(async ({ keepalive = false }: { keepalive?: boolean } = {}) => {
-    if (orderSubmittedRef.current || ipHasOrder) return;
+    if (orderSubmittedRef.current || phoneBlocked) return;
 
     const telefono = normalizePhone(form.getValues('telefono') || '');
     if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
@@ -224,7 +218,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       lastSavedAbandonedPhoneRef.current = null;
       console.error('Error saving abandoned cart:', error);
     }
-  }, [ipHasOrder, productId, form]);
+  }, [phoneBlocked, productId, form]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -257,18 +251,20 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   useEffect(() => {
     const telefono = normalizePhone(watchedPhone || '');
 
-    if (orderSubmittedRef.current || ipHasOrder || !/^[0-9]{4,15}$/.test(telefono)) return;
+    if (orderSubmittedRef.current || phoneBlocked || !/^[0-9]{4,15}$/.test(telefono)) return;
 
     const timeoutId = window.setTimeout(() => {
       void saveAbandonedCart();
     }, 600);
 
     return () => window.clearTimeout(timeoutId);
-  }, [watchedPhone, ipHasOrder, saveAbandonedCart]);
+  }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
-    // Check if IP already has an order
-    if (ipHasOrder) {
+    if (isSubmitting) return; // Prevent double submit
+
+    // Check if phone already blocked
+    if (phoneBlocked) {
       toast.error("Ya realizaste una compra anteriormente", {
         description: "Solo se permite una compra por persona.",
       });
@@ -276,15 +272,15 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     }
 
     setIsSubmitting(true);
-    orderSubmittedRef.current = true; // Prevent abandoned cart saves during submission
+    orderSubmittedRef.current = true;
 
-    // === Double-check IP and phone before submitting (server-side safeguard) ===
+    // === Check phone in blocked_phones table (server-side) ===
     try {
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
         body: { phone: normalizePhone(data.telefono) },
       });
-      if (ipCheck?.hasOrder) {
-        setIpHasOrder(true);
+      if (ipCheck?.isPhoneBlocked) {
+        setPhoneBlocked(true);
         toast.error("Ya realizaste una compra anteriormente", {
           description: "Solo se permite una compra por persona.",
         });
@@ -294,8 +290,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       }
       if (ipCheck?.ip) setClientIp(ipCheck.ip);
     } catch (e) {
-      console.error('Error re-checking IP (continuing with purchase):', e);
-      // Fail-open: if verification fails, allow the purchase to proceed
+      console.error('Error checking phone (continuing with purchase):', e);
     }
 
     // === FIRE CONVERSION EVENTS IMMEDIATELY (before DB insert) for maximum reliability ===
@@ -378,7 +373,12 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      setIpHasOrder(true);
+      setPhoneBlocked(true);
+      
+      // Save phone to blocked_phones table permanently
+      try {
+        await supabase.from('blocked_phones').insert({ telefono: normalizePhone(data.telefono) });
+      } catch (e) { console.error('Error saving blocked phone:', e); }
       
       // Remove abandoned cart since order was completed
       try {
@@ -396,7 +396,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   };
 
   // Show message if user already purchased (but not if showing success dialog)
-  if (ipHasOrder && !checkingIp && !showSuccessDialog) {
+  if (phoneBlocked && !showSuccessDialog) {
     return (
       <div className="space-y-6">
         <div className="flex flex-col items-center justify-center gap-4 bg-amber-500/10 border border-amber-500/30 rounded-lg p-8 text-center">
@@ -517,12 +517,6 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         </DialogContent>
       </Dialog>
       {/* Loading IP check */}
-      {checkingIp && (
-        <div className="flex items-center justify-center gap-2 py-3 sm:py-4">
-          <Loader2 className="h-4 w-4 animate-spin" />
-          <span className="text-xs sm:text-sm text-muted-foreground">Verificando disponibilidad...</span>
-        </div>
-      )}
 
       {/* Live Viewer Counter */}
       <div className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-3 sm:px-4 py-2 animate-pulse">
