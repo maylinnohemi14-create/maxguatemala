@@ -799,7 +799,108 @@ const Admin = () => {
           </Card>
         </div>
 
-        {/* Pixel Management Section */}
+        {/* Blocked Phones Section */}
+        <div className="mb-8">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Phone className="h-5 w-5" />
+                    Telefones Bloqueados
+                  </CardTitle>
+                  <CardDescription>
+                    Números que já realizaram uma compra e estão impedidos de comprar novamente ({blockedPhones.length})
+                  </CardDescription>
+                </div>
+                {blockedPhones.length > 0 && (
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="destructive" size="sm">
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Limpar Todos
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Desbloquear todos os telefones?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Isso irá permitir que todos os {blockedPhones.length} números comprem novamente.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                        <AlertDialogAction onClick={clearAllBlockedPhones}>
+                          Sim, desbloquear todos
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
+              </div>
+            </CardHeader>
+            <CardContent className="p-0">
+              {blockedPhones.length === 0 ? (
+                <div className="p-8 text-center">
+                  <Phone className="h-12 w-12 text-muted-foreground mx-auto mb-3 opacity-50" />
+                  <p className="text-muted-foreground">Nenhum telefone bloqueado</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Data de Bloqueio</TableHead>
+                        <TableHead>Telefone</TableHead>
+                        <TableHead className="text-center w-[100px]">Ação</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {blockedPhones.map((phone) => (
+                        <TableRow key={phone.id}>
+                          <TableCell className="whitespace-nowrap">
+                            {new Date(phone.created_at).toLocaleDateString('pt-BR', {
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </TableCell>
+                          <TableCell className="font-medium">{phone.telefono}</TableCell>
+                          <TableCell className="text-center">
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button variant="outline" size="sm" className="gap-1">
+                                  <Unlock className="h-3 w-3" />
+                                  Desbloquear
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>Desbloquear {phone.telefono}?</AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    Este número poderá realizar uma nova compra.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                                  <AlertDialogAction onClick={() => unblockPhone(phone.id, phone.telefono)}>
+                                    Sim, desbloquear
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
         <div className="mb-8">
           <PixelManager />
         </div>
