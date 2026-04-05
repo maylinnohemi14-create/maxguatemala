@@ -198,7 +198,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
   const lastSavedAbandonedPhoneRef = useRef<string | null>(null);
 
   const saveAbandonedCart = useCallback(async ({ keepalive = false }: { keepalive?: boolean } = {}) => {
-    if (orderSubmittedRef.current || ipHasOrder) return;
+    if (orderSubmittedRef.current || phoneBlocked) return;
     const telefono = normalizePhone(form.getValues('telefono') || '');
     if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
     if (lastSavedAbandonedPhoneRef.current === telefono) return;
@@ -231,7 +231,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
       lastSavedAbandonedPhoneRef.current = null;
       console.error('Error saving abandoned cart:', error);
     }
-  }, [ipHasOrder, productId, form]);
+  }, [phoneBlocked, productId, form]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -257,13 +257,13 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
 
   useEffect(() => {
     const telefono = normalizePhone(watchedPhone || '');
-    if (orderSubmittedRef.current || ipHasOrder || !/^[0-9]{4,15}$/.test(telefono)) return;
+    if (orderSubmittedRef.current || phoneBlocked || !/^[0-9]{4,15}$/.test(telefono)) return;
     const timeoutId = window.setTimeout(() => void saveAbandonedCart(), 600);
     return () => window.clearTimeout(timeoutId);
-  }, [watchedPhone, ipHasOrder, saveAbandonedCart]);
+  }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
-    if (ipHasOrder) {
+    if (phoneBlocked) {
       toast.error("Ya realizaste una compra anteriormente", {
         description: "Solo se permite una compra por persona.",
       });
@@ -278,7 +278,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
         body: { phone: normalizePhone(data.telefono) },
       });
       if (ipCheck?.hasOrder) {
-        setIpHasOrder(true);
+        setPhoneBlocked(true);
         toast.error("Ya realizaste una compra anteriormente", {
           description: "Solo se permite una compra por persona.",
         });
@@ -368,7 +368,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      setIpHasOrder(true);
+      setPhoneBlocked(true);
       try {
         await supabase.from('abandoned_carts').delete().eq('telefono', normalizePhone(data.telefono));
       } catch (e) {}
@@ -383,7 +383,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
     }
   };
 
-  if (ipHasOrder && !checkingIp && !showSuccessDialog) {
+  if (phoneBlocked && !false && !showSuccessDialog) {
     return (
       <div className="space-y-6">
         <div className="flex flex-col items-center justify-center gap-4 bg-amber-500/10 border border-amber-500/30 rounded-lg p-8 text-center">
@@ -728,12 +728,12 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
           <Button
             type="submit"
             size="lg"
-            disabled={isSubmitting || checkingIp}
+            disabled={isSubmitting || false}
             className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#FFEB3B] hover:bg-[#FDD835] text-black hover:shadow-glow transition-all"
           >
             {isSubmitting ? (
               <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Procesando...</>
-            ) : checkingIp ? (
+            ) : false ? (
               <><Loader2 className="w-5 h-5 mr-2 animate-spin" />Verificando...</>
             ) : (
               <><Package className="w-5 h-5 mr-2" />CONFIRMAR PEDIDO - PAGO CONTRA ENTREGA</>
