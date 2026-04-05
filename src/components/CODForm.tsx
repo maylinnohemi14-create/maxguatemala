@@ -373,7 +373,12 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      setIpHasOrder(true);
+      setPhoneBlocked(true);
+      
+      // Save phone to blocked_phones table permanently
+      try {
+        await supabase.from('blocked_phones').insert({ telefono: normalizePhone(data.telefono) });
+      } catch (e) { console.error('Error saving blocked phone:', e); }
       
       // Remove abandoned cart since order was completed
       try {
