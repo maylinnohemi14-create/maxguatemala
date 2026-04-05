@@ -183,7 +183,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   const lastSavedAbandonedPhoneRef = useRef<string | null>(null);
 
   const saveAbandonedCart = useCallback(async ({ keepalive = false }: { keepalive?: boolean } = {}) => {
-    if (orderSubmittedRef.current || ipHasOrder) return;
+    if (orderSubmittedRef.current || phoneBlocked) return;
 
     const telefono = normalizePhone(form.getValues('telefono') || '');
     if (!telefono || !/^[0-9]{4,15}$/.test(telefono)) return;
