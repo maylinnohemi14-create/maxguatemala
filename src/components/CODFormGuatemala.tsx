@@ -442,7 +442,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     }
   };
 
-  if (phoneBlocked && !false && !showSuccessDialog) {
+  if (phoneBlocked && !showSuccessDialog) {
     return (
       <div className="space-y-6">
         <div className="flex flex-col items-center justify-center gap-4 bg-amber-500/10 border border-amber-500/30 rounded-lg p-8 text-center">
