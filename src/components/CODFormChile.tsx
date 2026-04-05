@@ -277,7 +277,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
         body: { phone: normalizePhone(data.telefono) },
       });
-      if (ipCheck?.hasOrder) {
+      if (ipCheck?.isPhoneBlocked) {
         setPhoneBlocked(true);
         toast.error("Ya realizaste una compra anteriormente", {
           description: "Solo se permite una compra por persona.",
