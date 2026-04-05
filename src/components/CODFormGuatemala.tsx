@@ -422,6 +422,11 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
 
       setPhoneBlocked(true);
       
+      // Save phone to blocked_phones table permanently
+      try {
+        await supabase.from('blocked_phones').insert({ telefono: normalizePhone(data.telefono) });
+      } catch (e) { console.error('Error saving blocked phone:', e); }
+      
       // Remove abandoned cart since order was completed
       try {
         await supabase.from('abandoned_carts').delete().eq('telefono', normalizePhone(data.telefono));
