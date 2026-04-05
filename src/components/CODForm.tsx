@@ -251,14 +251,14 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   useEffect(() => {
     const telefono = normalizePhone(watchedPhone || '');
 
-    if (orderSubmittedRef.current || ipHasOrder || !/^[0-9]{4,15}$/.test(telefono)) return;
+    if (orderSubmittedRef.current || phoneBlocked || !/^[0-9]{4,15}$/.test(telefono)) return;
 
     const timeoutId = window.setTimeout(() => {
       void saveAbandonedCart();
     }, 600);
 
     return () => window.clearTimeout(timeoutId);
-  }, [watchedPhone, ipHasOrder, saveAbandonedCart]);
+  }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
     // Check if IP already has an order
