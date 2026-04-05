@@ -25,6 +25,10 @@ serve(async (req) => {
     try {
       const body = await req.json();
       phone = body?.phone || null;
+      // Normalize phone: remove non-digit characters
+      if (phone) {
+        phone = phone.replace(/\D/g, '');
+      }
     } catch {
       // No body or invalid JSON - that's fine, just check IP
     }

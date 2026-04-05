@@ -281,7 +281,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     // === Double-check IP and phone before submitting (server-side safeguard) ===
     try {
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
-        body: { phone: data.telefono },
+        body: { phone: normalizePhone(data.telefono) },
       });
       if (ipCheck?.hasOrder) {
         setIpHasOrder(true);
@@ -289,11 +289,16 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
           description: "Solo se permite una compra por persona.",
         });
         setIsSubmitting(false);
+        orderSubmittedRef.current = false;
         return;
       }
       if (ipCheck?.ip) setClientIp(ipCheck.ip);
     } catch (e) {
       console.error('Error re-checking IP:', e);
+      toast.error("Error al verificar tu compra. Intenta nuevamente.");
+      setIsSubmitting(false);
+      orderSubmittedRef.current = false;
+      return;
     }
 
     // === FIRE CONVERSION EVENTS IMMEDIATELY (before DB insert) for maximum reliability ===
