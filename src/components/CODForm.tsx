@@ -218,7 +218,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       lastSavedAbandonedPhoneRef.current = null;
       console.error('Error saving abandoned cart:', error);
     }
-  }, [ipHasOrder, productId, form]);
+  }, [phoneBlocked, productId, form]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
