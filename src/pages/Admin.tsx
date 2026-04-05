@@ -258,7 +258,7 @@ const Admin = () => {
     }
   };
 
-
+  const calculateStats = (ordersData: Order[]) => {
     // Total revenue
     const revenue = ordersData.reduce((sum, order) => {
       return sum + parseInt(order.precio_total.replace(/\./g, '').replace(/,/g, ''));
