@@ -799,18 +799,13 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
           <Button
             type="submit"
             size="lg"
-            disabled={isSubmitting || false}
+            disabled={isSubmitting}
             className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#FFEB3B] hover:bg-[#FDD835] text-black hover:shadow-glow transition-all"
           >
             {isSubmitting ? (
               <>
                 <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                 Procesando...
-              </>
-            ) : false ? (
-              <>
-                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                Verificando...
               </>
             ) : (
               <>
