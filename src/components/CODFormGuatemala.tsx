@@ -276,7 +276,10 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
-    if (isSubmitting) return;
+    const normalizedPhone = normalizePhone(data.telefono);
+    let resolvedClientIp = clientIp;
+
+    if (submitLockRef.current || isSubmitting) return;
     if (phoneBlocked) {
       toast.error("Ya realizaste una compra anteriormente", {
         description: "Solo se permite una compra por persona.",
@@ -284,13 +287,13 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       return;
     }
 
+    submitLockRef.current = true;
     setIsSubmitting(true);
-    orderSubmittedRef.current = true; // Prevent abandoned cart saves during submission
+    orderSubmittedRef.current = true;
 
-    // === Double-check IP and phone before submitting (server-side safeguard) ===
     try {
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
-        body: { phone: normalizePhone(data.telefono) },
+        body: { phone: normalizedPhone },
       });
       if (ipCheck?.isPhoneBlocked) {
         setPhoneBlocked(true);
@@ -298,33 +301,33 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
           description: "Solo se permite una compra por persona.",
         });
         setIsSubmitting(false);
+        submitLockRef.current = false;
         orderSubmittedRef.current = false;
         return;
       }
-      if (ipCheck?.ip) setClientIp(ipCheck.ip);
+      if (ipCheck?.ip) {
+        resolvedClientIp = ipCheck.ip;
+        setClientIp(ipCheck.ip);
+      }
     } catch (e) {
       console.error('Error re-checking IP (continuing with purchase):', e);
-      // Fail-open: if verification fails, allow the purchase to proceed
     }
 
     const purchaseEventId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
       ? crypto.randomUUID()
       : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
-    // === FIRE CONVERSION EVENTS IMMEDIATELY (before DB insert) for maximum reliability ===
     console.log('🔔 TRACKING: Firing conversion events BEFORE DB insert for reliability...', { purchaseEventId, tiktokPixelId });
 
-    // TikTok: Identify user with hashed PII first
     try {
       await identifyTikTokUser({
         email: data.email || undefined,
-        phone: data.telefono,
-        externalId: data.telefono,
+        phone: normalizedPhone,
+        externalId: normalizedPhone,
       });
       console.log('✅ TikTok identify done');
     } catch (e) { console.error('❌ TikTok identify failed:', e); }
 
-    // TikTok: CompletePayment (THE primary conversion event) - SCOPED to page pixel
     try {
       await trackTikTokPurchase({
         productId,
@@ -332,16 +335,15 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         value: productPrice,
         currency: 'GTQ',
         email: data.email || undefined,
-        phone: data.telefono,
-        externalId: data.telefono,
-        ip: clientIp || undefined,
+        phone: normalizedPhone,
+        externalId: normalizedPhone,
+        ip: resolvedClientIp || undefined,
         pixelId: tiktokPixelId,
         eventId: purchaseEventId,
       });
       console.log('✅ TikTok CompletePayment (scoped to', tiktokPixelId || 'all', ') fired');
     } catch (e) { console.error('❌ TikTok CompletePayment failed:', e); }
 
-    // Facebook: Purchase - SCOPED to page pixel
     try {
       trackFacebookConversion('Purchase', {
         content_ids: [productId],
@@ -354,7 +356,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       console.log('✅ Facebook Purchase (scoped to', facebookPixelId || 'all', ') fired');
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
-    // === SERVER-SIDE TikTok Events API (deduped with same event_id) ===
     if (tiktokPixelId) {
       try {
         await supabase.functions.invoke('tiktok-events-api', {
@@ -364,12 +365,12 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
             event_id: purchaseEventId,
             timestamp: Math.floor(Date.now() / 1000),
             user_agent: navigator.userAgent,
-            ip: clientIp || undefined,
+            ip: resolvedClientIp || undefined,
             page_url: window.location.href,
             page_referrer: document.referrer || '',
             email: data.email || undefined,
-            phone: data.telefono,
-            external_id: data.telefono,
+            phone: normalizedPhone,
+            external_id: normalizedPhone,
             ttclid: new URLSearchParams(window.location.search).get('ttclid') || '',
             ttp: document.cookie.match(/(?:^| )_ttp=([^;]+)/)?.[1] || '',
             content_id: productId,
@@ -388,7 +389,6 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
 
     console.log('✅✅ All conversion tracking events processed (browser + server)');
 
-    // === NOW insert order into database ===
     try {
       const { error } = await supabase.from('orders').insert({
         nombres: data.nombres,
@@ -396,7 +396,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         direccion_y_barrio: data.complemento ? `${data.direccion}, ${data.complemento}` : data.direccion,
         departamento: data.departamento,
         ciudad: data.municipio,
-        telefono: data.telefono,
+        telefono: normalizedPhone,
         email: data.email || null,
         colonia: null,
         nota: data.nota || null,
@@ -404,14 +404,17 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         cantidad: 1,
         precio_total: productPrice.toString(),
         con_recaudo: 'SI',
-        ip_address: clientIp,
+        ip_address: resolvedClientIp,
       });
 
       if (error) {
         throw error;
       }
 
-      // Send Telegram notification
+      try {
+        await supabase.from('blocked_phones').insert({ telefono: normalizedPhone });
+      } catch (e) { console.error('Error saving blocked phone:', e); }
+
       try {
         await supabase.functions.invoke('send-telegram-notification', {
           body: {
@@ -422,24 +425,18 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      setPhoneBlocked(true);
-      
-      // Save phone to blocked_phones table permanently
       try {
-        await supabase.from('blocked_phones').insert({ telefono: normalizePhone(data.telefono) });
-      } catch (e) { console.error('Error saving blocked phone:', e); }
-      
-      // Remove abandoned cart since order was completed
-      try {
-        await supabase.from('abandoned_carts').delete().eq('telefono', normalizePhone(data.telefono));
+        await supabase.from('abandoned_carts').delete().eq('telefono', normalizedPhone);
       } catch (e) { console.error('Error cleaning abandoned cart:', e); }
-      
+
       form.reset();
       setShowSuccessDialog(true);
     } catch (error: any) {
+      orderSubmittedRef.current = false;
       console.error("Error al registrar pedido:", error);
       toast.error("Error al registrar pedido: " + (error.message || "Intenta nuevamente"));
     } finally {
+      submitLockRef.current = false;
       setIsSubmitting(false);
     }
   };

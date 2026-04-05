@@ -264,7 +264,10 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
   }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
-    if (isSubmitting) return;
+    const normalizedPhone = normalizePhone(data.telefono);
+    let resolvedClientIp = clientIp;
+
+    if (submitLockRef.current || isSubmitting) return;
     if (phoneBlocked) {
       toast.error("Ya realizaste una compra anteriormente", {
         description: "Solo se permite una compra por persona.",
@@ -272,12 +275,13 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
       return;
     }
 
+    submitLockRef.current = true;
     setIsSubmitting(true);
     orderSubmittedRef.current = true;
 
     try {
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
-        body: { phone: normalizePhone(data.telefono) },
+        body: { phone: normalizedPhone },
       });
       if (ipCheck?.isPhoneBlocked) {
         setPhoneBlocked(true);
@@ -285,34 +289,34 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
           description: "Solo se permite una compra por persona.",
         });
         setIsSubmitting(false);
+        submitLockRef.current = false;
         orderSubmittedRef.current = false;
         return;
       }
-      if (ipCheck?.ip) setClientIp(ipCheck.ip);
+      if (ipCheck?.ip) {
+        resolvedClientIp = ipCheck.ip;
+        setClientIp(ipCheck.ip);
+      }
     } catch (e) {
       console.error('Error re-checking IP (continuing with purchase):', e);
-      // Fail-open: if verification fails, allow the purchase to proceed
     }
 
     const purchaseEventId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
       ? crypto.randomUUID()
       : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
-    // TikTok identify
     try {
-      await identifyTikTokUser({ email: data.email || undefined, phone: data.telefono, externalId: data.telefono });
+      await identifyTikTokUser({ email: data.email || undefined, phone: normalizedPhone, externalId: normalizedPhone });
     } catch (e) { console.error('TikTok identify failed:', e); }
 
-    // TikTok CompletePayment
     try {
       await trackTikTokPurchase({
         productId, productName: productName || productId, value: productPrice, currency: 'CLP',
-        email: data.email || undefined, phone: data.telefono, externalId: data.telefono,
-        ip: clientIp || undefined, pixelId: tiktokPixelId, eventId: purchaseEventId,
+        email: data.email || undefined, phone: normalizedPhone, externalId: normalizedPhone,
+        ip: resolvedClientIp || undefined, pixelId: tiktokPixelId, eventId: purchaseEventId,
       });
     } catch (e) { console.error('TikTok CompletePayment failed:', e); }
 
-    // Facebook Purchase
     try {
       trackFacebookConversion('Purchase', {
         content_ids: [productId], content_type: 'product', content_name: productName || productId,
@@ -322,15 +326,14 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
 
     try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'CLP' }, facebookPixelId); } catch (e) {}
 
-    // Server-side TikTok
     if (tiktokPixelId) {
       try {
         await supabase.functions.invoke('tiktok-events-api', {
           body: {
             pixel_id: tiktokPixelId, event: 'CompletePayment', event_id: purchaseEventId,
             timestamp: Math.floor(Date.now() / 1000), user_agent: navigator.userAgent,
-            ip: clientIp || undefined, page_url: window.location.href, page_referrer: document.referrer || '',
-            email: data.email || undefined, phone: data.telefono, external_id: data.telefono,
+            ip: resolvedClientIp || undefined, page_url: window.location.href, page_referrer: document.referrer || '',
+            email: data.email || undefined, phone: normalizedPhone, external_id: normalizedPhone,
             ttclid: new URLSearchParams(window.location.search).get('ttclid') || '',
             ttp: document.cookie.match(/(?:^| )_ttp=([^;]+)/)?.[1] || '',
             content_id: productId, content_name: productName || productId, content_type: 'product',
@@ -340,7 +343,6 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
       } catch (e) { console.error('TikTok Server-Side failed:', e); }
     }
 
-    // Insert order
     try {
       const { error } = await supabase.from('orders').insert({
         nombres: data.nombres,
@@ -348,7 +350,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
         direccion_y_barrio: data.complemento ? `${data.direccion}, ${data.complemento}` : data.direccion,
         departamento: data.region,
         ciudad: data.comuna,
-        telefono: data.telefono,
+        telefono: normalizedPhone,
         email: data.email || null,
         colonia: null,
         nota: data.nota || null,
@@ -356,12 +358,14 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
         cantidad: 1,
         precio_total: productPrice.toString(),
         con_recaudo: 'SI',
-        ip_address: clientIp,
+        ip_address: resolvedClientIp,
       });
 
       if (error) throw error;
 
-      // Telegram notification
+      try {
+        await supabase.from('blocked_phones').insert({ telefono: normalizedPhone });
+      } catch (e) { console.error('Error saving blocked phone:', e); }
       try {
         await supabase.functions.invoke('send-telegram-notification', {
           body: { precio_total: `$${productPrice.toLocaleString('es-CL')} CLP` }
@@ -369,23 +373,18 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
       } catch (telegramError) {
         console.error('Error sending Telegram notification:', telegramError);
       }
-
-      setPhoneBlocked(true);
-      
-      // Save phone to blocked_phones table permanently
       try {
-        await supabase.from('blocked_phones').insert({ telefono: normalizePhone(data.telefono) });
-      } catch (e) { console.error('Error saving blocked phone:', e); }
-      try {
-        await supabase.from('abandoned_carts').delete().eq('telefono', normalizePhone(data.telefono));
+        await supabase.from('abandoned_carts').delete().eq('telefono', normalizedPhone);
       } catch (e) {}
 
       form.reset();
       setShowSuccessDialog(true);
     } catch (error: any) {
+      orderSubmittedRef.current = false;
       console.error("Error al registrar pedido:", error);
       toast.error("Error al registrar pedido: " + (error.message || "Intenta nuevamente"));
     } finally {
+      submitLockRef.current = false;
       setIsSubmitting(false);
     }
   };
