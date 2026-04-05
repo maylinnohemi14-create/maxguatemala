@@ -194,6 +194,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
 
   // === Abandoned Cart Tracking ===
   const orderSubmittedRef = useRef(false);
+  const submitLockRef = useRef(false);
   const lastSavedAbandonedPhoneRef = useRef<string | null>(null);
 
   const saveAbandonedCart = useCallback(async ({ keepalive = false }: { keepalive?: boolean } = {}) => {
