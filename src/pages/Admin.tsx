@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Download, Loader2, LogOut, Package, TrendingUp, MapPin, DollarSign, Users, Trash2, ShoppingCart } from "lucide-react";
+import { Download, Loader2, LogOut, Package, TrendingUp, MapPin, DollarSign, Users, Trash2, ShoppingCart, Phone, Unlock } from "lucide-react";
 import * as XLSX from 'xlsx';
 import type { User, Session } from '@supabase/supabase-js';
 import {
