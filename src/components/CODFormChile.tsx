@@ -369,6 +369,11 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
       }
 
       setPhoneBlocked(true);
+      
+      // Save phone to blocked_phones table permanently
+      try {
+        await supabase.from('blocked_phones').insert({ telefono: normalizePhone(data.telefono) });
+      } catch (e) { console.error('Error saving blocked phone:', e); }
       try {
         await supabase.from('abandoned_carts').delete().eq('telefono', normalizePhone(data.telefono));
       } catch (e) {}
