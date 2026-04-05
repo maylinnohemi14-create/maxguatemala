@@ -294,7 +294,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     // === Double-check IP and phone before submitting (server-side safeguard) ===
     try {
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
-        body: { phone: data.telefono },
+        body: { phone: normalizePhone(data.telefono) },
       });
       if (ipCheck?.hasOrder) {
         setIpHasOrder(true);
@@ -302,11 +302,16 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
           description: "Solo se permite una compra por persona.",
         });
         setIsSubmitting(false);
+        orderSubmittedRef.current = false;
         return;
       }
       if (ipCheck?.ip) setClientIp(ipCheck.ip);
     } catch (e) {
       console.error('Error re-checking IP:', e);
+      toast.error("Error al verificar tu compra. Intenta nuevamente.");
+      setIsSubmitting(false);
+      orderSubmittedRef.current = false;
+      return;
     }
 
     const purchaseEventId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
