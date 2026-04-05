@@ -275,6 +275,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
   }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
+    if (isSubmitting) return;
     if (phoneBlocked) {
       toast.error("Ya realizaste una compra anteriormente", {
         description: "Solo se permite una compra por persona.",
