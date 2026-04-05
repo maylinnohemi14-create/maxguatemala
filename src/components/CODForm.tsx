@@ -517,12 +517,6 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         </DialogContent>
       </Dialog>
       {/* Loading IP check */}
-      {checkingIp && (
-        <div className="flex items-center justify-center gap-2 py-3 sm:py-4">
-          <Loader2 className="h-4 w-4 animate-spin" />
-          <span className="text-xs sm:text-sm text-muted-foreground">Verificando disponibilidad...</span>
-        </div>
-      )}
 
       {/* Live Viewer Counter */}
       <div className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/30 rounded-lg px-3 sm:px-4 py-2 animate-pulse">
