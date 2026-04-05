@@ -307,11 +307,8 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       }
       if (ipCheck?.ip) setClientIp(ipCheck.ip);
     } catch (e) {
-      console.error('Error re-checking IP:', e);
-      toast.error("Error al verificar tu compra. Intenta nuevamente.");
-      setIsSubmitting(false);
-      orderSubmittedRef.current = false;
-      return;
+      console.error('Error re-checking IP (continuing with purchase):', e);
+      // Fail-open: if verification fails, allow the purchase to proceed
     }
 
     const purchaseEventId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
