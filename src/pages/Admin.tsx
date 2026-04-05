@@ -223,7 +223,42 @@ const Admin = () => {
     }
   };
 
-  const calculateStats = (ordersData: Order[]) => {
+  const fetchBlockedPhones = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blocked_phones')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      setBlockedPhones(data || []);
+    } catch (error: any) {
+      console.error('Error fetching blocked phones:', error);
+    }
+  };
+
+  const unblockPhone = async (id: string, telefono: string) => {
+    try {
+      const { error } = await supabase.from('blocked_phones').delete().eq('id', id);
+      if (error) throw error;
+      setBlockedPhones(prev => prev.filter(p => p.id !== id));
+      toast.success(`Telefone ${telefono} desbloqueado!`);
+    } catch (error: any) {
+      toast.error("Erro ao desbloquear: " + error.message);
+    }
+  };
+
+  const clearAllBlockedPhones = async () => {
+    try {
+      const { error } = await supabase.from('blocked_phones').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      if (error) throw error;
+      setBlockedPhones([]);
+      toast.success("Todos os telefones foram desbloqueados!");
+    } catch (error: any) {
+      toast.error("Erro ao limpar: " + error.message);
+    }
+  };
+
+
     // Total revenue
     const revenue = ordersData.reduce((sum, order) => {
       return sum + parseInt(order.precio_total.replace(/\./g, '').replace(/,/g, ''));
