@@ -180,6 +180,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
 
   // === Abandoned Cart Tracking ===
   const orderSubmittedRef = useRef(false);
+  const submitLockRef = useRef(false);
   const lastSavedAbandonedPhoneRef = useRef<string | null>(null);
 
   const saveAbandonedCart = useCallback(async ({ keepalive = false }: { keepalive?: boolean } = {}) => {
@@ -261,9 +262,11 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
-    if (isSubmitting) return; // Prevent double submit
+    const normalizedPhone = normalizePhone(data.telefono);
+    let resolvedClientIp = clientIp;
 
-    // Check if phone already blocked
+    if (submitLockRef.current || isSubmitting) return;
+
     if (phoneBlocked) {
       toast.error("Ya realizaste una compra anteriormente", {
         description: "Solo se permite una compra por persona.",
@@ -271,42 +274,45 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       return;
     }
 
+    submitLockRef.current = true;
     setIsSubmitting(true);
     orderSubmittedRef.current = true;
 
-    // === Check phone in blocked_phones table (server-side) ===
     try {
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
-        body: { phone: normalizePhone(data.telefono) },
+        body: { phone: normalizedPhone },
       });
+
       if (ipCheck?.isPhoneBlocked) {
         setPhoneBlocked(true);
         toast.error("Ya realizaste una compra anteriormente", {
           description: "Solo se permite una compra por persona.",
         });
         setIsSubmitting(false);
+        submitLockRef.current = false;
         orderSubmittedRef.current = false;
         return;
       }
-      if (ipCheck?.ip) setClientIp(ipCheck.ip);
+
+      if (ipCheck?.ip) {
+        resolvedClientIp = ipCheck.ip;
+        setClientIp(ipCheck.ip);
+      }
     } catch (e) {
       console.error('Error checking phone (continuing with purchase):', e);
     }
 
-    // === FIRE CONVERSION EVENTS IMMEDIATELY (before DB insert) for maximum reliability ===
     console.log('🔔 TRACKING: Firing conversion events BEFORE DB insert for reliability...');
 
-    // TikTok: Identify user with hashed PII first
     try {
       await identifyTikTokUser({
         email: data.email || undefined,
-        phone: data.telefono,
-        externalId: data.telefono,
+        phone: normalizedPhone,
+        externalId: normalizedPhone,
       });
       console.log('✅ TikTok identify done');
     } catch (e) { console.error('❌ TikTok identify failed:', e); }
 
-    // TikTok: CompletePayment (THE primary conversion event - fire it first and alone)
     try {
       await trackTikTokPurchase({
         productId,
@@ -314,14 +320,13 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         value: productPrice,
         currency: 'GTQ',
         email: data.email || undefined,
-        phone: data.telefono,
-        externalId: data.telefono,
-        ip: clientIp || undefined,
+        phone: normalizedPhone,
+        externalId: normalizedPhone,
+        ip: resolvedClientIp || undefined,
       });
       console.log('✅ TikTok CompletePayment (enhanced) fired');
     } catch (e) { console.error('❌ TikTok CompletePayment failed:', e); }
 
-    // Facebook: Purchase
     try {
       trackFacebookConversion('Purchase', {
         content_ids: [productId],
@@ -334,12 +339,10 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       console.log('✅ Facebook Purchase fired');
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
-    // Facebook: Lead (secondary)
     try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'GTQ' }); } catch (e) { console.error('❌ FB Lead failed:', e); }
 
     console.log('✅✅ All conversion tracking events processed');
 
-    // === NOW insert order into database ===
     try {
       const { error } = await supabase.from('orders').insert({
         nombres: data.nombres,
@@ -347,7 +350,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         direccion_y_barrio: data.direccion,
         departamento: data.departamento,
         ciudad: data.ciudad,
-        telefono: data.telefono,
+        telefono: normalizedPhone,
         email: data.email || null,
         colonia: data.complemento || null,
         nota: data.nota || null,
@@ -355,14 +358,17 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         cantidad: 1,
         precio_total: productPrice.toString(),
         con_recaudo: 'SI',
-        ip_address: clientIp,
+        ip_address: resolvedClientIp,
       });
 
       if (error) {
         throw error;
       }
 
-      // Send Telegram notification to admin
+      try {
+        await supabase.from('blocked_phones').insert({ telefono: normalizedPhone });
+      } catch (e) { console.error('Error saving blocked phone:', e); }
+
       try {
         await supabase.functions.invoke('send-telegram-notification', {
           body: {
@@ -373,24 +379,18 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
         console.error('Error sending Telegram notification:', telegramError);
       }
 
-      setPhoneBlocked(true);
-      
-      // Save phone to blocked_phones table permanently
       try {
-        await supabase.from('blocked_phones').insert({ telefono: normalizePhone(data.telefono) });
-      } catch (e) { console.error('Error saving blocked phone:', e); }
-      
-      // Remove abandoned cart since order was completed
-      try {
-        await supabase.from('abandoned_carts').delete().eq('telefono', normalizePhone(data.telefono));
+        await supabase.from('abandoned_carts').delete().eq('telefono', normalizedPhone);
       } catch (e) { console.error('Error cleaning abandoned cart:', e); }
-      
+
       form.reset();
       setShowSuccessDialog(true);
     } catch (error: any) {
+      orderSubmittedRef.current = false;
       console.error("Error al registrar pedido:", error);
       toast.error("Error al registrar pedido: " + (error.message || "Intenta nuevamente"));
     } finally {
+      submitLockRef.current = false;
       setIsSubmitting(false);
     }
   };
