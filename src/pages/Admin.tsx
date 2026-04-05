@@ -88,6 +88,7 @@ const Admin = () => {
   const [departmentStats, setDepartmentStats] = useState<DepartmentStats[]>([]);
   const [totalRevenue, setTotalRevenue] = useState(0);
   const [abandonedCarts, setAbandonedCarts] = useState<AbandonedCart[]>([]);
+  const [blockedPhones, setBlockedPhones] = useState<BlockedPhone[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
