@@ -261,8 +261,10 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
   }, [watchedPhone, phoneBlocked, saveAbandonedCart]);
 
   const onSubmit = async (data: FormValues) => {
-    // Check if IP already has an order
-    if (ipHasOrder) {
+    if (isSubmitting) return; // Prevent double submit
+
+    // Check if phone already blocked
+    if (phoneBlocked) {
       toast.error("Ya realizaste una compra anteriormente", {
         description: "Solo se permite una compra por persona.",
       });
@@ -270,15 +272,15 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     }
 
     setIsSubmitting(true);
-    orderSubmittedRef.current = true; // Prevent abandoned cart saves during submission
+    orderSubmittedRef.current = true;
 
-    // === Double-check IP and phone before submitting (server-side safeguard) ===
+    // === Check phone in blocked_phones table (server-side) ===
     try {
       const { data: ipCheck } = await supabase.functions.invoke('get-client-ip', {
         body: { phone: normalizePhone(data.telefono) },
       });
-      if (ipCheck?.hasOrder) {
-        setIpHasOrder(true);
+      if (ipCheck?.isPhoneBlocked) {
+        setPhoneBlocked(true);
         toast.error("Ya realizaste una compra anteriormente", {
           description: "Solo se permite una compra por persona.",
         });
@@ -288,8 +290,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
       }
       if (ipCheck?.ip) setClientIp(ipCheck.ip);
     } catch (e) {
-      console.error('Error re-checking IP (continuing with purchase):', e);
-      // Fail-open: if verification fails, allow the purchase to proceed
+      console.error('Error checking phone (continuing with purchase):', e);
     }
 
     // === FIRE CONVERSION EVENTS IMMEDIATELY (before DB insert) for maximum reliability ===
