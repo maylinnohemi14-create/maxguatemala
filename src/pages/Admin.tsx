@@ -116,6 +116,7 @@ const Admin = () => {
         setTimeout(() => {
           fetchOrders();
           fetchAbandonedCarts();
+          fetchBlockedPhones();
         }, 0);
       }
     });
