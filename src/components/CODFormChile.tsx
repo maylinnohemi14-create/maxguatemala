@@ -126,8 +126,7 @@ const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
 export function CODFormChile({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId }: CODFormChileProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
-  const [ipHasOrder, setIpHasOrder] = useState(false);
-  const [checkingIp, setCheckingIp] = useState(true);
+  const [phoneBlocked, setPhoneBlocked] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [upsells, setUpsells] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
@@ -153,20 +152,18 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
     },
   });
 
+  // Get client IP on load (just for recording)
   useEffect(() => {
-    const checkClientIp = async () => {
+    const getIp = async () => {
       try {
         const { data, error } = await supabase.functions.invoke('get-client-ip');
         if (error) throw error;
         setClientIp(data.ip);
-        setIpHasOrder(data.hasOrder);
       } catch (error) {
-        console.error('Error checking IP:', error);
-      } finally {
-        setCheckingIp(false);
+        console.error('Error getting IP:', error);
       }
     };
-    checkClientIp();
+    getIp();
   }, []);
 
   const [hasTrackedInitiateCheckout, setHasTrackedInitiateCheckout] = useState(false);
