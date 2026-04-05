@@ -44,6 +44,24 @@ export type Database = {
         }
         Relationships: []
       }
+      blocked_phones: {
+        Row: {
+          created_at: string
+          id: string
+          telefono: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          telefono: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          telefono?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           apellidos: string
@@ -202,6 +220,7 @@ export type Database = {
       }
       ip_has_order: { Args: { client_ip: string }; Returns: boolean }
       phone_has_order: { Args: { client_phone: string }; Returns: boolean }
+      phone_is_blocked: { Args: { client_phone: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "user"
