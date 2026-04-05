@@ -110,8 +110,7 @@ const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
 export function CODForm({ productId, productPrice, productName = "Proyector Vevshao A10", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS }: CODFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
-  const [ipHasOrder, setIpHasOrder] = useState(false);
-  const [checkingIp, setCheckingIp] = useState(true);
+  const [phoneBlocked, setPhoneBlocked] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [upsells, setUpsells] = useState<Record<string, boolean>>(() => {
     const initial: Record<string, boolean> = {};
@@ -120,7 +119,7 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     });
     return initial;
   });
-  const [viewerCount, setViewerCount] = useState(() => Math.floor(Math.random() * 11) + 10); // 10-20
+  const [viewerCount, setViewerCount] = useState(() => Math.floor(Math.random() * 11) + 10);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -137,23 +136,18 @@ export function CODForm({ productId, productPrice, productName = "Proyector Vevs
     },
   });
 
-
-  // IP check enabled - blocks duplicate orders from same IP
+  // Get client IP on load (just for recording, no blocking)
   useEffect(() => {
-    const checkClientIp = async () => {
+    const getIp = async () => {
       try {
         const { data, error } = await supabase.functions.invoke('get-client-ip');
         if (error) throw error;
         setClientIp(data.ip);
-        setIpHasOrder(data.hasOrder);
       } catch (error) {
-        console.error('Error checking IP:', error);
-      } finally {
-        setCheckingIp(false);
+        console.error('Error getting IP:', error);
       }
     };
-    
-    checkClientIp();
+    getIp();
   }, []);
 
   const [hasTrackedInitiateCheckout, setHasTrackedInitiateCheckout] = useState(false);
