@@ -458,6 +458,8 @@ const ConjuntosCL = () => {
                       productImage={underArmourMain}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
+                      idVariable="20345"
+                      defaultNota="COMBO CONJUNTO"
                       sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,
                         image: set.image,
