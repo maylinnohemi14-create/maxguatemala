@@ -309,7 +309,7 @@ const Admin = () => {
     { id: 'UA-KIT4EN1-GT', label: 'Conjuntos UA Kit 4 en 1', nota: 'CONJUNTOS UA KIT 4EN1', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
     { id: 'UA-KIT8-REFLETIVA-GT', label: 'Camisetas Reflectivas Kit 8', nota: 'CAMISETAS REFLECTIVAS KIT 8', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
     // Chile
-    { id: 'UA-KIT3EN1-CL', label: '🇨🇱 Conjuntos Chile', nota: 'CONJUNTOS CHILE', idProducto: '179', transportadora: '' },
+    { id: '56051', label: '🇨🇱 Conjuntos Chile', nota: 'COMBO CONJUNTO', idProducto: '56051', idVariable: '20345', transportadora: '' },
   ];
 
   const clearProductOrders = async (product: typeof PRODUCTS[0]) => {

@@ -54,7 +54,7 @@ const ConjuntosCL = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
 
-  const PRODUCT_ID = "UA-KIT3EN1-CL";
+  const PRODUCT_ID = "56051";
   const PRODUCT_PRICE = 39000;
   const PAGE_ROUTE = "/conjuntoscl";
 
@@ -458,6 +458,8 @@ const ConjuntosCL = () => {
                       productImage={underArmourMain}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
+                      idVariable="20345"
+                      defaultNota="COMBO CONJUNTO"
                       sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,
                         image: set.image,

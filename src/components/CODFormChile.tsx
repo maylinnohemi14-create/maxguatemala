@@ -117,13 +117,15 @@ interface CODFormChileProps {
   productDisplayName?: string;
   tiktokPixelId?: string;
   facebookPixelId?: string;
+  idVariable?: string;
+  defaultNota?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormChile({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId }: CODFormChileProps) {
+export function CODFormChile({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, idVariable, defaultNota }: CODFormChileProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [phoneBlocked, setPhoneBlocked] = useState(false);
@@ -353,8 +355,9 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
         telefono: normalizedPhone,
         email: data.email || null,
         colonia: null,
-        nota: data.nota || null,
+        nota: data.nota || defaultNota || null,
         id_producto: productId,
+        id_variable: idVariable || null,
         cantidad: 1,
         precio_total: productPrice.toString(),
         con_recaudo: 'SI',
