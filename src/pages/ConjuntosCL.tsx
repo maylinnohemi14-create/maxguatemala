@@ -54,7 +54,7 @@ const ConjuntosCL = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
 
-  const PRODUCT_ID = "UA-KIT3EN1-CL";
+  const PRODUCT_ID = "56051";
   const PRODUCT_PRICE = 39000;
   const PAGE_ROUTE = "/conjuntoscl";
 
