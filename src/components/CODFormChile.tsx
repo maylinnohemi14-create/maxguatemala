@@ -117,6 +117,8 @@ interface CODFormChileProps {
   productDisplayName?: string;
   tiktokPixelId?: string;
   facebookPixelId?: string;
+  idVariable?: string;
+  defaultNota?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
