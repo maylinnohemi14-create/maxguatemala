@@ -153,7 +153,7 @@ const Index = () => {
 
         {/* Animated glow effects */}
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1s" }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-red-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1s" }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in">
@@ -173,7 +173,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/catalogo"
-                className="group relative px-8 sm:px-10 py-4 bg-gradient-to-r from-cyan-400 to-cyan-500 text-black font-bold text-sm sm:text-base rounded-full hover:shadow-[0_0_40px_rgba(0,255,255,0.3)] transition-all duration-500 tracking-wider"
+                className="group relative px-8 sm:px-10 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-sm sm:text-base rounded-full hover:shadow-[0_0_40px_rgba(255,0,0,0.3)] transition-all duration-500 tracking-wider"
               >
                 COMPRAR AHORA
                 <ChevronRight className="inline-block w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -214,11 +214,11 @@ const Index = () => {
               <Link
                 key={product.link}
                 to={product.link}
-                className="group relative bg-[#111] rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-400/30 transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,255,255,0.08)]"
+                className="group relative bg-[#111] rounded-2xl overflow-hidden border border-white/5 hover:border-red-500/30 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,0,0,0.08)]"
               >
                 {/* Badge */}
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 rounded-full bg-cyan-400 text-black tracking-wider">
+                  <span className="text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 rounded-full bg-red-500 text-white tracking-wider">
                     {product.badge}
                   </span>
                 </div>
@@ -243,10 +243,10 @@ const Index = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-sm sm:text-xl font-black text-cyan-400">{product.price}</span>
+                      <span className="text-sm sm:text-xl font-black text-red-500">{product.price}</span>
                       <span className="text-[10px] sm:text-sm text-white/30 line-through">{product.originalPrice}</span>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-red-500 group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>
@@ -287,11 +287,11 @@ const Index = () => {
               {[...testimonials, ...testimonials].map((t, idx) => (
                 <div
                   key={idx}
-                  className="flex-shrink-0 w-[280px] sm:w-[350px] bg-[#111] border border-white/5 rounded-2xl p-5 sm:p-6 hover:border-cyan-400/20 transition-colors"
+                  className="flex-shrink-0 w-[280px] sm:w-[350px] bg-[#111] border border-white/5 rounded-2xl p-5 sm:p-6 hover:border-red-500/20 transition-colors"
                 >
                   <div className="flex gap-0.5 mb-3">
                     {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-cyan-400 text-cyan-400" />
+                      <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-red-500 text-red-500" />
                     ))}
                   </div>
                   <p className="text-sm sm:text-base text-white/70 mb-4 leading-relaxed italic">"{t.comment}"</p>
@@ -325,14 +325,14 @@ const Index = () => {
 
       {/* CTA Section */}
       <section className="py-20 sm:py-32 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-transparent to-cyan-900/20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[200px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-transparent to-red-900/10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-500/5 rounded-full blur-[200px]" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-[0.9]">
             <span className="text-white">EL FUTURO</span>
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-500 to-red-400 bg-clip-text text-transparent">
               ESTÁ AQUÍ
             </span>
           </h2>
