@@ -143,15 +143,17 @@ export const useTrackingPixels = () => {
 export const usePagePixels = (route: string) => {
   const pixels = useTrackingPixels();
 
-  const tiktokPixelIds = pixels
-    .filter((p) => p.platform === "tiktok" && p.page_route === route)
-    .map((p) => p.pixel_id);
+  const tiktokPixelIds = useMemo(
+    () => pixels.filter((p) => p.platform === "tiktok" && p.page_route === route).map((p) => p.pixel_id),
+    [pixels, route]
+  );
 
-  const facebookPixelIds = pixels
-    .filter((p) => p.platform === "facebook" && p.page_route === route)
-    .map((p) => p.pixel_id);
+  const facebookPixelIds = useMemo(
+    () => pixels.filter((p) => p.platform === "facebook" && p.page_route === route).map((p) => p.pixel_id),
+    [pixels, route]
+  );
 
-  return { tiktokPixelIds, facebookPixelIds, pixels };
+  return useMemo(() => ({ tiktokPixelIds, facebookPixelIds, pixels }), [tiktokPixelIds, facebookPixelIds, pixels]);
 };
 
 const initializedPixels = new Set<string>();
