@@ -214,7 +214,7 @@ const Index = () => {
               <Link
                 key={product.link}
                 to={product.link}
-                className="group relative bg-[#111] rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-400/30 transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,255,255,0.08)]"
+                className="group relative bg-[#111] rounded-2xl overflow-hidden border border-white/5 hover:border-red-500/30 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,0,0,0.08)]"
               >
                 {/* Badge */}
                 <div className="absolute top-3 left-3 z-10">
