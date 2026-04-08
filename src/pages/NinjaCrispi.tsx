@@ -43,7 +43,7 @@ const NinjaCrispi = () => {
   
   const PRODUCT_ID = "NINJA-CRISPI-GT";
   const PRODUCT_PRICE = 319;
-  const PAGE_ROUTE = "/ninja-crispi";
+  const PAGE_ROUTE = "/cocinaaire";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
