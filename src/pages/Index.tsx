@@ -332,7 +332,7 @@ const Index = () => {
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-[0.9]">
             <span className="text-white">EL FUTURO</span>
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-500 to-red-400 bg-clip-text text-transparent">
               ESTÁ AQUÍ
             </span>
           </h2>
