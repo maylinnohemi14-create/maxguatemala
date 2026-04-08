@@ -291,7 +291,7 @@ const Index = () => {
                 >
                   <div className="flex gap-0.5 mb-3">
                     {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-cyan-400 text-cyan-400" />
+                      <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-red-500 text-red-500" />
                     ))}
                   </div>
                   <p className="text-sm sm:text-base text-white/70 mb-4 leading-relaxed italic">"{t.comment}"</p>
