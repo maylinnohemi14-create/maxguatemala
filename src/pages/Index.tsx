@@ -325,8 +325,8 @@ const Index = () => {
 
       {/* CTA Section */}
       <section className="py-20 sm:py-32 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-transparent to-cyan-900/20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[200px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-transparent to-red-900/10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-500/5 rounded-full blur-[200px]" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-[0.9]">
