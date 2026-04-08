@@ -71,7 +71,7 @@ const ConjuntosKit4 = () => {
 
   const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 299;
-  const PAGE_ROUTE = "/conjuntosdeportivo";
+  const PAGE_ROUTE = "/contraentrega";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 

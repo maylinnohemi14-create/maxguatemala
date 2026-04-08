@@ -35,7 +35,7 @@ const Guatemala = () => {
   
   const PRODUCT_ID = "MOCHILA-COMPACTA-GT";
   const PRODUCT_PRICE = 199;
-  const PAGE_ROUTE = "/conjuntos";
+  const PAGE_ROUTE = "/guatemala";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
