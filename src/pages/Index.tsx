@@ -218,7 +218,7 @@ const Index = () => {
               >
                 {/* Badge */}
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 rounded-full bg-cyan-400 text-black tracking-wider">
+                  <span className="text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 rounded-full bg-red-500 text-white tracking-wider">
                     {product.badge}
                   </span>
                 </div>
