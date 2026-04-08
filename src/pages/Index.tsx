@@ -246,7 +246,7 @@ const Index = () => {
                       <span className="text-sm sm:text-xl font-black text-red-500">{product.price}</span>
                       <span className="text-[10px] sm:text-sm text-white/30 line-through">{product.originalPrice}</span>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-red-500 group-hover:translate-x-1 transition-all" />
                   </div>
                 </div>
               </Link>
