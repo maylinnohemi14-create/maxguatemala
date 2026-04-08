@@ -243,7 +243,7 @@ const Index = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-sm sm:text-xl font-black text-cyan-400">{product.price}</span>
+                      <span className="text-sm sm:text-xl font-black text-red-500">{product.price}</span>
                       <span className="text-[10px] sm:text-sm text-white/30 line-through">{product.originalPrice}</span>
                     </div>
                     <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
