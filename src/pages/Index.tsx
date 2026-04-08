@@ -287,7 +287,7 @@ const Index = () => {
               {[...testimonials, ...testimonials].map((t, idx) => (
                 <div
                   key={idx}
-                  className="flex-shrink-0 w-[280px] sm:w-[350px] bg-[#111] border border-white/5 rounded-2xl p-5 sm:p-6 hover:border-cyan-400/20 transition-colors"
+                  className="flex-shrink-0 w-[280px] sm:w-[350px] bg-[#111] border border-white/5 rounded-2xl p-5 sm:p-6 hover:border-red-500/20 transition-colors"
                 >
                   <div className="flex gap-0.5 mb-3">
                     {Array.from({ length: t.rating }).map((_, i) => (
