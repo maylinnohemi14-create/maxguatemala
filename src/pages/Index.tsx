@@ -173,7 +173,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/catalogo"
-                className="group relative px-8 sm:px-10 py-4 bg-gradient-to-r from-cyan-400 to-cyan-500 text-black font-bold text-sm sm:text-base rounded-full hover:shadow-[0_0_40px_rgba(0,255,255,0.3)] transition-all duration-500 tracking-wider"
+                className="group relative px-8 sm:px-10 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-sm sm:text-base rounded-full hover:shadow-[0_0_40px_rgba(255,0,0,0.3)] transition-all duration-500 tracking-wider"
               >
                 COMPRAR AHORA
                 <ChevronRight className="inline-block w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
