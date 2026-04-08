@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TrackingPixels } from "@/components/TrackingPixels";
 import Index from "./pages/Index";
+import Proyector from "./pages/Proyector";
 import Taladro from "./pages/Taladro";
 import Gafas from "./pages/Gafas";
 import Guatemala from "./pages/Guatemala";
@@ -45,6 +46,7 @@ const App = () => (
         <TrackingPixels />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/proyector" element={<Proyector />} />
           <Route path="/taladro" element={<Taladro />} />
           <Route path="/gafas" element={<Gafas />} />
           <Route path="/guatemala" element={<Guatemala />} />
