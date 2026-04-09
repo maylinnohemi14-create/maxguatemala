@@ -34,6 +34,7 @@ import VestidoCorset from "./pages/VestidoCorset";
 import VestidoNoche from "./pages/VestidoNoche";
 import Refletiva from "./pages/Refletiva";
 import Catalogo from "./pages/Catalogo";
+import ConjuntosKit4CO from "./pages/ConjuntosKit4CO";
 
 
 const queryClient = new QueryClient();
@@ -67,6 +68,7 @@ const App = () => (
           <Route path="/feminino/noche" element={<VestidoNoche />} />
           <Route path="/refletiva" element={<Refletiva />} />
           <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/contraentregaco" element={<ConjuntosKit4CO />} />
           
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
