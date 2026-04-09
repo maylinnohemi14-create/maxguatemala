@@ -311,7 +311,7 @@ const Admin = () => {
     // Chile
     { id: 'UA-KIT3EN1-CL', label: '🇨🇱 Conjuntos Chile', nota: 'COMBO CONJUNTO', idProducto: '56051', idVariable: '20345', transportadora: 'BLUE' },
     // Colombia
-    { id: 'UA-KIT3EN1-CO', label: '🇨🇴 Conjuntos Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2036237', idVariable: '1905214', transportadora: 'FORZA' },
+    { id: 'UA-KIT3EN1-CO', label: '🇨🇴 Conjuntos Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2036237', idVariable: '1905214', transportadora: 'INTERRAPIDISIMO' },
   ];
 
   const clearProductOrders = async (product: typeof PRODUCTS[0]) => {
