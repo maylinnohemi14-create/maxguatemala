@@ -447,7 +447,7 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
             <div className="pt-2">
               <p className="text-muted-foreground mb-2 sm:mb-3 text-sm sm:text-base">Para cualquier duda llama al WhatsApp</p>
               <a
-                href="https://wa.me/573001234567?text=Hola,%20acabo%20de%20realizar%20una%20compra%20y%20tengo%20una%20consulta"
+                href="https://wa.me/56927357422?text=Hola,%20acabo%20de%20realizar%20una%20compra%20y%20tengo%20una%20consulta"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex max-w-full items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 sm:py-3 px-5 sm:px-8 rounded-full transition-colors text-base sm:text-lg animate-pulse text-center"
