@@ -40,7 +40,7 @@ const colombiaProducts = [
   {
     title: "Conjuntos Kit 3 en 1",
     description: "3 conjuntos completos: Buzo + Camiseta + Pantalón en colores Gris, Negro y Azul.",
-    price: "$129.900",
+    price: "$149.000",
     originalPrice: "$289.900",
     image: underArmourMain,
     link: "/conjuntosco",
@@ -49,8 +49,8 @@ const colombiaProducts = [
   {
     title: "Conjuntos Kit 4 en 1",
     description: "4 conjuntos deportivos completos: Buzo + Camiseta + Pantaloneta en Negro, Blanco, Azul y Gris.",
-    price: "$129.900",
-    originalPrice: "$299.900",
+    price: "$179.000",
+    originalPrice: "$358.000",
     image: conjunto4Negro,
     link: "/contraentregaco",
     badge: "⚡ Nuevo",
