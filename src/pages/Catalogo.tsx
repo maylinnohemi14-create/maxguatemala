@@ -134,7 +134,7 @@ const Catalogo = () => {
 
       <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-12">
         {/* Guatemala */}
-        <div>
+        <div id="guatemala">
           <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
             🇬🇹 Guatemala
           </h2>
@@ -142,7 +142,7 @@ const Catalogo = () => {
         </div>
 
         {/* Colombia */}
-        <div>
+        <div id="colombia">
           <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
             🇨🇴 Colombia
           </h2>
