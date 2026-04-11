@@ -308,34 +308,55 @@ const Admin = () => {
     { id: 'VESTIDO-NOCHE3-GT', label: 'Vestido Noche Kit 3', nota: 'VESTIDO NOCHE KIT 3', idProducto: '179', transportadora: 'FORZA' },
     { id: 'UA-KIT4EN1-GT', label: 'Conjuntos UA Kit 4 en 1', nota: 'CONJUNTOS UA KIT 4EN1', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
     { id: 'UA-KIT8-REFLETIVA-GT', label: 'Camisetas Reflectivas Kit 8', nota: 'CAMISETAS REFLECTIVAS KIT 8', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
-    // Chile
     { id: 'UA-KIT3EN1-CL', label: '🇨🇱 Conjuntos Chile', nota: 'COMBO CONJUNTO', idProducto: '56051', idVariable: '20345', transportadora: 'BLUE' },
-    // Colombia
     { id: 'UA-KIT3EN1-CO', label: '🇨🇴 Conjuntos Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2036237', idVariable: '2089723', transportadora: 'INTERRAPIDISIMO' },
     { id: 'UA-KIT4EN1-CO', label: '🇨🇴 Kit 4en1 Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2036237', idVariable: '2089723', transportadora: 'INTERRAPIDISIMO' },
   ];
 
+  const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');
+
+  const isLegacyColombiaOrder = (order: Order, productId: string) => {
+    if (order.id_producto !== '2036237') return false;
+
+    const normalizedPrice = normalizeOrderPrice(order.precio_total);
+
+    if (productId === 'UA-KIT3EN1-CO') return normalizedPrice === '149000';
+    if (productId === 'UA-KIT4EN1-CO') return normalizedPrice === '179000';
+
+    return false;
+  };
+
+  const getOrdersByProduct = (productId: string) => {
+    return orders.filter(order => order.id_producto === productId || isLegacyColombiaOrder(order, productId));
+  };
+
   const clearProductOrders = async (product: typeof PRODUCTS[0]) => {
     try {
+      const productOrders = getOrdersByProduct(product.id);
+
+      if (productOrders.length === 0) {
+        toast.error(`Não há pedidos de ${product.label} para limpar`);
+        return;
+      }
+
+      const idsToDelete = productOrders.map(order => order.id);
+      const idsToDeleteSet = new Set(idsToDelete);
+
       const { error } = await supabase
         .from('orders')
         .delete()
-        .eq('id_producto', product.id);
-      
+        .in('id', idsToDelete);
+
       if (error) throw error;
-      
-      const remaining = orders.filter(o => o.id_producto !== product.id);
+
+      const remaining = orders.filter(order => !idsToDeleteSet.has(order.id));
       setOrders(remaining);
       calculateStats(remaining);
-      
+
       toast.success(`Pedidos de ${product.label} limpos com sucesso!`);
     } catch (error: any) {
       toast.error("Erro ao limpar pedidos: " + error.message);
     }
-  };
-
-  const getOrdersByProduct = (productId: string) => {
-    return orders.filter(order => order.id_producto === productId);
   };
 
   const formatOrdersForExcel = (ordersToFormat: Order[], product?: typeof PRODUCTS[0]) => {
