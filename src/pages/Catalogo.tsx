@@ -112,9 +112,23 @@ const Catalogo = () => {
           <h1 className="text-2xl sm:text-4xl font-bold mb-2">
             🛒 Nuestro Catálogo
           </h1>
-          <p className="text-sm sm:text-lg text-gray-300">
+          <p className="text-sm sm:text-lg text-gray-300 mb-5">
             Pago contra entrega · ¡Los mejores precios!
           </p>
+          <div className="flex items-center justify-center gap-3 sm:gap-4">
+            <a
+              href="#guatemala"
+              className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-full transition-all duration-300 text-sm sm:text-base font-semibold"
+            >
+              🇬🇹 Guatemala
+            </a>
+            <a
+              href="#colombia"
+              className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-full transition-all duration-300 text-sm sm:text-base font-semibold"
+            >
+              🇨🇴 Colombia
+            </a>
+          </div>
         </div>
       </div>
 
