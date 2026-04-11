@@ -473,6 +473,10 @@ const ConjuntosCO = () => {
                       productImage={underArmourMain}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
+                      idVariable="1905214"
+                      defaultNota="KIT CONJUTOS UA"
+                      transportadora="INTERRAPIDISIMO"
+                      idProducto="2036237"
                       sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,
                         image: set.image,
