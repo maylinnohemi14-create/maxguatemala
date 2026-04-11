@@ -126,13 +126,14 @@ interface CODFormColombiaProps {
   idVariable?: string;
   defaultNota?: string;
   transportadora?: string;
+  idProducto?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormColombia({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, idVariable, defaultNota, transportadora }: CODFormColombiaProps) {
+export function CODFormColombia({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, idVariable, defaultNota, transportadora, idProducto }: CODFormColombiaProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [phoneBlocked, setPhoneBlocked] = useState(false);
@@ -362,7 +363,7 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
         email: data.email || null,
         colonia: null,
         nota: data.nota || defaultNota || null,
-        id_producto: productId,
+        id_producto: idProducto || productId,
         id_variable: idVariable || null,
         cantidad: 1,
         precio_total: productPrice.toString(),
