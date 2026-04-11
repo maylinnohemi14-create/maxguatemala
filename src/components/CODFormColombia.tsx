@@ -363,7 +363,7 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
         email: data.email || null,
         colonia: null,
         nota: data.nota || defaultNota || null,
-        id_producto: idProducto || productId,
+        id_producto: productId,
         id_variable: idVariable || null,
         cantidad: 1,
         precio_total: productPrice.toString(),
