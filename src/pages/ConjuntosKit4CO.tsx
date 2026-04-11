@@ -478,7 +478,7 @@ const ConjuntosKit4CO = () => {
                       productImage={conjunto4Negro}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
-                      idVariable="1905214"
+                      idVariable="2089723"
                       defaultNota="KIT CONJUTOS UA"
                       transportadora="INTERRAPIDISIMO"
                       idProducto="2036237"
