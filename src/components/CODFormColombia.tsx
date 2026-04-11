@@ -125,13 +125,14 @@ interface CODFormColombiaProps {
   facebookPixelId?: string;
   idVariable?: string;
   defaultNota?: string;
+  transportadora?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormColombia({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, idVariable, defaultNota }: CODFormColombiaProps) {
+export function CODFormColombia({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, idVariable, defaultNota, transportadora }: CODFormColombiaProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [phoneBlocked, setPhoneBlocked] = useState(false);
@@ -366,6 +367,7 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
         cantidad: 1,
         precio_total: productPrice.toString(),
         con_recaudo: 'SI',
+        transportadora: transportadora || null,
         ip_address: resolvedClientIp,
       });
 
