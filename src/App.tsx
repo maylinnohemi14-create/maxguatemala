@@ -47,8 +47,8 @@ const App = () => (
       <BrowserRouter>
         <TrackingPixels />
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/proyector" element={<Proyector />} />
+          <Route path="/" element={<Proyector />} />
+          <Route path="/proyector" element={<Index />} />
           <Route path="/taladro" element={<Taladro />} />
           <Route path="/gafas" element={<Gafas />} />
           <Route path="/guatemala" element={<Guatemala />} />
