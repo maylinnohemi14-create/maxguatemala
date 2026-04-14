@@ -316,7 +316,7 @@ const Admin = () => {
   const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');
 
   const isLegacyColombiaOrder = (order: Order, productId: string) => {
-    if (order.id_producto !== '2036237') return false;
+    if (order.id_producto !== '2036237' && order.id_producto !== '2128752') return false;
 
     const normalizedPrice = normalizeOrderPrice(order.precio_total);
 
