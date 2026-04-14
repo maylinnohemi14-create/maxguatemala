@@ -561,6 +561,22 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
         </div>
       </div>
 
+      {/* Guarantee Badge with Promo */}
+      <div className="flex flex-col items-center justify-center gap-2 sm:gap-4 py-3 sm:py-4">
+        <img src={guaranteeBadge} alt="100% Garantía" className="w-40 sm:w-64 h-auto" />
+        <div className="text-center bg-destructive text-destructive-foreground rounded-lg px-3 py-2 sm:px-4 sm:py-3">
+          <p className="text-xs sm:text-sm md:text-base font-bold flex items-center justify-center gap-2">
+            <span>⚠️</span>
+            <span>¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta hoy {(() => {
+              const hoy = new Date();
+              const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+              return `${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
+            })()}. ¡Asegura el tuyo ahora!</span>
+            <span>⚠️</span>
+          </p>
+        </div>
+      </div>
+
       {/* Form */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} onChange={handleFormInteraction} className="space-y-3 sm:space-y-4 w-full max-w-full overflow-x-hidden">
