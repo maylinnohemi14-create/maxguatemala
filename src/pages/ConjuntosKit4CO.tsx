@@ -481,7 +481,7 @@ const ConjuntosKit4CO = () => {
                       idVariable="2089723"
                       defaultNota="KIT CONJUTOS UA"
                       transportadora="INTERRAPIDISIMO"
-                      idProducto="2036237"
+                      idProducto="2128752"
                       sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,
                         image: set.image,
