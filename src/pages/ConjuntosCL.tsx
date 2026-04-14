@@ -55,7 +55,7 @@ const ConjuntosCL = () => {
   const [showCODForm, setShowCODForm] = useState(false);
 
   const PRODUCT_ID = "56051";
-  const PRODUCT_PRICE = 39000;
+  const PRODUCT_PRICE = 49000;
   const PAGE_ROUTE = "/conjuntoscl";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
