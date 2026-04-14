@@ -309,14 +309,14 @@ const Admin = () => {
     { id: 'UA-KIT4EN1-GT', label: 'Conjuntos UA Kit 4 en 1', nota: 'CONJUNTOS UA KIT 4EN1', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
     { id: 'UA-KIT8-REFLETIVA-GT', label: 'Camisetas Reflectivas Kit 8', nota: 'CAMISETAS REFLECTIVAS KIT 8', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
     { id: 'UA-KIT3EN1-CL', label: '🇨🇱 Conjuntos Chile', nota: 'COMBO CONJUNTO', idProducto: '56051', idVariable: '20345', transportadora: 'BLUE' },
-    { id: 'UA-KIT3EN1-CO', label: '🇨🇴 Conjuntos Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2036237', idVariable: '2089723', transportadora: 'INTERRAPIDISIMO' },
-    { id: 'UA-KIT4EN1-CO', label: '🇨🇴 Kit 4en1 Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2036237', idVariable: '2089723', transportadora: 'INTERRAPIDISIMO' },
+    { id: 'UA-KIT3EN1-CO', label: '🇨🇴 Conjuntos Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2128752', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
+    { id: 'UA-KIT4EN1-CO', label: '🇨🇴 Kit 4en1 Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2128752', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
   ];
 
   const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');
 
   const isLegacyColombiaOrder = (order: Order, productId: string) => {
-    if (order.id_producto !== '2036237') return false;
+    if (order.id_producto !== '2036237' && order.id_producto !== '2128752') return false;
 
     const normalizedPrice = normalizeOrderPrice(order.precio_total);
 
