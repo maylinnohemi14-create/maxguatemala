@@ -35,7 +35,7 @@ import VestidoNoche from "./pages/VestidoNoche";
 import Refletiva from "./pages/Refletiva";
 import Catalogo from "./pages/Catalogo";
 import ConjuntosKit4CO from "./pages/ConjuntosKit4CO";
-
+import Deportivo from "./pages/Deportivo";
 
 const queryClient = new QueryClient();
 
