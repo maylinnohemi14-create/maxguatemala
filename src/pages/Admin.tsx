@@ -327,7 +327,12 @@ const Admin = () => {
   };
 
   const getOrdersByProduct = (productId: string) => {
-    return orders.filter(order => order.id_producto === productId || isLegacyColombiaOrder(order, productId));
+    const product = PRODUCTS.find(p => p.id === productId);
+    return orders.filter(order => 
+      order.id_producto === productId || 
+      (product && order.id_producto === product.idProducto) ||
+      isLegacyColombiaOrder(order, productId)
+    );
   };
 
   const clearProductOrders = async (product: typeof PRODUCTS[0]) => {
