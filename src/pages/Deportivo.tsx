@@ -30,7 +30,7 @@ import deportivoNegroBuzo from "@/assets/deportivo-negro-buzo.webp";
 import deportivoNegroPantalon from "@/assets/deportivo-negro-pantalon.webp";
 import deportivoAzulBuzo from "@/assets/deportivo-azul-buzo.webp";
 import deportivoAzulPantalon from "@/assets/deportivo-azul-pantalon.webp";
-import maxHeader from "@/assets/max-header.png";
+
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
