@@ -36,6 +36,7 @@ import Refletiva from "./pages/Refletiva";
 import Catalogo from "./pages/Catalogo";
 import ConjuntosKit4CO from "./pages/ConjuntosKit4CO";
 import Deportivo from "./pages/Deportivo";
+import DeportivoCatalogo from "./pages/DeportivoCatalogo";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/contraentregaco" element={<ConjuntosKit4CO />} />
           <Route path="/deportivo" element={<Deportivo />} />
+          <Route path="/deportivocatalogo" element={<DeportivoCatalogo />} />
           
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
