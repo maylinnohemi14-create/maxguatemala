@@ -114,13 +114,14 @@ interface CODFormGuatemalaProps {
   productDisplayName?: string;
   tiktokPixelId?: string;
   facebookPixelId?: string;
+  promoMessage?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId }: CODFormGuatemalaProps) {
+export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, promoMessage }: CODFormGuatemalaProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [phoneBlocked, setPhoneBlocked] = useState(false);
@@ -615,11 +616,11 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         <div className="text-center bg-destructive text-destructive-foreground rounded-lg px-3 py-2 sm:px-4 sm:py-3">
           <p className="text-xs sm:text-sm md:text-base font-bold flex items-center justify-center gap-2">
             <span>⚠️</span>
-            <span>¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta hoy {(() => {
+            <span>{promoMessage || `¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta hoy ${(() => {
               const hoy = new Date();
               const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
               return `${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
-            })()}. ¡Asegura el tuyo ahora!</span>
+            })()}. ¡Asegura el tuyo ahora!`}</span>
             <span>⚠️</span>
           </p>
         </div>
