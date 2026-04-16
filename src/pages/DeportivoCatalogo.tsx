@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { LegalFooter } from "@/components/LegalFooter";
+import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
 
 // Lacoste brand palette (used as inline tokens for this scoped futuristic theme)
 const LACOSTE_GREEN = "#004526";
@@ -20,18 +21,17 @@ type Product = {
 
 // Add your Lacoste products here. Replace image URLs and links as you go.
 const products: Product[] = [
-  // Example placeholder — substitua/adicione livremente
-  // {
-  //   id: "lac-polo-kit3",
-  //   title: "Kit 3 Polos Lacoste",
-  //   subtitle: "Algodón Premium · Edición Limitada",
-  //   price: "Q299",
-  //   originalPrice: "Q899",
-  //   image: "https://...",
-  //   link: "/deportivo",
-  //   badge: "🔥 Más Vendido",
-  //   tags: ["Polo", "Algodón Pima"],
-  // },
+  {
+    id: "dep-kit3-gt",
+    title: "Kit 3 Conjuntos Deportivos",
+    subtitle: "Buzo Zípper + Pantalón · Verde, Negro y Azul",
+    price: "Q279",
+    originalPrice: "Q837",
+    image: deportivoVerdeBuzo,
+    link: "/deportivo",
+    badge: "🔥 Más Vendido",
+    tags: ["Kit x3", "Premium"],
+  },
 ];
 
 const DeportivoCatalogo = () => {
