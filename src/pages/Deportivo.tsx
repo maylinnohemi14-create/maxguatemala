@@ -502,9 +502,9 @@ const Deportivo = () => {
                     Pedir con pago Contra Entrega + Envío Gratis
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl dark" style={{ background: '#111', border: '1px solid rgba(0,255,136,0.2)', color: '#e5e5e5' }}>
+                <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
                   <DialogHeader>
-                    <DialogTitle className="text-base sm:text-lg" style={{ color: '#fff' }}>Formulario de Pedido - Pago Contra Entrega</DialogTitle>
+                    <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
                   </DialogHeader>
                   {showCODForm && (
                     <CODFormGuatemala
