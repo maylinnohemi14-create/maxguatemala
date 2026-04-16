@@ -294,7 +294,7 @@ const Deportivo = () => {
 
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <span className="inline-flex items-center font-bold text-xs px-3 py-1.5 rounded-full animate-pulse-glow" style={{ background: '#00ff88', color: '#000' }}>
-                ⚡ PROMOCIÓN VÁLIDA HASTA HOY {new Date().toLocaleDateString('es-GT', { timeZone: 'America/Guatemala', day: 'numeric', month: 'long' }).toUpperCase()} - ¡NO TE LO PIERDAS!
+                ⚡ PROMOCIÓN VÁLIDA DEL 16 AL 27 DE ABRIL - ¡NO TE LO PIERDAS!
               </span>
             </div>
 
