@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { LegalFooter } from "@/components/LegalFooter";
+import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
 
 // Lacoste brand palette (used as inline tokens for this scoped futuristic theme)
 const LACOSTE_GREEN = "#004526";
