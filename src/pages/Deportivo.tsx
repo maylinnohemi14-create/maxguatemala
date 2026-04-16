@@ -180,9 +180,32 @@ const Deportivo = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* MAX Header */}
-      <div className="w-full bg-white">
-        <img src={maxHeader} alt="MAX Guatemala - Tienda Online" className="w-full h-auto object-contain sm:object-cover max-h-[120px] sm:max-h-none mx-auto sm:mx-0 p-2 sm:p-0" />
+      {/* Futuristic Header */}
+      <div className="w-full bg-black relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent" />
+          {/* Subtle grid lines */}
+          <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        </div>
+        <div className="container mx-auto px-4 py-4 sm:py-5 flex items-center justify-between relative z-10">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 border-2 border-white rounded-full flex items-center justify-center">
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-white text-lg sm:text-2xl font-bold tracking-[0.2em] uppercase">Sport Elite</h1>
+              <p className="text-white/50 text-[10px] sm:text-xs tracking-[0.3em] uppercase">Premium Collection</p>
+            </div>
+          </div>
+          <div className="hidden sm:flex items-center gap-6 text-white/60 text-xs tracking-widest uppercase">
+            <span>Guatemala</span>
+            <span className="w-1 h-1 bg-white/40 rounded-full" />
+            <span>Envío Gratis</span>
+            <span className="w-1 h-1 bg-white/40 rounded-full" />
+            <span>Pago Contra Entrega</span>
+          </div>
+        </div>
       </div>
 
       {/* Trust Bar */}
