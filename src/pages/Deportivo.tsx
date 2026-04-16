@@ -524,11 +524,12 @@ const Deportivo = () => {
                         bottomLabel: 'Pantalón',
                       }))}
                       includedItems={[
-                        { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
-                        { id: 'kit', icon: '🧥', title: '3 Conjuntos Completos', description: 'Verde + Negro + Azul Marino' },
-                        { id: 'envio', icon: '🚚', title: 'Envío Gratis', description: 'A toda Guatemala' },
-                      ]}
-                      onOrderComplete={() => {
+                      { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
+                      { id: 'kit', icon: '🧥', title: '3 Conjuntos Completos', description: 'Verde + Negro + Azul Marino' },
+                      { id: 'envio', icon: '🚚', title: 'Envío Gratis', description: 'A toda Guatemala' },
+                    ]}
+                    promoMessage="¡AVISO IMPORTANTE! El stock se está agotando y solo haremos ventas hasta el día 27 de abril. ¡Asegura el tuyo ahora!"
+                    onOrderComplete={() => {
                         setShowCODForm(false);
                         toast.success("¡Pedido registrado exitosamente!");
                       }}
