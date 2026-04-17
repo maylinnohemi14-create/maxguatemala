@@ -56,9 +56,9 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 1, price: 249, label: "1 Calça Jogger", saving: 0 },
-  { qty: 2, price: 279, label: "2 Calças Jogger", saving: 219, highlight: true },
-  { qty: 3, price: 299, label: "3 Calças Jogger", saving: 448 },
+  { qty: 1, price: 249, label: "1 Pantalón Jogger", saving: 0 },
+  { qty: 2, price: 279, label: "2 Pantalones Jogger", saving: 219, highlight: true },
+  { qty: 3, price: 299, label: "3 Pantalones Jogger", saving: 448 },
 ];
 
 const Jogger = () => {
@@ -102,7 +102,7 @@ const Jogger = () => {
     const colorsTxt = selectedColors.length > 0
       ? selectedColors.map((id) => COLORS.find((c) => c.id === id)?.name).filter(Boolean).join(", ")
       : "—";
-    return `Calça Jogger Nike x${selectedQty} (${colorsTxt})`;
+    return `Pantalón Jogger Nike x${selectedQty} (${colorsTxt})`;
   }, [selectedQty, selectedColors]);
 
   const extraNote = useMemo(() => {
@@ -247,7 +247,7 @@ const Jogger = () => {
 
               <img
                 src={COLORS[selectedImage].image}
-                alt={`Calça Jogger Nike ${COLORS[selectedImage].name}`}
+                alt={`Pantalón Jogger Nike ${COLORS[selectedImage].name}`}
                 className="w-full h-full object-cover transition-opacity duration-500"
                 loading="eager"
                 fetchPriority="high"
@@ -309,7 +309,7 @@ const Jogger = () => {
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-black leading-[0.95] tracking-tight mb-3">
-              Calça Jogger
+              Pantalón Jogger
               <br />
               <span
                 style={{
