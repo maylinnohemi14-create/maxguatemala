@@ -786,6 +786,139 @@ const Jogger = () => {
         </DialogContent>
       </Dialog>
 
+      {/* SIZE GUIDE DIALOG */}
+      <Dialog open={showSizeGuide} onOpenChange={setShowSizeGuide}>
+        <DialogContent
+          className="w-[calc(100vw-16px)] max-w-lg max-h-[90dvh] overflow-y-auto p-0 border-0"
+          style={{
+            background: `linear-gradient(160deg, ${NIKE_DARK}, ${NIKE_BLACK})`,
+            boxShadow: `0 30px 80px ${NIKE_ORANGE}55`,
+          }}
+        >
+          <div
+            className="relative p-5 sm:p-6"
+            style={{ borderTop: `3px solid ${NIKE_ORANGE}` }}
+          >
+            <div
+              className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-25 pointer-events-none"
+              style={{ background: NIKE_ORANGE }}
+            />
+
+            <DialogHeader className="relative z-10">
+              <div
+                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}
+              >
+                <Ruler className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: NIKE_ORANGE }}>
+                  GUÍA DE TALLAS
+                </span>
+              </div>
+              <DialogTitle className="text-center text-white text-xl font-black">
+                Encuentra tu talla ideal
+              </DialogTitle>
+              <p className="text-center text-white/60 text-xs mt-1">
+                Medidas aproximadas en centímetros (cm)
+              </p>
+            </DialogHeader>
+
+            <div className="relative z-10 mt-5">
+              {/* Pantalón */}
+              <div className="mb-5">
+                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: NIKE_ORANGE }}>
+                  📏 Pantalón Jogger
+                </div>
+                <div
+                  className="rounded-xl overflow-hidden border"
+                  style={{ borderColor: `${NIKE_ORANGE}33` }}
+                >
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr style={{ background: `${NIKE_ORANGE}22` }}>
+                        <th className="py-2 px-2 text-left text-white font-black">Talla</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Cintura</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Cadera</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Largo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {PANT_SIZE_GUIDE.map((row, i) => (
+                        <tr
+                          key={row.size}
+                          style={{
+                            background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)",
+                          }}
+                        >
+                          <td className="py-2 px-2 font-black" style={{ color: NIKE_ORANGE }}>{row.size}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.cintura}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.cadera}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.largo}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Chaqueta */}
+              <div className="mb-4">
+                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: NIKE_ORANGE }}>
+                  🧥 Chaqueta Nike
+                </div>
+                <div
+                  className="rounded-xl overflow-hidden border"
+                  style={{ borderColor: `${NIKE_ORANGE}33` }}
+                >
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr style={{ background: `${NIKE_ORANGE}22` }}>
+                        <th className="py-2 px-2 text-left text-white font-black">Talla</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Pecho</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Largo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {JACKET_SIZE_GUIDE.map((row, i) => (
+                        <tr
+                          key={row.size}
+                          style={{
+                            background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)",
+                          }}
+                        >
+                          <td className="py-2 px-2 font-black" style={{ color: NIKE_ORANGE }}>{row.size}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.pecho}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.largo}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div
+                className="rounded-lg p-3 text-[11px] text-white/70 border"
+                style={{ borderColor: `${NIKE_ORANGE}33`, background: `${NIKE_ORANGE}10` }}
+              >
+                💡 <strong className="text-white">Tip:</strong> Si estás entre dos tallas, te recomendamos elegir la talla mayor para un fit más holgado.
+              </div>
+
+              <Button
+                onClick={() => setShowSizeGuide(false)}
+                className="w-full mt-4 font-black py-5 rounded-xl"
+                style={{
+                  background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                  color: "#fff",
+                  boxShadow: `0 8px 24px -4px ${NIKE_ORANGE}`,
+                }}
+              >
+                <Check className="w-5 h-5 mr-2" />
+                Entendido
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <div className="relative z-10 bg-background">
         <LegalFooter />
       </div>
