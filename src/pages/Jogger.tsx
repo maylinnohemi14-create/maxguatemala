@@ -188,13 +188,23 @@ const Jogger = () => {
     setShowUpsell(true);
   };
 
-  const handleUpsellDecision = (accept: boolean) => {
-    setAddJacket(accept);
+  const goToForm = () => {
     setShowUpsell(false);
     setShowForm(true);
     setTimeout(() => {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+    }, 150);
+  };
+
+  const handleUpsellDecision = (accept: boolean) => {
+    setAddJacket(accept);
+    goToForm();
+  };
+
+  const handleUpsellClose = () => {
+    // Close X behaves like "no, gracias" — go to form without jacket
+    setAddJacket(false);
+    goToForm();
   };
 
   return (
