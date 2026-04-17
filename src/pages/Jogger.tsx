@@ -687,7 +687,7 @@ const Jogger = () => {
             {/* Neon close button (custom — overlays the default one) */}
             <button
               type="button"
-              onClick={() => setShowUpsell(false)}
+              onClick={handleUpsellClose}
               aria-label="Cerrar"
               className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
               style={{
