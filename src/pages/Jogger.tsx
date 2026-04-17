@@ -664,7 +664,7 @@ const Jogger = () => {
       )}
 
       {/* UPSELL DIALOG */}
-      <Dialog open={showUpsell} onOpenChange={setShowUpsell}>
+      <Dialog open={showUpsell} onOpenChange={(open) => { if (!open) handleUpsellClose(); }}>
         <DialogContent
           className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0"
           style={{
