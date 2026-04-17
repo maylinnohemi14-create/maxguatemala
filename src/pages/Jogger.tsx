@@ -145,11 +145,12 @@ const Jogger = () => {
     if (selectedColors.length) {
       parts.push(`Colores: ${selectedColors.map((id) => COLORS.find((c) => c.id === id)?.name).filter(Boolean).join(", ")}`);
     }
+    parts.push(`Tallas: ${pantSizes.slice(0, selectedQty).join(", ")}`);
     if (addJacket) {
-      parts.push(`+ JAQUETA NIKE BLANCA Talla ${jacketSize} (Q${JACKET_PRICE})`);
+      parts.push(`+ CHAQUETA NIKE BLANCA Talla ${jacketSize} (Q${JACKET_PRICE})`);
     }
     return parts.join(" | ");
-  }, [selectedQty, selectedColors, addJacket, jacketSize]);
+  }, [selectedQty, selectedColors, pantSizes, addJacket, jacketSize]);
 
   const toggleColor = (id: string) => {
     setSelectedColors((prev) => {
@@ -650,7 +651,7 @@ const Jogger = () => {
                   Elige tu talla
                 </div>
                 <div className="grid grid-cols-4 gap-1.5">
-                  {SIZES.map((s) => {
+                  {JACKET_SIZES.map((s) => {
                     const active = jacketSize === s;
                     return (
                       <button
