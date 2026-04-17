@@ -814,6 +814,21 @@ const Jogger = () => {
               style={{ background: NIKE_ORANGE }}
             />
 
+            {/* Neon close button */}
+            <button
+              type="button"
+              onClick={() => setShowSizeGuide(false)}
+              aria-label="Cerrar guía de tallas"
+              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
+              style={{
+                background: `radial-gradient(circle, ${NIKE_ORANGE} 0%, ${NIKE_RED} 100%)`,
+                boxShadow: `0 0 16px ${NIKE_ORANGE}, 0 0 32px ${NIKE_ORANGE}99, 0 0 48px ${NIKE_RED}66, inset 0 0 8px rgba(255,255,255,0.3)`,
+                border: `2px solid ${NIKE_WHITE}`,
+              }}
+            >
+              <X className="w-5 h-5 text-white" strokeWidth={3} />
+            </button>
+
             <DialogHeader className="relative z-10">
               <div
                 className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
