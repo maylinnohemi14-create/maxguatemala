@@ -115,13 +115,14 @@ interface CODFormGuatemalaProps {
   tiktokPixelId?: string;
   facebookPixelId?: string;
   promoMessage?: string;
+  extraNote?: string;
 }
 
 const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, promoMessage }: CODFormGuatemalaProps) {
+export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, promoMessage, extraNote }: CODFormGuatemalaProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [phoneBlocked, setPhoneBlocked] = useState(false);
@@ -400,7 +401,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         telefono: normalizedPhone,
         email: data.email || null,
         colonia: null,
-        nota: data.nota || null,
+        nota: [extraNote, data.nota].filter(Boolean).join(' | ') || null,
         id_producto: productId,
         cantidad: 1,
         precio_total: productPrice.toString(),
