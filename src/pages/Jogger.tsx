@@ -522,7 +522,7 @@ const Jogger = () => {
               tiktokPixelId={tiktokPixelIds[0]}
               facebookPixelId={facebookPixelIds[0]}
               extraNote={extraNote}
-              promoMessage={`¡PROMOCIÓN! ${selectedQty} Calça(s) Jogger Nike por solo Q${basePrice}${addJacket ? ` + Jaqueta Q${JACKET_PRICE}` : ""}.`}
+              promoMessage={`¡PROMOCIÓN! ${selectedQty} Pantalón(es) Jogger Nike por solo Q${basePrice}${addJacket ? ` + Chaqueta Q${JACKET_PRICE}` : ""}.`}
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
               ]}

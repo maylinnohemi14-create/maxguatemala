@@ -35,7 +35,7 @@ const products: Product[] = [
   },
   {
     id: "jogger-nike-gt",
-    title: "Calça Jogger Nike",
+    title: "Pantalón Jogger Nike",
     subtitle: "8 colores · Tejido premium · Hasta 3x desde Q249",
     price: "Q249",
     originalPrice: "Q599",
