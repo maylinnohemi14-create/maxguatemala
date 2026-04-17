@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LegalFooter } from "@/components/LegalFooter";
 import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
+import joggerNegro from "@/assets/jogger-negro.jpg";
 
 // Lacoste brand palette (used as inline tokens for this scoped futuristic theme)
 const LACOSTE_GREEN = "#004526";
@@ -31,6 +32,17 @@ const products: Product[] = [
     link: "/deportivo",
     badge: "🔥 Más Vendido",
     tags: ["Kit x3", "Premium"],
+  },
+  {
+    id: "jogger-nike-gt",
+    title: "Calça Jogger Nike",
+    subtitle: "8 colores · Tejido premium · Hasta 3x desde Q249",
+    price: "Q249",
+    originalPrice: "Q599",
+    image: joggerNegro,
+    link: "/jogger",
+    badge: "✨ Nuevo",
+    tags: ["Sport", "Premium"],
   },
 ];
 
