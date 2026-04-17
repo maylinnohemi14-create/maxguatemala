@@ -4,7 +4,7 @@ import { CODFormGuatemala } from "@/components/CODFormGuatemala";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Check, Flame, Shield, Truck, Zap, Sparkles, X } from "lucide-react";
+import { Check, Flame, Shield, Truck, Zap, Sparkles, X, Ruler } from "lucide-react";
 
 import joggerNegro from "@/assets/jogger-negro.jpg";
 import joggerCeleste from "@/assets/jogger-celeste.jpg";
@@ -27,7 +27,30 @@ const NIKE_GRAY = "#1F1F1F";
 const PAGE_ROUTE = "/jogger";
 const PRODUCT_ID = "JOGGER-NIKE-GT";
 const JACKET_PRICE = 40;
-const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+const PANT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
+const JACKET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+
+// Guía de tallas (medidas aprox. en cm)
+const PANT_SIZE_GUIDE: { size: string; cintura: string; cadera: string; largo: string }[] = [
+  { size: "XS", cintura: "68-72", cadera: "88-92", largo: "98" },
+  { size: "S", cintura: "72-78", cadera: "92-98", largo: "100" },
+  { size: "M", cintura: "78-84", cadera: "98-104", largo: "102" },
+  { size: "L", cintura: "84-92", cadera: "104-110", largo: "104" },
+  { size: "XL", cintura: "92-100", cadera: "110-118", largo: "106" },
+  { size: "XXL", cintura: "100-108", cadera: "118-126", largo: "108" },
+  { size: "XXXL", cintura: "108-118", cadera: "126-134", largo: "110" },
+];
+
+const JACKET_SIZE_GUIDE: { size: string; pecho: string; largo: string }[] = [
+  { size: "XS", pecho: "92-96", largo: "66" },
+  { size: "S", pecho: "96-102", largo: "68" },
+  { size: "M", pecho: "102-108", largo: "70" },
+  { size: "L", pecho: "108-114", largo: "72" },
+  { size: "XL", pecho: "114-120", largo: "74" },
+  { size: "XXL", pecho: "120-128", largo: "76" },
+  { size: "XXXL", pecho: "128-136", largo: "78" },
+  { size: "XXXXL", pecho: "136-144", largo: "80" },
+];
 
 type Color = {
   id: string;
@@ -68,8 +91,10 @@ const Jogger = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [addJacket, setAddJacket] = useState(false);
   const [jacketSize, setJacketSize] = useState<string>("M");
+  const [pantSizes, setPantSizes] = useState<string[]>(["M", "M"]);
   const formRef = useRef<HTMLDivElement>(null);
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
@@ -85,6 +110,15 @@ const Jogger = () => {
     window.addEventListener("mousemove", handler);
     return () => window.removeEventListener("mousemove", handler);
   }, []);
+
+  // Sync pantSizes length with selectedQty
+  useEffect(() => {
+    setPantSizes((prev) => {
+      const next = [...prev];
+      while (next.length < selectedQty) next.push("M");
+      return next.slice(0, selectedQty);
+    });
+  }, [selectedQty]);
 
   // Auto-rotate images
   useEffect(() => {
