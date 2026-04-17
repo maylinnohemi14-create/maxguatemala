@@ -4,7 +4,7 @@ import { CODFormGuatemala } from "@/components/CODFormGuatemala";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Check, Flame, Shield, Truck, Zap, Sparkles, X } from "lucide-react";
+import { Check, Flame, Shield, Truck, Zap, Sparkles, X, Ruler } from "lucide-react";
 
 import joggerNegro from "@/assets/jogger-negro.jpg";
 import joggerCeleste from "@/assets/jogger-celeste.jpg";
@@ -27,7 +27,30 @@ const NIKE_GRAY = "#1F1F1F";
 const PAGE_ROUTE = "/jogger";
 const PRODUCT_ID = "JOGGER-NIKE-GT";
 const JACKET_PRICE = 40;
-const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+const PANT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
+const JACKET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+
+// Guía de tallas (medidas aprox. en cm)
+const PANT_SIZE_GUIDE: { size: string; cintura: string; cadera: string; largo: string }[] = [
+  { size: "XS", cintura: "68-72", cadera: "88-92", largo: "98" },
+  { size: "S", cintura: "72-78", cadera: "92-98", largo: "100" },
+  { size: "M", cintura: "78-84", cadera: "98-104", largo: "102" },
+  { size: "L", cintura: "84-92", cadera: "104-110", largo: "104" },
+  { size: "XL", cintura: "92-100", cadera: "110-118", largo: "106" },
+  { size: "XXL", cintura: "100-108", cadera: "118-126", largo: "108" },
+  { size: "XXXL", cintura: "108-118", cadera: "126-134", largo: "110" },
+];
+
+const JACKET_SIZE_GUIDE: { size: string; pecho: string; largo: string }[] = [
+  { size: "XS", pecho: "92-96", largo: "66" },
+  { size: "S", pecho: "96-102", largo: "68" },
+  { size: "M", pecho: "102-108", largo: "70" },
+  { size: "L", pecho: "108-114", largo: "72" },
+  { size: "XL", pecho: "114-120", largo: "74" },
+  { size: "XXL", pecho: "120-128", largo: "76" },
+  { size: "XXXL", pecho: "128-136", largo: "78" },
+  { size: "XXXXL", pecho: "136-144", largo: "80" },
+];
 
 type Color = {
   id: string;
@@ -68,8 +91,10 @@ const Jogger = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [addJacket, setAddJacket] = useState(false);
   const [jacketSize, setJacketSize] = useState<string>("M");
+  const [pantSizes, setPantSizes] = useState<string[]>(["M", "M"]);
   const formRef = useRef<HTMLDivElement>(null);
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
@@ -85,6 +110,15 @@ const Jogger = () => {
     window.addEventListener("mousemove", handler);
     return () => window.removeEventListener("mousemove", handler);
   }, []);
+
+  // Sync pantSizes length with selectedQty
+  useEffect(() => {
+    setPantSizes((prev) => {
+      const next = [...prev];
+      while (next.length < selectedQty) next.push("M");
+      return next.slice(0, selectedQty);
+    });
+  }, [selectedQty]);
 
   // Auto-rotate images
   useEffect(() => {
@@ -111,11 +145,12 @@ const Jogger = () => {
     if (selectedColors.length) {
       parts.push(`Colores: ${selectedColors.map((id) => COLORS.find((c) => c.id === id)?.name).filter(Boolean).join(", ")}`);
     }
+    parts.push(`Tallas: ${pantSizes.slice(0, selectedQty).join(", ")}`);
     if (addJacket) {
-      parts.push(`+ JAQUETA NIKE BLANCA Talla ${jacketSize} (Q${JACKET_PRICE})`);
+      parts.push(`+ CHAQUETA NIKE BLANCA Talla ${jacketSize} (Q${JACKET_PRICE})`);
     }
     return parts.join(" | ");
-  }, [selectedQty, selectedColors, addJacket, jacketSize]);
+  }, [selectedQty, selectedColors, pantSizes, addJacket, jacketSize]);
 
   const toggleColor = (id: string) => {
     setSelectedColors((prev) => {
@@ -451,6 +486,93 @@ const Jogger = () => {
               </div>
             </div>
 
+            {/* SIZE SELECTOR (per pair) */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-xs uppercase tracking-widest text-white/60 font-bold">
+                  ✦ Elige {selectedQty === 1 ? "tu talla" : `tus ${selectedQty} tallas`}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowSizeGuide(true)}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border transition-all hover:scale-105"
+                  style={{
+                    borderColor: `${NIKE_ORANGE}88`,
+                    background: `${NIKE_ORANGE}15`,
+                    color: NIKE_ORANGE,
+                  }}
+                >
+                  <Ruler className="w-3 h-3" />
+                  Guía de Tallas
+                </button>
+              </div>
+
+              <div className="space-y-2">
+                {Array.from({ length: selectedQty }).map((_, idx) => {
+                  const colorId = selectedColors[idx];
+                  const colorObj = COLORS.find((c) => c.id === colorId);
+                  return (
+                    <div
+                      key={idx}
+                      className="rounded-xl border p-2.5"
+                      style={{
+                        borderColor: "rgba(255,255,255,0.1)",
+                        background: "rgba(255,255,255,0.03)",
+                      }}
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        {colorObj ? (
+                          <img src={colorObj.image} alt={colorObj.name} className="w-8 h-8 rounded-md object-cover" />
+                        ) : (
+                          <div className="w-8 h-8 rounded-md bg-white/10 flex items-center justify-center text-white/40 text-[10px]">?</div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <div className="text-[10px] uppercase tracking-wider text-white/50">Pantalón {idx + 1}</div>
+                          <div className="text-xs font-bold text-white truncate">
+                            {colorObj?.name || "Elige un color"}
+                          </div>
+                        </div>
+                        <div
+                          className="px-2 py-0.5 rounded-md text-xs font-black"
+                          style={{ background: NIKE_ORANGE, color: "#000" }}
+                        >
+                          {pantSizes[idx] || "M"}
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-7 gap-1">
+                        {PANT_SIZES.map((s) => {
+                          const active = (pantSizes[idx] || "M") === s;
+                          return (
+                            <button
+                              key={s}
+                              type="button"
+                              onClick={() => {
+                                setPantSizes((prev) => {
+                                  const next = [...prev];
+                                  while (next.length < selectedQty) next.push("M");
+                                  next[idx] = s;
+                                  return next;
+                                });
+                              }}
+                              className="py-1.5 rounded-md text-[11px] font-black transition-all border"
+                              style={{
+                                borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.12)",
+                                background: active ? NIKE_ORANGE : "transparent",
+                                color: active ? "#000" : "#fff",
+                                boxShadow: active ? `0 0 8px ${NIKE_ORANGE}88` : "none",
+                              }}
+                            >
+                              {s}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* CTA */}
             <Button
               onClick={handleBuyClick}
@@ -616,7 +738,7 @@ const Jogger = () => {
                   Elige tu talla
                 </div>
                 <div className="grid grid-cols-4 gap-1.5">
-                  {SIZES.map((s) => {
+                  {JACKET_SIZES.map((s) => {
                     const active = jacketSize === s;
                     return (
                       <button
@@ -659,6 +781,139 @@ const Jogger = () => {
                   No, gracias. Continuar sin la jaqueta.
                 </button>
               </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* SIZE GUIDE DIALOG */}
+      <Dialog open={showSizeGuide} onOpenChange={setShowSizeGuide}>
+        <DialogContent
+          className="w-[calc(100vw-16px)] max-w-lg max-h-[90dvh] overflow-y-auto p-0 border-0"
+          style={{
+            background: `linear-gradient(160deg, ${NIKE_DARK}, ${NIKE_BLACK})`,
+            boxShadow: `0 30px 80px ${NIKE_ORANGE}55`,
+          }}
+        >
+          <div
+            className="relative p-5 sm:p-6"
+            style={{ borderTop: `3px solid ${NIKE_ORANGE}` }}
+          >
+            <div
+              className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-25 pointer-events-none"
+              style={{ background: NIKE_ORANGE }}
+            />
+
+            <DialogHeader className="relative z-10">
+              <div
+                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}
+              >
+                <Ruler className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: NIKE_ORANGE }}>
+                  GUÍA DE TALLAS
+                </span>
+              </div>
+              <DialogTitle className="text-center text-white text-xl font-black">
+                Encuentra tu talla ideal
+              </DialogTitle>
+              <p className="text-center text-white/60 text-xs mt-1">
+                Medidas aproximadas en centímetros (cm)
+              </p>
+            </DialogHeader>
+
+            <div className="relative z-10 mt-5">
+              {/* Pantalón */}
+              <div className="mb-5">
+                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: NIKE_ORANGE }}>
+                  📏 Pantalón Jogger
+                </div>
+                <div
+                  className="rounded-xl overflow-hidden border"
+                  style={{ borderColor: `${NIKE_ORANGE}33` }}
+                >
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr style={{ background: `${NIKE_ORANGE}22` }}>
+                        <th className="py-2 px-2 text-left text-white font-black">Talla</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Cintura</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Cadera</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Largo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {PANT_SIZE_GUIDE.map((row, i) => (
+                        <tr
+                          key={row.size}
+                          style={{
+                            background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)",
+                          }}
+                        >
+                          <td className="py-2 px-2 font-black" style={{ color: NIKE_ORANGE }}>{row.size}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.cintura}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.cadera}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.largo}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Chaqueta */}
+              <div className="mb-4">
+                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: NIKE_ORANGE }}>
+                  🧥 Chaqueta Nike
+                </div>
+                <div
+                  className="rounded-xl overflow-hidden border"
+                  style={{ borderColor: `${NIKE_ORANGE}33` }}
+                >
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr style={{ background: `${NIKE_ORANGE}22` }}>
+                        <th className="py-2 px-2 text-left text-white font-black">Talla</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Pecho</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Largo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {JACKET_SIZE_GUIDE.map((row, i) => (
+                        <tr
+                          key={row.size}
+                          style={{
+                            background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)",
+                          }}
+                        >
+                          <td className="py-2 px-2 font-black" style={{ color: NIKE_ORANGE }}>{row.size}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.pecho}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.largo}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div
+                className="rounded-lg p-3 text-[11px] text-white/70 border"
+                style={{ borderColor: `${NIKE_ORANGE}33`, background: `${NIKE_ORANGE}10` }}
+              >
+                💡 <strong className="text-white">Tip:</strong> Si estás entre dos tallas, te recomendamos elegir la talla mayor para un fit más holgado.
+              </div>
+
+              <Button
+                onClick={() => setShowSizeGuide(false)}
+                className="w-full mt-4 font-black py-5 rounded-xl"
+                style={{
+                  background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                  color: "#fff",
+                  boxShadow: `0 8px 24px -4px ${NIKE_ORANGE}`,
+                }}
+              >
+                <Check className="w-5 h-5 mr-2" />
+                Entendido
+              </Button>
             </div>
           </div>
         </DialogContent>
