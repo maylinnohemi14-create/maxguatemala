@@ -3,10 +3,10 @@ import { LegalFooter } from "@/components/LegalFooter";
 import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
 import joggerNegro from "@/assets/jogger-negro.jpg";
 
-// Lacoste brand palette (used as inline tokens for this scoped futuristic theme)
-const LACOSTE_GREEN = "#004526";
-const LACOSTE_GREEN_LIGHT = "#00A859";
-const LACOSTE_GOLD = "#D4AF37";
+// Universal futuristic palette (cyber neon)
+const NEON_DARK = "#0a0e27";
+const NEON_PRIMARY = "#00D9FF";
+const NEON_ACCENT = "#B026FF";
 
 type Product = {
   id: string;
@@ -20,7 +20,7 @@ type Product = {
   tags?: string[];
 };
 
-// Add your Lacoste products here. Replace image URLs and links as you go.
+// Productos del catálogo
 const products: Product[] = [
   {
     id: "dep-kit3-gt",
@@ -35,7 +35,7 @@ const products: Product[] = [
   },
   {
     id: "jogger-nike-gt",
-    title: "Pantalón Jogger Nike",
+    title: "Pantalón Jogger Premium",
     subtitle: "8 colores · Tejido premium · Hasta 3x desde Q249",
     price: "Q249",
     originalPrice: "Q599",
@@ -64,7 +64,7 @@ const DeportivoCatalogo = () => {
     <div
       className="min-h-screen relative overflow-hidden"
       style={{
-        background: `radial-gradient(circle at ${mouse.x}% ${mouse.y}%, #003820 0%, #001a10 40%, #000805 100%)`,
+        background: `radial-gradient(circle at ${mouse.x}% ${mouse.y}%, #1a1145 0%, #0a0e27 40%, #03040d 100%)`,
         transition: "background 0.4s ease-out",
       }}
     >
@@ -72,7 +72,7 @@ const DeportivoCatalogo = () => {
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(${LACOSTE_GREEN_LIGHT}33 1px, transparent 1px), linear-gradient(90deg, ${LACOSTE_GREEN_LIGHT}33 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(${NEON_PRIMARY}33 1px, transparent 1px), linear-gradient(90deg, ${NEON_PRIMARY}33 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
           maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
           WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
@@ -82,45 +82,47 @@ const DeportivoCatalogo = () => {
       {/* Floating glow orbs */}
       <div
         className="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl opacity-40 pointer-events-none animate-pulse"
-        style={{ background: LACOSTE_GREEN_LIGHT }}
+        style={{ background: NEON_PRIMARY }}
       />
       <div
         className="absolute top-1/3 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-30 pointer-events-none animate-pulse"
-        style={{ background: LACOSTE_GOLD, animationDelay: "1s" }}
+        style={{ background: NEON_ACCENT, animationDelay: "1s" }}
       />
       <div
         className="absolute bottom-0 left-1/2 w-[600px] h-[400px] rounded-full blur-3xl opacity-25 pointer-events-none animate-pulse"
-        style={{ background: LACOSTE_GREEN, animationDelay: "2s" }}
+        style={{ background: NEON_PRIMARY, animationDelay: "2s" }}
       />
 
       {/* HEADER */}
       <header className="relative z-10 border-b border-white/10 backdrop-blur-md bg-black/20">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Crocodile-inspired emblem (SVG) */}
+            {/* Universal futuristic emblem */}
             <div
               className="w-11 h-11 rounded-xl flex items-center justify-center shadow-lg"
               style={{
-                background: `linear-gradient(135deg, ${LACOSTE_GREEN_LIGHT}, ${LACOSTE_GREEN})`,
-                boxShadow: `0 0 20px ${LACOSTE_GREEN_LIGHT}66`,
+                background: `linear-gradient(135deg, ${NEON_PRIMARY}, ${NEON_ACCENT})`,
+                boxShadow: `0 0 20px ${NEON_PRIMARY}66`,
               }}
             >
-              <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white">
-                <path d="M2 14c2-2 5-3 8-3 2 0 3 .5 4 1l3-2 5 2-3 2c-1 1-3 2-5 2H8c-2 0-4-1-6-2zm5-2c.6 0 1-.4 1-1s-.4-1-1-1-1 .4-1 1 .4 1 1 1z" />
+              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                <polyline points="2 17 12 22 22 17" />
+                <polyline points="2 12 12 17 22 12" />
               </svg>
             </div>
             <div>
               <div className="text-xs uppercase tracking-[0.3em] text-white/60">Premium Catalogue</div>
               <div
-                className="text-xl font-black tracking-tight"
-                style={{ color: "white", fontFamily: "Georgia, serif" }}
+                className="text-xl font-black tracking-tight text-white"
+                style={{ fontFamily: "Georgia, serif" }}
               >
-                LACOSTE <span style={{ color: LACOSTE_GOLD }}>·</span> SPORT
+                TIENDAS <span style={{ color: NEON_PRIMARY }}>·</span> MAX
               </div>
             </div>
           </div>
           <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur">
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: LACOSTE_GREEN_LIGHT }} />
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: NEON_PRIMARY }} />
             <span className="text-xs text-white/80 font-medium">PAGO CONTRA ENTREGA</span>
           </div>
         </div>
@@ -131,11 +133,11 @@ const DeportivoCatalogo = () => {
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 border backdrop-blur-md"
           style={{
-            borderColor: `${LACOSTE_GOLD}66`,
-            background: `${LACOSTE_GOLD}11`,
+            borderColor: `${NEON_PRIMARY}66`,
+            background: `${NEON_PRIMARY}11`,
           }}
         >
-          <span style={{ color: LACOSTE_GOLD }} className="text-xs font-bold tracking-widest">
+          <span style={{ color: NEON_PRIMARY }} className="text-xs font-bold tracking-widest">
             ✦ COLECCIÓN EXCLUSIVA 2026 ✦
           </span>
         </div>
@@ -144,22 +146,22 @@ const DeportivoCatalogo = () => {
           className="text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-[0.95] tracking-tight mb-5"
           style={{ fontFamily: "Georgia, serif" }}
         >
-          El estilo del{" "}
+          El futuro del{" "}
           <span
             style={{
-              background: `linear-gradient(135deg, ${LACOSTE_GREEN_LIGHT} 0%, ${LACOSTE_GOLD} 100%)`,
+              background: `linear-gradient(135deg, ${NEON_PRIMARY} 0%, ${NEON_ACCENT} 100%)`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}
           >
-            cocodrilo
+            estilo
           </span>
           <br />
           en tu armario.
         </h1>
         <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto mb-8">
-          Descubre nuestra selección premium de prendas Lacoste con la calidad y elegancia que solo una marca legendaria puede ofrecer. Pago contra entrega en toda Guatemala.
+          Descubre nuestra selección premium con la calidad y elegancia que mereces. Pago contra entrega en toda Guatemala.
         </p>
 
         {/* Stats bar */}
@@ -173,7 +175,7 @@ const DeportivoCatalogo = () => {
             <div key={s.l} className="flex items-baseline gap-2">
               <span
                 className="text-2xl font-black"
-                style={{ color: LACOSTE_GOLD }}
+                style={{ color: NEON_PRIMARY }}
               >
                 {s.v}
               </span>
@@ -189,19 +191,19 @@ const DeportivoCatalogo = () => {
           <div
             className="rounded-3xl border backdrop-blur-md p-10 sm:p-16 text-center"
             style={{
-              borderColor: `${LACOSTE_GREEN_LIGHT}33`,
-              background: `linear-gradient(135deg, ${LACOSTE_GREEN}22, transparent)`,
+              borderColor: `${NEON_PRIMARY}33`,
+              background: `linear-gradient(135deg, ${NEON_ACCENT}22, transparent)`,
             }}
           >
-            <div className="text-6xl mb-4">🐊</div>
+            <div className="text-6xl mb-4">✨</div>
             <h2
               className="text-2xl sm:text-3xl font-black text-white mb-3"
               style={{ fontFamily: "Georgia, serif" }}
             >
-              Próximamente: Productos Lacoste
+              Próximamente: Nuevos Productos
             </h2>
             <p className="text-white/60 max-w-md mx-auto text-sm sm:text-base">
-              El catálogo está listo para recibir tus productos. Envíame las imágenes y datos de cada Lacoste y los agrego con este mismo estilo futurista.
+              El catálogo está listo para recibir nuevos productos con este mismo estilo futurista.
             </p>
           </div>
         ) : (
@@ -212,9 +214,9 @@ const DeportivoCatalogo = () => {
                 href={p.link}
                 className="group relative rounded-3xl overflow-hidden border backdrop-blur-md transition-all duration-500 hover:-translate-y-2"
                 style={{
-                  borderColor: `${LACOSTE_GREEN_LIGHT}33`,
-                  background: `linear-gradient(160deg, ${LACOSTE_GREEN}33, rgba(0,0,0,0.5))`,
-                  boxShadow: `0 10px 40px -10px ${LACOSTE_GREEN}aa`,
+                  borderColor: `${NEON_PRIMARY}33`,
+                  background: `linear-gradient(160deg, ${NEON_ACCENT}22, rgba(0,0,0,0.5))`,
+                  boxShadow: `0 10px 40px -10px ${NEON_PRIMARY}aa`,
                   animationDelay: `${idx * 80}ms`,
                 }}
               >
@@ -222,7 +224,7 @@ const DeportivoCatalogo = () => {
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
-                    boxShadow: `inset 0 0 60px ${LACOSTE_GREEN_LIGHT}55, 0 0 30px ${LACOSTE_GOLD}66`,
+                    boxShadow: `inset 0 0 60px ${NEON_PRIMARY}55, 0 0 30px ${NEON_ACCENT}66`,
                     borderRadius: "1.5rem",
                   }}
                 />
@@ -232,9 +234,9 @@ const DeportivoCatalogo = () => {
                   <div
                     className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full text-xs font-black backdrop-blur-md border"
                     style={{
-                      background: `${LACOSTE_GOLD}dd`,
-                      borderColor: LACOSTE_GOLD,
-                      color: "#1a1208",
+                      background: `${NEON_PRIMARY}dd`,
+                      borderColor: NEON_PRIMARY,
+                      color: "#03040d",
                     }}
                   >
                     {p.badge}
@@ -251,7 +253,7 @@ const DeportivoCatalogo = () => {
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(180deg, transparent 50%, ${LACOSTE_GREEN}cc 100%)`,
+                      background: `linear-gradient(180deg, transparent 50%, ${NEON_DARK}cc 100%)`,
                     }}
                   />
                 </div>
@@ -273,7 +275,7 @@ const DeportivoCatalogo = () => {
                       <div className="text-white/40 text-xs line-through">{p.originalPrice}</div>
                       <div
                         className="text-3xl font-black"
-                        style={{ color: LACOSTE_GOLD }}
+                        style={{ color: NEON_PRIMARY }}
                       >
                         {p.price}
                       </div>
@@ -284,7 +286,7 @@ const DeportivoCatalogo = () => {
                           <span
                             key={t}
                             className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border text-white/70"
-                            style={{ borderColor: `${LACOSTE_GREEN_LIGHT}55` }}
+                            style={{ borderColor: `${NEON_PRIMARY}55` }}
                           >
                             {t}
                           </span>
@@ -296,9 +298,9 @@ const DeportivoCatalogo = () => {
                   <div
                     className="w-full text-center font-black py-3.5 rounded-xl transition-all duration-300 group-hover:tracking-widest text-sm uppercase tracking-wide"
                     style={{
-                      background: `linear-gradient(135deg, ${LACOSTE_GREEN_LIGHT}, ${LACOSTE_GREEN})`,
+                      background: `linear-gradient(135deg, ${NEON_PRIMARY}, ${NEON_ACCENT})`,
                       color: "white",
-                      boxShadow: `0 8px 24px -8px ${LACOSTE_GREEN_LIGHT}`,
+                      boxShadow: `0 8px 24px -8px ${NEON_PRIMARY}`,
                     }}
                   >
                     Comprar ahora →
@@ -315,7 +317,7 @@ const DeportivoCatalogo = () => {
         <div
           className="rounded-2xl p-6 sm:p-8 border backdrop-blur-md"
           style={{
-            borderColor: `${LACOSTE_GOLD}33`,
+            borderColor: `${NEON_PRIMARY}33`,
             background: "rgba(0,0,0,0.4)",
           }}
         >
@@ -323,12 +325,12 @@ const DeportivoCatalogo = () => {
             {[
               { i: "🚚", t: "Envío rápido", s: "24-72 horas" },
               { i: "💵", t: "Pago al recibir", s: "Sin adelantos" },
-              { i: "🐊", t: "100% Original", s: "Calidad Premium" },
+              { i: "✨", t: "100% Original", s: "Calidad Premium" },
               { i: "🛡️", t: "Garantía total", s: "Cambios fáciles" },
             ].map((item) => (
               <div key={item.t}>
                 <div className="text-3xl mb-2">{item.i}</div>
-                <div className="font-bold text-sm" style={{ color: LACOSTE_GOLD }}>
+                <div className="font-bold text-sm" style={{ color: NEON_PRIMARY }}>
                   {item.t}
                 </div>
                 <div className="text-xs text-white/60 mt-1">{item.s}</div>
