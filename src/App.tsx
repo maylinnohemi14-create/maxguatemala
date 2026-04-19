@@ -37,6 +37,7 @@ import Catalogo from "./pages/Catalogo";
 import ConjuntosKit4CO from "./pages/ConjuntosKit4CO";
 import Deportivo from "./pages/Deportivo";
 import DeportivoCatalogo from "./pages/DeportivoCatalogo";
+import DeportivoFuture from "./pages/DeportivoFuture";
 import Jogger from "./pages/Jogger";
 
 const queryClient = new QueryClient();
@@ -73,6 +74,7 @@ const App = () => (
           <Route path="/contraentregaco" element={<ConjuntosKit4CO />} />
           <Route path="/deportivo" element={<Deportivo />} />
           <Route path="/deportivocatalogo" element={<DeportivoCatalogo />} />
+          <Route path="/deportivofuture" element={<DeportivoFuture />} />
           <Route path="/jogger" element={<Jogger />} />
           
           <Route path="/auth" element={<Auth />} />
