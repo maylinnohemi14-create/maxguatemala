@@ -313,7 +313,7 @@ const Admin = () => {
     { id: 'UA-KIT4EN1-CO', label: '🇨🇴 Kit 4en1 Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2128752', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
     { id: 'DEP-KIT3EN1-GT', label: 'Conjuntos Premium 3en1', nota: 'CONJUNTOS PREMIUM KIT 3EN1', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
     { id: 'JOGGER-NIKE-GT', label: 'Pantalón Jogger', nota: 'PANTALÓN JOGGER', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
-    { id: 'DEP-ULTRADRY-GT', label: 'Conjunto Ultra Dry', nota: 'CONJUNTO ULTRA DRY', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
+    { id: 'DEP-ULTRADRY-GT', label: 'Future Lac', nota: 'CONJUNTO ULTRA DRY', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
   ];
 
   const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');
