@@ -394,7 +394,10 @@ const DeportivoFuture = () => {
                       key={opt.qty}
                       onClick={() => {
                         setSelectedQty(opt.qty);
-                        setSelectedColors((prev) => prev.slice(0, opt.qty));
+                        setSelectedColors(() => {
+                          const defaults = COLORS.slice(0, opt.qty).map((c) => c.id);
+                          return defaults;
+                        });
                       }}
                       className="relative text-left rounded-2xl p-4 border-2 transition-all overflow-hidden"
                       style={{
