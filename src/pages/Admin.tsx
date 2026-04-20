@@ -312,7 +312,7 @@ const Admin = () => {
     { id: 'UA-KIT3EN1-CO', label: '🇨🇴 Conjuntos Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
     { id: 'UA-KIT4EN1-CO', label: '🇨🇴 Kit 4en1 Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2132610', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
     { id: 'DEP-KIT3EN1-GT', label: 'Conjuntos Premium 3en1', nota: 'KIT CONJUNTOS LACST', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
-    { id: 'JOGGER-NIKE-GT', label: 'Pantalón Jogger', nota: 'PANTALÓN JOGGER', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
+    { id: 'JOGGER-NIKE-GT', label: 'Pantalón Jogger', nota: 'COMBO NIKE JOGGER', idProducto: '4106', idVariable: '', transportadora: 'FORZA' },
     { id: 'DEP-ULTRADRY-GT', label: 'Future Lac', nota: 'KIT CONJUNTOS LACST', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
     { id: 'LINO-PREMIUM-GT', label: 'Lino', nota: 'KIT CONJUNTOS LACST', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
   ];
