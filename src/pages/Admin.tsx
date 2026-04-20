@@ -687,6 +687,7 @@ const Admin = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {PRODUCTS.map((product) => {
                   const count = getOrdersByProduct(product.id).length;
+                  const canDownloadWithoutLocalCount = product.id === 'UA-KIT3EN1-CL';
                   return (
                     <Card key={product.id} className="border-dashed">
                       <CardContent className="pt-4 pb-4 flex flex-col gap-3">
@@ -699,7 +700,7 @@ const Admin = () => {
                             onClick={() => downloadProductExcel(product)}
                             variant="outline"
                             className="flex-1"
-                            disabled={count === 0}
+                            disabled={count === 0 && !canDownloadWithoutLocalCount}
                           >
                             <Download className="mr-2 h-4 w-4" />
                             Baixar Excel
