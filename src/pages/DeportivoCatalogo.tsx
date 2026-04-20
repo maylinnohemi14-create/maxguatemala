@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { LegalFooter } from "@/components/LegalFooter";
 import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
 import joggerNegro from "@/assets/jogger-negro.jpg";
+import linoBeige from "@/assets/lino-beige.jpg";
 
 // Universal futuristic palette (cyber neon)
 const NEON_DARK = "#0a0e27";
@@ -43,6 +44,17 @@ const products: Product[] = [
     link: "/jogger",
     badge: "✨ Nuevo",
     tags: ["Sport", "Premium"],
+  },
+  {
+    id: "lino-premium-gt",
+    title: "Conjunto Lino Premium",
+    subtitle: "Tejido fresco · Beige, Negro y Verde · Estilo elegante",
+    price: "Q249",
+    originalPrice: "Q599",
+    image: linoBeige,
+    link: "/lino",
+    badge: "🌿 Tendencia",
+    tags: ["Lino", "Premium"],
   },
 ];
 
