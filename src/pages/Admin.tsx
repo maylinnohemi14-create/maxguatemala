@@ -330,12 +330,18 @@ const Admin = () => {
     return false;
   };
 
+  const isLegacyChileOrder = (order: Order, productId: string) => {
+    // Pedidos antigos do Chile foram salvos com o ID anterior '56051'
+    return productId === 'UA-KIT3EN1-CL' && order.id_producto === '56051';
+  };
+
   const getOrdersByProduct = (productId: string) => {
     const product = PRODUCTS.find(p => p.id === productId);
     return orders.filter(order => 
       order.id_producto === productId || 
       (product && order.id_producto === product.idProducto) ||
-      isLegacyColombiaOrder(order, productId)
+      isLegacyColombiaOrder(order, productId) ||
+      isLegacyChileOrder(order, productId)
     );
   };
 
