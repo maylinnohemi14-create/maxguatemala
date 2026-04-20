@@ -330,19 +330,28 @@ const Admin = () => {
     return false;
   };
 
-  const isLegacyChileOrder = (order: Order, productId: string) => {
-    // Pedidos antigos do Chile foram salvos com o ID anterior '56051'
-    return productId === 'UA-KIT3EN1-CL' && order.id_producto === '56051';
+  const getLegacyProductIds = (productId: string) => {
+    if (productId === 'UA-KIT3EN1-CL') return ['56051'];
+    if (productId === 'UA-KIT3EN1-CO' || productId === 'UA-KIT4EN1-CO') return ['2036237', '2128752'];
+    return [];
+  };
+
+  const orderMatchesProduct = (order: Order, product: typeof PRODUCTS[number]) => {
+    const legacyIds = getLegacyProductIds(product.id);
+
+    return (
+      order.id_producto === product.id ||
+      order.id_producto === product.idProducto ||
+      legacyIds.includes(order.id_producto || '') ||
+      isLegacyColombiaOrder(order, product.id)
+    );
   };
 
   const getOrdersByProduct = (productId: string) => {
     const product = PRODUCTS.find(p => p.id === productId);
-    return orders.filter(order => 
-      order.id_producto === productId || 
-      (product && order.id_producto === product.idProducto) ||
-      isLegacyColombiaOrder(order, productId) ||
-      isLegacyChileOrder(order, productId)
-    );
+    if (!product) return [];
+
+    return orders.filter(order => orderMatchesProduct(order, product));
   };
 
   const clearProductOrders = async (product: typeof PRODUCTS[0]) => {
@@ -397,21 +406,51 @@ const Admin = () => {
     }));
   };
 
-  const downloadProductExcel = (product: typeof PRODUCTS[0]) => {
-    const productOrders = getOrdersByProduct(product.id);
-    if (productOrders.length === 0) {
-      toast.error(`Não há pedidos de ${product.label} para baixar`);
-      return;
-    }
+  const downloadProductExcel = async (product: typeof PRODUCTS[0]) => {
+    try {
+      let productOrders = getOrdersByProduct(product.id);
 
-    const excelData = formatOrdersForExcel(productOrders, product);
-    const ws = XLSX.utils.json_to_sheet(excelData);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Pedidos");
-    
-    const today = new Date().toISOString().split('T')[0];
-    XLSX.writeFile(wb, `pedidos_${product.id.toLowerCase()}_${today}.xlsx`);
-    toast.success(`Excel de ${product.label} baixado com sucesso! (${productOrders.length} pedidos)`);
+      if (productOrders.length === 0) {
+        const candidateIds = Array.from(new Set([
+          product.id,
+          product.idProducto,
+          ...getLegacyProductIds(product.id),
+        ].filter(Boolean)));
+
+        const { data, error } = await supabase
+          .from('orders')
+          .select('*')
+          .in('id_producto', candidateIds);
+
+        if (error) throw error;
+
+        productOrders = (data || []).filter(order => orderMatchesProduct(order as Order, product)) as Order[];
+
+        if (productOrders.length > 0) {
+          const mergedOrders = [...productOrders, ...orders].filter(
+            (order, index, arr) => arr.findIndex(item => item.id === order.id) === index
+          );
+          setOrders(mergedOrders);
+          calculateStats(mergedOrders);
+        }
+      }
+
+      if (productOrders.length === 0) {
+        toast.error(`Não há pedidos de ${product.label} para baixar`);
+        return;
+      }
+
+      const excelData = formatOrdersForExcel(productOrders, product);
+      const ws = XLSX.utils.json_to_sheet(excelData);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Pedidos");
+
+      const today = new Date().toISOString().split('T')[0];
+      XLSX.writeFile(wb, `pedidos_${product.id.toLowerCase()}_${today}.xlsx`);
+      toast.success(`Excel de ${product.label} baixado com sucesso! (${productOrders.length} pedidos)`);
+    } catch (error: any) {
+      toast.error("Erro ao baixar Excel: " + error.message);
+    }
   };
 
   const downloadExcel = () => {
@@ -648,6 +687,7 @@ const Admin = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {PRODUCTS.map((product) => {
                   const count = getOrdersByProduct(product.id).length;
+                  const canDownloadWithoutLocalCount = product.id === 'UA-KIT3EN1-CL';
                   return (
                     <Card key={product.id} className="border-dashed">
                       <CardContent className="pt-4 pb-4 flex flex-col gap-3">
@@ -660,7 +700,7 @@ const Admin = () => {
                             onClick={() => downloadProductExcel(product)}
                             variant="outline"
                             className="flex-1"
-                            disabled={count === 0}
+                            disabled={count === 0 && !canDownloadWithoutLocalCount}
                           >
                             <Download className="mr-2 h-4 w-4" />
                             Baixar Excel
