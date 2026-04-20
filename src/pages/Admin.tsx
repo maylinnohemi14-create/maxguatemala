@@ -308,7 +308,7 @@ const Admin = () => {
     { id: 'VESTIDO-NOCHE3-GT', label: 'Vestido Noche Kit 3', nota: 'VESTIDO NOCHE KIT 3', idProducto: '179', transportadora: 'FORZA' },
     { id: 'UA-KIT4EN1-GT', label: 'Conjuntos UA Kit 4 en 1', nota: 'CONJUNTOS UA KIT 4EN1', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
     { id: 'UA-KIT8-REFLETIVA-GT', label: 'Camisetas Reflectivas Kit 8', nota: 'CAMISETAS REFLECTIVAS KIT 8', idProducto: '4170', idVariable: '4741', transportadora: 'FORZA' },
-    { id: 'UA-KIT3EN1-CL', label: '🇨🇱 Conjuntos Chile', nota: 'COMBO CONJUNTO', idProducto: '114693', idVariable: '20345', transportadora: 'BLUE' },
+    { id: 'UA-KIT3EN1-CL', label: '🇨🇱 Conjuntos Chile', nota: 'COMBO UNDER ARMOUR 3 EN 1', idProducto: '114693', idVariable: '', transportadora: 'BLUE' },
     { id: 'UA-KIT3EN1-CO', label: '🇨🇴 Conjuntos Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
     { id: 'UA-KIT4EN1-CO', label: '🇨🇴 Kit 4en1 Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2132610', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
     { id: 'DEP-KIT3EN1-GT', label: 'Conjuntos Premium 3en1', nota: 'KIT CONJUNTOS LACST', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
