@@ -19,7 +19,7 @@ const NIKE_RED = "#FA0F00";
 const NIKE_WHITE = "#F5F5F5";
 const NIKE_GRAY = "#1F1F1F";
 
-const PAGE_ROUTE = "/lino";
+const PAGE_ROUTE = "/elegancia";
 const PRODUCT_ID = "LINO-PREMIUM-GT";
 const SHIRT_PRICE = 40;
 const SET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
