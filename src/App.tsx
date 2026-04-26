@@ -77,6 +77,7 @@ const App = () => (
           <Route path="/deportivocatalogo" element={<DeportivoCatalogo />} />
           <Route path="/deportivofuture" element={<DeportivoFuture />} />
           <Route path="/jogger" element={<Jogger />} />
+          <Route path="/elegancia" element={<Lino />} />
           <Route path="/lino" element={<Lino />} />
           
           <Route path="/auth" element={<Auth />} />
