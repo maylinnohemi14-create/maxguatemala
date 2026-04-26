@@ -52,7 +52,7 @@ const products: Product[] = [
     price: "Q249",
     originalPrice: "Q599",
     image: linoBeige,
-    link: "/lino",
+    link: "/elegancia",
     badge: "🌿 Tendencia",
     tags: ["Lino", "Premium"],
   },
