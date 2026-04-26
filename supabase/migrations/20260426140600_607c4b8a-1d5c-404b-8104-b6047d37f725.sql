@@ -1,0 +1,1 @@
+UPDATE public.tracking_pixels SET page_route = '/elegancia' WHERE page_route = '/lino';
