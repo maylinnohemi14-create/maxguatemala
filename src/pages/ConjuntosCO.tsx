@@ -493,7 +493,7 @@ const ConjuntosCO = () => {
                   {showCODForm && (
                     <CODFormColombia
                       productId={PRODUCT_ID}
-                      productPrice={PRODUCT_PRICE + (addShirt ? UPSELL_PRICE : 0)}
+                      productPrice={PRODUCT_PRICE}
                       productName={`Conjuntos Deportivos Kit 3 en 1 (${sizesNote})`}
                       productDisplayName="Conjuntos Deportivos Kit 3 en 1"
                       productImage={underArmourMain}
