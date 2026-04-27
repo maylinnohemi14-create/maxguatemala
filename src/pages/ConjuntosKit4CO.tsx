@@ -498,8 +498,8 @@ const ConjuntosKit4CO = () => {
                     <CODFormColombia
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE + (addShirt ? UPSELL_PRICE : 0)}
-                      productName={`Conjuntos Deportivos Kit 4 en 1 (${sizesNote})${addShirt ? ` + Camiseta Premium Talla ${shirtSize}` : ""}`}
-                      productDisplayName={`Conjuntos Deportivos Kit 4 en 1${addShirt ? ` + Camiseta Premium (${shirtSize})` : ""}`}
+                      productName={`Conjuntos Deportivos Kit 4 en 1 (${sizesNote})`}
+                      productDisplayName="Conjuntos Deportivos Kit 4 en 1"
                       productImage={conjunto4Negro}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
