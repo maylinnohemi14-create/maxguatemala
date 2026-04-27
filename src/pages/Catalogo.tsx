@@ -43,7 +43,7 @@ const colombiaProducts = [
     price: "$149.000",
     originalPrice: "$289.900",
     image: underArmourMain,
-    link: "/conjuntosco",
+    link: "/ropaconjuntos",
     badge: "🔥 Más Vendido",
   },
   {
