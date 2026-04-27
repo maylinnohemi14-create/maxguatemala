@@ -711,8 +711,8 @@ const ConjuntosKit4CO = () => {
                 </span>
               </div>
               <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
-                ¡Espera! ¿Quieres llevar también esta Camiseta Premium por solo{" "}
-                <span className="text-[#E31837]">${UPSELL_PRICE.toLocaleString('es-CO')}</span>?
+                ¡Espera! ¿Quieres llevar también esta Camiseta Premium{" "}
+                <span className="text-[#E31837]">100% GRATIS</span>?
               </DialogTitle>
             </DialogHeader>
 
