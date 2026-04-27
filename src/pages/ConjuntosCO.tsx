@@ -35,7 +35,7 @@ import { LegalFooter } from "@/components/LegalFooter";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Ruler, X, Check } from "lucide-react";
+import { Ruler, X } from "lucide-react";
 
 const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
 const UPSELL_PRICE = 30000;
