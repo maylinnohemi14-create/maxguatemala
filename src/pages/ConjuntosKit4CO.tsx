@@ -764,7 +764,7 @@ const ConjuntosKit4CO = () => {
                   className="w-full font-black py-5 rounded-xl text-base bg-[#E31837] hover:bg-[#C41430] text-white shadow-lg"
                 >
                   <Check className="w-5 h-5 mr-2" />
-                  SÍ, AGREGAR POR ${UPSELL_PRICE.toLocaleString('es-CO')}
+                  SÍ, AGREGAR GRATIS
                 </Button>
                 <button
                   onClick={() => handleUpsellDecision(false)}
