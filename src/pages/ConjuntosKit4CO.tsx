@@ -497,14 +497,14 @@ const ConjuntosKit4CO = () => {
                   {showCODForm && (
                     <CODFormColombia
                       productId={PRODUCT_ID}
-                      productPrice={PRODUCT_PRICE}
-                      productName={`Conjuntos Deportivos Kit 4 en 1 (${sizesNote})`}
-                      productDisplayName="Conjuntos Deportivos Kit 4 en 1"
+                      productPrice={PRODUCT_PRICE + (addShirt ? UPSELL_PRICE : 0)}
+                      productName={`Conjuntos Deportivos Kit 4 en 1 (${sizesNote})${addShirt ? ` + Camiseta Premium Talla ${shirtSize}` : ""}`}
+                      productDisplayName={`Conjuntos Deportivos Kit 4 en 1${addShirt ? ` + Camiseta Premium (${shirtSize})` : ""}`}
                       productImage={conjunto4Negro}
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
                       idVariable=""
-                      defaultNota="KIT CONJUTOS UA"
+                      defaultNota={`KIT CONJUTOS UA${addShirt ? ` + CAMISETA PREMIUM TALLA ${shirtSize} (COP ${UPSELL_PRICE})` : ""}`}
                       transportadora="INTERRAPIDISIMO"
                       idProducto="2132610"
                       sizeDetails={SETS.map((set, idx) => ({
@@ -519,9 +519,11 @@ const ConjuntosKit4CO = () => {
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'kit', icon: '👕', title: '4 Conjuntos Completos', description: 'Negro + Blanco + Azul + Gris' },
                         { id: 'envio', icon: '🚚', title: 'Envío Gratis', description: 'A toda Colombia' },
+                        ...(addShirt ? [{ id: 'upsell', icon: '🎁', title: `Camiseta Premium Talla ${shirtSize}`, description: `Bonus por solo COP $${UPSELL_PRICE.toLocaleString('es-CO')}` }] : []),
                       ]}
                       onOrderComplete={() => {
                         setShowCODForm(false);
+                        setAddShirt(false);
                         toast.success("¡Pedido registrado exitosamente!");
                       }}
                     />
