@@ -31,13 +31,16 @@ import conjunto4Gris from "@/assets/conjunto4-gris-gen.webp";
 import conjuntoPrincipal from "@/assets/conjunto4-principal.jpeg";
 
 import maxHeader from "@/assets/max-header.png";
+import camisetaUpsell from "@/assets/upsell-camiseta-fit.png";
 import { CODFormColombia } from "@/components/CODFormColombia";
 import { LegalFooter } from "@/components/LegalFooter";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Ruler } from "lucide-react";
+import { Ruler, Flame, Check, X } from "lucide-react";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
+const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+const UPSELL_PRICE = 30000;
 
 const SETS = [
   { name: "Conjunto Negro", image: conjunto4Negro, description: "Camiseta + Pantaloneta" },
