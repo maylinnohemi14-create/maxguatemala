@@ -473,16 +473,16 @@ const ConjuntosKit4CO = () => {
 
             {/* CTA Button */}
             <div className="space-y-3 mb-6 sm:mb-8">
+              <Button
+                size="lg"
+                onClick={handleBuyClick}
+                className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all animate-button-bounce"
+              >
+                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+                Pedir con pago Contra Entrega + Envío Gratis
+              </Button>
               <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
-                <DialogTrigger asChild>
-                  <Button
-                    size="lg"
-                    className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all animate-button-bounce"
-                  >
-                    <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                    Pedir con pago Contra Entrega + Envío Gratis
-                  </Button>
-                </DialogTrigger>
+                <DialogTrigger asChild><span /></DialogTrigger>
                 <DialogContent className="w-[100dvw] max-w-[100dvw] sm:w-[95vw] sm:max-w-2xl h-[100dvh] sm:h-auto sm:max-h-[95vh] overflow-x-hidden overflow-y-auto p-3 sm:p-6 rounded-none sm:rounded-xl left-0 top-0 translate-x-0 translate-y-0 sm:left-[50%] sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] overscroll-contain touch-pan-y [&>button:last-child]:hidden">
                   <button
                     onClick={() => setShowCODForm(false)}
