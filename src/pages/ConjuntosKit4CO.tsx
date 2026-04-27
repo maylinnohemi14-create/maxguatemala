@@ -497,7 +497,7 @@ const ConjuntosKit4CO = () => {
                   {showCODForm && (
                     <CODFormColombia
                       productId={PRODUCT_ID}
-                      productPrice={PRODUCT_PRICE + (addShirt ? UPSELL_PRICE : 0)}
+                      productPrice={PRODUCT_PRICE}
                       productName={`Conjuntos Deportivos Kit 4 en 1 (${sizesNote})`}
                       productDisplayName="Conjuntos Deportivos Kit 4 en 1"
                       productImage={conjunto4Negro}
@@ -519,7 +519,7 @@ const ConjuntosKit4CO = () => {
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'kit', icon: '👕', title: '4 Conjuntos Completos', description: 'Negro + Blanco + Azul + Gris' },
                         { id: 'envio', icon: '🚚', title: 'Envío Gratis', description: 'A toda Colombia' },
-                        ...(addShirt ? [{ id: 'upsell', icon: '🎁', title: `Camiseta Premium Talla ${shirtSize}`, description: `Bonus por solo COP $${UPSELL_PRICE.toLocaleString('es-CO')}` }] : []),
+                        ...(addShirt ? [{ id: 'upsell', icon: '🎁', title: `Camiseta Premium Talla ${shirtSize}`, description: 'Bonus 100% GRATIS' }] : []),
                       ]}
                       onOrderComplete={() => {
                         setShowCODForm(false);
@@ -711,8 +711,8 @@ const ConjuntosKit4CO = () => {
                 </span>
               </div>
               <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
-                ¡Espera! ¿Quieres llevar también esta Camiseta Premium por solo{" "}
-                <span className="text-[#E31837]">${UPSELL_PRICE.toLocaleString('es-CO')}</span>?
+                ¡Espera! ¿Quieres llevar también esta Camiseta Premium{" "}
+                <span className="text-[#E31837]">100% GRATIS</span>?
               </DialogTitle>
             </DialogHeader>
 
@@ -728,8 +728,8 @@ const ConjuntosKit4CO = () => {
                     OFERTA ÚNICA
                   </div>
                   <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md bg-black/70">
-                    <span className="text-white/50 line-through text-xs mr-1">${(UPSELL_PRICE * 3).toLocaleString('es-CO')}</span>
-                    <span className="text-[#E31837]">${UPSELL_PRICE.toLocaleString('es-CO')}</span>
+                    <span className="text-white/50 line-through text-xs mr-1">$90.000</span>
+                    <span className="text-[#E31837]">GRATIS</span>
                   </div>
                 </div>
               </div>
@@ -764,7 +764,7 @@ const ConjuntosKit4CO = () => {
                   className="w-full font-black py-5 rounded-xl text-base bg-[#E31837] hover:bg-[#C41430] text-white shadow-lg"
                 >
                   <Check className="w-5 h-5 mr-2" />
-                  SÍ, AGREGAR POR ${UPSELL_PRICE.toLocaleString('es-CO')}
+                  SÍ, AGREGAR GRATIS
                 </Button>
                 <button
                   onClick={() => handleUpsellDecision(false)}
