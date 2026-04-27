@@ -13,7 +13,7 @@ const guatemalaProducts = [
     price: "Q299",
     originalPrice: "Q589",
     image: underArmourMain,
-    link: "/conjuntos",
+    link: "/conjuntosfit",
     badge: "🔥 Más Vendido",
   },
   {
