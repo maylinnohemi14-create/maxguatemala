@@ -519,7 +519,7 @@ const ConjuntosKit4CO = () => {
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'kit', icon: '👕', title: '4 Conjuntos Completos', description: 'Negro + Blanco + Azul + Gris' },
                         { id: 'envio', icon: '🚚', title: 'Envío Gratis', description: 'A toda Colombia' },
-                        ...(addShirt ? [{ id: 'upsell', icon: '🎁', title: `Camiseta Premium Talla ${shirtSize}`, description: `Bonus por solo COP $${UPSELL_PRICE.toLocaleString('es-CO')}` }] : []),
+                        ...(addShirt ? [{ id: 'upsell', icon: '🎁', title: `Camiseta Premium Talla ${shirtSize}`, description: 'Bonus 100% GRATIS' }] : []),
                       ]}
                       onOrderComplete={() => {
                         setShowCODForm(false);
