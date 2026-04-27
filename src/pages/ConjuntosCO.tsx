@@ -29,6 +29,7 @@ import uaBlue from "@/assets/ua-blue.jpg";
 import uaBlack from "@/assets/ua-black.jpg";
 import uaGray from "@/assets/ua-gray.jpg";
 import maxHeader from "@/assets/max-header.png";
+import camisetaUpsell from "@/assets/upsell-camiseta-fit.png";
 import { CODFormColombia } from "@/components/CODFormColombia";
 import { LegalFooter } from "@/components/LegalFooter";
 
