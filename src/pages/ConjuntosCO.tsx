@@ -117,6 +117,25 @@ const ConjuntosCO = () => {
     setShowCODForm(open);
   };
 
+  const handleBuyClick = () => {
+    setShowUpsell(true);
+  };
+
+  const openCODForm = () => {
+    setShowUpsell(false);
+    handleDialogChange(true);
+  };
+
+  const handleUpsellDecision = (accept: boolean) => {
+    setAddShirt(accept);
+    openCODForm();
+  };
+
+  const handleUpsellClose = () => {
+    setAddShirt(false);
+    setShowUpsell(false);
+  };
+
   const colombianNames = [
     "María García de Bogotá",
     "Carlos López de Medellín",
