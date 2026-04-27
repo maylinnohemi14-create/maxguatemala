@@ -71,7 +71,7 @@ const ConjuntosKit4CO = () => {
 
   const PRODUCT_ID = "UA-KIT4EN1-CO";
   const PRODUCT_PRICE = 179000;
-  const PAGE_ROUTE = "/contraentregaco";
+  const PAGE_ROUTE = "/fitconjunto";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 

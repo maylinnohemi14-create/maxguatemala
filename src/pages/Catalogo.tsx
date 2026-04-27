@@ -52,7 +52,7 @@ const colombiaProducts = [
     price: "$179.000",
     originalPrice: "$358.000",
     image: conjunto4Negro,
-    link: "/contraentregaco",
+    link: "/fitconjunto",
     badge: "⚡ Nuevo",
   },
 ];
