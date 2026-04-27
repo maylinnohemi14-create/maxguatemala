@@ -476,16 +476,16 @@ const ConjuntosCO = () => {
 
             {/* CTA Button */}
             <div className="space-y-3 mb-6 sm:mb-8">
+              <Button
+                size="lg"
+                onClick={handleBuyClick}
+                className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all animate-button-bounce"
+              >
+                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+                Pedir con pago Contra Entrega + Envío Gratis
+              </Button>
               <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
-                <DialogTrigger asChild>
-                  <Button
-                    size="lg"
-                    className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all animate-button-bounce"
-                  >
-                    <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                    Pedir con pago Contra Entrega + Envío Gratis
-                  </Button>
-                </DialogTrigger>
+                <DialogTrigger asChild><span /></DialogTrigger>
                 <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
                   <DialogHeader>
                     <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
@@ -493,7 +493,7 @@ const ConjuntosCO = () => {
                   {showCODForm && (
                     <CODFormColombia
                       productId={PRODUCT_ID}
-                      productPrice={PRODUCT_PRICE}
+                      productPrice={PRODUCT_PRICE + (addShirt ? UPSELL_PRICE : 0)}
                       productName={`Conjuntos Deportivos Kit 3 en 1 (${sizesNote})`}
                       productDisplayName="Conjuntos Deportivos Kit 3 en 1"
                       productImage={underArmourMain}
@@ -515,9 +515,11 @@ const ConjuntosCO = () => {
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'kit', icon: '👕', title: '3 Conjuntos Completos', description: 'Gris + Negro + Azul' },
                         { id: 'envio', icon: '🚚', title: 'Envío Gratis', description: 'A toda Colombia' },
+                        ...(addShirt ? [{ id: 'upsell', icon: '🎁', title: `Camiseta Premium Talla ${shirtSize}`, description: `Bonus por solo COP $${UPSELL_PRICE.toLocaleString('es-CO')}` }] : []),
                       ]}
                       onOrderComplete={() => {
                         setShowCODForm(false);
+                        setAddShirt(false);
                         toast.success("¡Pedido registrado exitosamente!");
                       }}
                     />
