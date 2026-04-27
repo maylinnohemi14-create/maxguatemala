@@ -63,6 +63,9 @@ const ConjuntosKit4CO = () => {
     3: "M",
   });
   const [showCODForm, setShowCODForm] = useState(false);
+  const [showUpsell, setShowUpsell] = useState(false);
+  const [addShirt, setAddShirt] = useState(false);
+  const [shirtSize, setShirtSize] = useState<string>("M");
   const [stockCount, setStockCount] = useState(15);
 
   useEffect(() => {
