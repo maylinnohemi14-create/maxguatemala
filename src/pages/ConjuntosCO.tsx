@@ -730,8 +730,8 @@ const ConjuntosCO = () => {
                     OFERTA ÚNICA
                   </div>
                   <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md bg-black/70">
-                    <span className="text-white/50 line-through text-xs mr-1">${(UPSELL_PRICE * 3).toLocaleString('es-CO')}</span>
-                    <span className="text-[#E31837]">${UPSELL_PRICE.toLocaleString('es-CO')}</span>
+                    <span className="text-white/50 line-through text-xs mr-1">$90.000</span>
+                    <span className="text-[#E31837]">GRATIS</span>
                   </div>
                 </div>
               </div>
