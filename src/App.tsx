@@ -59,7 +59,7 @@ const App = () => (
           
           <Route path="/cocinaaire" element={<NinjaCrispi />} />
           <Route path="/conjuntos" element={<UnderArmour />} />
-          <Route path="/contraentrega" element={<ConjuntosKit4 />} />
+          <Route path="/colombiaconjunto" element={<ConjuntosKit4 />} />
           <Route path="/feminino" element={<Feminino />} />
           <Route path="/conjuntoscl" element={<ConjuntosCL />} />
           <Route path="/conjuntosco" element={<ConjuntosCO />} />
