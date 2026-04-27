@@ -504,7 +504,7 @@ const ConjuntosKit4CO = () => {
                       tiktokPixelId={tiktokPixelIds[0]}
                       facebookPixelId={facebookPixelIds[0]}
                       idVariable=""
-                      defaultNota={`KIT CONJUTOS UA${addShirt ? ` + CAMISETA PREMIUM TALLA ${shirtSize} (COP ${UPSELL_PRICE})` : ""}`}
+                      defaultNota="KIT CONJUTOS UA"
                       transportadora="INTERRAPIDISIMO"
                       idProducto="2132610"
                       sizeDetails={SETS.map((set, idx) => ({
