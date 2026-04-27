@@ -678,19 +678,106 @@ const ConjuntosKit4CO = () => {
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega + 4 conjuntos completos
           </p>
-          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
-            <DialogTrigger asChild>
-              <Button
-                size="lg"
-                className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
-              >
-                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - {formatPrice(PRODUCT_PRICE)}
-              </Button>
-            </DialogTrigger>
-          </Dialog>
+          <Button
+            size="lg"
+            onClick={handleBuyClick}
+            className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
+          >
+            <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+            PEDIR AHORA - {formatPrice(PRODUCT_PRICE)}
+          </Button>
         </div>
       </section>
+
+      {/* UPSELL DIALOG */}
+      <Dialog open={showUpsell} onOpenChange={(open) => { if (!open) handleUpsellClose(); }}>
+        <DialogContent className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0 bg-gradient-to-br from-gray-900 to-black [&>button:last-child]:hidden">
+          <div className="relative p-5 sm:p-6 border-t-4 border-[#E31837]">
+            <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 pointer-events-none bg-[#E31837]" />
+
+            <button
+              type="button"
+              onClick={handleUpsellClose}
+              aria-label="Cerrar"
+              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 bg-[#E31837] border-2 border-white shadow-lg"
+            >
+              <X className="w-5 h-5 text-white" strokeWidth={3} />
+            </button>
+
+            <DialogHeader className="relative z-10">
+              <div className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border border-[#E31837]/60 bg-[#E31837]/15">
+                <span className="text-[11px] font-black tracking-widest text-[#E31837]">
+                  🔥 OFERTA EXCLUSIVA
+                </span>
+              </div>
+              <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
+                ¡Espera! ¿Quieres llevar también esta Camiseta Premium por solo{" "}
+                <span className="text-[#E31837]">${UPSELL_PRICE.toLocaleString('es-CO')}</span>?
+              </DialogTitle>
+            </DialogHeader>
+
+            <div className="relative z-10 mt-4">
+              <div className="rounded-2xl overflow-hidden border-2 border-[#E31837]/40 mb-4">
+                <div className="aspect-square relative bg-white">
+                  <img
+                    src={camisetaUpsell}
+                    alt="Camiseta Premium Blanca"
+                    className="w-full h-full object-contain"
+                  />
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-[#E31837] text-white">
+                    OFERTA ÚNICA
+                  </div>
+                  <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md bg-black/70">
+                    <span className="text-white/50 line-through text-xs mr-1">${(UPSELL_PRICE * 3).toLocaleString('es-CO')}</span>
+                    <span className="text-[#E31837]">${UPSELL_PRICE.toLocaleString('es-CO')}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <div className="text-xs uppercase tracking-widest text-white/60 mb-2 font-bold text-center">
+                  Elige tu talla
+                </div>
+                <div className="grid grid-cols-4 gap-1.5">
+                  {SHIRT_SIZES.map((s) => {
+                    const active = shirtSize === s;
+                    return (
+                      <button
+                        key={s}
+                        onClick={() => setShirtSize(s)}
+                        className={`py-2 rounded-lg text-xs font-black transition-all border-2 ${
+                          active
+                            ? "border-[#E31837] bg-[#E31837] text-white shadow-lg"
+                            : "border-white/15 bg-transparent text-white"
+                        }`}
+                      >
+                        {s}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Button
+                  onClick={() => handleUpsellDecision(true)}
+                  className="w-full font-black py-5 rounded-xl text-base bg-[#E31837] hover:bg-[#C41430] text-white shadow-lg"
+                >
+                  <Check className="w-5 h-5 mr-2" />
+                  SÍ, AGREGAR POR ${UPSELL_PRICE.toLocaleString('es-CO')}
+                </Button>
+                <button
+                  onClick={() => handleUpsellDecision(false)}
+                  className="w-full text-white/50 hover:text-white/80 py-2 text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <X className="w-3.5 h-3.5" />
+                  No, gracias. Continuar sin la camiseta.
+                </button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Disclaimer */}
       <div className="bg-secondary/50 py-4">
