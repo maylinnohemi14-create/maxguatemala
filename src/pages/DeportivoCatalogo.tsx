@@ -21,10 +21,12 @@ type Product = {
   link: string;
   badge?: string;
   tags?: string[];
+  country: "GT" | "CO";
 };
 
 // Productos del catálogo
 const products: Product[] = [
+  // 🇬🇹 Guatemala
   {
     id: "dep-kit3-gt",
     title: "Kit 3 Conjuntos Deportivos",
@@ -35,6 +37,7 @@ const products: Product[] = [
     link: "/deportivo",
     badge: "🔥 Más Vendido",
     tags: ["Kit x3", "Premium"],
+    country: "GT",
   },
   {
     id: "jogger-nike-gt",
@@ -46,6 +49,7 @@ const products: Product[] = [
     link: "/jogger",
     badge: "✨ Nuevo",
     tags: ["Sport", "Premium"],
+    country: "GT",
   },
   {
     id: "lino-premium-gt",
@@ -57,6 +61,44 @@ const products: Product[] = [
     link: "/elegancia",
     badge: "🌿 Tendencia",
     tags: ["Lino", "Premium"],
+    country: "GT",
+  },
+  // 🇨🇴 Colombia
+  {
+    id: "kit3-co",
+    title: "Conjuntos Kit 3 en 1",
+    subtitle: "Buzo + Camiseta + Pantalón · Gris, Negro y Azul",
+    price: "$149.000",
+    originalPrice: "$289.900",
+    image: underArmourMain,
+    link: "/ropaconjuntos",
+    badge: "🔥 Más Vendido",
+    tags: ["Kit x3", "Premium"],
+    country: "CO",
+  },
+  {
+    id: "kit4-co",
+    title: "Conjuntos Kit 4 en 1",
+    subtitle: "Buzo + Camiseta + Pantaloneta · Negro, Blanco, Azul y Gris",
+    price: "$179.000",
+    originalPrice: "$358.000",
+    image: conjunto4Negro,
+    link: "/fitconjunto",
+    badge: "⚡ Nuevo",
+    tags: ["Kit x4", "Premium"],
+    country: "CO",
+  },
+  {
+    id: "lino-co",
+    title: "Conjunto Lino Premium",
+    subtitle: "Tejido fresco · Beige, Negro y Verde · Estilo elegante",
+    price: "$149.000",
+    originalPrice: "$289.900",
+    image: linoBeige,
+    link: "/eleganciaco",
+    badge: "🌿 Tendencia",
+    tags: ["Lino", "Premium"],
+    country: "CO",
   },
 ];
 
