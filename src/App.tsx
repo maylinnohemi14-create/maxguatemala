@@ -40,6 +40,7 @@ import DeportivoCatalogo from "./pages/DeportivoCatalogo";
 import DeportivoFuture from "./pages/DeportivoFuture";
 import Jogger from "./pages/Jogger";
 import Lino from "./pages/Lino";
+import LinoCO from "./pages/LinoCO";
 
 const queryClient = new QueryClient();
 
@@ -79,6 +80,7 @@ const App = () => (
           <Route path="/jogger" element={<Jogger />} />
           <Route path="/elegancia" element={<Lino />} />
           <Route path="/lino" element={<Lino />} />
+          <Route path="/eleganciaco" element={<LinoCO />} />
           
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
