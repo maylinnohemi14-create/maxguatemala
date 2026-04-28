@@ -100,6 +100,12 @@ const ConjuntosCO = () => {
     });
   }, [tiktokPixelIds, facebookPixelIds]);
 
+  useEffect(() => {
+    const img = new Image();
+    img.fetchPriority = "high";
+    img.src = camisetaUpsell;
+  }, []);
+
   const handleDialogChange = (open: boolean) => {
     if (open) {
       tiktokPixelIds.forEach(pid => {
