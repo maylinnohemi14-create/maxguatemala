@@ -104,6 +104,8 @@ const products: Product[] = [
 
 const DeportivoCatalogo = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
+  const [country, setCountry] = useState<"GT" | "CO">("GT");
+  const filteredProducts = products.filter((p) => p.country === country);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
