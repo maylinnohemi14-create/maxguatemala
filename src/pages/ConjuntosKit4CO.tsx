@@ -100,6 +100,12 @@ const ConjuntosKit4CO = () => {
     });
   }, [tiktokPixelIds, facebookPixelIds]);
 
+  useEffect(() => {
+    const img = new Image();
+    img.fetchPriority = "high";
+    img.src = camisetaUpsell;
+  }, []);
+
   const handleDialogChange = (open: boolean) => {
     if (open) {
       tiktokPixelIds.forEach(pid => {
@@ -723,6 +729,7 @@ const ConjuntosKit4CO = () => {
                     src={camisetaUpsell}
                     alt="Camiseta Premium Blanca"
                     className="w-full h-full object-contain"
+                    fetchPriority="high"
                   />
                   <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-[#E31837] text-white">
                     OFERTA ÚNICA
