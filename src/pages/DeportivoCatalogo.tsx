@@ -3,6 +3,8 @@ import { LegalFooter } from "@/components/LegalFooter";
 import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
 import joggerNegro from "@/assets/jogger-negro.jpg";
 import linoBeige from "@/assets/lino-beige.jpg";
+import underArmourMain from "@/assets/under-armour-main.png";
+import conjunto4Negro from "@/assets/conjunto4-negro-gen.webp";
 
 // Universal futuristic palette (cyber neon)
 const NEON_DARK = "#0a0e27";
@@ -19,10 +21,12 @@ type Product = {
   link: string;
   badge?: string;
   tags?: string[];
+  country: "GT" | "CO";
 };
 
 // Productos del catálogo
 const products: Product[] = [
+  // 🇬🇹 Guatemala
   {
     id: "dep-kit3-gt",
     title: "Kit 3 Conjuntos Deportivos",
@@ -33,6 +37,7 @@ const products: Product[] = [
     link: "/deportivo",
     badge: "🔥 Más Vendido",
     tags: ["Kit x3", "Premium"],
+    country: "GT",
   },
   {
     id: "jogger-nike-gt",
@@ -44,6 +49,7 @@ const products: Product[] = [
     link: "/jogger",
     badge: "✨ Nuevo",
     tags: ["Sport", "Premium"],
+    country: "GT",
   },
   {
     id: "lino-premium-gt",
@@ -55,11 +61,51 @@ const products: Product[] = [
     link: "/elegancia",
     badge: "🌿 Tendencia",
     tags: ["Lino", "Premium"],
+    country: "GT",
+  },
+  // 🇨🇴 Colombia
+  {
+    id: "kit3-co",
+    title: "Conjuntos Kit 3 en 1",
+    subtitle: "Buzo + Camiseta + Pantalón · Gris, Negro y Azul",
+    price: "$149.000",
+    originalPrice: "$289.900",
+    image: underArmourMain,
+    link: "/ropaconjuntos",
+    badge: "🔥 Más Vendido",
+    tags: ["Kit x3", "Premium"],
+    country: "CO",
+  },
+  {
+    id: "kit4-co",
+    title: "Conjuntos Kit 4 en 1",
+    subtitle: "Buzo + Camiseta + Pantaloneta · Negro, Blanco, Azul y Gris",
+    price: "$179.000",
+    originalPrice: "$358.000",
+    image: conjunto4Negro,
+    link: "/fitconjunto",
+    badge: "⚡ Nuevo",
+    tags: ["Kit x4", "Premium"],
+    country: "CO",
+  },
+  {
+    id: "lino-co",
+    title: "Conjunto Lino Premium",
+    subtitle: "Tejido fresco · Beige, Negro y Verde · Estilo elegante",
+    price: "$149.000",
+    originalPrice: "$289.900",
+    image: linoBeige,
+    link: "/eleganciaco",
+    badge: "🌿 Tendencia",
+    tags: ["Lino", "Premium"],
+    country: "CO",
   },
 ];
 
 const DeportivoCatalogo = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
+  const [country, setCountry] = useState<"GT" | "CO">("GT");
+  const filteredProducts = products.filter((p) => p.country === country);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -197,9 +243,38 @@ const DeportivoCatalogo = () => {
         </div>
       </section>
 
+      {/* COUNTRY SELECTOR */}
+      <section className="relative z-10 max-w-6xl mx-auto px-4 pb-6">
+        <div className="flex items-center justify-center gap-3">
+          {([
+            { code: "GT" as const, label: "🇬🇹 Guatemala" },
+            { code: "CO" as const, label: "🇨🇴 Colombia" },
+          ]).map((c) => {
+            const active = country === c.code;
+            return (
+              <button
+                key={c.code}
+                onClick={() => setCountry(c.code)}
+                className="px-5 sm:px-6 py-2.5 rounded-full text-sm font-bold border backdrop-blur-md transition-all duration-300"
+                style={{
+                  borderColor: active ? NEON_PRIMARY : `${NEON_PRIMARY}33`,
+                  background: active
+                    ? `linear-gradient(135deg, ${NEON_PRIMARY}, ${NEON_ACCENT})`
+                    : "rgba(255,255,255,0.05)",
+                  color: active ? "#03040d" : "rgba(255,255,255,0.8)",
+                  boxShadow: active ? `0 8px 24px -8px ${NEON_PRIMARY}` : "none",
+                }}
+              >
+                {c.label}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
       {/* PRODUCT GRID */}
       <section className="relative z-10 max-w-6xl mx-auto px-4 pb-20">
-        {products.length === 0 ? (
+        {filteredProducts.length === 0 ? (
           <div
             className="rounded-3xl border backdrop-blur-md p-10 sm:p-16 text-center"
             style={{
@@ -220,7 +295,7 @@ const DeportivoCatalogo = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((p, idx) => (
+            {filteredProducts.map((p, idx) => (
               <a
                 key={p.id}
                 href={p.link}
