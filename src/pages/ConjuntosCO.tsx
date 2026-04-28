@@ -67,7 +67,7 @@ const ConjuntosCO = () => {
 
   const PRODUCT_ID = "UA-KIT3EN1-CO";
   const PRODUCT_PRICE = 149000;
-  const PAGE_ROUTE = "/conjuntosco";
+  const PAGE_ROUTE = "/ropaconjuntos";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
