@@ -3,6 +3,8 @@ import { LegalFooter } from "@/components/LegalFooter";
 import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
 import joggerNegro from "@/assets/jogger-negro.jpg";
 import linoBeige from "@/assets/lino-beige.jpg";
+import underArmourMain from "@/assets/under-armour-main.png";
+import conjunto4Negro from "@/assets/conjunto4-negro-gen.webp";
 
 // Universal futuristic palette (cyber neon)
 const NEON_DARK = "#0a0e27";
