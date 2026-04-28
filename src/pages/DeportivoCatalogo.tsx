@@ -243,9 +243,38 @@ const DeportivoCatalogo = () => {
         </div>
       </section>
 
+      {/* COUNTRY SELECTOR */}
+      <section className="relative z-10 max-w-6xl mx-auto px-4 pb-6">
+        <div className="flex items-center justify-center gap-3">
+          {([
+            { code: "GT" as const, label: "🇬🇹 Guatemala" },
+            { code: "CO" as const, label: "🇨🇴 Colombia" },
+          ]).map((c) => {
+            const active = country === c.code;
+            return (
+              <button
+                key={c.code}
+                onClick={() => setCountry(c.code)}
+                className="px-5 sm:px-6 py-2.5 rounded-full text-sm font-bold border backdrop-blur-md transition-all duration-300"
+                style={{
+                  borderColor: active ? NEON_PRIMARY : `${NEON_PRIMARY}33`,
+                  background: active
+                    ? `linear-gradient(135deg, ${NEON_PRIMARY}, ${NEON_ACCENT})`
+                    : "rgba(255,255,255,0.05)",
+                  color: active ? "#03040d" : "rgba(255,255,255,0.8)",
+                  boxShadow: active ? `0 8px 24px -8px ${NEON_PRIMARY}` : "none",
+                }}
+              >
+                {c.label}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
       {/* PRODUCT GRID */}
       <section className="relative z-10 max-w-6xl mx-auto px-4 pb-20">
-        {products.length === 0 ? (
+        {filteredProducts.length === 0 ? (
           <div
             className="rounded-3xl border backdrop-blur-md p-10 sm:p-16 text-center"
             style={{
@@ -266,7 +295,7 @@ const DeportivoCatalogo = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((p, idx) => (
+            {filteredProducts.map((p, idx) => (
               <a
                 key={p.id}
                 href={p.link}
