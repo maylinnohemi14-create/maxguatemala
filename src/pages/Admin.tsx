@@ -315,7 +315,7 @@ const Admin = () => {
     { id: 'JOGGER-NIKE-GT', label: 'Pantalón Jogger', nota: 'COMBO NIKE JOGGER', idProducto: '4106', idVariable: '', transportadora: 'FORZA' },
     { id: 'DEP-ULTRADRY-GT', label: 'Future Lac', nota: 'KIT CONJUNTOS LACST', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
     { id: 'LINO-PREMIUM-GT', label: 'Lino', nota: 'KIT CONJUNTO LACOST LINO', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
-    { id: 'LINO-PREMIUM-CO', label: '🇨🇴 Lino Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
+    { id: 'LINO-PREMIUM-CO', label: '🇨🇴 Lino Colombia', nota: 'KIT LINO LACST', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
   ];
 
   const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');
