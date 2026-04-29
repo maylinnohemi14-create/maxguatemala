@@ -315,7 +315,7 @@ const Admin = () => {
     { id: 'JOGGER-NIKE-GT', label: 'Pantalón Jogger', nota: 'COMBO NIKE JOGGER', idProducto: '4106', idVariable: '', transportadora: 'FORZA' },
     { id: 'DEP-ULTRADRY-GT', label: 'Future Lac', nota: 'KIT CONJUNTOS LACST', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
     { id: 'LINO-PREMIUM-GT', label: 'Lino', nota: 'KIT CONJUNTO LACOST LINO', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
-    { id: 'LINO-PREMIUM-CO', label: '🇨🇴 Lino Colombia', nota: 'KIT CONJUTOS UA', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
+    { id: 'LINO-PREMIUM-CO', label: '🇨🇴 Lino Colombia', nota: 'KIT LINO LACST', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
   ];
 
   const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');
@@ -385,26 +385,32 @@ const Admin = () => {
   };
 
   const formatOrdersForExcel = (ordersToFormat: Order[], product?: typeof PRODUCTS[0]) => {
-    return ordersToFormat.map((order) => ({
-      'NOMBRES': order.nombres,
-      'APELLIDOS': order.apellidos,
-      'DIRECCIÓN Y BARRIO': order.colonia ? `${order.direccion_y_barrio}, ${order.colonia}` : order.direccion_y_barrio,
-      'DEPARTAMENTO': order.departamento,
-      'CIUDAD': order.ciudad,
-      'TELÉFONO': order.telefono,
-      'ID DE PRODUCTO': product?.idProducto || '179',
-      'CANTIDAD': '1',
-      'PRECIO TOTAL (SIN PUNTOS NI COMAS)': order.precio_total,
-      'CON RECAUDO': 'SI',
-      'NOTA': product?.nota || order.nota || 'PROYECTOR VEV',
-      'EMAIL (OPCIONAL)': order.email || '',
-      'ID DE VARIABLE (OPCIONAL)': product?.idVariable || '',
-      'CODIGO POSTAL (OPCIONAL)': '',
-      'TRANSPORTADORA (OPCIONAL)': product?.transportadora || 'FORZA',
-      'CEDULA (OPCIONAL)': order.cedula || '',
-      'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': '',
-      'SEGURO (SOLO APLICA PARA ENVIA)': ''
-    }));
+    return ordersToFormat.map((order) => {
+      let idProducto = product?.idProducto || '179';
+      if (product?.id === 'LINO-PREMIUM-CO' && normalizeOrderPrice(order.precio_total) === '199000') {
+        idProducto = '2140867';
+      }
+      return {
+        'NOMBRES': order.nombres,
+        'APELLIDOS': order.apellidos,
+        'DIRECCIÓN Y BARRIO': order.colonia ? `${order.direccion_y_barrio}, ${order.colonia}` : order.direccion_y_barrio,
+        'DEPARTAMENTO': order.departamento,
+        'CIUDAD': order.ciudad,
+        'TELÉFONO': order.telefono,
+        'ID DE PRODUCTO': idProducto,
+        'CANTIDAD': '1',
+        'PRECIO TOTAL (SIN PUNTOS NI COMAS)': order.precio_total,
+        'CON RECAUDO': 'SI',
+        'NOTA': product?.nota || order.nota || 'PROYECTOR VEV',
+        'EMAIL (OPCIONAL)': order.email || '',
+        'ID DE VARIABLE (OPCIONAL)': product?.idVariable || '',
+        'CODIGO POSTAL (OPCIONAL)': '',
+        'TRANSPORTADORA (OPCIONAL)': product?.transportadora || 'FORZA',
+        'CEDULA (OPCIONAL)': order.cedula || '',
+        'COLONIA (OBLIGATORIO SOLO PARA QUIKEN)': '',
+        'SEGURO (SOLO APLICA PARA ENVIA)': ''
+      };
+    });
   };
 
   const downloadProductExcel = async (product: typeof PRODUCTS[0]) => {
