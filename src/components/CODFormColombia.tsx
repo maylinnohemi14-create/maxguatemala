@@ -188,7 +188,7 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
         value: productPrice,
         currency: 'COP',
         content_category: 'Conjuntos Deportivos',
-      }, tiktokPixelId);
+      });
       allFacebookPixelIds.forEach(pid => trackFacebookConversion('InitiateCheckout', {
         content_ids: [productId],
         content_type: 'product',
@@ -326,7 +326,7 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
       await trackTikTokPurchase({
         productId, productName: productName || productId, value: productPrice, currency: 'COP',
         email: data.email || undefined, phone: normalizedPhone, externalId: normalizedPhone,
-        ip: resolvedClientIp || undefined, pixelId: tiktokPixelId, eventId: purchaseEventId,
+        ip: resolvedClientIp || undefined, pixelId: undefined, eventId: purchaseEventId,
       });
     } catch (e) { console.error('TikTok CompletePayment failed:', e); }
 
