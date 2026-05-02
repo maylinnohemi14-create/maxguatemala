@@ -488,7 +488,7 @@ const Refletiva = () => {
                       productDisplayName="Camisetas Reflectivas Kit 8 en 1"
                       productImage={camisetasPrincipal}
                       tiktokPixelIds={tiktokPixelIds}
-                      facebookPixelId={facebookPixelIds[0]}
+                      facebookPixelIds={facebookPixelIds}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'kit', icon: '👕', title: '8 Camisetas Completas', description: '8 colores diferentes' },

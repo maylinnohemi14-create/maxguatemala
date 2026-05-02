@@ -471,7 +471,7 @@ const UnderArmour = () => {
                       productDisplayName="Conjuntos Deportivos Kit 3 en 1"
                       productImage={underArmourMain}
                       tiktokPixelIds={tiktokPixelIds}
-                      facebookPixelId={facebookPixelIds[0]}
+                      facebookPixelIds={facebookPixelIds}
                       sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,
                         image: set.image,

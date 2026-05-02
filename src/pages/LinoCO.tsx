@@ -201,7 +201,7 @@ const LinoCO = () => {
     trackFacebookConversion(
       "AddToCart",
       { content_ids: [PRODUCT_ID], content_type: "product", value: basePrice, currency: "COP" },
-      facebookPixelIds[0]
+      undefined
     );
     setShowUpsell(true);
   };
@@ -661,7 +661,7 @@ const LinoCO = () => {
               productDisplayName={productDisplayName + (addShirt ? ` + Camiseta Talla ${shirtSize} (REGALO)` : "")}
               productImage={COLORS.find((c) => c.id === selectedColors[0])?.image || COLORS[0].image}
               tiktokPixelIds={tiktokPixelIds}
-              facebookPixelId={facebookPixelIds[0]}
+              facebookPixelIds={facebookPixelIds}
               idVariable=""
               defaultNota={`CONJUNTO LINO PREMIUM x${selectedQty}${addShirt ? ` + Camiseta REGALO Talla ${shirtSize}` : ""}`}
               transportadora="INTERRAPIDISIMO"

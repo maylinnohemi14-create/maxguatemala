@@ -457,7 +457,7 @@ const ConjuntosCL = () => {
                       productDisplayName="Conjuntos Deportivos Kit 3 en 1"
                       productImage={underArmourMain}
                       tiktokPixelIds={tiktokPixelIds}
-                      facebookPixelId={facebookPixelIds[0]}
+                      facebookPixelIds={facebookPixelIds}
                       idVariable="20345"
                       defaultNota="COMBO CONJUNTO"
                       sizeDetails={SETS.map((set, idx) => ({

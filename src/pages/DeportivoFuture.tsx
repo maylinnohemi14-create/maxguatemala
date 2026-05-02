@@ -184,7 +184,7 @@ const DeportivoFuture = () => {
     trackFacebookConversion(
       "AddToCart",
       { content_ids: [PRODUCT_ID], content_type: "product", value: basePrice, currency: "GTQ" },
-      facebookPixelIds[0]
+      undefined
     );
     setShowUpsell(true);
   };
@@ -654,7 +654,7 @@ const DeportivoFuture = () => {
               productDisplayName={productDisplayName + (addShirt ? ` + Camiseta Talla ${shirtSize}` : "")}
               productImage={COLORS.find((c) => c.id === selectedColors[0])?.image || COLORS[0].image}
               tiktokPixelIds={tiktokPixelIds}
-              facebookPixelId={facebookPixelIds[0]}
+              facebookPixelIds={facebookPixelIds}
               extraNote={extraNote}
               promoMessage={`¡PROMOCIÓN! ${selectedQty} Conjunto(s) Ultra Dry por solo Q${basePrice}${addShirt ? ` + Camiseta Q${SHIRT_PRICE}` : ""}.`}
               includedItems={[
