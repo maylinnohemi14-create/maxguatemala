@@ -348,15 +348,11 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
     } catch (e) { console.error('❌ TikTok CompletePayment failed:', e); }
 
     try {
-      trackFacebookConversion('Purchase', {
-        content_ids: [productId],
-        content_type: 'product',
-        content_name: productName || productId,
-        value: productPrice,
-        currency: 'GTQ',
-        num_items: 1
-      }, facebookPixelId);
-      console.log('✅ Facebook Purchase (scoped to', facebookPixelId || 'all', ') fired');
+      allFacebookPixelIds.forEach(pid => trackFacebookConversion('Purchase', {
+        content_ids: [productId], content_type: 'product', content_name: productName || productId,
+        value: productPrice, currency: 'GTQ', num_items: 1
+      }, pid));
+      console.log('✅ Facebook Purchase fired for all pixels:', allFacebookPixelIds);
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
     for (const pixelId of allTiktokPixelIds) {
