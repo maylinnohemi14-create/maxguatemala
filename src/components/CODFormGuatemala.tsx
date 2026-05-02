@@ -113,6 +113,7 @@ interface CODFormGuatemalaProps {
   sizeDetails?: SizeDetail[];
   productDisplayName?: string;
   tiktokPixelId?: string;
+  tiktokPixelIds?: string[];
   facebookPixelId?: string;
   promoMessage?: string;
   extraNote?: string;
