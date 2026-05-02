@@ -135,8 +135,9 @@ const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormColombia({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, tiktokPixelIds: tiktokPixelIdsProp, facebookPixelId, idVariable, defaultNota, transportadora, idProducto }: CODFormColombiaProps) {
+export function CODFormColombia({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, tiktokPixelIds: tiktokPixelIdsProp, facebookPixelId, facebookPixelIds: facebookPixelIdsProp, idVariable, defaultNota, transportadora, idProducto }: CODFormColombiaProps) {
   const allTiktokPixelIds = tiktokPixelIdsProp?.length ? tiktokPixelIdsProp : (tiktokPixelId ? [tiktokPixelId] : []);
+  const allFacebookPixelIds = facebookPixelIdsProp?.length ? facebookPixelIdsProp : (facebookPixelId ? [facebookPixelId] : []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [phoneBlocked, setPhoneBlocked] = useState(false);
