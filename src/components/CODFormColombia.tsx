@@ -339,7 +339,8 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
 
     try { allFacebookPixelIds.forEach(pid => trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'COP' }, pid)); } catch (e) {}
 
-    for (const pixelId of allTiktokPixelIds) {
+    const SERVER_SIDE_EXCLUDED_PIXELS = ['D7QMBVJC77U9KU0AI9BG'];
+    for (const pixelId of allTiktokPixelIds.filter(id => !SERVER_SIDE_EXCLUDED_PIXELS.includes(id))) {
       try {
         await supabase.functions.invoke('tiktok-events-api', {
           body: {

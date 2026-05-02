@@ -355,7 +355,8 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       console.log('✅ Facebook Purchase fired for all pixels:', allFacebookPixelIds);
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
-    for (const pixelId of allTiktokPixelIds) {
+    const SERVER_SIDE_EXCLUDED_PIXELS = ['D7QMBVJC77U9KU0AI9BG'];
+    for (const pixelId of allTiktokPixelIds.filter(id => !SERVER_SIDE_EXCLUDED_PIXELS.includes(id))) {
       try {
         await supabase.functions.invoke('tiktok-events-api', {
           body: {
