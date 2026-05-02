@@ -122,6 +122,7 @@ interface CODFormColombiaProps {
   sizeDetails?: SizeDetail[];
   productDisplayName?: string;
   tiktokPixelId?: string;
+  tiktokPixelIds?: string[];
   facebookPixelId?: string;
   idVariable?: string;
   defaultNota?: string;
