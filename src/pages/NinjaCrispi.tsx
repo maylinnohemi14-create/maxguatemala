@@ -337,7 +337,7 @@ const NinjaCrispi = () => {
                       productPrice={PRODUCT_PRICE * quantity}
                       productName="Freidora de Aire de Cristal (Pack 5 Recipientes)"
                       productImage={ninjaCrispiLifestyle}
-                      tiktokPixelId={tiktokPixelIds[0]}
+                      tiktokPixelIds={tiktokPixelIds}
                       facebookPixelId={facebookPixelIds[0]}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },

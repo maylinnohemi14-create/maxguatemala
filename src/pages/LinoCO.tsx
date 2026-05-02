@@ -660,7 +660,7 @@ const LinoCO = () => {
               productName={productDisplayName}
               productDisplayName={productDisplayName + (addShirt ? ` + Camiseta Talla ${shirtSize} (REGALO)` : "")}
               productImage={COLORS.find((c) => c.id === selectedColors[0])?.image || COLORS[0].image}
-              tiktokPixelId={tiktokPixelIds[0]}
+              tiktokPixelIds={tiktokPixelIds}
               facebookPixelId={facebookPixelIds[0]}
               idVariable=""
               defaultNota={`CONJUNTO LINO PREMIUM x${selectedQty}${addShirt ? ` + Camiseta REGALO Talla ${shirtSize}` : ""}`}

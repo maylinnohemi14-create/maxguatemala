@@ -113,6 +113,7 @@ interface CODFormGuatemalaProps {
   sizeDetails?: SizeDetail[];
   productDisplayName?: string;
   tiktokPixelId?: string;
+  tiktokPixelIds?: string[];
   facebookPixelId?: string;
   promoMessage?: string;
   extraNote?: string;
@@ -122,7 +123,8 @@ const DEFAULT_INCLUDED_ITEMS: IncludedItem[] = [
   { id: 'warranty', icon: '🛡️', title: 'Garantía Extendida 2 Años', description: 'Protección Extra para tu inversión' },
 ];
 
-export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, facebookPixelId, promoMessage, extraNote }: CODFormGuatemalaProps) {
+export function CODFormGuatemala({ productId, productPrice, productName = "Producto", productImage, onOrderComplete, includedItems = DEFAULT_INCLUDED_ITEMS, sizeDetails, productDisplayName, tiktokPixelId, tiktokPixelIds: tiktokPixelIdsProp, facebookPixelId, promoMessage, extraNote }: CODFormGuatemalaProps) {
+  const allTiktokPixelIds = tiktokPixelIdsProp?.length ? tiktokPixelIdsProp : (tiktokPixelId ? [tiktokPixelId] : []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [clientIp, setClientIp] = useState<string | null>(null);
   const [phoneBlocked, setPhoneBlocked] = useState(false);
@@ -358,11 +360,11 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
       console.log('✅ Facebook Purchase (scoped to', facebookPixelId || 'all', ') fired');
     } catch (e) { console.error('❌ Facebook Purchase failed:', e); }
 
-    if (tiktokPixelId) {
+    for (const pixelId of allTiktokPixelIds) {
       try {
         await supabase.functions.invoke('tiktok-events-api', {
           body: {
-            pixel_id: tiktokPixelId,
+            pixel_id: pixelId,
             event: 'CompletePayment',
             event_id: purchaseEventId,
             timestamp: Math.floor(Date.now() / 1000),
@@ -383,10 +385,8 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
             quantity: 1,
           },
         });
-        console.log('✅ TikTok Server-Side CompletePayment sent with shared event_id:', purchaseEventId);
-      } catch (e) { console.error('❌ TikTok Server-Side event failed:', e); }
-    } else {
-      console.warn('⚠️ TikTok Server-Side CompletePayment skipped: no page-specific pixel configured');
+        console.log('✅ TikTok Server-Side CompletePayment sent for pixel:', pixelId, 'event_id:', purchaseEventId);
+      } catch (e) { console.error('❌ TikTok Server-Side event failed for pixel:', pixelId, e); }
     }
 
     console.log('✅✅ All conversion tracking events processed (browser + server)');

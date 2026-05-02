@@ -475,7 +475,7 @@ const ConjuntosKit4 = () => {
                       productName={`Conjuntos Deportivos Kit 4 en 1 (${sizesNote})`}
                       productDisplayName="Conjuntos Deportivos Kit 4 en 1"
                       productImage={conjunto4Negro}
-                      tiktokPixelId={tiktokPixelIds[0]}
+                      tiktokPixelIds={tiktokPixelIds}
                       facebookPixelId={facebookPixelIds[0]}
                       sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,

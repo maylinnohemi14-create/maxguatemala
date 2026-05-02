@@ -487,7 +487,7 @@ const Refletiva = () => {
                       productName={`Camisetas Reflectivas Kit 8 en 1 (${sizesNote})`}
                       productDisplayName="Camisetas Reflectivas Kit 8 en 1"
                       productImage={camisetasPrincipal}
-                      tiktokPixelId={tiktokPixelIds[0]}
+                      tiktokPixelIds={tiktokPixelIds}
                       facebookPixelId={facebookPixelIds[0]}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },

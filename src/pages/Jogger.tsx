@@ -651,7 +651,7 @@ const Jogger = () => {
               productName={productDisplayName}
               productDisplayName={productDisplayName + (addJacket ? ` + Jaqueta Nike Talla ${jacketSize}` : "")}
               productImage={COLORS.find((c) => c.id === selectedColors[0])?.image || COLORS[0].image}
-              tiktokPixelId={tiktokPixelIds[0]}
+              tiktokPixelIds={tiktokPixelIds}
               facebookPixelId={facebookPixelIds[0]}
               extraNote={extraNote}
               promoMessage={`¡PROMOCIÓN! ${selectedQty} Pantalón(es) Jogger Nike por solo Q${basePrice}${addJacket ? ` + Chaqueta Q${JACKET_PRICE}` : ""}.`}
