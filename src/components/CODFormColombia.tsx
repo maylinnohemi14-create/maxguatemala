@@ -337,11 +337,11 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
 
     try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'COP' }, facebookPixelId); } catch (e) {}
 
-    if (tiktokPixelId) {
+    for (const pixelId of allTiktokPixelIds) {
       try {
         await supabase.functions.invoke('tiktok-events-api', {
           body: {
-            pixel_id: tiktokPixelId, event: 'CompletePayment', event_id: purchaseEventId,
+            pixel_id: pixelId, event: 'CompletePayment', event_id: purchaseEventId,
             timestamp: Math.floor(Date.now() / 1000), user_agent: navigator.userAgent,
             ip: resolvedClientIp || undefined, page_url: window.location.href, page_referrer: document.referrer || '',
             email: data.email || undefined, phone: normalizedPhone, external_id: normalizedPhone,
@@ -351,7 +351,8 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
             value: productPrice, currency: 'COP', quantity: 1,
           },
         });
-      } catch (e) { console.error('TikTok Server-Side failed:', e); }
+      } catch (e) { console.error('TikTok Server-Side failed for pixel:', pixelId, e); }
+    }
     }
 
     try {
