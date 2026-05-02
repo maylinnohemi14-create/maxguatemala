@@ -189,12 +189,12 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
         currency: 'COP',
         content_category: 'Conjuntos Deportivos',
       }, tiktokPixelId);
-      trackFacebookConversion('InitiateCheckout', {
+      allFacebookPixelIds.forEach(pid => trackFacebookConversion('InitiateCheckout', {
         content_ids: [productId],
         content_type: 'product',
         value: productPrice,
         currency: 'COP'
-      }, facebookPixelId);
+      }, pid));
       setHasTrackedInitiateCheckout(true);
     }
   };
