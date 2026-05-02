@@ -115,6 +115,7 @@ interface CODFormGuatemalaProps {
   tiktokPixelId?: string;
   tiktokPixelIds?: string[];
   facebookPixelId?: string;
+  facebookPixelIds?: string[];
   promoMessage?: string;
   extraNote?: string;
 }
