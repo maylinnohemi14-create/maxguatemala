@@ -178,7 +178,7 @@ const Jogger = () => {
         value: basePrice,
         currency: "GTQ",
       },
-      tiktokPixelIds[0]
+      undefined
     );
     trackFacebookConversion(
       "AddToCart",
