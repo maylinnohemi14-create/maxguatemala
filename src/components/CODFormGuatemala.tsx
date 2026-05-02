@@ -341,7 +341,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         phone: normalizedPhone,
         externalId: normalizedPhone,
         ip: resolvedClientIp || undefined,
-        pixelId: tiktokPixelId,
+        pixelId: undefined,
         eventId: purchaseEventId,
       });
       console.log('✅ TikTok CompletePayment (scoped to', tiktokPixelId || 'all', ') fired');

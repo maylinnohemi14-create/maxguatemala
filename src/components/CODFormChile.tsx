@@ -316,7 +316,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
       await trackTikTokPurchase({
         productId, productName: productName || productId, value: productPrice, currency: 'CLP',
         email: data.email || undefined, phone: normalizedPhone, externalId: normalizedPhone,
-        ip: resolvedClientIp || undefined, pixelId: tiktokPixelId, eventId: purchaseEventId,
+        ip: resolvedClientIp || undefined, pixelId: undefined, eventId: purchaseEventId,
       });
     } catch (e) { console.error('TikTok CompletePayment failed:', e); }
 
