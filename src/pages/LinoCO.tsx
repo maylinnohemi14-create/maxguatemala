@@ -196,7 +196,7 @@ const LinoCO = () => {
         value: basePrice,
         currency: "COP",
       },
-      tiktokPixelIds[0]
+      undefined
     );
     trackFacebookConversion(
       "AddToCart",
