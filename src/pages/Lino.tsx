@@ -650,7 +650,7 @@ const Lino = () => {
               productDisplayName={productDisplayName + (addShirt ? ` + Camiseta Talla ${shirtSize}` : "")}
               productImage={COLORS.find((c) => c.id === selectedColors[0])?.image || COLORS[0].image}
               tiktokPixelIds={tiktokPixelIds}
-              facebookPixelId={facebookPixelIds[0]}
+              facebookPixelIds={facebookPixelIds}
               extraNote={extraNote}
               promoMessage={`¡PROMOCIÓN! ${selectedQty} Conjunto(s) Premium en Lino por solo Q${basePrice}${addShirt ? ` + Camiseta Q${SHIRT_PRICE}` : ""}.`}
               includedItems={[

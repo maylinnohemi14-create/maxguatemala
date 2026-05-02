@@ -514,7 +514,7 @@ const Deportivo = () => {
                       productDisplayName="Conjuntos Premium Kit 3 en 1"
                       productImage={deportivoVerdeBuzo}
                       tiktokPixelIds={tiktokPixelIds}
-                      facebookPixelId={facebookPixelIds[0]}
+                      facebookPixelIds={facebookPixelIds}
                       sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,
                         image: set.image,

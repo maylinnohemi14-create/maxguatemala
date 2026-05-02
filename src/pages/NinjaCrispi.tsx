@@ -338,7 +338,7 @@ const NinjaCrispi = () => {
                       productName="Freidora de Aire de Cristal (Pack 5 Recipientes)"
                       productImage={ninjaCrispiLifestyle}
                       tiktokPixelIds={tiktokPixelIds}
-                      facebookPixelId={facebookPixelIds[0]}
+                      facebookPixelIds={facebookPixelIds}
                       includedItems={[
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'recipientes', icon: '🥘', title: '5 Recipientes de Cristal', description: '4x 1.4L + 1x 3.8L con tapas' },

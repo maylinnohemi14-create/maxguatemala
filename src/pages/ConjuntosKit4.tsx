@@ -476,7 +476,7 @@ const ConjuntosKit4 = () => {
                       productDisplayName="Conjuntos Deportivos Kit 4 en 1"
                       productImage={conjunto4Negro}
                       tiktokPixelIds={tiktokPixelIds}
-                      facebookPixelId={facebookPixelIds[0]}
+                      facebookPixelIds={facebookPixelIds}
                       sizeDetails={SETS.map((set, idx) => ({
                         name: set.name,
                         image: set.image,

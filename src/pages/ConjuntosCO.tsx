@@ -504,7 +504,7 @@ const ConjuntosCO = () => {
                       productDisplayName="Conjuntos Deportivos Kit 3 en 1"
                       productImage={underArmourMain}
                       tiktokPixelIds={tiktokPixelIds}
-                      facebookPixelId={facebookPixelIds[0]}
+                      facebookPixelIds={facebookPixelIds}
                       idVariable=""
                       defaultNota="KIT CONJUTOS UA"
                       transportadora="INTERRAPIDISIMO"
