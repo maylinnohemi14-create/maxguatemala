@@ -181,7 +181,7 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
         value: productPrice,
         currency: 'CLP',
         content_category: 'Conjuntos Deportivos',
-      }, tiktokPixelId);
+      });
       allFacebookPixelIds.forEach(pid => trackFacebookConversion('InitiateCheckout', {
         content_ids: [productId], content_type: 'product', value: productPrice, currency: 'CLP'
       }, pid));

@@ -178,7 +178,7 @@ export function CODFormGuatemala({ productId, productPrice, productName = "Produ
         value: productPrice,
         currency: 'GTQ',
         content_category: 'Conjuntos Deportivos',
-      }, tiktokPixelId);
+      });
       allFacebookPixelIds.forEach(pid => trackFacebookConversion('InitiateCheckout', {
         content_ids: [productId], content_type: 'product', value: productPrice, currency: 'GTQ'
       }, pid));
