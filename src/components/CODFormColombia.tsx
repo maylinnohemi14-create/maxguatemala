@@ -331,13 +331,13 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
     } catch (e) { console.error('TikTok CompletePayment failed:', e); }
 
     try {
-      trackFacebookConversion('Purchase', {
+      allFacebookPixelIds.forEach(pid => trackFacebookConversion('Purchase', {
         content_ids: [productId], content_type: 'product', content_name: productName || productId,
         value: productPrice, currency: 'COP', num_items: 1
-      }, facebookPixelId);
+      }, pid));
     } catch (e) { console.error('Facebook Purchase failed:', e); }
 
-    try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'COP' }, facebookPixelId); } catch (e) {}
+    try { allFacebookPixelIds.forEach(pid => trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'COP' }, pid)); } catch (e) {}
 
     for (const pixelId of allTiktokPixelIds) {
       try {
