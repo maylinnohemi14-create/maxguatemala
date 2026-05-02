@@ -184,7 +184,7 @@ const DeportivoFuture = () => {
     trackFacebookConversion(
       "AddToCart",
       { content_ids: [PRODUCT_ID], content_type: "product", value: basePrice, currency: "GTQ" },
-      facebookPixelIds[0]
+      undefined
     );
     setShowUpsell(true);
   };

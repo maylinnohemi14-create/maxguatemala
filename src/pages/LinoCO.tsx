@@ -201,7 +201,7 @@ const LinoCO = () => {
     trackFacebookConversion(
       "AddToCart",
       { content_ids: [PRODUCT_ID], content_type: "product", value: basePrice, currency: "COP" },
-      facebookPixelIds[0]
+      undefined
     );
     setShowUpsell(true);
   };
