@@ -352,8 +352,6 @@ export function CODFormColombia({ productId, productPrice, productName = "Produc
           },
         });
       } catch (e) { console.error('TikTok Server-Side failed for pixel:', pixelId, e); }
-    }
-    }
 
     try {
       const { error } = await supabase.from('orders').insert({
