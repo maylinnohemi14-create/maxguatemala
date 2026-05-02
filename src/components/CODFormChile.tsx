@@ -182,12 +182,9 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
         currency: 'CLP',
         content_category: 'Conjuntos Deportivos',
       }, tiktokPixelId);
-      trackFacebookConversion('InitiateCheckout', {
-        content_ids: [productId],
-        content_type: 'product',
-        value: productPrice,
-        currency: 'CLP'
-      }, facebookPixelId);
+      allFacebookPixelIds.forEach(pid => trackFacebookConversion('InitiateCheckout', {
+        content_ids: [productId], content_type: 'product', value: productPrice, currency: 'CLP'
+      }, pid));
       setHasTrackedInitiateCheckout(true);
     }
   };
@@ -324,13 +321,13 @@ export function CODFormChile({ productId, productPrice, productName = "Producto"
     } catch (e) { console.error('TikTok CompletePayment failed:', e); }
 
     try {
-      trackFacebookConversion('Purchase', {
+      allFacebookPixelIds.forEach(pid => trackFacebookConversion('Purchase', {
         content_ids: [productId], content_type: 'product', content_name: productName || productId,
         value: productPrice, currency: 'CLP', num_items: 1
-      }, facebookPixelId);
+      }, pid));
     } catch (e) { console.error('Facebook Purchase failed:', e); }
 
-    try { trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'CLP' }, facebookPixelId); } catch (e) {}
+    try { allFacebookPixelIds.forEach(pid => trackFacebookConversion('Lead', { content_name: productName || productId, value: productPrice, currency: 'CLP' }, pid)); } catch (e) {}
 
     for (const pixelId of allTiktokPixelIds) {
       try {
