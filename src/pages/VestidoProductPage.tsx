@@ -4,7 +4,7 @@ import { LegalFooter } from "@/components/LegalFooter";
 import { CODFormGuatemala } from "@/components/CODFormGuatemala";
 import { Button } from "@/components/ui/button";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Check, Heart, Shield, Truck, Sparkles, Star, ChevronLeft, ShoppingBag, CreditCard, Ruler } from "lucide-react";
+import { Check, Heart, Shield, Truck, Sparkles, Star, ChevronLeft, ShoppingBag, CreditCard, Ruler, Gift } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // Feminine futuristic palette
@@ -416,6 +416,22 @@ const VestidoProductPage = () => {
               boxShadow: `0 20px 60px -10px ${PINK}88`,
             }}
           >
+            {/* Mother's Day promo */}
+            <div
+              className="mb-4 p-3 rounded-xl text-center"
+              style={{ background: `linear-gradient(135deg, ${PINK}12, ${PURPLE}08)`, border: `1px solid ${PINK}33` }}
+            >
+              <div className="flex items-center justify-center gap-2">
+                <Gift className="w-4 h-4" style={{ color: PINK }} />
+                <span className="text-sm font-bold" style={{ color: PINK }}>
+                  🌸 Especial Día de las Madres 🌸
+                </span>
+              </div>
+              <p className="text-[11px] text-black/50 mt-1">
+                Precio exclusivo hasta el <span className="font-bold" style={{ color: PINK }}>10 de mayo</span>
+              </p>
+            </div>
+
             <div className="text-center mb-5">
               <div
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3"
