@@ -42,6 +42,7 @@ import Jogger from "./pages/Jogger";
 import Lino from "./pages/Lino";
 import LinoCO from "./pages/LinoCO";
 import LinoTest from "./pages/LinoTest";
+import VestidosGT from "./pages/VestidosGT";
 
 const queryClient = new QueryClient();
 
@@ -83,6 +84,7 @@ const App = () => (
           <Route path="/lino" element={<Lino />} />
           <Route path="/eleganciaco" element={<LinoCO />} />
           <Route path="/eleganciatest" element={<LinoTest />} />
+          <Route path="/vestidosgt" element={<VestidosGT />} />
           
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
