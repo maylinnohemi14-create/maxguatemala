@@ -17,7 +17,8 @@ export const TrackingPixels = () => {
     const matchingPixels = pixels.filter((pixel) => {
       const isGlobal = !pixel.page_route;
       const matchesRoute = pixel.page_route === location.pathname;
-      return isGlobal || matchesRoute;
+      const matchesPrefix = pixel.page_route ? location.pathname.startsWith(pixel.page_route + '/') : false;
+      return isGlobal || matchesRoute || matchesPrefix;
     });
 
     setActiveRoutePixels(matchingPixels);
