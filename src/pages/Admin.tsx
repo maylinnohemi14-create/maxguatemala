@@ -421,10 +421,12 @@ const Admin = () => {
       let productOrders = getOrdersByProduct(product.id);
 
       if (productOrders.length === 0) {
+        const aliases = (product as any).aliasIds as string[] | undefined;
         const candidateIds = Array.from(new Set([
           product.id,
           product.idProducto,
           ...getLegacyProductIds(product.id),
+          ...(aliases || []),
         ].filter(Boolean)));
 
         const { data, error } = await supabase
