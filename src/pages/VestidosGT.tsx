@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LegalFooter } from "@/components/LegalFooter";
 import maxHeader from "@/assets/max-header.png";
-import { Truck, CreditCard, Shield, Star, ShoppingBag, Sparkles, Heart, Filter, ChevronDown } from "lucide-react";
+import { Truck, CreditCard, Shield, Star, ShoppingBag, Sparkles, Heart, Filter, ChevronDown, Gift } from "lucide-react";
 
 interface Product {
   id: string;
