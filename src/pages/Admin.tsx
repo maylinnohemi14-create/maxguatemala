@@ -340,11 +340,13 @@ const Admin = () => {
 
   const orderMatchesProduct = (order: Order, product: typeof PRODUCTS[number]) => {
     const legacyIds = getLegacyProductIds(product.id);
+    const aliases = (product as any).aliasIds as string[] | undefined;
 
     return (
       order.id_producto === product.id ||
       order.id_producto === product.idProducto ||
       legacyIds.includes(order.id_producto || '') ||
+      (aliases ? aliases.includes(order.id_producto || '') : false) ||
       isLegacyColombiaOrder(order, product.id)
     );
   };
