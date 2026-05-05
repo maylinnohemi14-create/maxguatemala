@@ -41,6 +41,7 @@ interface ProductData {
 }
 
 const ALL_PRODUCTS: ProductData[] = [
+  { id: "vestido-dulsura", slug: "dulsura", name: "Vestido Dulsura", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00089-c18e3b57329816fe5a17770970828377-640-0.webp", badge: "🌸 DÍA DE LAS MADRES", color: "Rosa", category: "Elegante" },
   { id: "vestido-mia", slug: "mia", name: "Vestido Mía", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00136-1ea060f31f6b445e3417776865361963-640-0.webp", badge: "🌸 DÍA DE LAS MADRES", color: "Azul", category: "Elegante" },
   { id: "vestido-sara", slug: "sara", name: "Vestido Corto Sara", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00171-2b7384c79c28aa1e2617777044233691-640-0.webp", badge: "NUEVO", color: "Azul", category: "Casual" },
   { id: "vestido-imperial-scarlet", slug: "imperial-scarlet", name: "Vestido Imperial Scarlet", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-11-18-04-03-12-bed4fc770309ed1f4a17635075297197-640-0.webp", badge: "MÁS VENDIDO", color: "Rojo", category: "Elegante" },
