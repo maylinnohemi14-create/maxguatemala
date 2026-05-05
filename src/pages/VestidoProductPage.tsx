@@ -4,7 +4,7 @@ import { LegalFooter } from "@/components/LegalFooter";
 import { CODFormGuatemala } from "@/components/CODFormGuatemala";
 import { Button } from "@/components/ui/button";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Check, Heart, Shield, Truck, Sparkles, Star, ChevronLeft, ShoppingBag, CreditCard, Ruler } from "lucide-react";
+import { Check, Heart, Shield, Truck, Sparkles, Star, ChevronLeft, ShoppingBag, CreditCard, Ruler, Gift } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // Feminine futuristic palette
