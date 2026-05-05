@@ -316,6 +316,7 @@ const Admin = () => {
     { id: 'DEP-ULTRADRY-GT', label: 'Future Lac', nota: 'KIT CONJUNTOS LACST', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
     { id: 'LINO-PREMIUM-GT', label: 'Lino', nota: 'KIT CONJUNTO LACOST LINO', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
     { id: 'LINO-PREMIUM-CO', label: '🇨🇴 Lino Colombia', nota: 'KIT LINO LACST', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
+    { id: 'VESTIDOS-MADRES-GT', label: '🌸 Vestidos Día de las Madres', nota: 'VESTIDO DIA DE LAS MADRES', idProducto: '179', transportadora: 'FORZA', aliasIds: ['vestido-dulsura','vestido-mia','vestido-sara','vestido-imperial-scarlet','vestido-imperial','vestido-zera','vestido-aurora','vestido-fancy','vestido-elda-rosa','vestido-calma','vestido-ariana','vestido-petra','vestido-londres','vestido-delicadeza-rosa','conjunto-bordado-flora','vestido-mantequilla','vestido-delicadeza','vestido-rosas','vestido-primavera-encantada','vestido-encanto','vestido-oliva','vestido-ivory','vestido-terra'] },
   ];
 
   const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');
@@ -339,11 +340,13 @@ const Admin = () => {
 
   const orderMatchesProduct = (order: Order, product: typeof PRODUCTS[number]) => {
     const legacyIds = getLegacyProductIds(product.id);
+    const aliases = (product as any).aliasIds as string[] | undefined;
 
     return (
       order.id_producto === product.id ||
       order.id_producto === product.idProducto ||
       legacyIds.includes(order.id_producto || '') ||
+      (aliases ? aliases.includes(order.id_producto || '') : false) ||
       isLegacyColombiaOrder(order, product.id)
     );
   };
@@ -418,10 +421,12 @@ const Admin = () => {
       let productOrders = getOrdersByProduct(product.id);
 
       if (productOrders.length === 0) {
+        const aliases = (product as any).aliasIds as string[] | undefined;
         const candidateIds = Array.from(new Set([
           product.id,
           product.idProducto,
           ...getLegacyProductIds(product.id),
+          ...(aliases || []),
         ].filter(Boolean)));
 
         const { data, error } = await supabase
