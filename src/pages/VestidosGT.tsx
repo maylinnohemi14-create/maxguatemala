@@ -18,6 +18,17 @@ interface Product {
 
 const products: Product[] = [
   {
+    id: "vestido-dulsura",
+    name: "Vestido Dulsura",
+    price: 299,
+    originalPrice: 599,
+    image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00089-c18e3b57329816fe5a17770970828377-640-0.webp",
+    route: "/vestidosgt/dulsura",
+    badge: "🌸 DÍA DE LAS MADRES",
+    color: "Rosa",
+    category: "Elegante",
+  },
+  {
     id: "vestido-mia",
     name: "Vestido Mía",
     price: 299,
