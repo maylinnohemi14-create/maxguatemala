@@ -243,15 +243,28 @@ const VestidosGT = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-clip" style={{ fontFamily: "'Inter', sans-serif" }}>
-      {/* MAX Header */}
-      <div className="w-full bg-white">
-        <img
-          src={maxHeader}
-          alt="MAX Guatemala - Tienda Online"
-          className="w-full h-auto object-contain sm:object-cover max-h-[120px] sm:max-h-none mx-auto sm:mx-0 p-2 sm:p-0"
-          loading="eager"
-          fetchPriority="high"
-        />
+      {/* MAX Header - Styled */}
+      <div className="w-full bg-white border-b border-black/5">
+        <div className="container mx-auto px-4 py-4 sm:py-5 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-pink-500 via-rose-400 to-purple-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
+              <span className="text-white font-black text-lg sm:text-xl tracking-tighter">M</span>
+            </div>
+            <div>
+              <h2 className="text-lg sm:text-xl font-bold tracking-tight text-black leading-none">
+                MAX
+              </h2>
+              <p className="text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-black/35 font-medium">
+                Guatemala
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-black/30 font-medium">
+            <span className="hidden sm:inline">Tienda Oficial</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 animate-pulse" />
+            <span>En línea</span>
+          </div>
+        </div>
       </div>
 
       {/* Minimal Trust Bar */}
