@@ -41,6 +41,8 @@ interface ProductData {
 }
 
 const ALL_PRODUCTS: ProductData[] = [
+  { id: "vestido-mia", slug: "mia", name: "Vestido Mía", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00136-1ea060f31f6b445e3417776865361963-640-0.webp", badge: "🌸 DÍA DE LAS MADRES", color: "Azul", category: "Elegante" },
+  { id: "vestido-sara", slug: "sara", name: "Vestido Corto Sara", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00171-2b7384c79c28aa1e2617777044233691-640-0.webp", badge: "NUEVO", color: "Azul", category: "Casual" },
   { id: "vestido-imperial-scarlet", slug: "imperial-scarlet", name: "Vestido Imperial Scarlet", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-11-18-04-03-12-bed4fc770309ed1f4a17635075297197-640-0.webp", badge: "MÁS VENDIDO", color: "Rojo", category: "Elegante" },
   { id: "vestido-imperial", slug: "imperial", name: "Vestido Imperial", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-09-10-03-36-02-35f17e814f9bc7d86d17575440436127-640-0.webp", badge: "EXCLUSIVO", color: "Beige", category: "Elegante" },
   { id: "vestido-zera", slug: "zera", name: "Vestido Zera", price: 299, originalPrice: 599, image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-11-18-06-55-40-1f8cadd102168c016617635179479404-640-0.webp", badge: "PREMIUM", color: "Beige", category: "Casual" },
