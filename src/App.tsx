@@ -41,6 +41,7 @@ import DeportivoFuture from "./pages/DeportivoFuture";
 import Jogger from "./pages/Jogger";
 import Lino from "./pages/Lino";
 import LinoCO from "./pages/LinoCO";
+import LinoTest from "./pages/LinoTest";
 
 const queryClient = new QueryClient();
 
