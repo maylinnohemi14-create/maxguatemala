@@ -43,6 +43,7 @@ import Lino from "./pages/Lino";
 import LinoCO from "./pages/LinoCO";
 import LinoTest from "./pages/LinoTest";
 import VestidosGT from "./pages/VestidosGT";
+import VestidoProductPage from "./pages/VestidoProductPage";
 
 const queryClient = new QueryClient();
 
