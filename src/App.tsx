@@ -82,6 +82,7 @@ const App = () => (
           <Route path="/elegancia" element={<Lino />} />
           <Route path="/lino" element={<Lino />} />
           <Route path="/eleganciaco" element={<LinoCO />} />
+          <Route path="/eleganciatest" element={<LinoTest />} />
           
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
