@@ -18,6 +18,28 @@ interface Product {
 
 const products: Product[] = [
   {
+    id: "vestido-mia",
+    name: "Vestido Mía",
+    price: 299,
+    originalPrice: 599,
+    image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00136-1ea060f31f6b445e3417776865361963-640-0.webp",
+    route: "/vestidosgt/mia",
+    badge: "🌸 DÍA DE LAS MADRES",
+    color: "Azul",
+    category: "Elegante",
+  },
+  {
+    id: "vestido-sara",
+    name: "Vestido Corto Sara",
+    price: 299,
+    originalPrice: 599,
+    image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00171-2b7384c79c28aa1e2617777044233691-640-0.webp",
+    route: "/vestidosgt/sara",
+    badge: "NUEVO",
+    color: "Azul",
+    category: "Casual",
+  },
+  {
     id: "vestido-imperial-scarlet",
     name: "Vestido Imperial Scarlet",
     price: 299,
