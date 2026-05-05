@@ -294,6 +294,26 @@ const VestidosGT = () => {
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-rose-100/30 to-amber-100/20 rounded-full blur-3xl translate-y-1/2" />
         
         <div className="container mx-auto px-4 text-center relative z-10">
+          {/* Mother's Day Banner */}
+          <div className="mb-8 inline-flex flex-col items-center">
+            <div className="relative px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500/10 via-rose-400/10 to-purple-500/10 border border-pink-300/30 backdrop-blur-sm">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white text-[10px] font-bold tracking-widest uppercase">
+                Promoción Especial
+              </div>
+              <div className="flex items-center gap-3 mt-1">
+                <Gift className="w-5 h-5 text-pink-500 flex-shrink-0" />
+                <div>
+                  <p className="text-sm sm:text-base font-semibold text-black/80">
+                    🌸 Especial Día de las Madres 🌸
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-black/50">
+                    Precios exclusivos hasta el <span className="font-bold text-pink-500">10 de mayo</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 bg-white/80 backdrop-blur-sm mb-8">
             <Sparkles className="w-3.5 h-3.5 text-pink-400" />
             <span className="text-[11px] tracking-[0.25em] uppercase text-black/50 font-medium">
