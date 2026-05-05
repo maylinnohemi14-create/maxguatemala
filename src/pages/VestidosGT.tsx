@@ -342,42 +342,6 @@ const VestidosGT = () => {
         </div>
       </section>
 
-      {/* Compra Segura Section */}
-      <section className="py-16 sm:py-24">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-lg mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 mb-6">
-              <ShoppingBag className="w-3.5 h-3.5 text-pink-400" />
-              <span className="text-[11px] tracking-[0.2em] uppercase text-black/40 font-medium">
-                Compra Segura
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-light text-black mb-4">
-              Solo pagas al <span className="font-semibold">recibir</span>
-            </h2>
-            <p className="text-sm text-black/40 font-light leading-relaxed mb-8">
-              Envío gratis a toda Guatemala. Sin riesgos, sin pagos adelantados. 
-              Tu satisfacción es nuestra prioridad.
-            </p>
-            <div className="flex items-center justify-center gap-8 text-black/25">
-              <div className="flex flex-col items-center gap-2">
-                <Truck className="w-5 h-5" />
-                <span className="text-[10px] tracking-widest uppercase">Envío Gratis</span>
-              </div>
-              <div className="w-px h-8 bg-black/10" />
-              <div className="flex flex-col items-center gap-2">
-                <Shield className="w-5 h-5" />
-                <span className="text-[10px] tracking-widest uppercase">100% Garantía</span>
-              </div>
-              <div className="w-px h-8 bg-black/10" />
-              <div className="flex flex-col items-center gap-2">
-                <CreditCard className="w-5 h-5" />
-                <span className="text-[10px] tracking-widest uppercase">Contra Entrega</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Category Filter */}
       <section className="sticky top-0 z-30 bg-white/80 backdrop-blur-xl border-b border-black/5">
