@@ -295,25 +295,43 @@ const VestidoProductPage = () => {
               <div className="text-xs uppercase tracking-widest text-white/50 mb-3 font-bold">
                 ✦ Cantidad
               </div>
-              <div className="grid grid-cols-3 gap-2">
-                {[1, 2, 3].map((q) => {
-                  const active = qty === q;
-                  return (
-                    <button
-                      key={q}
-                      onClick={() => setQty(q)}
-                      className="relative rounded-xl p-3 border-2 transition-all text-center"
-                      style={{
-                        borderColor: active ? PINK : "rgba(255,255,255,0.12)",
-                        background: active ? `linear-gradient(135deg, ${PINK}22, ${PURPLE}11)` : "rgba(255,255,255,0.03)",
-                        boxShadow: active ? `0 0 24px ${PINK}44` : "none",
-                      }}
-                    >
-                      <div className="text-lg font-black" style={{ color: active ? ROSE : "#fff" }}>{q}</div>
-                      <div className="text-[10px] text-white/50">Q{product.price * q}</div>
-                    </button>
-                  );
-                })}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setQty(Math.max(1, qty - 1))}
+                  className="w-10 h-10 rounded-xl border-2 flex items-center justify-center text-lg font-black transition-all hover:scale-105"
+                  style={{
+                    borderColor: `${PINK}66`,
+                    background: `${PINK}15`,
+                    color: ROSE,
+                  }}
+                >
+                  −
+                </button>
+                <div
+                  className="w-14 h-10 rounded-xl border-2 flex items-center justify-center text-lg font-black"
+                  style={{
+                    borderColor: PINK,
+                    background: `linear-gradient(135deg, ${PINK}22, ${PURPLE}11)`,
+                    color: ROSE,
+                    boxShadow: `0 0 16px ${PINK}33`,
+                  }}
+                >
+                  {qty}
+                </div>
+                <button
+                  onClick={() => setQty(qty + 1)}
+                  className="w-10 h-10 rounded-xl border-2 flex items-center justify-center text-lg font-black transition-all hover:scale-105"
+                  style={{
+                    borderColor: `${PINK}66`,
+                    background: `${PINK}15`,
+                    color: ROSE,
+                  }}
+                >
+                  +
+                </button>
+                <span className="text-sm text-white/40 ml-2">
+                  Q{totalPrice}
+                </span>
               </div>
             </div>
 
