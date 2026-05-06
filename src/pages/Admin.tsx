@@ -390,8 +390,13 @@ const Admin = () => {
   const formatOrdersForExcel = (ordersToFormat: Order[], product?: typeof PRODUCTS[0]) => {
     return ordersToFormat.map((order) => {
       let idProducto = product?.idProducto || '179';
-      if (product?.id === 'LINO-PREMIUM-CO' && normalizeOrderPrice(order.precio_total) === '199000') {
-        idProducto = '2140867';
+      if (product?.id === 'LINO-PREMIUM-CO') {
+        const normalizedPrice = normalizeOrderPrice(order.precio_total);
+        if (normalizedPrice === '179000') {
+          idProducto = '2132610';
+        } else if (normalizedPrice === '199000') {
+          idProducto = '2140867';
+        }
       }
       return {
         'NOMBRES': order.nombres,
