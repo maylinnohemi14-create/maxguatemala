@@ -26,7 +26,7 @@ const products: Product[] = [
   {
     id: "vestido-kit4",
     name: "Vestido Premium Kit 4 en 1",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: vestidoAmareloFrente,
     route: "/feminino/vestido-kit4",
@@ -35,7 +35,7 @@ const products: Product[] = [
   {
     id: "vestido-kit3",
     name: "Vestido Premium Kit 3 en 1",
-    price: 299,
+    price: 279,
     originalPrice: 499,
     image: vestidoRendaFrente,
     route: "/feminino/vestido-kit3",
@@ -44,7 +44,7 @@ const products: Product[] = [
   {
     id: "vestido-elegance",
     name: "Vestido Elegance Kit 3 en 1",
-    price: 299,
+    price: 279,
     originalPrice: 499,
     image: vestidoVerde2Frente,
     route: "/feminino/elegance",
@@ -53,7 +53,7 @@ const products: Product[] = [
   {
     id: "vestido-glam",
     name: "Vestido Glam Kit 4 en 1",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: vestidoBolinha2Frente,
     route: "/feminino/glam",
@@ -62,7 +62,7 @@ const products: Product[] = [
   {
     id: "vestido-duo",
     name: "Vestido Duo Kit 2 en 1",
-    price: 249,
+    price: 279,
     originalPrice: 399,
     image: vestidoBrancoLargo1,
     route: "/feminino/duo",
@@ -71,7 +71,7 @@ const products: Product[] = [
   {
     id: "vestido-corset",
     name: "Vestido Corset Kit 3 en 1",
-    price: 299,
+    price: 279,
     originalPrice: 499,
     image: vestidoCorsetBranco1,
     route: "/feminino/corset",
@@ -80,7 +80,7 @@ const products: Product[] = [
   {
     id: "vestido-noche",
     name: "Vestido Noche Kit 3 en 1",
-    price: 299,
+    price: 279,
     originalPrice: 499,
     image: vestidoEncajeNegro2_1,
     route: "/feminino/noche",

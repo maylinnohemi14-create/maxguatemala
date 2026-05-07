@@ -20,7 +20,7 @@ const products: Product[] = [
   {
     id: "vestido-dulsura",
     name: "Vestido Dulsura",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00089-c18e3b57329816fe5a17770970828377-640-0.webp",
     route: "/vestidosgt/dulsura",
@@ -31,7 +31,7 @@ const products: Product[] = [
   {
     id: "vestido-mia",
     name: "Vestido Mía",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00136-1ea060f31f6b445e3417776865361963-640-0.webp",
     route: "/vestidosgt/mia",
@@ -42,7 +42,7 @@ const products: Product[] = [
   {
     id: "vestido-sara",
     name: "Vestido Corto Sara",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00171-2b7384c79c28aa1e2617777044233691-640-0.webp",
     route: "/vestidosgt/sara",
@@ -53,7 +53,7 @@ const products: Product[] = [
   {
     id: "vestido-imperial-scarlet",
     name: "Vestido Imperial Scarlet",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-11-18-04-03-12-bed4fc770309ed1f4a17635075297197-640-0.webp",
     route: "/vestidosgt/imperial-scarlet",
@@ -64,7 +64,7 @@ const products: Product[] = [
   {
     id: "vestido-imperial",
     name: "Vestido Imperial",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-09-10-03-36-02-35f17e814f9bc7d86d17575440436127-640-0.webp",
     route: "/vestidosgt/imperial",
@@ -75,7 +75,7 @@ const products: Product[] = [
   {
     id: "vestido-zera",
     name: "Vestido Zera",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-11-18-06-55-40-1f8cadd102168c016617635179479404-640-0.webp",
     route: "/vestidosgt/zera",
@@ -86,7 +86,7 @@ const products: Product[] = [
   {
     id: "vestido-aurora",
     name: "Vestido Aurora",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-10-19-10-39-15-9ffaf49c27894eef8217612026247943-640-0.webp",
     route: "/vestidosgt/aurora",
@@ -97,7 +97,7 @@ const products: Product[] = [
   {
     id: "vestido-fancy",
     name: "Vestido Fancy",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00103-c0dc02ba12956ed05317770977107067-640-0.webp",
     route: "/vestidosgt/fancy",
@@ -108,7 +108,7 @@ const products: Product[] = [
   {
     id: "vestido-elda-rosa",
     name: "Vestido Elda Rosa",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00099-69c143aa02b0b2809717770963882904-640-0.webp",
     route: "/vestidosgt/elda-rosa",
@@ -118,7 +118,7 @@ const products: Product[] = [
   {
     id: "vestido-calma",
     name: "Vestido Calma",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00022-4bbe1c8a65f6338c8f17763715319007-640-0.webp",
     route: "/vestidosgt/calma",
@@ -128,7 +128,7 @@ const products: Product[] = [
   {
     id: "vestido-ariana",
     name: "Vestido Ariana",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00029-54b95152ce7c6b50aa17763712028554-640-0.webp",
     route: "/vestidosgt/ariana",
@@ -139,7 +139,7 @@ const products: Product[] = [
   {
     id: "vestido-petra",
     name: "Vestido Petra",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00010-1dfc13f9cf5f7d17cb17763699660920-640-0.webp",
     route: "/vestidosgt/petra",
@@ -149,7 +149,7 @@ const products: Product[] = [
   {
     id: "vestido-londres",
     name: "Vestido Londres",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00058-db82bb2094b8c9d4ac17763674057324-640-0.webp",
     route: "/vestidosgt/londres",
@@ -160,7 +160,7 @@ const products: Product[] = [
   {
     id: "vestido-delicadeza-rosa",
     name: "Vestido Delicadeza Rosa",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00056-6d7578b9d97cb8f56f17763671549975-640-0.webp",
     route: "/vestidosgt/delicadeza-rosa",
@@ -170,7 +170,7 @@ const products: Product[] = [
   {
     id: "conjunto-bordado-flora",
     name: "Conjunto Bordado Flora",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00079-503a52550cf09eb5b817763665595232-640-0.webp",
     route: "/vestidosgt/bordado-flora",
@@ -181,7 +181,7 @@ const products: Product[] = [
   {
     id: "vestido-mantequilla",
     name: "Vestido Mantequilla",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00008-918923f8d125ad365317733855065658-640-0.webp",
     route: "/vestidosgt/mantequilla",
@@ -191,7 +191,7 @@ const products: Product[] = [
   {
     id: "vestido-delicadeza",
     name: "Vestido Delicadeza",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00023-c3eb8abf96a4a7d17317733851168648-640-0.webp",
     route: "/vestidosgt/delicadeza",
@@ -202,7 +202,7 @@ const products: Product[] = [
   {
     id: "vestido-rosas",
     name: "Vestido Rosas",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00032-346078d3c3b099336c17733849455091-640-0.webp",
     route: "/vestidosgt/rosas",
@@ -212,7 +212,7 @@ const products: Product[] = [
   {
     id: "vestido-primavera-encantada",
     name: "Vestido Primavera Encantada",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00018-8c6bc97c376766631a17733845849206-640-0.webp",
     route: "/vestidosgt/primavera-encantada",
@@ -223,7 +223,7 @@ const products: Product[] = [
   {
     id: "vestido-encanto",
     name: "Vestido Encanto",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/img_00021-bf4c48275e383a9cba17733842661665-640-0.webp",
     route: "/vestidosgt/encanto",
@@ -233,7 +233,7 @@ const products: Product[] = [
   {
     id: "vestido-oliva",
     name: "Vestido Oliva",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2026-01-16-06-20-21-837519d45f009cab7d17686857300095-640-0.webp",
     route: "/vestidosgt/oliva",
@@ -244,7 +244,7 @@ const products: Product[] = [
   {
     id: "vestido-ivory",
     name: "Vestido Ivory",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-11-23-04-08-04-d20fce37b1dcf060c317639473675389-640-0.webp",
     route: "/vestidosgt/ivory",
@@ -254,7 +254,7 @@ const products: Product[] = [
   {
     id: "vestido-terra",
     name: "Vestido Terra",
-    price: 299,
+    price: 279,
     originalPrice: 599,
     image: "https://dcdn-us.mitiendanube.com/stores/006/470/948/products/facelab-2025-11-04-01-45-55-9d5a791a4098a6dd3417630279649919-640-0.webp",
     route: "/vestidosgt/terra",
