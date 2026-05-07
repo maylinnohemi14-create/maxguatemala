@@ -46,6 +46,7 @@ import VestidosGT from "./pages/VestidosGT";
 import VestidoProductPage from "./pages/VestidoProductPage";
 import JoggerGT from "./pages/JoggerGT";
 import JoggerGTProductPage from "./pages/JoggerGTProductPage";
+import JoggerGTKitPage from "./pages/JoggerGTKitPage";
 
 const queryClient = new QueryClient();
 
