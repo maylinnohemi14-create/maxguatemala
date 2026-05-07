@@ -44,6 +44,8 @@ import LinoCO from "./pages/LinoCO";
 import LinoTest from "./pages/LinoTest";
 import VestidosGT from "./pages/VestidosGT";
 import VestidoProductPage from "./pages/VestidoProductPage";
+import JoggerGT from "./pages/JoggerGT";
+import JoggerGTProductPage from "./pages/JoggerGTProductPage";
 
 const queryClient = new QueryClient();
 
