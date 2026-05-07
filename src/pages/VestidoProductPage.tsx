@@ -107,7 +107,25 @@ const VestidoProductPage = () => {
 
   const totalPrice = product.price * qty;
   const productDisplayName = `${product.name} x${qty}`;
-  const extraNote = `${product.name} | Talla: ${selectedSize} | Cantidad: ${qty} | Color: ${product.color || "Único"}`;
+  const extraNote = `${product.name} | Talla: ${selectedSize} | Cantidad: ${qty} | Color: ${product.color || "Único"}${addRegalo ? ` | 🎁 REGALO Vestido Blanco Encaje (Talla: ${regaloSize}) GRATIS` : ""}`;
+
+  const goToForm = () => {
+    setShowRegalo(false);
+    setShowForm(true);
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 150);
+  };
+
+  const handleRegaloDecision = (accept: boolean) => {
+    setAddRegalo(accept);
+    goToForm();
+  };
+
+  const handleRegaloClose = () => {
+    setAddRegalo(false);
+    goToForm();
+  };
 
   const handleBuyClick = () => {
     trackTikTokConversion(
@@ -124,10 +142,7 @@ const VestidoProductPage = () => {
       { content_ids: [product.id], content_type: "product", value: totalPrice, currency: "GTQ" },
       undefined
     );
-    setShowForm(true);
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 150);
+    setShowRegalo(true);
   };
 
   return (
