@@ -4,8 +4,9 @@ import { LegalFooter } from "@/components/LegalFooter";
 import { CODFormGuatemala } from "@/components/CODFormGuatemala";
 import { Button } from "@/components/ui/button";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Check, Heart, Shield, Truck, Sparkles, Star, ChevronLeft, ShoppingBag, CreditCard, Ruler, Gift } from "lucide-react";
+import { Check, Heart, Shield, Truck, Sparkles, Star, ChevronLeft, ShoppingBag, CreditCard, Ruler, Gift, X, Flame } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import regaloVestido from "@/assets/regalo-vestido.webp";
 
 // Feminine futuristic palette
 const PINK = "#E91E8C";
@@ -18,7 +19,7 @@ const WHITE = "#F5F5F5";
 const PAGE_ROUTE = "/vestidosgt";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
-
+const REGALO_SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
 const SIZE_GUIDE = [
   { size: "XS", busto: "80-84", cintura: "60-64", cadera: "86-90", largo: "85" },
   { size: "S", busto: "84-88", cintura: "64-68", cadera: "90-94", largo: "87" },
@@ -72,6 +73,9 @@ const VestidoProductPage = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [showForm, setShowForm] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
+  const [showRegalo, setShowRegalo] = useState(false);
+  const [addRegalo, setAddRegalo] = useState(false);
+  const [regaloSize, setRegaloSize] = useState("M");
   const [qty, setQty] = useState(1);
   const formRef = useRef<HTMLDivElement>(null);
 
@@ -103,7 +107,25 @@ const VestidoProductPage = () => {
 
   const totalPrice = product.price * qty;
   const productDisplayName = `${product.name} x${qty}`;
-  const extraNote = `${product.name} | Talla: ${selectedSize} | Cantidad: ${qty} | Color: ${product.color || "Único"}`;
+  const extraNote = `${product.name} | Talla: ${selectedSize} | Cantidad: ${qty} | Color: ${product.color || "Único"}${addRegalo ? ` | 🎁 REGALO Vestido Blanco Encaje (Talla: ${regaloSize}) GRATIS` : ""}`;
+
+  const goToForm = () => {
+    setShowRegalo(false);
+    setShowForm(true);
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 150);
+  };
+
+  const handleRegaloDecision = (accept: boolean) => {
+    setAddRegalo(accept);
+    goToForm();
+  };
+
+  const handleRegaloClose = () => {
+    setAddRegalo(false);
+    goToForm();
+  };
 
   const handleBuyClick = () => {
     trackTikTokConversion(
@@ -120,10 +142,7 @@ const VestidoProductPage = () => {
       { content_ids: [product.id], content_type: "product", value: totalPrice, currency: "GTQ" },
       undefined
     );
-    setShowForm(true);
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 150);
+    setShowRegalo(true);
   };
 
   return (
@@ -501,6 +520,135 @@ const VestidoProductPage = () => {
           ))}
         </div>
       </section>
+
+      {/* REGALO DIALOG */}
+      <Dialog open={showRegalo} onOpenChange={(open) => { if (!open) handleRegaloClose(); }}>
+        <DialogContent
+          className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0"
+          style={{
+            background: `linear-gradient(160deg, #1a1020, ${BLACK})`,
+            boxShadow: `0 30px 80px ${PINK}55`,
+          }}
+        >
+          <div
+            className="relative p-5 sm:p-6"
+            style={{ borderTop: `3px solid ${PINK}` }}
+          >
+            <div
+              className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 pointer-events-none"
+              style={{ background: PINK }}
+            />
+
+            <button
+              type="button"
+              onClick={handleRegaloClose}
+              aria-label="Cerrar"
+              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
+              style={{
+                background: `radial-gradient(circle, ${PINK} 0%, ${PURPLE} 100%)`,
+                boxShadow: `0 0 16px ${PINK}, 0 0 32px ${PINK}99, 0 0 48px ${PURPLE}66, inset 0 0 8px rgba(255,255,255,0.3)`,
+                border: `2px solid ${WHITE}`,
+              }}
+            >
+              <X className="w-5 h-5 text-white" strokeWidth={3} />
+            </button>
+
+            <DialogHeader className="relative z-10">
+              <div
+                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                style={{ borderColor: `${PINK}66`, background: `${PINK}15` }}
+              >
+                <Gift className="w-3.5 h-3.5" style={{ color: PINK }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: PINK }}>
+                  🌸 REGALO DÍA DE LAS MADRES
+                </span>
+              </div>
+              <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
+                ¡Lleva este Vestido de Encaje{" "}
+                <span style={{ color: ROSE }}>GRATIS</span>! 🎁
+              </DialogTitle>
+            </DialogHeader>
+
+            <div className="relative z-10 mt-4">
+              <div
+                className="rounded-2xl overflow-hidden border-2 mb-4"
+                style={{ borderColor: `${PINK}33` }}
+              >
+                <div className="aspect-[3/4] relative bg-white">
+                  <img
+                    src={regaloVestido}
+                    alt="Vestido Blanco de Encaje — Regalo Gratis"
+                    className="w-full h-full object-cover"
+                  />
+                  <div
+                    className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
+                    style={{ background: PINK, color: "#fff" }}
+                  >
+                    🎁 GRATIS
+                  </div>
+                  <div
+                    className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
+                    style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
+                  >
+                    <span className="text-white/50 line-through text-xs mr-1">Q499</span>
+                    <span style={{ color: ROSE }}>GRATIS</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Size selector */}
+              <div className="mb-4">
+                <div className="text-xs uppercase tracking-widest text-white/60 mb-2 font-bold text-center">
+                  Elige tu talla para el regalo
+                </div>
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+                  {REGALO_SIZES.map((s) => {
+                    const active = regaloSize === s;
+                    return (
+                      <button
+                        key={s}
+                        onClick={() => setRegaloSize(s)}
+                        className="py-2 rounded-lg text-xs font-black transition-all border-2"
+                        style={{
+                          borderColor: active ? PINK : "rgba(255,255,255,0.15)",
+                          background: active ? PINK : "transparent",
+                          color: active ? "#fff" : "#fff",
+                          boxShadow: active ? `0 0 12px ${PINK}88` : "none",
+                        }}
+                      >
+                        {s}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="space-y-2">
+                <Button
+                  onClick={() => handleRegaloDecision(true)}
+                  className="w-full font-black py-5 rounded-xl text-base"
+                  style={{
+                    background: `linear-gradient(135deg, ${PINK}, ${PURPLE})`,
+                    color: "#fff",
+                    boxShadow: `0 8px 24px -4px ${PINK}`,
+                  }}
+                >
+                  <Gift className="w-5 h-5 mr-2" />
+                  SÍ, ¡QUIERO MI REGALO GRATIS!
+                </Button>
+                <button
+                  onClick={() => handleRegaloDecision(false)}
+                  className="w-full text-white/50 hover:text-white/80 py-2 text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <X className="w-3.5 h-3.5" />
+                  No, gracias. Continuar sin el regalo.
+                </button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* SIZE GUIDE DIALOG */}
       <Dialog open={showSizeGuide} onOpenChange={setShowSizeGuide}>
