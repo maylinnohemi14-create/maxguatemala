@@ -47,7 +47,7 @@ const VestidoKit4 = () => {
   const [showCODForm, setShowCODForm] = useState(false);
 
   const PRODUCT_ID = "VESTIDO-KIT4-GT";
-  const PRODUCT_PRICE = 299;
+  const PRODUCT_PRICE = 279;
 
   const productImages = [
     vestidoAmareloFrente, vestidoAmareloCostas, vestidoAmareloFrente2,
@@ -199,7 +199,7 @@ const VestidoKit4 = () => {
                   <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q599</span>
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
-                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">Q299</span>
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">Q279</span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -475,8 +475,8 @@ const VestidoKit4 = () => {
           </h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="text-left text-sm sm:text-base">¿Los 4 vestidos vienen incluidos por Q299?</AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base">¡Sí! Por Q299 recibes los 4 vestidos completos: vestido largo amarillo con encaje, vestido largo azul con abertura, vestido dorado espalda abierta y mini vestido azul con estrellas.</AccordionContent>
+              <AccordionTrigger className="text-left text-sm sm:text-base">¿Los 4 vestidos vienen incluidos por Q279?</AccordionTrigger>
+              <AccordionContent className="text-sm sm:text-base">¡Sí! Por Q279 recibes los 4 vestidos completos: vestido largo amarillo con encaje, vestido largo azul con abertura, vestido dorado espalda abierta y mini vestido azul con estrellas.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger className="text-left text-sm sm:text-base">¿Puedo elegir tallas diferentes para cada vestido?</AccordionTrigger>
@@ -497,13 +497,13 @@ const VestidoKit4 = () => {
       {/* Final CTA */}
       <section className="py-10 sm:py-16 bg-gradient-to-r from-pink-700 to-pink-900 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Lleva los 4 vestidos por solo Q299! 👗🇬🇹</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Lleva los 4 vestidos por solo Q279! 👗🇬🇹</h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">Envío gratis + Pago contra entrega + 4 vestidos premium</p>
           <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button size="lg" className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-white text-pink-700 hover:bg-gray-100 hover:shadow-glow transition-all">
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q299
+                PEDIR AHORA - Q279
               </Button>
             </DialogTrigger>
           </Dialog>
