@@ -248,7 +248,7 @@ const JoggerGT = () => {
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-6 text-xs text-white/30">
-            <span>{products.length} estilos</span>
+            <span>{products.length} estilos + {kits.length} kits</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
             <span>Envío gratis</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
