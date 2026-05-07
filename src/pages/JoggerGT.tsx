@@ -154,15 +154,18 @@ const kits: JoggerKit[] = [
 
 export { kits as JOGGER_GT_KITS };
 
-const categories = ["Todos", "Clásico", "Sport", "Retro"];
+const categories = ["Todos", "Kit 3en1", "Clásico", "Sport", "Retro"];
 
 const JoggerGT = () => {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-  const filteredProducts = activeCategory === "Todos"
-    ? products
-    : products.filter((p) => p.category === activeCategory);
+  const showKits = activeCategory === "Todos" || activeCategory === "Kit 3en1";
+  const showProducts = activeCategory !== "Kit 3en1";
+
+  const filteredProducts = showProducts
+    ? (activeCategory === "Todos" ? products : products.filter((p) => p.category === activeCategory))
+    : [];
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] overflow-x-clip" style={{ fontFamily: "'Inter', sans-serif" }}>
