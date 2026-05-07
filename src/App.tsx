@@ -44,6 +44,8 @@ import LinoCO from "./pages/LinoCO";
 import LinoTest from "./pages/LinoTest";
 import VestidosGT from "./pages/VestidosGT";
 import VestidoProductPage from "./pages/VestidoProductPage";
+import JoggerGT from "./pages/JoggerGT";
+import JoggerGTProductPage from "./pages/JoggerGTProductPage";
 
 const queryClient = new QueryClient();
 
@@ -87,6 +89,8 @@ const App = () => (
           <Route path="/eleganciatest" element={<LinoTest />} />
           <Route path="/vestidosgt" element={<VestidosGT />} />
           <Route path="/vestidosgt/:slug" element={<VestidoProductPage />} />
+          <Route path="/joggergt" element={<JoggerGT />} />
+          <Route path="/joggergt/:slug" element={<JoggerGTProductPage />} />
           
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
