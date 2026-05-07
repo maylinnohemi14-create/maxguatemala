@@ -521,17 +521,17 @@ const VestidoProductPage = () => {
         </div>
       </section>
 
-      {/* REGALO DIALOG */}
+      {/* REGALO DÍA DE LAS MADRES DIALOG */}
       <Dialog open={showRegalo} onOpenChange={(open) => { if (!open) handleRegaloClose(); }}>
         <DialogContent
-          className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0"
+          className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0 max-h-[95dvh] overflow-y-auto"
           style={{
             background: `linear-gradient(160deg, #1a1020, ${BLACK})`,
             boxShadow: `0 30px 80px ${PINK}55`,
           }}
         >
           <div
-            className="relative p-5 sm:p-6"
+            className="relative p-4 sm:p-6"
             style={{ borderTop: `3px solid ${PINK}` }}
           >
             <div
@@ -539,52 +539,56 @@ const VestidoProductPage = () => {
               style={{ background: PINK }}
             />
 
+            {/* Close button — visible, high z-index */}
             <button
               type="button"
               onClick={handleRegaloClose}
               aria-label="Cerrar"
-              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
+              className="absolute top-2 right-2 z-50 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
               style={{
-                background: `radial-gradient(circle, ${PINK} 0%, ${PURPLE} 100%)`,
-                boxShadow: `0 0 16px ${PINK}, 0 0 32px ${PINK}99, 0 0 48px ${PURPLE}66, inset 0 0 8px rgba(255,255,255,0.3)`,
-                border: `2px solid ${WHITE}`,
+                background: `linear-gradient(135deg, ${PINK}, ${PURPLE})`,
+                boxShadow: `0 0 12px ${PINK}`,
+                border: `2px solid rgba(255,255,255,0.8)`,
               }}
             >
-              <X className="w-5 h-5 text-white" strokeWidth={3} />
+              <X className="w-4 h-4 text-white" strokeWidth={3} />
             </button>
 
             <DialogHeader className="relative z-10">
               <div
-                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-2 border"
                 style={{ borderColor: `${PINK}66`, background: `${PINK}15` }}
               >
                 <Gift className="w-3.5 h-3.5" style={{ color: PINK }} />
-                <span className="text-[11px] font-black tracking-widest" style={{ color: PINK }}>
-                  🌸 REGALO DÍA DE LAS MADRES
+                <span className="text-[10px] sm:text-[11px] font-black tracking-widest" style={{ color: PINK }}>
+                  🌸 REGALO DÍA DE LAS MADRES 🌸
                 </span>
               </div>
-              <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
-                ¡Lleva este Vestido de Encaje{" "}
-                <span style={{ color: ROSE }}>GRATIS</span>! 🎁
+              <DialogTitle className="text-center text-white text-lg sm:text-2xl font-black leading-tight">
+                ¡Sorprende a Mamá! Lleva este Vestido de Encaje{" "}
+                <span style={{ color: ROSE }}>GRATIS</span> 🎁
               </DialogTitle>
+              <p className="text-center text-white/50 text-[11px] sm:text-xs mt-1">
+                Promoción especial por el <span className="font-bold" style={{ color: ROSE }}>Día de las Madres</span> — Solo por tiempo limitado
+              </p>
             </DialogHeader>
 
-            <div className="relative z-10 mt-4">
+            <div className="relative z-10 mt-3">
               <div
-                className="rounded-2xl overflow-hidden border-2 mb-4"
+                className="rounded-2xl overflow-hidden border-2 mb-3"
                 style={{ borderColor: `${PINK}33` }}
               >
-                <div className="aspect-[3/4] relative bg-white">
+                <div className="aspect-square relative bg-white">
                   <img
                     src={regaloVestido}
-                    alt="Vestido Blanco de Encaje — Regalo Gratis"
+                    alt="Vestido Blanco de Encaje — Regalo Día de las Madres"
                     className="w-full h-full object-cover"
                   />
                   <div
                     className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
                     style={{ background: PINK, color: "#fff" }}
                   >
-                    🎁 GRATIS
+                    🎁 REGALO GRATIS
                   </div>
                   <div
                     className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
@@ -593,15 +597,21 @@ const VestidoProductPage = () => {
                     <span className="text-white/50 line-through text-xs mr-1">Q499</span>
                     <span style={{ color: ROSE }}>GRATIS</span>
                   </div>
+                  <div
+                    className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold backdrop-blur-md"
+                    style={{ background: "rgba(0,0,0,0.7)", color: ROSE }}
+                  >
+                    🌸 Día de las Madres
+                  </div>
                 </div>
               </div>
 
               {/* Size selector */}
-              <div className="mb-4">
-                <div className="text-xs uppercase tracking-widest text-white/60 mb-2 font-bold text-center">
-                  Elige tu talla para el regalo
+              <div className="mb-3">
+                <div className="text-[11px] uppercase tracking-widest text-white/60 mb-2 font-bold text-center">
+                  Elige la talla del regalo
                 </div>
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+                <div className="grid grid-cols-6 gap-1.5">
                   {REGALO_SIZES.map((s) => {
                     const active = regaloSize === s;
                     return (
@@ -612,7 +622,7 @@ const VestidoProductPage = () => {
                         style={{
                           borderColor: active ? PINK : "rgba(255,255,255,0.15)",
                           background: active ? PINK : "transparent",
-                          color: active ? "#fff" : "#fff",
+                          color: "#fff",
                           boxShadow: active ? `0 0 12px ${PINK}88` : "none",
                         }}
                       >
@@ -627,7 +637,7 @@ const VestidoProductPage = () => {
               <div className="space-y-2">
                 <Button
                   onClick={() => handleRegaloDecision(true)}
-                  className="w-full font-black py-5 rounded-xl text-base"
+                  className="w-full font-black py-5 rounded-xl text-sm sm:text-base"
                   style={{
                     background: `linear-gradient(135deg, ${PINK}, ${PURPLE})`,
                     color: "#fff",
