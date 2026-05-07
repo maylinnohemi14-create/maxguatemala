@@ -43,7 +43,7 @@ const VestidoCorset = () => {
   const [showCODForm, setShowCODForm] = useState(false);
 
   const PRODUCT_ID = "VESTIDO-CORSET3-GT";
-  const PRODUCT_PRICE = 259;
+  const PRODUCT_PRICE = 279;
 
   const productImages = [
     vestidoCorsetBranco1, vestidoCorsetBranco2, vestidoCorsetBranco3,
@@ -80,7 +80,7 @@ const VestidoCorset = () => {
   }, []);
 
   const testimonials = [
-    { name: "Fernanda R.", rating: 5, comment: "El vestido corset blanco es espectacular para eventos formales. ¡3 vestidos por Q259 es una oferta increíble!", date: "Hace 2 días" },
+    { name: "Fernanda R.", rating: 5, comment: "El vestido corset blanco es espectacular para eventos formales. ¡3 vestidos por Q279 es una oferta increíble!", date: "Hace 2 días" },
     { name: "Mariana L.", rating: 5, comment: "El corset negro con brillos es divino, ideal para fiestas. La calidad de la tela es premium.", date: "Hace 5 días" },
     { name: "Camila H.", rating: 5, comment: "El vestido de encaje negro es súper elegante y sensual. Perfecto para una cena romántica.", date: "Hace 1 semana" },
     { name: "Valeria P.", rating: 5, comment: "3 vestidos hermosos por ese precio es una ganga. Llegaron en 3 días y la calidad superó mis expectativas.", date: "Hace 2 semanas" },
@@ -164,7 +164,7 @@ const VestidoCorset = () => {
                   <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q499</span>
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
-                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">Q259</span>
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">Q279</span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
                 <div className="inline-flex items-center gap-1.5 bg-success text-success-foreground font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full shadow-md">
@@ -410,8 +410,8 @@ const VestidoCorset = () => {
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">Preguntas Frecuentes</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="text-left text-sm sm:text-base">¿Los 3 vestidos vienen incluidos por Q259?</AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base">¡Sí! Por Q259 recibes los 3 vestidos: corset blanco con abertura, corset negro strapless con brillos y vestido largo de encaje negro.</AccordionContent>
+              <AccordionTrigger className="text-left text-sm sm:text-base">¿Los 3 vestidos vienen incluidos por Q279?</AccordionTrigger>
+              <AccordionContent className="text-sm sm:text-base">¡Sí! Por Q279 recibes los 3 vestidos: corset blanco con abertura, corset negro strapless con brillos y vestido largo de encaje negro.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger className="text-left text-sm sm:text-base">¿Puedo elegir tallas diferentes?</AccordionTrigger>
@@ -427,13 +427,13 @@ const VestidoCorset = () => {
 
       <section className="py-10 sm:py-16 bg-gradient-to-r from-pink-700 to-pink-900 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Lleva los 3 vestidos por solo Q259! 👗🇬🇹</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Lleva los 3 vestidos por solo Q279! 👗🇬🇹</h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">Envío gratis + Pago contra entrega + 3 vestidos premium</p>
           <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button size="lg" className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-white text-pink-700 hover:bg-gray-100 hover:shadow-glow transition-all">
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q259
+                PEDIR AHORA - Q279
               </Button>
             </DialogTrigger>
           </Dialog>
