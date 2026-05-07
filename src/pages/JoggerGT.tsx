@@ -18,6 +18,23 @@ interface Product {
   category?: string;
 }
 
+interface KitItem {
+  name: string;
+  image: string;
+  color: string;
+}
+
+export interface JoggerKit {
+  id: string;
+  slug: string;
+  name: string;
+  price: number;
+  originalPrice: number;
+  items: KitItem[];
+  badge?: string;
+  category: string;
+}
+
 const products: Product[] = [
   { id: "tn-trackpants", slug: "tn-trackpants", name: "Nike Tn Trackpants", price: 249, originalPrice: 499, image: "https://sportsvintage.de/cdn/shop/files/0007496A-35A8-44FA-BA1A-390113ED5B7B.jpg?width=800", badge: "🔥 TOP VENTAS", color: "Negro", category: "Clásico" },
   { id: "shox-trackpants", slug: "shox-trackpants", name: "Nike Shox Trackpants", price: 249, originalPrice: 499, image: "https://sportsvintage.de/cdn/shop/files/D75B501C-C708-42B6-B435-9DACA68730C3.jpg?width=800", badge: "EXCLUSIVO", color: "Beige/Negro", category: "Retro" },
