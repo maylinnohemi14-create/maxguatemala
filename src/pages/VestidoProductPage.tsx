@@ -19,7 +19,7 @@ const WHITE = "#F5F5F5";
 const PAGE_ROUTE = "/vestidosgt";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
-
+const REGALO_SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
 const SIZE_GUIDE = [
   { size: "XS", busto: "80-84", cintura: "60-64", cadera: "86-90", largo: "85" },
   { size: "S", busto: "84-88", cintura: "64-68", cadera: "90-94", largo: "87" },
