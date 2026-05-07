@@ -287,87 +287,162 @@ const JoggerGT = () => {
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section className="py-10 sm:py-16">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-            {filteredProducts.map((product, index) => (
-              <Link
-                key={product.id}
-                to={`/joggergt/${product.slug}`}
-                className="group relative"
-                onMouseEnter={() => setHoveredId(product.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 transition-all group-hover:border-orange-500/40">
-                  <div className="aspect-[3/4] overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className={`w-full h-full object-cover transition-all duration-700 ease-out ${hoveredId === product.id ? "scale-110" : "scale-100"}`}
-                      loading="lazy"
-                    />
-                  </div>
+      {/* Kits Grid */}
+      {showKits && (
+        <section className="py-10 sm:py-16">
+          <div className="container mx-auto px-3 sm:px-4">
+            {activeCategory === "Todos" && (
+              <div className="flex items-center gap-3 mb-6">
+                <Package className="w-5 h-5" style={{ color: NIKE_ORANGE }} />
+                <h2 className="text-xl sm:text-2xl font-black text-white">Kits 3 en 1 — <span style={{ color: NIKE_ORANGE }}>Q280</span></h2>
+              </div>
+            )}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+              {kits.map((kit) => (
+                <Link
+                  key={kit.id}
+                  to={`/joggergt/kit/${kit.slug}`}
+                  className="group relative"
+                  onMouseEnter={() => setHoveredId(kit.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                >
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 transition-all group-hover:border-orange-500/40">
+                    <div className="aspect-[3/4] overflow-hidden relative">
+                      <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
+                        <img src={kit.items[0].image} alt="" className="w-full h-full object-cover col-span-1 row-span-2 group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                        <img src={kit.items[1].image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                        <img src={kit.items[2].image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                      </div>
+                    </div>
 
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-500 ${hoveredId === product.id ? "opacity-100" : "opacity-0"}`} />
-
-                  {product.badge && (
                     <div className="absolute top-3 left-3">
                       <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-white border border-white/20 shadow-sm"
                         style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}cc, ${NIKE_RED}cc)`, backdropFilter: "blur(8px)" }}>
-                        {product.badge}
+                        {kit.badge || "📦 3 EN 1"}
                       </span>
                     </div>
-                  )}
 
-                  <div className={`absolute top-3 right-3 transition-all duration-300 ${hoveredId === product.id ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
-                    <div className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                      <Heart className="w-4 h-4 text-white/60" />
-                    </div>
-                  </div>
-
-                  <div className={`absolute bottom-4 left-4 right-4 transition-all duration-500 ${hoveredId === product.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-                    <div className="w-full py-2.5 rounded-xl text-center text-xs font-semibold tracking-wider uppercase text-black shadow-lg"
-                      style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})` }}>
-                      Ver Producto
-                    </div>
-                  </div>
-
-                  {!product.badge && (
-                    <div className="absolute top-3 right-3">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm"
+                    <div className={`absolute bottom-4 left-4 right-4 transition-all duration-500 ${hoveredId === kit.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                      <div className="w-full py-2.5 rounded-xl text-center text-xs font-semibold tracking-wider uppercase text-black shadow-lg"
                         style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})` }}>
-                        -50%
-                      </span>
+                        Ver Kit
+                      </div>
                     </div>
-                  )}
-                </div>
+                  </div>
 
-                <div className="pt-4 pb-2 px-1">
-                  <div className="flex items-center gap-0.5 mb-1.5">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
-                    ))}
-                    <span className="text-[10px] text-white/30 ml-1">(4.9)</span>
+                  <div className="pt-4 pb-2 px-1">
+                    <div className="flex items-center gap-0.5 mb-1.5">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      ))}
+                      <span className="text-[10px] text-white/30 ml-1">(5.0)</span>
+                    </div>
+                    <h3 className="font-medium text-sm sm:text-base text-white/80 leading-tight mb-1.5 line-clamp-1 group-hover:text-white transition-colors">
+                      Kit 3en1: {kit.name}
+                    </h3>
+                    <p className="text-[11px] text-white/30 mb-2 tracking-wide uppercase">3 Trackpants</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg sm:text-xl font-semibold" style={{ color: NIKE_ORANGE }}>Q{kit.price}</span>
+                      <span className="text-xs text-white/30 line-through">Q{kit.originalPrice}</span>
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-white/30 mt-1.5 font-medium">Pago contra entrega</p>
                   </div>
-                  <h3 className="font-medium text-sm sm:text-base text-white/80 leading-tight mb-1.5 line-clamp-1 group-hover:text-white transition-colors">
-                    {product.name}
-                  </h3>
-                  {product.color && (
-                    <p className="text-[11px] text-white/30 mb-2 tracking-wide uppercase">{product.color}</p>
-                  )}
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-lg sm:text-xl font-semibold" style={{ color: NIKE_ORANGE }}>Q{product.price}</span>
-                    <span className="text-xs text-white/30 line-through">Q{product.originalPrice}</span>
-                  </div>
-                  <p className="text-[10px] sm:text-[11px] text-white/30 mt-1.5 font-medium">Pago contra entrega</p>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Products Grid */}
+      {showProducts && filteredProducts.length > 0 && (
+        <section className={showKits ? "pb-10 sm:pb-16" : "py-10 sm:py-16"}>
+          <div className="container mx-auto px-3 sm:px-4">
+            {activeCategory === "Todos" && (
+              <div className="flex items-center gap-3 mb-6">
+                <ShoppingBag className="w-5 h-5" style={{ color: NIKE_ORANGE }} />
+                <h2 className="text-xl sm:text-2xl font-black text-white">Individuales — <span style={{ color: NIKE_ORANGE }}>Q249</span></h2>
+              </div>
+            )}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+              {filteredProducts.map((product, index) => (
+                <Link
+                  key={product.id}
+                  to={`/joggergt/${product.slug}`}
+                  className="group relative"
+                  onMouseEnter={() => setHoveredId(product.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 transition-all group-hover:border-orange-500/40">
+                    <div className="aspect-[3/4] overflow-hidden">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className={`w-full h-full object-cover transition-all duration-700 ease-out ${hoveredId === product.id ? "scale-110" : "scale-100"}`}
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-500 ${hoveredId === product.id ? "opacity-100" : "opacity-0"}`} />
+
+                    {product.badge && (
+                      <div className="absolute top-3 left-3">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-white border border-white/20 shadow-sm"
+                          style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}cc, ${NIKE_RED}cc)`, backdropFilter: "blur(8px)" }}>
+                          {product.badge}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className={`absolute top-3 right-3 transition-all duration-300 ${hoveredId === product.id ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
+                      <div className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                        <Heart className="w-4 h-4 text-white/60" />
+                      </div>
+                    </div>
+
+                    <div className={`absolute bottom-4 left-4 right-4 transition-all duration-500 ${hoveredId === product.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                      <div className="w-full py-2.5 rounded-xl text-center text-xs font-semibold tracking-wider uppercase text-black shadow-lg"
+                        style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})` }}>
+                        Ver Producto
+                      </div>
+                    </div>
+
+                    {!product.badge && (
+                      <div className="absolute top-3 right-3">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm"
+                          style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})` }}>
+                          -50%
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pt-4 pb-2 px-1">
+                    <div className="flex items-center gap-0.5 mb-1.5">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      ))}
+                      <span className="text-[10px] text-white/30 ml-1">(4.9)</span>
+                    </div>
+                    <h3 className="font-medium text-sm sm:text-base text-white/80 leading-tight mb-1.5 line-clamp-1 group-hover:text-white transition-colors">
+                      {product.name}
+                    </h3>
+                    {product.color && (
+                      <p className="text-[11px] text-white/30 mb-2 tracking-wide uppercase">{product.color}</p>
+                    )}
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg sm:text-xl font-semibold" style={{ color: NIKE_ORANGE }}>Q{product.price}</span>
+                      <span className="text-xs text-white/30 line-through">Q{product.originalPrice}</span>
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-white/30 mt-1.5 font-medium">Pago contra entrega</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Bottom CTA */}
       <section className="py-16 sm:py-24">
