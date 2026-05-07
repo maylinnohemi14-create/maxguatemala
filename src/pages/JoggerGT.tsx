@@ -68,6 +68,92 @@ const products: Product[] = [
 
 export { products as JOGGER_GT_PRODUCTS };
 
+const kits: JoggerKit[] = [
+  {
+    id: "kit-negro-clasico", slug: "kit-negro-clasico", name: "Negro Clásico", price: 280, originalPrice: 747,
+    badge: "🔥 MÁS VENDIDO", category: "Kit",
+    items: [
+      { name: "Nike Tn Trackpants", image: products[0].image, color: "Negro" },
+      { name: "Nike Cargo Trackpants", image: products[6].image, color: "Negro" },
+      { name: "Nike Premium Black", image: products[20].image, color: "Negro" },
+    ],
+  },
+  {
+    id: "kit-retro-beige", slug: "kit-retro-beige", name: "Retro Beige", price: 280, originalPrice: 747,
+    badge: "EXCLUSIVO", category: "Kit",
+    items: [
+      { name: "Nike Shox Trackpants", image: products[1].image, color: "Beige/Negro" },
+      { name: "Nike Trackpants Beige", image: products[14].image, color: "Beige" },
+      { name: "Nike Shox Classic", image: products[15].image, color: "Beige/Blanco" },
+    ],
+  },
+  {
+    id: "kit-sport-mix", slug: "kit-sport-mix", name: "Sport Mix", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Windrunner Pants", image: products[5].image, color: "Negro" },
+      { name: "Nike Flow Pants", image: products[11].image, color: "Negro" },
+      { name: "Nike Multicolor Track", image: products[25].image, color: "Negro/Rojo" },
+    ],
+  },
+  {
+    id: "kit-blanco-negro", slug: "kit-blanco-negro", name: "Blanco & Negro", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Trackpants White", image: products[16].image, color: "Blanco" },
+      { name: "Nike Duo Tone", image: products[9].image, color: "Blanco/Negro" },
+      { name: "Nike Trackpants Classic", image: products[2].image, color: "Negro/Blanco" },
+    ],
+  },
+  {
+    id: "kit-azul-marino", slug: "kit-azul-marino", name: "Azul Marino", price: 280, originalPrice: 747,
+    badge: "NUEVO", category: "Kit",
+    items: [
+      { name: "Nike PSG Trackpants", image: products[17].image, color: "Azul" },
+      { name: "Nike Navy Trackpants", image: products[18].image, color: "Azul Marino" },
+      { name: "Nike Classic Navy", image: products[26].image, color: "Azul Marino" },
+    ],
+  },
+  {
+    id: "kit-vintage-retro", slug: "kit-vintage-retro", name: "Vintage Retro", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Heritage Pants", image: products[7].image, color: "Negro/Blanco" },
+      { name: "Nike 90's Trackpants", image: products[20].image, color: "Negro" },
+      { name: "Nike Vintage Brown", image: products[19].image, color: "Marrón" },
+    ],
+  },
+  {
+    id: "kit-urban-gris", slug: "kit-urban-gris", name: "Urban Gris", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Urban Pants", image: products[10].image, color: "Negro/Gris" },
+      { name: "Nike Golf Trackpants", image: products[13].image, color: "Gris" },
+      { name: "Nike Vintage Grey", image: products[27].image, color: "Gris" },
+    ],
+  },
+  {
+    id: "kit-total-black", slug: "kit-total-black", name: "Total Black", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Zip Trackpants", image: products[8].image, color: "Negro" },
+      { name: "Nike Casual Pants", image: products[22].image, color: "Negro" },
+      { name: "Nike Classic Line", image: products[23].image, color: "Negro" },
+    ],
+  },
+  {
+    id: "kit-mix-colores", slug: "kit-mix-colores", name: "Mix de Colores", price: 280, originalPrice: 747,
+    badge: "PREMIUM", category: "Kit",
+    items: [
+      { name: "Nike Trackpants Stripe", image: products[3].image, color: "Beige" },
+      { name: "Nike Track Vintage", image: products[24].image, color: "Azul" },
+      { name: "Nike Edge Trackpants", image: products[12].image, color: "Negro/Blanco" },
+    ],
+  },
+];
+
+export { kits as JOGGER_GT_KITS };
+
 const categories = ["Todos", "Clásico", "Sport", "Retro"];
 
 const JoggerGT = () => {
