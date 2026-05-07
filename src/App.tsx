@@ -46,6 +46,7 @@ import VestidosGT from "./pages/VestidosGT";
 import VestidoProductPage from "./pages/VestidoProductPage";
 import JoggerGT from "./pages/JoggerGT";
 import JoggerGTProductPage from "./pages/JoggerGTProductPage";
+import JoggerGTKitPage from "./pages/JoggerGTKitPage";
 
 const queryClient = new QueryClient();
 
@@ -90,6 +91,7 @@ const App = () => (
           <Route path="/vestidosgt" element={<VestidosGT />} />
           <Route path="/vestidosgt/:slug" element={<VestidoProductPage />} />
           <Route path="/joggergt" element={<JoggerGT />} />
+          <Route path="/joggergt/kit/:slug" element={<JoggerGTKitPage />} />
           <Route path="/joggergt/:slug" element={<JoggerGTProductPage />} />
           
           <Route path="/auth" element={<Auth />} />

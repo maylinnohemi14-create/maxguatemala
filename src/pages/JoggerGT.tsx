@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LegalFooter } from "@/components/LegalFooter";
-import { Truck, CreditCard, Shield, Star, ShoppingBag, Sparkles, Heart, Zap, Flame } from "lucide-react";
+import { Truck, CreditCard, Shield, Star, ShoppingBag, Sparkles, Heart, Zap, Flame, Package } from "lucide-react";
 
 const NIKE_ORANGE = "#FF6B00";
 const NIKE_RED = "#FA0F00";
@@ -16,6 +16,23 @@ interface Product {
   badge?: string;
   color?: string;
   category?: string;
+}
+
+interface KitItem {
+  name: string;
+  image: string;
+  color: string;
+}
+
+export interface JoggerKit {
+  id: string;
+  slug: string;
+  name: string;
+  price: number;
+  originalPrice: number;
+  items: KitItem[];
+  badge?: string;
+  category: string;
 }
 
 const products: Product[] = [
@@ -51,15 +68,104 @@ const products: Product[] = [
 
 export { products as JOGGER_GT_PRODUCTS };
 
-const categories = ["Todos", "Clásico", "Sport", "Retro"];
+const kits: JoggerKit[] = [
+  {
+    id: "kit-negro-clasico", slug: "kit-negro-clasico", name: "Negro Clásico", price: 280, originalPrice: 747,
+    badge: "🔥 MÁS VENDIDO", category: "Kit",
+    items: [
+      { name: "Nike Tn Trackpants", image: products[0].image, color: "Negro" },
+      { name: "Nike Cargo Trackpants", image: products[6].image, color: "Negro" },
+      { name: "Nike Premium Black", image: products[20].image, color: "Negro" },
+    ],
+  },
+  {
+    id: "kit-retro-beige", slug: "kit-retro-beige", name: "Retro Beige", price: 280, originalPrice: 747,
+    badge: "EXCLUSIVO", category: "Kit",
+    items: [
+      { name: "Nike Shox Trackpants", image: products[1].image, color: "Beige/Negro" },
+      { name: "Nike Trackpants Beige", image: products[14].image, color: "Beige" },
+      { name: "Nike Shox Classic", image: products[15].image, color: "Beige/Blanco" },
+    ],
+  },
+  {
+    id: "kit-sport-mix", slug: "kit-sport-mix", name: "Sport Mix", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Windrunner Pants", image: products[5].image, color: "Negro" },
+      { name: "Nike Flow Pants", image: products[11].image, color: "Negro" },
+      { name: "Nike Multicolor Track", image: products[25].image, color: "Negro/Rojo" },
+    ],
+  },
+  {
+    id: "kit-blanco-negro", slug: "kit-blanco-negro", name: "Blanco & Negro", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Trackpants White", image: products[16].image, color: "Blanco" },
+      { name: "Nike Duo Tone", image: products[9].image, color: "Blanco/Negro" },
+      { name: "Nike Trackpants Classic", image: products[2].image, color: "Negro/Blanco" },
+    ],
+  },
+  {
+    id: "kit-azul-marino", slug: "kit-azul-marino", name: "Azul Marino", price: 280, originalPrice: 747,
+    badge: "NUEVO", category: "Kit",
+    items: [
+      { name: "Nike PSG Trackpants", image: products[17].image, color: "Azul" },
+      { name: "Nike Navy Trackpants", image: products[18].image, color: "Azul Marino" },
+      { name: "Nike Classic Navy", image: products[26].image, color: "Azul Marino" },
+    ],
+  },
+  {
+    id: "kit-vintage-retro", slug: "kit-vintage-retro", name: "Vintage Retro", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Heritage Pants", image: products[7].image, color: "Negro/Blanco" },
+      { name: "Nike 90's Trackpants", image: products[20].image, color: "Negro" },
+      { name: "Nike Vintage Brown", image: products[19].image, color: "Marrón" },
+    ],
+  },
+  {
+    id: "kit-urban-gris", slug: "kit-urban-gris", name: "Urban Gris", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Urban Pants", image: products[10].image, color: "Negro/Gris" },
+      { name: "Nike Golf Trackpants", image: products[13].image, color: "Gris" },
+      { name: "Nike Vintage Grey", image: products[27].image, color: "Gris" },
+    ],
+  },
+  {
+    id: "kit-total-black", slug: "kit-total-black", name: "Total Black", price: 280, originalPrice: 747,
+    category: "Kit",
+    items: [
+      { name: "Nike Zip Trackpants", image: products[8].image, color: "Negro" },
+      { name: "Nike Casual Pants", image: products[22].image, color: "Negro" },
+      { name: "Nike Classic Line", image: products[23].image, color: "Negro" },
+    ],
+  },
+  {
+    id: "kit-mix-colores", slug: "kit-mix-colores", name: "Mix de Colores", price: 280, originalPrice: 747,
+    badge: "PREMIUM", category: "Kit",
+    items: [
+      { name: "Nike Trackpants Stripe", image: products[3].image, color: "Beige" },
+      { name: "Nike Track Vintage", image: products[24].image, color: "Azul" },
+      { name: "Nike Edge Trackpants", image: products[12].image, color: "Negro/Blanco" },
+    ],
+  },
+];
+
+export { kits as JOGGER_GT_KITS };
+
+const categories = ["Todos", "Kit 3en1", "Clásico", "Sport", "Retro"];
 
 const JoggerGT = () => {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-  const filteredProducts = activeCategory === "Todos"
-    ? products
-    : products.filter((p) => p.category === activeCategory);
+  const showKits = activeCategory === "Todos" || activeCategory === "Kit 3en1";
+  const showProducts = activeCategory !== "Kit 3en1";
+
+  const filteredProducts = showProducts
+    ? (activeCategory === "Todos" ? products : products.filter((p) => p.category === activeCategory))
+    : [];
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] overflow-x-clip" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -142,7 +248,7 @@ const JoggerGT = () => {
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-6 text-xs text-white/30">
-            <span>{products.length} estilos</span>
+            <span>{products.length} estilos + {kits.length} kits</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
             <span>Envío gratis</span>
             <span className="w-1 h-1 rounded-full bg-white/20" />
@@ -181,87 +287,162 @@ const JoggerGT = () => {
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section className="py-10 sm:py-16">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-            {filteredProducts.map((product, index) => (
-              <Link
-                key={product.id}
-                to={`/joggergt/${product.slug}`}
-                className="group relative"
-                onMouseEnter={() => setHoveredId(product.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 transition-all group-hover:border-orange-500/40">
-                  <div className="aspect-[3/4] overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className={`w-full h-full object-cover transition-all duration-700 ease-out ${hoveredId === product.id ? "scale-110" : "scale-100"}`}
-                      loading="lazy"
-                    />
-                  </div>
+      {/* Kits Grid */}
+      {showKits && (
+        <section className="py-10 sm:py-16">
+          <div className="container mx-auto px-3 sm:px-4">
+            {activeCategory === "Todos" && (
+              <div className="flex items-center gap-3 mb-6">
+                <Package className="w-5 h-5" style={{ color: NIKE_ORANGE }} />
+                <h2 className="text-xl sm:text-2xl font-black text-white">Kits 3 en 1 — <span style={{ color: NIKE_ORANGE }}>Q280</span></h2>
+              </div>
+            )}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+              {kits.map((kit) => (
+                <Link
+                  key={kit.id}
+                  to={`/joggergt/kit/${kit.slug}`}
+                  className="group relative"
+                  onMouseEnter={() => setHoveredId(kit.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                >
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 transition-all group-hover:border-orange-500/40">
+                    <div className="aspect-[3/4] overflow-hidden relative">
+                      <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
+                        <img src={kit.items[0].image} alt="" className="w-full h-full object-cover col-span-1 row-span-2 group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                        <img src={kit.items[1].image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                        <img src={kit.items[2].image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                      </div>
+                    </div>
 
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-500 ${hoveredId === product.id ? "opacity-100" : "opacity-0"}`} />
-
-                  {product.badge && (
                     <div className="absolute top-3 left-3">
                       <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-white border border-white/20 shadow-sm"
                         style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}cc, ${NIKE_RED}cc)`, backdropFilter: "blur(8px)" }}>
-                        {product.badge}
+                        {kit.badge || "📦 3 EN 1"}
                       </span>
                     </div>
-                  )}
 
-                  <div className={`absolute top-3 right-3 transition-all duration-300 ${hoveredId === product.id ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
-                    <div className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                      <Heart className="w-4 h-4 text-white/60" />
-                    </div>
-                  </div>
-
-                  <div className={`absolute bottom-4 left-4 right-4 transition-all duration-500 ${hoveredId === product.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-                    <div className="w-full py-2.5 rounded-xl text-center text-xs font-semibold tracking-wider uppercase text-black shadow-lg"
-                      style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})` }}>
-                      Ver Producto
-                    </div>
-                  </div>
-
-                  {!product.badge && (
-                    <div className="absolute top-3 right-3">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm"
+                    <div className={`absolute bottom-4 left-4 right-4 transition-all duration-500 ${hoveredId === kit.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                      <div className="w-full py-2.5 rounded-xl text-center text-xs font-semibold tracking-wider uppercase text-black shadow-lg"
                         style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})` }}>
-                        -50%
-                      </span>
+                        Ver Kit
+                      </div>
                     </div>
-                  )}
-                </div>
+                  </div>
 
-                <div className="pt-4 pb-2 px-1">
-                  <div className="flex items-center gap-0.5 mb-1.5">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
-                    ))}
-                    <span className="text-[10px] text-white/30 ml-1">(4.9)</span>
+                  <div className="pt-4 pb-2 px-1">
+                    <div className="flex items-center gap-0.5 mb-1.5">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      ))}
+                      <span className="text-[10px] text-white/30 ml-1">(5.0)</span>
+                    </div>
+                    <h3 className="font-medium text-sm sm:text-base text-white/80 leading-tight mb-1.5 line-clamp-1 group-hover:text-white transition-colors">
+                      Kit 3en1: {kit.name}
+                    </h3>
+                    <p className="text-[11px] text-white/30 mb-2 tracking-wide uppercase">3 Trackpants</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg sm:text-xl font-semibold" style={{ color: NIKE_ORANGE }}>Q{kit.price}</span>
+                      <span className="text-xs text-white/30 line-through">Q{kit.originalPrice}</span>
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-white/30 mt-1.5 font-medium">Pago contra entrega</p>
                   </div>
-                  <h3 className="font-medium text-sm sm:text-base text-white/80 leading-tight mb-1.5 line-clamp-1 group-hover:text-white transition-colors">
-                    {product.name}
-                  </h3>
-                  {product.color && (
-                    <p className="text-[11px] text-white/30 mb-2 tracking-wide uppercase">{product.color}</p>
-                  )}
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-lg sm:text-xl font-semibold" style={{ color: NIKE_ORANGE }}>Q{product.price}</span>
-                    <span className="text-xs text-white/30 line-through">Q{product.originalPrice}</span>
-                  </div>
-                  <p className="text-[10px] sm:text-[11px] text-white/30 mt-1.5 font-medium">Pago contra entrega</p>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Products Grid */}
+      {showProducts && filteredProducts.length > 0 && (
+        <section className={showKits ? "pb-10 sm:pb-16" : "py-10 sm:py-16"}>
+          <div className="container mx-auto px-3 sm:px-4">
+            {activeCategory === "Todos" && (
+              <div className="flex items-center gap-3 mb-6">
+                <ShoppingBag className="w-5 h-5" style={{ color: NIKE_ORANGE }} />
+                <h2 className="text-xl sm:text-2xl font-black text-white">Individuales — <span style={{ color: NIKE_ORANGE }}>Q249</span></h2>
+              </div>
+            )}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+              {filteredProducts.map((product, index) => (
+                <Link
+                  key={product.id}
+                  to={`/joggergt/${product.slug}`}
+                  className="group relative"
+                  onMouseEnter={() => setHoveredId(product.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-white/5 to-white/[0.02] border border-white/10 transition-all group-hover:border-orange-500/40">
+                    <div className="aspect-[3/4] overflow-hidden">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className={`w-full h-full object-cover transition-all duration-700 ease-out ${hoveredId === product.id ? "scale-110" : "scale-100"}`}
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-500 ${hoveredId === product.id ? "opacity-100" : "opacity-0"}`} />
+
+                    {product.badge && (
+                      <div className="absolute top-3 left-3">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-white border border-white/20 shadow-sm"
+                          style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}cc, ${NIKE_RED}cc)`, backdropFilter: "blur(8px)" }}>
+                          {product.badge}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className={`absolute top-3 right-3 transition-all duration-300 ${hoveredId === product.id ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
+                      <div className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                        <Heart className="w-4 h-4 text-white/60" />
+                      </div>
+                    </div>
+
+                    <div className={`absolute bottom-4 left-4 right-4 transition-all duration-500 ${hoveredId === product.id ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                      <div className="w-full py-2.5 rounded-xl text-center text-xs font-semibold tracking-wider uppercase text-black shadow-lg"
+                        style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})` }}>
+                        Ver Producto
+                      </div>
+                    </div>
+
+                    {!product.badge && (
+                      <div className="absolute top-3 right-3">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold text-white shadow-sm"
+                          style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})` }}>
+                          -50%
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pt-4 pb-2 px-1">
+                    <div className="flex items-center gap-0.5 mb-1.5">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      ))}
+                      <span className="text-[10px] text-white/30 ml-1">(4.9)</span>
+                    </div>
+                    <h3 className="font-medium text-sm sm:text-base text-white/80 leading-tight mb-1.5 line-clamp-1 group-hover:text-white transition-colors">
+                      {product.name}
+                    </h3>
+                    {product.color && (
+                      <p className="text-[11px] text-white/30 mb-2 tracking-wide uppercase">{product.color}</p>
+                    )}
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg sm:text-xl font-semibold" style={{ color: NIKE_ORANGE }}>Q{product.price}</span>
+                      <span className="text-xs text-white/30 line-through">Q{product.originalPrice}</span>
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-white/30 mt-1.5 font-medium">Pago contra entrega</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Bottom CTA */}
       <section className="py-16 sm:py-24">
