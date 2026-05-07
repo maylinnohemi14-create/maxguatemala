@@ -73,6 +73,9 @@ const VestidoProductPage = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [showForm, setShowForm] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
+  const [showRegalo, setShowRegalo] = useState(false);
+  const [addRegalo, setAddRegalo] = useState(false);
+  const [regaloSize, setRegaloSize] = useState("M");
   const [qty, setQty] = useState(1);
   const formRef = useRef<HTMLDivElement>(null);
 
