@@ -40,7 +40,7 @@ const VestidoKit3 = () => {
   const [showCODForm, setShowCODForm] = useState(false);
 
   const PRODUCT_ID = "VESTIDO-KIT3-GT";
-  const PRODUCT_PRICE = 259;
+  const PRODUCT_PRICE = 279;
 
   const productImages = [
     vestidoRendaFrente, vestidoRendaCostas,
@@ -78,7 +78,7 @@ const VestidoKit3 = () => {
 
   const testimonials = [
     { name: "Carolina V.", rating: 5, comment: "El vestido de encaje es una obra de arte. Los 3 son hermosos y de excelente calidad. ¡Los amo!", date: "Hace 3 días" },
-    { name: "Daniela S.", rating: 5, comment: "El de lunares es mi favorito, súper elegante. Los 3 vestidos por Q259 es una locura. 100% recomendado.", date: "Hace 1 semana" },
+    { name: "Daniela S.", rating: 5, comment: "El de lunares es mi favorito, súper elegante. Los 3 vestidos por Q279 es una locura. 100% recomendado.", date: "Hace 1 semana" },
     { name: "Patricia G.", rating: 5, comment: "El verde brillante es perfecto para salir de fiesta. Llegaron rápido y la calidad es premium.", date: "Hace 2 semanas" },
     { name: "Alejandra M.", rating: 5, comment: "Pensé que por el precio no iban a ser tan bonitos, pero me sorprendieron. Tela de calidad y ajuste perfecto.", date: "Hace 3 semanas" },
   ];
@@ -161,7 +161,7 @@ const VestidoKit3 = () => {
                   <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q499</span>
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
-                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">Q259</span>
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">Q279</span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
                 <div className="inline-flex items-center gap-1.5 bg-success text-success-foreground font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full shadow-md">
@@ -407,8 +407,8 @@ const VestidoKit3 = () => {
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">Preguntas Frecuentes</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="text-left text-sm sm:text-base">¿Los 3 vestidos vienen incluidos por Q259?</AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base">¡Sí! Por Q259 recibes los 3 vestidos: vestido largo de encaje blanco, vestido polka dots asimétrico y mini vestido verde brillante.</AccordionContent>
+              <AccordionTrigger className="text-left text-sm sm:text-base">¿Los 3 vestidos vienen incluidos por Q279?</AccordionTrigger>
+              <AccordionContent className="text-sm sm:text-base">¡Sí! Por Q279 recibes los 3 vestidos: vestido largo de encaje blanco, vestido polka dots asimétrico y mini vestido verde brillante.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger className="text-left text-sm sm:text-base">¿Puedo elegir tallas diferentes?</AccordionTrigger>
@@ -424,13 +424,13 @@ const VestidoKit3 = () => {
 
       <section className="py-10 sm:py-16 bg-gradient-to-r from-pink-700 to-pink-900 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Lleva los 3 vestidos por solo Q259! 👗🇬🇹</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Lleva los 3 vestidos por solo Q279! 👗🇬🇹</h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">Envío gratis + Pago contra entrega + 3 vestidos premium</p>
           <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button size="lg" className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-white text-pink-700 hover:bg-gray-100 hover:shadow-glow transition-all">
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q259
+                PEDIR AHORA - Q279
               </Button>
             </DialogTrigger>
           </Dialog>

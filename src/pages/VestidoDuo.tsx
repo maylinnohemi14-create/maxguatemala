@@ -76,7 +76,7 @@ const VestidoDuo = () => {
   }, []);
 
   const testimonials = [
-    { name: "Andrea M.", rating: 5, comment: "El vestido blanco es perfecto para eventos formales y el negro es ideal para salir. ¡2 por Q259 es increíble!", date: "Hace 2 días" },
+    { name: "Andrea M.", rating: 5, comment: "El vestido blanco es perfecto para eventos formales y el negro es ideal para salir. ¡2 por Q279 es increíble!", date: "Hace 2 días" },
     { name: "Carolina S.", rating: 5, comment: "La calidad de ambos vestidos superó mis expectativas. El negro es súper versátil y elegante.", date: "Hace 5 días" },
     { name: "Daniela R.", rating: 5, comment: "Me encantó el off-shoulder blanco, es divino. Y el mini negro es perfecto para fiestas. ¡Recomendadísimos!", date: "Hace 1 semana" },
     { name: "Patricia G.", rating: 5, comment: "2 vestidos premium por ese precio es una ganga. Llegaron rápido y la tela es de excelente calidad.", date: "Hace 2 semanas" },
@@ -160,7 +160,7 @@ const VestidoDuo = () => {
                   <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q399</span>
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
-                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">Q259</span>
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">Q279</span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
                 <div className="inline-flex items-center gap-1.5 bg-success text-success-foreground font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full shadow-md">
@@ -401,8 +401,8 @@ const VestidoDuo = () => {
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">Preguntas Frecuentes</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger className="text-left text-sm sm:text-base">¿Los 2 vestidos vienen incluidos por Q259?</AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base">¡Sí! Por Q259 recibes los 2 vestidos: vestido largo blanco off-shoulder y mini vestido negro asimétrico con lazo.</AccordionContent>
+              <AccordionTrigger className="text-left text-sm sm:text-base">¿Los 2 vestidos vienen incluidos por Q279?</AccordionTrigger>
+              <AccordionContent className="text-sm sm:text-base">¡Sí! Por Q279 recibes los 2 vestidos: vestido largo blanco off-shoulder y mini vestido negro asimétrico con lazo.</AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger className="text-left text-sm sm:text-base">¿Puedo elegir tallas diferentes?</AccordionTrigger>
@@ -418,13 +418,13 @@ const VestidoDuo = () => {
 
       <section className="py-10 sm:py-16 bg-gradient-to-r from-pink-700 to-pink-900 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Lleva los 2 vestidos por solo Q259! 👗🇬🇹</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Lleva los 2 vestidos por solo Q279! 👗🇬🇹</h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">Envío gratis + Pago contra entrega + 2 vestidos premium</p>
           <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
               <Button size="lg" className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-white text-pink-700 hover:bg-gray-100 hover:shadow-glow transition-all">
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q259
+                PEDIR AHORA - Q279
               </Button>
             </DialogTrigger>
           </Dialog>
