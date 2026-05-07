@@ -372,6 +372,19 @@ const VestidosGT = () => {
             <span className="w-1 h-1 rounded-full bg-black/20" />
             <span>Pago al recibir</span>
           </div>
+
+          {/* Delivery urgency message */}
+          <div className="mt-6 flex items-center justify-center">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200/60 shadow-sm">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-sm font-semibold text-emerald-700">
+                Si pides hoy, recibes mañana
+              </span>
+              <span className="text-xs text-emerald-500/80 font-medium hidden sm:inline">
+                (entrega 24h)
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
