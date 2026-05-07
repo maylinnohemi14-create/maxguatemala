@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LegalFooter } from "@/components/LegalFooter";
-import { Truck, CreditCard, Shield, Star, ShoppingBag, Sparkles, Heart, Zap, Flame } from "lucide-react";
+import { Truck, CreditCard, Shield, Star, ShoppingBag, Sparkles, Heart, Zap, Flame, Package } from "lucide-react";
 
 const NIKE_ORANGE = "#FF6B00";
 const NIKE_RED = "#FA0F00";
