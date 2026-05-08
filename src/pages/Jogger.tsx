@@ -80,8 +80,8 @@ type QtyOption = {
 
 const QTY_OPTIONS: QtyOption[] = [
   { qty: 1, price: 249, label: "1 Pantalón Jogger", saving: 0 },
-  { qty: 2, price: 279, label: "2 Pantalones Jogger", saving: 219, highlight: true },
-  { qty: 3, price: 299, label: "3 Pantalones Jogger", saving: 448 },
+  { qty: 2, price: 269, label: "2 Pantalones Jogger", saving: 229, highlight: true },
+  { qty: 3, price: 280, label: "3 Pantalones Jogger", saving: 467 },
 ];
 
 const Jogger = () => {
