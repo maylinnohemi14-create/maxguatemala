@@ -340,12 +340,12 @@ const JoggerGTKitPage = () => {
               productId="JOGGER-VINTAGE-GT"
               productPrice={totalPrice}
               productName={productDisplayName}
-              productDisplayName={productDisplayName}
+              productDisplayName={productDisplayName + (addJacket ? ` + Chaqueta Nike Talla ${jacketSize} (REGALO)` : "")}
               productImage={kit.items[0].image}
               tiktokPixelIds={tiktokPixelIds}
               facebookPixelIds={facebookPixelIds}
               extraNote={extraNote}
-              promoMessage={`¡OFERTA KIT 3en1! ${kit.name} por solo Q${totalPrice}. Envío gratis.`}
+              promoMessage={`¡OFERTA KIT 3en1! ${kit.name} por solo Q${totalPrice}${addJacket ? " + Chaqueta Nike GRATIS" : ""}. Envío gratis.`}
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
               ]}
