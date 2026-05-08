@@ -153,6 +153,15 @@ const kits: JoggerKit[] = [
       { name: "Nike Edge Trackpants", image: products[12].image, color: "Negro/Blanco" },
     ],
   },
+  {
+    id: "kit-jogger-3en1", slug: "jogger-3en1", name: "Jogger 3 en 1", price: 280, originalPrice: 747,
+    badge: "⭐ 3 EN 1", category: "Kit",
+    items: [
+      { name: "Jogger Negro", image: joggerNegro, color: "Negro" },
+      { name: "Jogger Celeste", image: joggerCeleste, color: "Celeste" },
+      { name: "Jogger Azul Marino", image: joggerAzulMarino, color: "Azul Marino" },
+    ],
+  },
 ];
 
 export { kits as JOGGER_GT_KITS };
