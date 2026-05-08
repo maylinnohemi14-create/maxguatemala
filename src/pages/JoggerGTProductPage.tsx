@@ -62,7 +62,25 @@ const JoggerGTProductPage = () => {
 
   const totalPrice = product.price * qty;
   const productDisplayName = `${product.name} x${qty}`;
-  const extraNote = `${product.name} | Talla: ${selectedSize} | Cantidad: ${qty} | Color: ${product.color || "Único"}`;
+  const extraNote = `${product.name} | Talla: ${selectedSize} | Cantidad: ${qty} | Color: ${product.color || "Único"}${addJacket ? ` | + CHAQUETA NIKE BLANCA Talla ${jacketSize} (REGALO GRATIS)` : ""}`;
+
+  const goToForm = () => {
+    setShowUpsell(false);
+    setShowForm(true);
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 150);
+  };
+
+  const handleUpsellDecision = (accept: boolean) => {
+    setAddJacket(accept);
+    goToForm();
+  };
+
+  const handleUpsellClose = () => {
+    setAddJacket(false);
+    goToForm();
+  };
 
   const handleBuyClick = () => {
     trackTikTokConversion(
@@ -75,10 +93,7 @@ const JoggerGTProductPage = () => {
       { content_ids: [product.id], content_type: "product", value: totalPrice, currency: "GTQ" },
       undefined
     );
-    setShowForm(true);
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 150);
+    setShowUpsell(true);
   };
 
   return (
