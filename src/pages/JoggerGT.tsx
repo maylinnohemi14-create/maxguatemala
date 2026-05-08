@@ -313,7 +313,7 @@ const JoggerGT = () => {
               {kits.map((kit) => (
                 <Link
                   key={kit.id}
-                  to={`/joggergt/kit/${kit.slug}`}
+                  to={kit.id === "kit-jogger-3en1" ? "/jogger" : `/joggergt/kit/${kit.slug}`}
                   className="group relative"
                   onMouseEnter={() => setHoveredId(kit.id)}
                   onMouseLeave={() => setHoveredId(null)}
