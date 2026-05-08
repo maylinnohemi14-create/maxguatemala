@@ -390,6 +390,84 @@ const JoggerGTKitPage = () => {
         </section>
       )}
 
+      {/* UPSELL DIALOG - REGALO GRATIS */}
+      <Dialog open={showUpsell} onOpenChange={(open) => { if (!open) handleUpsellClose(); }}>
+        <DialogContent
+          className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0"
+          style={{
+            background: `linear-gradient(160deg, #1a1a1a, ${BLACK})`,
+            boxShadow: `0 30px 80px ${NIKE_ORANGE}55`,
+          }}
+        >
+          <div className="relative p-5 sm:p-6" style={{ borderTop: `3px solid ${NIKE_ORANGE}` }}>
+            <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 pointer-events-none" style={{ background: NIKE_ORANGE }} />
+            <button type="button" onClick={handleUpsellClose} aria-label="Cerrar"
+              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
+              style={{
+                background: `radial-gradient(circle, ${NIKE_ORANGE} 0%, ${NIKE_RED} 100%)`,
+                boxShadow: `0 0 16px ${NIKE_ORANGE}, 0 0 32px ${NIKE_ORANGE}99, 0 0 48px ${NIKE_RED}66, inset 0 0 8px rgba(255,255,255,0.3)`,
+                border: `2px solid #fff`,
+              }}>
+              <X className="w-5 h-5 text-white" strokeWidth={3} />
+            </button>
+            <DialogHeader className="relative z-10">
+              <div className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}>
+                <Flame className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: NIKE_ORANGE }}>🎁 REGALO GRATIS</span>
+              </div>
+              <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
+                ¡Espera! ¿Quieres llevar también esta Chaqueta Nike{" "}
+                <span style={{ color: NIKE_ORANGE }}>GRATIS</span>?
+              </DialogTitle>
+            </DialogHeader>
+            <div className="relative z-10 mt-4">
+              <div className="rounded-2xl overflow-hidden border-2 mb-4" style={{ borderColor: `${NIKE_ORANGE}33` }}>
+                <div className="aspect-square relative bg-white">
+                  <img src={jacketBlanca} alt="Chaqueta Nike Blanca" className="w-full h-full object-contain" />
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black" style={{ background: "#22c55e", color: "#fff" }}>
+                    🎁 GRATIS
+                  </div>
+                  <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md" style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}>
+                    <span className="text-white/50 line-through text-xs mr-1">Q280</span>
+                    <span style={{ color: "#22c55e" }}>GRATIS</span>
+                  </div>
+                </div>
+              </div>
+              <div className="mb-4">
+                <div className="text-xs uppercase tracking-widest text-white/60 mb-2 font-bold text-center">Elige tu talla</div>
+                <div className="grid grid-cols-4 gap-1.5">
+                  {JACKET_SIZES.map((s) => {
+                    const active = jacketSize === s;
+                    return (
+                      <button key={s} onClick={() => setJacketSize(s)}
+                        className="py-2 rounded-lg text-xs font-black transition-all border-2"
+                        style={{
+                          borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.15)",
+                          background: active ? NIKE_ORANGE : "transparent",
+                          color: active ? "#000" : "#fff",
+                          boxShadow: active ? `0 0 12px ${NIKE_ORANGE}88` : "none",
+                        }}>{s}</button>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Button onClick={() => handleUpsellDecision(true)}
+                  className="w-full font-black py-5 rounded-xl text-base"
+                  style={{ background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`, color: "#fff", boxShadow: `0 8px 24px -4px ${NIKE_ORANGE}` }}>
+                  <Check className="w-5 h-5 mr-2" /> SÍ, AGREGAR GRATIS
+                </Button>
+                <button onClick={() => handleUpsellDecision(false)}
+                  className="w-full text-white/50 hover:text-white/80 py-2 text-xs font-medium transition-colors flex items-center justify-center gap-1.5">
+                  <X className="w-3.5 h-3.5" /> No, gracias. Continuar sin la chaqueta.
+                </button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={showSizeGuide} onOpenChange={setShowSizeGuide}>
         <DialogContent className="w-[calc(100vw-16px)] max-w-lg max-h-[90dvh] overflow-y-auto p-0 border-0"
           style={{ background: `linear-gradient(160deg, #1a1a1a, ${BLACK})`, boxShadow: `0 30px 80px ${NIKE_ORANGE}55` }}>
