@@ -31,6 +31,9 @@ const JoggerGTProductPage = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
   const [selectedSize, setSelectedSize] = useState("M");
   const [showForm, setShowForm] = useState(false);
+  const [showUpsell, setShowUpsell] = useState(false);
+  const [addJacket, setAddJacket] = useState(false);
+  const [jacketSize, setJacketSize] = useState("M");
   const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [qty, setQty] = useState(1);
   const formRef = useRef<HTMLDivElement>(null);
