@@ -333,12 +333,12 @@ const JoggerGTProductPage = () => {
               productId="JOGGER-VINTAGE-GT"
               productPrice={totalPrice}
               productName={productDisplayName}
-              productDisplayName={productDisplayName}
+              productDisplayName={productDisplayName + (addJacket ? ` + Chaqueta Nike Talla ${jacketSize} (REGALO)` : "")}
               productImage={product.image}
               tiktokPixelIds={tiktokPixelIds}
               facebookPixelIds={facebookPixelIds}
               extraNote={extraNote}
-              promoMessage={`¡OFERTA! ${product.name} por solo Q${totalPrice}. Envío gratis.`}
+              promoMessage={`¡OFERTA! ${product.name} por solo Q${totalPrice}${addJacket ? " + Chaqueta Nike GRATIS" : ""}. Envío gratis.`}
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
               ]}
