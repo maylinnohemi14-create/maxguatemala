@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LegalFooter } from "@/components/LegalFooter";
 import { Truck, CreditCard, Shield, Star, ShoppingBag, Sparkles, Heart, Zap, Flame, Package } from "lucide-react";
+import joggerNegro from "@/assets/jogger-negro.jpg";
+import joggerCeleste from "@/assets/jogger-celeste.jpg";
+import joggerAzulMarino from "@/assets/jogger-azul-marino.jpg";
 
 const NIKE_ORANGE = "#FF6B00";
 const NIKE_RED = "#FA0F00";
@@ -148,6 +151,15 @@ const kits: JoggerKit[] = [
       { name: "Nike Trackpants Stripe", image: products[3].image, color: "Beige" },
       { name: "Nike Track Vintage", image: products[24].image, color: "Azul" },
       { name: "Nike Edge Trackpants", image: products[12].image, color: "Negro/Blanco" },
+    ],
+  },
+  {
+    id: "kit-jogger-3en1", slug: "jogger-3en1", name: "Jogger 3 en 1", price: 280, originalPrice: 747,
+    badge: "⭐ 3 EN 1", category: "Kit",
+    items: [
+      { name: "Jogger Negro", image: joggerNegro, color: "Negro" },
+      { name: "Jogger Celeste", image: joggerCeleste, color: "Celeste" },
+      { name: "Jogger Azul Marino", image: joggerAzulMarino, color: "Azul Marino" },
     ],
   },
 ];
@@ -301,7 +313,7 @@ const JoggerGT = () => {
               {kits.map((kit) => (
                 <Link
                   key={kit.id}
-                  to={`/joggergt/kit/${kit.slug}`}
+                  to={kit.id === "kit-jogger-3en1" ? "/jogger" : `/joggergt/kit/${kit.slug}`}
                   className="group relative"
                   onMouseEnter={() => setHoveredId(kit.id)}
                   onMouseLeave={() => setHoveredId(null)}
