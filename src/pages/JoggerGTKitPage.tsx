@@ -63,7 +63,25 @@ const JoggerGTKitPage = () => {
   const totalPrice = kit.price;
   const productDisplayName = `Kit 3en1: ${kit.name}`;
   const sizeDetails = kit.items.map((item, i) => `${item.name} (Talla: ${selectedSizes[i] || "M"})`).join(" + ");
-  const extraNote = `KIT 3en1: ${kit.name} | ${sizeDetails}`;
+  const extraNote = `KIT 3en1: ${kit.name} | ${sizeDetails}${addJacket ? ` | + CHAQUETA NIKE BLANCA Talla ${jacketSize} (REGALO GRATIS)` : ""}`;
+
+  const goToForm = () => {
+    setShowUpsell(false);
+    setShowForm(true);
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 150);
+  };
+
+  const handleUpsellDecision = (accept: boolean) => {
+    setAddJacket(accept);
+    goToForm();
+  };
+
+  const handleUpsellClose = () => {
+    setAddJacket(false);
+    goToForm();
+  };
 
   const handleBuyClick = () => {
     trackTikTokConversion(
@@ -76,10 +94,7 @@ const JoggerGTKitPage = () => {
       { content_ids: [kit.id], content_type: "product", value: totalPrice, currency: "GTQ" },
       undefined
     );
-    setShowForm(true);
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 150);
+    setShowUpsell(true);
   };
 
   return (
