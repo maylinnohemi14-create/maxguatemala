@@ -16,6 +16,7 @@ const BLACK = "#0A0A0A";
 const PAGE_ROUTE = "/joggergt";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
+const JACKET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
 
 const SIZE_GUIDE = [
   { size: "XS", cintura: "68-72", cadera: "88-92", largo: "98" },
@@ -31,6 +32,9 @@ const JoggerGTKitPage = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
   const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>({ 0: "M", 1: "M", 2: "M" });
   const [showForm, setShowForm] = useState(false);
+  const [showUpsell, setShowUpsell] = useState(false);
+  const [addJacket, setAddJacket] = useState(false);
+  const [jacketSize, setJacketSize] = useState("M");
   const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
   const formRef = useRef<HTMLDivElement>(null);
