@@ -16,6 +16,7 @@ const BLACK = "#0A0A0A";
 const PAGE_ROUTE = "/joggergt";
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
+const JACKET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
 
 const SIZE_GUIDE = [
   { size: "XS", cintura: "68-72", cadera: "88-92", largo: "98" },
