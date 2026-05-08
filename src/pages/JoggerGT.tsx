@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LegalFooter } from "@/components/LegalFooter";
 import { Truck, CreditCard, Shield, Star, ShoppingBag, Sparkles, Heart, Zap, Flame, Package } from "lucide-react";
+import joggerNegro from "@/assets/jogger-negro.jpg";
+import joggerCeleste from "@/assets/jogger-celeste.jpg";
+import joggerAzulMarino from "@/assets/jogger-azul-marino.jpg";
 
 const NIKE_ORANGE = "#FF6B00";
 const NIKE_RED = "#FA0F00";
