@@ -13,7 +13,7 @@ import deportivoAzulBuzo from "@/assets/deportivo-azul-buzo.webp";
 import deportivoVerdePantalon from "@/assets/deportivo-verde-pantalon.webp";
 import deportivoNegroPantalon from "@/assets/deportivo-negro-pantalon.webp";
 import deportivoAzulPantalon from "@/assets/deportivo-azul-pantalon.webp";
-import camisetaLacoste from "@/assets/upsell-camiseta-lacoste.jpg";
+import camisetaLacoste from "@/assets/upsell-chaqueta-lacoste.jpg";
 
 // Sport-inspired palette
 const NIKE_BLACK = "#0A0A0A";
