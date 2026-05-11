@@ -15,13 +15,13 @@ import deportivoNegroPantalon from "@/assets/deportivo-negro-pantalon.webp";
 import deportivoAzulPantalon from "@/assets/deportivo-azul-pantalon.webp";
 import camisetaLacoste from "@/assets/upsell-chaqueta-lacoste.jpg";
 
-// Sport-inspired palette
-const NIKE_BLACK = "#0A0A0A";
-const NIKE_DARK = "#111111";
-const NIKE_ORANGE = "#FF6B00";
-const NIKE_RED = "#FA0F00";
-const NIKE_WHITE = "#F5F5F5";
-const NIKE_GRAY = "#1F1F1F";
+// Sport-inspired palette — Volt / Neon Mint (high-converting futuristic)
+const NIKE_BLACK = "#070D0A";
+const NIKE_DARK = "#0F1814";
+const NIKE_ORANGE = "#C6FF3D"; // Volt lime (primary accent)
+const NIKE_RED = "#00E5A8";    // Neon mint (secondary accent)
+const NIKE_WHITE = "#F2FFE8";
+const NIKE_GRAY = "#16221C";
 
 const PAGE_ROUTE = "/deportivofutureco";
 const PRODUCT_ID = "DEP-ULTRADRY-CO";
