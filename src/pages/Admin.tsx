@@ -399,6 +399,16 @@ const Admin = () => {
           idProducto = '2140867';
         }
       }
+      if (product?.id === 'DEP-ULTRADRY-CO') {
+        const normalizedPrice = normalizeOrderPrice(order.precio_total);
+        if (normalizedPrice === '149000') {
+          idProducto = '2132618';
+        } else if (normalizedPrice === '179000') {
+          idProducto = '2132610';
+        } else if (normalizedPrice === '199000') {
+          idProducto = '2140867';
+        }
+      }
       return {
         'NOMBRES': order.nombres,
         'APELLIDOS': order.apellidos,
