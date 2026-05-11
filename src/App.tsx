@@ -38,6 +38,7 @@ import ConjuntosKit4CO from "./pages/ConjuntosKit4CO";
 import Deportivo from "./pages/Deportivo";
 import DeportivoCatalogo from "./pages/DeportivoCatalogo";
 import DeportivoFuture from "./pages/DeportivoFuture";
+import DeportivoFutureCO from "./pages/DeportivoFutureCO";
 import Jogger from "./pages/Jogger";
 import Lino from "./pages/Lino";
 import LinoCO from "./pages/LinoCO";
@@ -83,6 +84,7 @@ const App = () => (
           <Route path="/deportivo" element={<Deportivo />} />
           <Route path="/deportivocatalogo" element={<DeportivoCatalogo />} />
           <Route path="/deportivofuture" element={<DeportivoFuture />} />
+          <Route path="/deportivofutureco" element={<DeportivoFutureCO />} />
           <Route path="/jogger" element={<Jogger />} />
           <Route path="/elegancia" element={<Lino />} />
           <Route path="/lino" element={<Lino />} />
