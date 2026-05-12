@@ -42,6 +42,7 @@ import DeportivoFutureCO from "./pages/DeportivoFutureCO";
 import Jogger from "./pages/Jogger";
 import Lino from "./pages/Lino";
 import LinoCO from "./pages/LinoCO";
+import LinoCO2 from "./pages/LinoCO2";
 import LinoTest from "./pages/LinoTest";
 import VestidosGT from "./pages/VestidosGT";
 import VestidoProductPage from "./pages/VestidoProductPage";
@@ -89,6 +90,7 @@ const App = () => (
           <Route path="/elegancia" element={<Lino />} />
           <Route path="/lino" element={<Lino />} />
           <Route path="/eleganciaco" element={<LinoCO />} />
+          <Route path="/eleganciapro" element={<LinoCO2 />} />
           <Route path="/eleganciatest" element={<LinoTest />} />
           <Route path="/vestidosgt" element={<VestidosGT />} />
           <Route path="/vestidosgt/:slug" element={<VestidoProductPage />} />
