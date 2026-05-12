@@ -4,7 +4,7 @@ import { CODFormGuatemala } from "@/components/CODFormGuatemala";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Check, Flame, Shield, Truck, Zap, Sparkles, X, Ruler } from "lucide-react";
+import { Check, Flame, Shield, Truck, Zap, Sparkles, X, Ruler, ShoppingCart, Gift } from "lucide-react";
 import { toast } from "sonner";
 
 import underArmourMain from "@/assets/under-armour-main.png";
