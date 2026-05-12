@@ -480,16 +480,15 @@ const UnderArmour = () => {
 
             {/* CTA Button */}
             <div className="space-y-3 mb-6 sm:mb-8">
+              <Button
+                onClick={handleBuyClick}
+                size="lg"
+                className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all animate-button-bounce"
+              >
+                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+                Pedir con pago Contra Entrega + Envío Gratis
+              </Button>
               <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
-                <DialogTrigger asChild>
-                  <Button
-                    size="lg"
-                    className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all animate-button-bounce"
-                  >
-                    <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                    Pedir con pago Contra Entrega + Envío Gratis
-                  </Button>
-                </DialogTrigger>
                 <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
                   <DialogHeader>
                     <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
@@ -498,7 +497,7 @@ const UnderArmour = () => {
                     <CODFormGuatemala
                       productId={PRODUCT_ID}
                       productPrice={PRODUCT_PRICE}
-                      productName={`Conjuntos Deportivos Kit 3 en 1 (${sizesNote})`}
+                      productName={`Conjuntos Deportivos Kit 3 en 1 (${sizesNote})${addShirt ? ` + Camiseta Premium GRATIS Talla ${shirtSize}` : ''}`}
                       productDisplayName="Conjuntos Deportivos Kit 3 en 1"
                       productImage={underArmourMain}
                       tiktokPixelIds={tiktokPixelIds}
@@ -515,9 +514,11 @@ const UnderArmour = () => {
                         { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
                         { id: 'kit', icon: '👕', title: '3 Conjuntos Completos', description: 'Gris + Negro + Azul' },
                         { id: 'envio', icon: '🚚', title: 'Envío Gratis', description: 'A toda Guatemala' },
+                        ...(addShirt ? [{ id: 'upsell', icon: '🎁', title: `Camiseta Premium Talla ${shirtSize}`, description: 'Bonus 100% GRATIS' }] : []),
                       ]}
                       onOrderComplete={() => {
                         setShowCODForm(false);
+                        setAddShirt(false);
                         toast.success("¡Pedido registrado exitosamente!");
                       }}
                     />
