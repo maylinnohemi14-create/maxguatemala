@@ -679,17 +679,14 @@ const UnderArmour = () => {
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega + 3 conjuntos completos
           </p>
-          <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
-            <DialogTrigger asChild>
-              <Button
-                size="lg"
-                className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
-              >
-                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q259
-              </Button>
-            </DialogTrigger>
-          </Dialog>
+          <Button
+            onClick={handleBuyClick}
+            size="lg"
+            className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
+          >
+            <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+            PEDIR AHORA - Q259
+          </Button>
         </div>
       </section>
 
