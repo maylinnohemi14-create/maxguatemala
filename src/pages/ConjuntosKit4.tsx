@@ -24,7 +24,7 @@ const C_GRAY = "#0F1A2E";
 
 const PAGE_ROUTE = "/contraentrega";
 const PRODUCT_ID = "UA-KIT3EN1-GT";
-const PRODUCT_PRICE = 299;
+const PRODUCT_PRICE = 259;
 const PRICE_NORMAL = 699;
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
