@@ -60,6 +60,9 @@ const UnderArmour = () => {
   });
   const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
+  const [showUpsell, setShowUpsell] = useState(false);
+  const [addShirt, setAddShirt] = useState(false);
+  const [shirtSize, setShirtSize] = useState<string>("M");
 
   const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 259;
