@@ -117,6 +117,31 @@ const UnderArmour = () => {
     setShowCODForm(open);
   };
 
+  useEffect(() => {
+    const img = new Image();
+    img.fetchPriority = "high";
+    img.src = camisetaUpsell;
+  }, []);
+
+  const handleBuyClick = () => {
+    setShowUpsell(true);
+  };
+
+  const openCODForm = () => {
+    setShowUpsell(false);
+    handleDialogChange(true);
+  };
+
+  const handleUpsellDecision = (accept: boolean) => {
+    setAddShirt(accept);
+    openCODForm();
+  };
+
+  const handleUpsellClose = () => {
+    setAddShirt(false);
+    setShowUpsell(false);
+  };
+
   const guatemalanNames = [
     "María García de Ciudad de Guatemala",
     "Carlos López de Mixco",
