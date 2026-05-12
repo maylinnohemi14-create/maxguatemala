@@ -59,7 +59,7 @@ const UnderArmour = () => {
   const [showCODForm, setShowCODForm] = useState(false);
 
   const PRODUCT_ID = "UA-KIT3EN1-GT";
-  const PRODUCT_PRICE = 299;
+  const PRODUCT_PRICE = 259;
   const PAGE_ROUTE = "/conjuntos";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
@@ -267,11 +267,11 @@ const UnderArmour = () => {
               <div className="relative">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-sm sm:text-base text-muted-foreground">Precio normal:</span>
-                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q589</span>
+                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q259</span>
                 </div>
                 <div className="flex items-baseline gap-3 mb-3">
                   <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">
-                    Q299
+                    Q259
                   </span>
                   <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
                 </div>
@@ -604,10 +604,10 @@ const UnderArmour = () => {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Los 3 conjuntos vienen incluidos por Q299?
+                ¿Los 3 conjuntos vienen incluidos por Q259?
               </AccordionTrigger>
               <AccordionContent className="text-sm sm:text-base">
-                ¡Sí! Por Q299 recibes los 3 conjuntos completos (Gris, Negro y Azul). Cada conjunto incluye buzo con zípper, camiseta y pantalón.
+                ¡Sí! Por Q259 recibes los 3 conjuntos completos (Gris, Negro y Azul). Cada conjunto incluye buzo con zípper, camiseta y pantalón.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
@@ -642,7 +642,7 @@ const UnderArmour = () => {
       <section className="py-10 sm:py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
         <div className="container mx-auto px-3 sm:px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            ¡Lleva los 3 conjuntos por solo Q299! 👟🇬🇹
+            ¡Lleva los 3 conjuntos por solo Q259! 👟🇬🇹
           </h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">
             Envío gratis + Pago contra entrega + 3 conjuntos completos
@@ -654,7 +654,7 @@ const UnderArmour = () => {
                 className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
               >
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                PEDIR AHORA - Q299
+                PEDIR AHORA - Q259
               </Button>
             </DialogTrigger>
           </Dialog>
