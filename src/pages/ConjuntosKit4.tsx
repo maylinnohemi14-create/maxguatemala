@@ -422,7 +422,7 @@ const ConjuntosKit4 = () => {
                   >
                     <Truck className="w-4 h-4" style={{ color: C_MAGENTA }} />
                   </div>
-                  <span className="font-black text-white text-[11px]">13 may</span>
+                  <span className="font-black text-white text-[11px]">12 may</span>
                   <span className="text-white/50 text-[10px]">Despachada</span>
                 </div>
                 <div className="flex-1 h-0.5 mx-1" style={{ background: `linear-gradient(90deg, ${C_MAGENTA}, ${C_CYAN})` }} />
@@ -433,7 +433,7 @@ const ConjuntosKit4 = () => {
                   >
                     <Gift className="w-4 h-4" style={{ color: C_CYAN }} />
                   </div>
-                  <span className="font-black text-white text-[11px]">15 may</span>
+                  <span className="font-black text-white text-[11px]">14 may</span>
                   <span className="text-white/50 text-[10px]">Entregada</span>
                 </div>
               </div>
