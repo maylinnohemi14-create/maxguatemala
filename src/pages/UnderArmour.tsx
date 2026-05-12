@@ -429,7 +429,7 @@ const UnderArmour = () => {
                   >
                     <Truck className="w-4 h-4" style={{ color: NIKE_RED }} />
                   </div>
-                  <span className="font-black text-white text-[11px]">12 may</span>
+                  <span className="font-black text-white text-[11px]">{timeline.dispatched}</span>
                   <span className="text-white/50 text-[10px]">Despachada</span>
                 </div>
                 <div className="flex-1 h-0.5 mx-1" style={{ background: `linear-gradient(90deg, ${NIKE_RED}, ${NIKE_ORANGE})` }} />
