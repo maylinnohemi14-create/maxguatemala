@@ -433,7 +433,7 @@ const ConjuntosKit4 = () => {
                   >
                     <Gift className="w-4 h-4" style={{ color: C_CYAN }} />
                   </div>
-                  <span className="font-black text-white text-[11px]">14 may</span>
+                  <span className="font-black text-white text-[11px]">13-14 may</span>
                   <span className="text-white/50 text-[10px]">Entregada</span>
                 </div>
               </div>
