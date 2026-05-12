@@ -93,6 +93,7 @@ const ConjuntosKit4 = () => {
   const formRef = useRef<HTMLDivElement>(null);
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
+  const timeline = useMemo(() => getTimelineDates(), []);
 
   const carouselImages = useMemo(
     () => [
