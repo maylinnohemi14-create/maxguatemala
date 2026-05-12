@@ -1,724 +1,660 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { LegalFooter } from "@/components/LegalFooter";
+import { CODFormGuatemala } from "@/components/CODFormGuatemala";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { TrustBadge } from "@/components/TrustBadge";
-import { TestimonialCard } from "@/components/TestimonialCard";
+import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
+import { Check, Flame, Shield, Truck, Zap, Sparkles, X, Ruler } from "lucide-react";
 import { toast } from "sonner";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  Truck,
-  CreditCard,
-  Shield,
-  Star,
-  Check,
-  Gift,
-  Clock,
-  ShoppingCart,
-  Sparkles,
-  Flame,
-  Zap,
-  Shirt,
-} from "lucide-react";
+
 import underArmourMain from "@/assets/under-armour-main.png";
 import uaBlue from "@/assets/ua-blue.jpg";
 import uaBlack from "@/assets/ua-black.jpg";
 import uaGray from "@/assets/ua-gray.jpg";
-import maxHeader from "@/assets/max-header.png";
 import camisetaUpsell from "@/assets/upsell-camiseta-fit.png";
-import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
-import { LegalFooter } from "@/components/LegalFooter";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
-import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Ruler, X } from "lucide-react";
+// Cyber palette — Electric Cyan / Hot Magenta (futuristic, high-conversion)
+const NIKE_BLACK = "#05080F";
+const NIKE_DARK = "#0B1322";
+const NIKE_ORANGE = "#00E5FF"; // Electric cyan (primary accent)
+const NIKE_RED = "#FF2E9A";    // Hot magenta (secondary accent)
+const NIKE_WHITE = "#EAFBFF";
+const NIKE_GRAY = "#0F1A2E";
 
-const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+const PAGE_ROUTE = "/conjuntos";
+const PRODUCT_ID = "UA-KIT3EN1-GT";
+const PRODUCT_PRICE = 259;
+const PRICE_NORMAL = 299;
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
+const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
 
-const SETS = [
-  { name: "Conjunto Gris", image: uaGray, description: "Buzo Zípper + Camiseta + Pantalón" },
-  { name: "Conjunto Negro", image: uaBlack, description: "Buzo Zípper + Camiseta + Pantalón" },
-  { name: "Conjunto Azul", image: uaBlue, description: "Buzo Zípper + Camiseta + Pantalón" },
+const SET_SIZE_GUIDE = [
+  { size: "XS", pecho: "88-92", cintura: "68-72", cadera: "88-92" },
+  { size: "S", pecho: "92-98", cintura: "72-78", cadera: "92-98" },
+  { size: "M", pecho: "98-104", cintura: "78-84", cadera: "98-104" },
+  { size: "L", pecho: "104-110", cintura: "84-92", cadera: "104-110" },
+  { size: "XL", pecho: "110-118", cintura: "92-100", cadera: "110-118" },
+  { size: "XXL", pecho: "118-126", cintura: "100-108", cadera: "118-126" },
+  { size: "XXXL", pecho: "126-134", cintura: "108-118", cadera: "126-134" },
 ];
 
+const SHIRT_SIZE_GUIDE = [
+  { size: "XS", pecho: "88-92", largo: "64" },
+  { size: "S", pecho: "92-98", largo: "66" },
+  { size: "M", pecho: "98-104", largo: "68" },
+  { size: "L", pecho: "104-110", largo: "70" },
+  { size: "XL", pecho: "110-118", largo: "72" },
+  { size: "XXL", pecho: "118-126", largo: "74" },
+  { size: "XXXL", pecho: "126-134", largo: "76" },
+  { size: "XXXXL", pecho: "134-142", largo: "78" },
+];
+
+type SetItem = { id: string; name: string; hex: string; image: string };
+
+const SETS: SetItem[] = [
+  { id: "gris", name: "Conjunto Gris", hex: "#9CA3AF", image: uaGray },
+  { id: "negro", name: "Conjunto Negro", hex: "#000000", image: uaBlack },
+  { id: "azul", name: "Conjunto Azul", hex: "#1E3A8A", image: uaBlue },
+];
+
+const formatGTQ = (n: number) => `Q${n}`;
+
 const UnderArmour = () => {
-  const [selectedTopSizes, setSelectedTopSizes] = useState<Record<number, string>>({
-    0: "M",
-    1: "M",
-    2: "M",
-  });
-  const [selectedBottomSizes, setSelectedBottomSizes] = useState<Record<number, string>>({
-    0: "M",
-    1: "M",
-    2: "M",
-  });
+  const [mouse, setMouse] = useState({ x: 50, y: 50 });
   const [selectedImage, setSelectedImage] = useState(0);
-  const [showCODForm, setShowCODForm] = useState(false);
   const [showUpsell, setShowUpsell] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [addShirt, setAddShirt] = useState(false);
   const [shirtSize, setShirtSize] = useState<string>("M");
-
-  const PRODUCT_ID = "UA-KIT3EN1-GT";
-  const PRODUCT_PRICE = 259;
-  const PAGE_ROUTE = "/conjuntos";
+  const [topSizes, setTopSizes] = useState<Record<number, string>>({ 0: "M", 1: "M", 2: "M" });
+  const [bottomSizes, setBottomSizes] = useState<Record<number, string>>({ 0: "M", 1: "M", 2: "M" });
+  const formRef = useRef<HTMLDivElement>(null);
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
-  const productImages = [uaBlue, uaBlack, uaGray];
+  const carouselImages = useMemo(
+    () => [
+      { src: uaGray, name: "Conjunto Gris" },
+      { src: uaBlack, name: "Conjunto Negro" },
+      { src: uaBlue, name: "Conjunto Azul" },
+      { src: underArmourMain, name: "Kit 3 en 1 Completo" },
+    ],
+    []
+  );
 
-  // Auto-rotate images every 2 seconds
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      setMouse({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      });
+    };
+    window.addEventListener("mousemove", handler);
+    return () => window.removeEventListener("mousemove", handler);
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setSelectedImage(prev => (prev + 1) % productImages.length);
-    }, 2000);
+      setSelectedImage((prev) => (prev + 1) % carouselImages.length);
+    }, 2200);
     return () => clearInterval(interval);
-  }, [productImages.length]);
+  }, [carouselImages.length]);
 
-  useEffect(() => {
-    tiktokPixelIds.forEach(pid => {
-      trackTikTokConversion('ViewContent', {
-        contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 3 en 1', quantity: 1, price: PRODUCT_PRICE }],
-        value: PRODUCT_PRICE,
-        currency: 'GTQ',
-        content_category: 'Conjuntos Deportivos',
-      }, pid);
-    });
-    facebookPixelIds.forEach(pid => {
-      trackFacebookConversion('ViewContent', {
-        content_ids: [PRODUCT_ID],
-        content_type: 'product',
-        content_name: 'Conjuntos Deportivos Kit 3 en 1',
-        value: PRODUCT_PRICE,
-        currency: 'GTQ'
-      }, pid);
-    });
-  }, [tiktokPixelIds, facebookPixelIds]);
-
-  const handleDialogChange = (open: boolean) => {
-    if (open) {
-      tiktokPixelIds.forEach(pid => {
-        trackTikTokConversion('AddToCart', {
-          contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Conjuntos Deportivos Kit 3 en 1', quantity: 1, price: PRODUCT_PRICE }],
-          value: PRODUCT_PRICE,
-          currency: 'GTQ',
-          content_category: 'Conjuntos Deportivos',
-        }, pid);
-      });
-      facebookPixelIds.forEach(pid => {
-        trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' }, pid);
-      });
-    }
-    setShowCODForm(open);
-  };
-
+  // Preload upsell image
   useEffect(() => {
     const img = new Image();
     img.fetchPriority = "high";
     img.src = camisetaUpsell;
   }, []);
 
+  // ViewContent on mount
+  useEffect(() => {
+    tiktokPixelIds.forEach((pid) => {
+      trackTikTokConversion(
+        "ViewContent",
+        {
+          contents: [{ content_id: PRODUCT_ID, content_type: "product", content_name: "Conjuntos Deportivos Kit 3 en 1", quantity: 1, price: PRODUCT_PRICE }],
+          value: PRODUCT_PRICE,
+          currency: "GTQ",
+          content_category: "Conjuntos Deportivos",
+        },
+        pid
+      );
+    });
+    facebookPixelIds.forEach((pid) => {
+      trackFacebookConversion(
+        "ViewContent",
+        { content_ids: [PRODUCT_ID], content_type: "product", value: PRODUCT_PRICE, currency: "GTQ" },
+        pid
+      );
+    });
+  }, [tiktokPixelIds, facebookPixelIds]);
+
+  const sizesNote = useMemo(
+    () =>
+      SETS.map(
+        (s, idx) => `${s.name}: Camiseta ${topSizes[idx]} / Pantalón ${bottomSizes[idx]}`
+      ).join(" | "),
+    [topSizes, bottomSizes]
+  );
+
+  const productDisplayName = "Conjuntos Deportivos Kit 3 en 1";
+  const productName = `${productDisplayName} (${sizesNote})${addShirt ? ` + Camiseta Premium GRATIS Talla ${shirtSize}` : ""}`;
+
   const handleBuyClick = () => {
+    trackTikTokConversion(
+      "AddToCart",
+      {
+        contents: [{ content_id: PRODUCT_ID, content_type: "product", content_name: productDisplayName, quantity: 1, price: PRODUCT_PRICE }],
+        value: PRODUCT_PRICE,
+        currency: "GTQ",
+      },
+      undefined
+    );
+    trackFacebookConversion(
+      "AddToCart",
+      { content_ids: [PRODUCT_ID], content_type: "product", value: PRODUCT_PRICE, currency: "GTQ" },
+      undefined
+    );
     setShowUpsell(true);
   };
 
-  const openCODForm = () => {
+  const goToForm = () => {
     setShowUpsell(false);
-    handleDialogChange(true);
+    setShowForm(true);
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 150);
   };
 
   const handleUpsellDecision = (accept: boolean) => {
     setAddShirt(accept);
-    openCODForm();
+    goToForm();
   };
 
   const handleUpsellClose = () => {
     setAddShirt(false);
-    setShowUpsell(false);
+    goToForm();
   };
 
-  const guatemalanNames = [
-    "María García de Ciudad de Guatemala",
-    "Carlos López de Mixco",
-    "Ana Martínez de Villa Nueva",
-    "José Rodríguez de Quetzaltenango",
-    "Laura Hernández de Escuintla",
-    "Pedro González de Petapa",
-    "Rosa Pérez de Antigua",
-    "Juan Morales de Cobán",
-    "Carmen Torres de Huehuetenango",
-    "Luis Castro de Chimaltenango",
-    "Sofía Ramírez de San Marcos",
-    "Diego Gutiérrez de Mazatenango",
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const randomName = guatemalanNames[Math.floor(Math.random() * guatemalanNames.length)];
-      toast.success(
-        <div>
-          👟 <span className="text-destructive font-bold">{randomName}</span> acaba de comprar
-        </div>,
-        {
-          description: "¡Quedan pocas unidades disponibles!",
-          duration: 4000,
-        }
-      );
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const testimonials = [
-    {
-      name: "Andrés M.",
-      rating: 5,
-      comment: "Excelente calidad. La tela es gruesa y resistente, no como otros conjuntos que se dañan al mes. Los 3 colores combinan con todo.",
-      date: "Hace 2 días",
-    },
-    {
-      name: "Gabriela R.",
-      rating: 5,
-      comment: "Se lo compré a mi esposo y quedó encantado. El material es transpirable y perfecto para el gimnasio. ¡Gran oferta!",
-      date: "Hace 1 semana",
-    },
-    {
-      name: "Fernando L.",
-      rating: 5,
-      comment: "Llegó rápido a zona 7. Los 3 conjuntos son idénticos a la foto. Material premium, costuras reforzadas. Muy recomendado.",
-      date: "Hace 2 semanas",
-    },
-    {
-      name: "Karla P.",
-      rating: 5,
-      comment: "Increíble que vengan los 3 conjuntos a ese precio. Son cómodos para entrenar y también para salir. La talla fue exacta.",
-      date: "Hace 3 semanas",
-    },
-  ];
-
-  const sizesNote = Object.entries(selectedTopSizes)
-    .map(([idx, topSize]) => `${SETS[Number(idx)].name}: Camiseta ${topSize} / Pantalón ${selectedBottomSizes[Number(idx)]}`)
-    .join(" | ");
-
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* MAX Header */}
-      <div className="w-full bg-white">
-        <img src={maxHeader} alt="MAX Guatemala - Tienda Online" className="w-full h-auto object-contain sm:object-cover max-h-[120px] sm:max-h-none mx-auto sm:mx-0 p-2 sm:p-0" />
-      </div>
+    <div
+      className="min-h-screen relative overflow-x-hidden"
+      style={{
+        background: `radial-gradient(circle at ${mouse.x}% ${mouse.y}%, #0a1428 0%, #060b18 50%, #02050d 100%)`,
+        transition: "background 0.4s ease-out",
+      }}
+    >
+      <div
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(${NIKE_ORANGE}33 1px, transparent 1px), linear-gradient(90deg, ${NIKE_ORANGE}33 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+          maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+        }}
+      />
 
-      {/* Trust Bar */}
-      <div className="bg-gradient-hero text-primary-foreground py-2">
-        <div className="container mx-auto px-2 sm:px-4">
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium">
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <Truck className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>Envío Gratis</span>
+      <div
+        className="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl opacity-30 pointer-events-none animate-pulse"
+        style={{ background: NIKE_ORANGE }}
+      />
+      <div
+        className="absolute top-1/2 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-20 pointer-events-none animate-pulse"
+        style={{ background: NIKE_RED, animationDelay: "1.5s" }}
+      />
+
+      {/* HEADER */}
+      <header className="relative z-10 border-b border-white/10 backdrop-blur-md bg-black/40">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div
+              className="w-11 h-11 rounded-xl flex items-center justify-center shadow-lg"
+              style={{
+                background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                boxShadow: `0 0 20px ${NIKE_ORANGE}66`,
+              }}
+            >
+              <svg viewBox="0 0 24 12" className="w-7 h-4" fill="white">
+                <path d="M24 1.5c-3 5-8.5 9-15 9-3.5 0-6-1-7-2.5C2.5 9 4 8.5 6 8c4-1 9-3 13-5.5 1.5-1 3-2 5-2.5z" />
+              </svg>
             </div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <CreditCard className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>Pago Contra Entrega</span>
-            </div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>Garantía Total</span>
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-white/60">Sport Edition</div>
+              <div className="text-lg sm:text-xl font-black tracking-tight text-white">
+                Kit 3 en 1 <span style={{ color: NIKE_ORANGE }}>·</span> PRO
+              </div>
             </div>
           </div>
+          <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur">
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: NIKE_ORANGE }} />
+            <span className="text-xs text-white/80 font-medium">PAGO CONTRA ENTREGA</span>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-3 sm:px-4 py-6 sm:py-12">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
-          {/* Product Images */}
-          <div className="animate-fade-in">
-            <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-large mb-3 sm:mb-4 bg-white relative">
+      {/* HERO */}
+      <section className="relative z-10 max-w-6xl mx-auto px-4 pt-6 pb-10 sm:pt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="relative">
+            <div
+              className="relative aspect-[4/5] rounded-3xl overflow-hidden border backdrop-blur-md"
+              style={{
+                borderColor: `${NIKE_ORANGE}55`,
+                background: `linear-gradient(160deg, ${NIKE_GRAY}, #000)`,
+                boxShadow: `0 20px 60px -20px ${NIKE_ORANGE}aa`,
+              }}
+            >
+              <div
+                className="absolute top-6 -right-12 z-20 w-48 text-center py-1.5 text-[11px] font-black tracking-widest text-white rotate-45"
+                style={{
+                  background: `linear-gradient(90deg, ${NIKE_RED}, ${NIKE_ORANGE})`,
+                  boxShadow: `0 4px 16px ${NIKE_RED}66`,
+                }}
+              >
+                💰 PAGO AL RECIBIR
+              </div>
+
               <img
-                src={productImages[selectedImage]}
-                alt="Conjuntos Deportivos Kit 3 en 1"
-                className="w-full h-auto object-contain aspect-square"
+                src={carouselImages[selectedImage].src}
+                alt={`Kit 3 en 1 ${carouselImages[selectedImage].name}`}
+                className="w-full h-full object-cover transition-opacity duration-500"
+                loading="eager"
+                fetchPriority="high"
               />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: `linear-gradient(180deg, transparent 60%, #000000cc 100%)` }}
+              />
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                <div className="px-3 py-1.5 rounded-full backdrop-blur-md bg-black/50 border border-white/20">
+                  <span className="text-xs font-bold text-white tracking-wide">{carouselImages[selectedImage].name}</span>
+                </div>
+                <div className="flex gap-1.5">
+                  {carouselImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setSelectedImage(i)}
+                      aria-label={`Ver ${carouselImages[i].name}`}
+                      className="w-2 h-2 rounded-full transition-all"
+                      style={{
+                        background: i === selectedImage ? NIKE_ORANGE : "rgba(255,255,255,0.3)",
+                        width: i === selectedImage ? "18px" : "8px",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="grid grid-cols-4 gap-2 mt-2">
-              {productImages.map((img, idx) => (
+
+            <div className="mt-3 grid grid-cols-4 gap-1.5">
+              {carouselImages.map((c, i) => (
                 <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`border-2 rounded-lg overflow-hidden transition-all ${selectedImage === idx ? 'border-primary ring-2 ring-primary/30' : 'border-border opacity-70 hover:opacity-100'}`}
+                  key={i}
+                  onClick={() => setSelectedImage(i)}
+                  aria-label={c.name}
+                  className="aspect-square rounded-lg overflow-hidden border-2 transition-all"
+                  style={{
+                    borderColor: i === selectedImage ? NIKE_ORANGE : "rgba(255,255,255,0.1)",
+                    boxShadow: i === selectedImage ? `0 0 12px ${NIKE_ORANGE}88` : "none",
+                  }}
                 >
-                  <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-auto object-cover aspect-square" />
+                  <img src={c.src} alt={c.name} className="w-full h-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Product Info */}
-          <div className="animate-scale-in">
-            <div className="mb-3">
-              <Badge className="bg-green-600 text-white font-bold text-xs sm:text-sm px-3 py-1.5 border-2 border-green-700">
-                🇬🇹 Envío Gratis a toda Guatemala
-              </Badge>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <div className="flex gap-0.5 sm:gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className={`w-4 h-4 sm:w-5 sm:h-5 ${i < 5 ? 'fill-accent text-accent' : 'fill-accent/50 text-accent'}`} />
-                ))}
-              </div>
-              <span className="text-xs sm:text-sm font-medium text-muted-foreground">
-                (280+ reseñas)
+          <div className="text-white">
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 border backdrop-blur-md"
+              style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}
+            >
+              <Sparkles className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
+              <span className="text-[11px] font-bold tracking-widest" style={{ color: NIKE_ORANGE }}>
+                COLECCIÓN PREMIUM 2026
               </span>
-              <Badge variant="secondary" className="text-xs font-semibold">
-                +3,858 unidades vendidas!
-              </Badge>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-foreground leading-tight">
-              CONJUNTOS DEPORTIVOS KIT 3 EN 1 👟🔥
+            <h1 className="text-3xl sm:text-5xl font-black leading-[0.95] tracking-tight mb-3">
+              Conjuntos Deportivos
+              <br />
+              <span
+                style={{
+                  background: `linear-gradient(135deg, ${NIKE_ORANGE} 0%, ${NIKE_RED} 100%)`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Kit 3 en 1 Pro
+              </span>
             </h1>
 
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <Badge className="bg-primary text-primary-foreground font-bold text-xs px-3 py-1.5 animate-pulse-glow">
-                ⚡ PROMOCIÓN VÁLIDA HASTA HOY {new Date().toLocaleDateString('es-GT', { timeZone: 'America/Guatemala', day: 'numeric', month: 'long' }).toUpperCase()} - ¡NO TE LO PIERDAS!
-              </Badge>
-            </div>
-
-            <p className="text-sm sm:text-base text-muted-foreground mb-4">
-              Transforma tu entrenamiento con este increíble kit de 3 conjuntos deportivos premium. Comodidad, estilo y rendimiento en cada movimiento.
+            <p className="text-white/70 text-sm sm:text-base mb-5">
+              Buzo zípper + camiseta + pantalón en tejido premium transpirable. Recibes los 3 conjuntos completos (Gris, Negro y Azul) con envío gratis a toda Guatemala.
             </p>
 
-            {/* Price Section */}
-            <div className="mb-4 sm:mb-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/30 shadow-lg relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm sm:text-base text-muted-foreground">Precio normal:</span>
-                  <span className="text-base sm:text-lg text-muted-foreground line-through decoration-destructive decoration-2">Q299</span>
-                </div>
-                <div className="flex items-baseline gap-3 mb-3">
-                  <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-destructive animate-pulse-scale drop-shadow-sm">
-                    Q259
-                  </span>
-                  <span className="text-lg sm:text-xl font-semibold text-muted-foreground">GTQ</span>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center gap-1.5 bg-success text-success-foreground font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full shadow-md">
-                    <span className="text-base">🔥</span>
-                    <span>¡APROVECHA LA PROMOCIÓN!</span>
-                  </div>
-                </div>
-              </div>
+            <div className="flex items-center gap-2 mb-5 px-3 py-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur w-fit">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span className="text-xs text-white/80 font-medium">14 personas viendo ahora</span>
             </div>
 
-            {/* Delivery Timeline */}
-            {(() => {
-              const today = new Date();
-              const formatDate = (date: Date) => {
-                return `${date.getDate()} ${date.toLocaleDateString('es-GT', { month: 'short' }).replace('.', '')}`;
-              };
-              const addDays = (date: Date, days: number) => {
-                const result = new Date(date);
-                result.setDate(result.getDate() + days);
-                return result;
-              };
-              const confirmedDate = formatDate(today);
-              const dispatchDate = formatDate(addDays(today, 1));
-              const deliveryStart = formatDate(addDays(today, 3));
-
-              return (
-                <div className="mb-4 sm:mb-6 p-4 rounded-xl bg-secondary/50 border border-border">
-                  <div className="flex items-center justify-between text-xs sm:text-sm">
-                    <div className="flex flex-col items-center text-center">
-                      <ShoppingCart className="w-5 h-5 mb-1 text-primary" />
-                      <span className="font-bold">{confirmedDate}</span>
-                      <span className="text-muted-foreground">Confirmada</span>
-                    </div>
-                    <div className="flex-1 h-0.5 bg-primary/30 mx-2" />
-                    <div className="flex flex-col items-center text-center">
-                      <Truck className="w-5 h-5 mb-1 text-primary" />
-                      <span className="font-bold">{dispatchDate}</span>
-                      <span className="text-muted-foreground">Despachada</span>
-                    </div>
-                    <div className="flex-1 h-0.5 bg-primary/30 mx-2" />
-                    <div className="flex flex-col items-center text-center">
-                      <Gift className="w-5 h-5 mb-1 text-primary" />
-                      <span className="font-bold">{deliveryStart}-{addDays(today, 5).getDate()}</span>
-                      <span className="text-muted-foreground">Entregada</span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
-
-            {/* Benefits List */}
-            <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-              {[
-                { text: "Kit completo con", bold: "3 conjuntos deportivos de alta calidad", suffix: "" },
-                { text: "Material", bold: "transpirable y de secado rápido", suffix: "" },
-                { text: "Diseño moderno", bold: "estilo deportivo premium", suffix: "" },
-                { text: "Ideal para", bold: "gimnasio, running y actividades al aire libre", suffix: "" },
-                { text: "Envío", bold: "100% gratis", suffix: "a toda Guatemala" },
-              ].map((benefit, idx) => (
-                <div key={idx} className="flex items-start gap-2 sm:gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-success flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 sm:w-4 sm:h-4 text-success-foreground" />
-                  </div>
-                  <span className="text-sm sm:text-base text-foreground">
-                    {benefit.text} <strong>{benefit.bold}</strong> {benefit.suffix}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Size Selectors */}
-            <div className="mb-4 sm:mb-6 space-y-4">
-              <div className="flex items-center justify-between">
-                <label className="block font-semibold text-foreground text-sm sm:text-base">Selecciona la talla de cada conjunto:</label>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <button className="flex items-center gap-1 text-xs font-semibold text-primary hover:underline">
-                      <Ruler className="w-3.5 h-3.5" />
-                      Guía de tallas
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent className="w-[90vw] max-w-md p-4 sm:p-6 rounded-xl">
-                    <DialogHeader>
-                      <DialogTitle className="text-base sm:text-lg">📏 Guía de Tallas</DialogTitle>
-                    </DialogHeader>
-                    <div className="mt-2">
-                      <p className="text-xs text-muted-foreground mb-3">Medidas en centímetros (cm). Mide tu cuerpo y compara con la tabla.</p>
-                      <div className="overflow-x-auto">
-                        <table className="w-full text-xs border-collapse">
-                          <thead>
-                            <tr className="bg-secondary">
-                              <th className="border border-border px-2 py-1.5 text-left font-bold">Talla</th>
-                              <th className="border border-border px-2 py-1.5 text-center font-bold">Pecho</th>
-                              <th className="border border-border px-2 py-1.5 text-center font-bold">Cintura</th>
-                              <th className="border border-border px-2 py-1.5 text-center font-bold">Cadera</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {[
-                              { talla: "XS", pecho: "82-86", cintura: "66-70", cadera: "82-86" },
-                              { talla: "S", pecho: "86-92", cintura: "70-76", cadera: "86-92" },
-                              { talla: "M", pecho: "92-98", cintura: "76-82", cadera: "92-98" },
-                              { talla: "L", pecho: "98-104", cintura: "82-88", cadera: "98-104" },
-                              { talla: "XL", pecho: "104-112", cintura: "88-96", cadera: "104-112" },
-                              { talla: "XXL", pecho: "112-120", cintura: "96-104", cadera: "112-120" },
-                              { talla: "XXXL", pecho: "120-128", cintura: "104-112", cadera: "120-128" },
-                            ].map((row) => (
-                              <tr key={row.talla} className="hover:bg-secondary/50">
-                                <td className="border border-border px-2 py-1.5 font-bold">{row.talla}</td>
-                                <td className="border border-border px-2 py-1.5 text-center">{row.pecho}</td>
-                                <td className="border border-border px-2 py-1.5 text-center">{row.cintura}</td>
-                                <td className="border border-border px-2 py-1.5 text-center">{row.cadera}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                      <p className="text-[10px] text-muted-foreground mt-3">💡 Si estás entre dos tallas, recomendamos elegir la talla más grande para mayor comodidad.</p>
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              </div>
-              {SETS.map((set, idx) => (
-                <div key={idx} className="p-3 rounded-xl border border-border bg-secondary/30">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img src={set.image} alt={set.name} className="w-10 h-10 rounded-lg object-cover border border-border" />
-                    <div>
-                      <span className="font-bold text-sm text-foreground">{set.name}</span>
-                      <p className="text-xs text-muted-foreground">{set.description}</p>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div>
-                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">Camiseta: <span className="text-foreground">{selectedTopSizes[idx]}</span></span>
-                      <div className="flex gap-1.5 flex-wrap">
-                        {SIZES.map((size) => (
-                          <button
-                            key={size}
-                            onClick={() => setSelectedTopSizes(prev => ({ ...prev, [idx]: size }))}
-                            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all border ${
-                              selectedTopSizes[idx] === size
-                                ? "bg-foreground text-background border-foreground"
-                                : "bg-background text-foreground border-border hover:border-foreground/50"
-                            }`}
-                          >
-                            {size}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <span className="text-xs font-semibold text-muted-foreground mb-1 block">Pantalón: <span className="text-foreground">{selectedBottomSizes[idx]}</span></span>
-                      <div className="flex gap-1.5 flex-wrap">
-                        {SIZES.map((size) => (
-                          <button
-                            key={`bottom-${size}`}
-                            onClick={() => setSelectedBottomSizes(prev => ({ ...prev, [idx]: size }))}
-                            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all border ${
-                              selectedBottomSizes[idx] === size
-                                ? "bg-foreground text-background border-foreground"
-                                : "bg-background text-foreground border-border hover:border-foreground/50"
-                            }`}
-                          >
-                            {size}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="space-y-3 mb-6 sm:mb-8">
-              <Button
-                onClick={handleBuyClick}
-                size="lg"
-                className="w-full text-base sm:text-lg font-bold py-5 sm:py-7 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all animate-button-bounce"
+            {/* PRICE BLOCK */}
+            <div
+              className="mb-6 p-5 rounded-2xl border-2 relative overflow-hidden"
+              style={{
+                borderColor: `${NIKE_ORANGE}55`,
+                background: `linear-gradient(135deg, ${NIKE_ORANGE}11, ${NIKE_RED}08)`,
+                boxShadow: `0 0 32px ${NIKE_ORANGE}33`,
+              }}
+            >
+              <div
+                className="absolute top-0 right-0 px-3 py-1 text-[10px] font-black tracking-widest rounded-bl-xl"
+                style={{ background: NIKE_ORANGE, color: "#000" }}
               >
-                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                Pedir con pago Contra Entrega + Envío Gratis
-              </Button>
-              <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
-                <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
-                  <DialogHeader>
-                    <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
-                  </DialogHeader>
-                  {showCODForm && (
-                    <CODFormGuatemala
-                      productId={PRODUCT_ID}
-                      productPrice={PRODUCT_PRICE}
-                      productName={`Conjuntos Deportivos Kit 3 en 1 (${sizesNote})${addShirt ? ` + Camiseta Premium GRATIS Talla ${shirtSize}` : ''}`}
-                      productDisplayName="Conjuntos Deportivos Kit 3 en 1"
-                      productImage={underArmourMain}
-                      tiktokPixelIds={tiktokPixelIds}
-                      facebookPixelIds={facebookPixelIds}
-                      sizeDetails={SETS.map((set, idx) => ({
-                        name: set.name,
-                        image: set.image,
-                        topSize: selectedTopSizes[idx],
-                        bottomSize: selectedBottomSizes[idx],
-                        topLabel: 'Camiseta',
-                        bottomLabel: 'Pantalón',
-                      }))}
-                      includedItems={[
-                        { id: 'warranty', icon: '🛡️', title: 'Garantía 1 Año', description: 'Protección contra defectos' },
-                        { id: 'kit', icon: '👕', title: '3 Conjuntos Completos', description: 'Gris + Negro + Azul' },
-                        { id: 'envio', icon: '🚚', title: 'Envío Gratis', description: 'A toda Guatemala' },
-                        ...(addShirt ? [{ id: 'upsell', icon: '🎁', title: `Camiseta Premium Talla ${shirtSize}`, description: 'Bonus 100% GRATIS' }] : []),
-                      ]}
-                      onOrderComplete={() => {
-                        setShowCODForm(false);
-                        setAddShirt(false);
-                        toast.success("¡Pedido registrado exitosamente!");
-                      }}
+                🔥 OFERTA ACTIVA
+              </div>
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="text-xs uppercase tracking-widest text-white/60 font-bold">Precio normal</span>
+                <span className="text-sm text-white/50 line-through decoration-2 decoration-pink-500">{formatGTQ(PRICE_NORMAL)}</span>
+              </div>
+              <div className="flex items-baseline gap-3">
+                <span
+                  className="text-5xl sm:text-6xl font-black"
+                  style={{
+                    background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {formatGTQ(PRODUCT_PRICE)}
+                </span>
+                <span className="text-base font-bold text-white/70">GTQ</span>
+              </div>
+              <div className="text-xs text-white/60 mt-2">Por los 3 conjuntos completos · Pago al recibir</div>
+            </div>
+
+            {/* INCLUDED ITEMS */}
+            <div className="mb-6">
+              <div className="text-xs uppercase tracking-widest text-white/60 mb-3 font-bold">
+                ✦ El kit incluye
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {SETS.map((s) => (
+                  <div
+                    key={s.id}
+                    className="relative rounded-xl overflow-hidden border-2 aspect-square"
+                    style={{
+                      borderColor: `${NIKE_ORANGE}55`,
+                      boxShadow: `0 0 12px ${NIKE_ORANGE}33`,
+                    }}
+                  >
+                    <img src={s.image} alt={s.name} className="w-full h-full object-cover" loading="lazy" />
+                    <div
+                      className="absolute inset-0"
+                      style={{ background: `linear-gradient(180deg, transparent 50%, #000000cc 100%)` }}
                     />
-                  )}
-                </DialogContent>
-              </Dialog>
+                    <div className="absolute bottom-1.5 left-1.5 right-1.5 text-[10px] font-bold text-white text-center leading-tight">
+                      {s.name}
+                    </div>
+                    <div
+                      className="absolute top-1 right-1 w-5 h-5 rounded-full flex items-center justify-center"
+                      style={{ background: NIKE_ORANGE }}
+                    >
+                      <Check className="w-3 h-3 text-black" strokeWidth={3} />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3">
-              <TrustBadge icon={Truck} title="Envío Gratis" description="En toda Guatemala" />
-              <TrustBadge icon={Shield} title="Compra Segura" description="Producto garantizado" />
-              <TrustBadge icon={Clock} title="Entrega Rápida" description="3 a 5 días hábiles" />
+            {/* SIZE SELECTOR (per set) */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-xs uppercase tracking-widest text-white/60 font-bold">
+                  ✦ Elige tus tallas
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowSizeGuide(true)}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border transition-all hover:scale-105"
+                  style={{
+                    borderColor: `${NIKE_ORANGE}88`,
+                    background: `${NIKE_ORANGE}15`,
+                    color: NIKE_ORANGE,
+                  }}
+                >
+                  <Ruler className="w-3 h-3" />
+                  Guía de Tallas
+                </button>
+              </div>
+
+              <div className="space-y-2">
+                {SETS.map((set, idx) => (
+                  <div
+                    key={set.id}
+                    className="rounded-xl border p-3"
+                    style={{
+                      borderColor: "rgba(255,255,255,0.1)",
+                      background: "rgba(255,255,255,0.03)",
+                    }}
+                  >
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <img src={set.image} alt={set.name} className="w-9 h-9 rounded-md object-cover" />
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[10px] uppercase tracking-wider text-white/50">Conjunto {idx + 1}</div>
+                        <div className="text-xs font-bold text-white truncate">{set.name}</div>
+                      </div>
+                      <div
+                        className="px-2 py-0.5 rounded-md text-[10px] font-black"
+                        style={{ background: NIKE_ORANGE, color: "#000" }}
+                      >
+                        {topSizes[idx]} / {bottomSizes[idx]}
+                      </div>
+                    </div>
+
+                    <div className="mb-2">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-white/50 mb-1">Camiseta</div>
+                      <div className="grid grid-cols-7 gap-1">
+                        {SIZES.map((s) => {
+                          const active = topSizes[idx] === s;
+                          return (
+                            <button
+                              key={s}
+                              type="button"
+                              onClick={() => setTopSizes((p) => ({ ...p, [idx]: s }))}
+                              className="py-1.5 rounded-md text-[11px] font-black transition-all border"
+                              style={{
+                                borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.12)",
+                                background: active ? NIKE_ORANGE : "transparent",
+                                color: active ? "#000" : "#fff",
+                                boxShadow: active ? `0 0 8px ${NIKE_ORANGE}88` : "none",
+                              }}
+                            >
+                              {s}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-white/50 mb-1">Pantalón</div>
+                      <div className="grid grid-cols-7 gap-1">
+                        {SIZES.map((s) => {
+                          const active = bottomSizes[idx] === s;
+                          return (
+                            <button
+                              key={s}
+                              type="button"
+                              onClick={() => setBottomSizes((p) => ({ ...p, [idx]: s }))}
+                              className="py-1.5 rounded-md text-[11px] font-black transition-all border"
+                              style={{
+                                borderColor: active ? NIKE_RED : "rgba(255,255,255,0.12)",
+                                background: active ? NIKE_RED : "transparent",
+                                color: active ? "#fff" : "#fff",
+                                boxShadow: active ? `0 0 8px ${NIKE_RED}88` : "none",
+                              }}
+                            >
+                              {s}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <Button
+              onClick={handleBuyClick}
+              size="lg"
+              className="w-full text-base sm:text-lg font-black py-6 sm:py-7 rounded-2xl tracking-wider transition-all hover:scale-[1.02]"
+              style={{
+                background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                color: "#fff",
+                boxShadow: `0 12px 32px -8px ${NIKE_ORANGE}, inset 0 1px 0 ${NIKE_WHITE}33`,
+              }}
+            >
+              <Flame className="w-5 h-5 mr-2" />
+              COMPRAR AHORA — {formatGTQ(PRODUCT_PRICE)}
+            </Button>
+
+            <div className="grid grid-cols-3 gap-2 mt-4 text-center">
+              {[
+                { i: <Truck className="w-4 h-4" />, t: "Envío 3-5 días" },
+                { i: <Shield className="w-4 h-4" />, t: "Garantía total" },
+                { i: <Zap className="w-4 h-4" />, t: "Pago al recibir" },
+              ].map((t, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col items-center gap-1 py-2.5 rounded-lg border border-white/10 bg-white/5"
+                >
+                  <span style={{ color: NIKE_ORANGE }}>{t.i}</span>
+                  <span className="text-[10px] text-white/70 font-medium">{t.t}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Urgency Banner */}
-      <div className="bg-green-600 text-white py-3 overflow-hidden w-full max-w-[100vw]">
-        <div className="animate-marquee whitespace-nowrap">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <span key={i} className="mx-4 sm:mx-8 text-sm sm:text-lg font-bold">
-              👟 ¡OFERTA POR TIEMPO LIMITADO! - ÚLTIMAS UNIDADES 🔥
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Product Details Section */}
-      <section className="py-10 sm:py-16 bg-secondary/30">
-        <div className="container mx-auto px-3 sm:px-4">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
-            ¿Por qué elegir estos conjuntos? 💪
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <div className="p-6 rounded-2xl bg-background border border-border text-center">
-              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
-                <Shirt className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Material Premium</h3>
-              <p className="text-muted-foreground text-sm">Tela transpirable de alta calidad con secado rápido. Perfecta para entrenamientos intensos.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-background border border-border text-center">
-              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Diseño Moderno</h3>
-              <p className="text-muted-foreground text-sm">Estilo deportivo elegante que puedes usar tanto en el gimnasio como en tu día a día.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-background border border-border text-center">
-              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
-                <Flame className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">3 Colores Incluidos</h3>
-              <p className="text-muted-foreground text-sm">Gris, Negro y Azul. Combina con todo y ten opciones para cada día de la semana.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-background border border-border text-center">
-              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Costuras Reforzadas</h3>
-              <p className="text-muted-foreground text-sm">Durabilidad garantizada. Costuras reforzadas que resisten lavados y entrenamientos intensos.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What's Included Section */}
-      <section className="py-10 sm:py-16">
-        <div className="container mx-auto px-3 sm:px-4">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
-            ¿Qué incluye tu kit? 📦
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-500/10 to-gray-600/5 border border-gray-500/20 text-center">
-              <span className="text-4xl mb-4 block">🧥</span>
-              <h3 className="font-bold text-lg mb-2">3 Buzos con Zípper</h3>
-              <p className="text-muted-foreground text-sm">Buzos deportivos con cierre completo, capucha y bolsillos laterales con zípper.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 text-center">
-              <span className="text-4xl mb-4 block">👕</span>
-              <h3 className="font-bold text-lg mb-2">3 Camisetas</h3>
-              <p className="text-muted-foreground text-sm">Camisetas deportivas de alta calidad con tecnología de secado rápido.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-800/10 to-gray-900/5 border border-gray-800/20 text-center">
-              <span className="text-4xl mb-4 block">👖</span>
-              <h3 className="font-bold text-lg mb-2">3 Pantalones</h3>
-              <p className="text-muted-foreground text-sm">Pantalones deportivos con ajuste cómodo, elástico en cintura y puños ajustados.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-10 sm:py-16 bg-secondary/30">
-        <div className="container mx-auto px-3 sm:px-4">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
-            Lo que dicen nuestros clientes en Guatemala 🇬🇹
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {testimonials.map((testimonial, idx) => (
-              <TestimonialCard key={idx} {...testimonial} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-10 sm:py-16">
-        <div className="container mx-auto px-3 sm:px-4 max-w-3xl">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-foreground">
-            Preguntas Frecuentes
-          </h2>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Los 3 conjuntos vienen incluidos por Q259?
-              </AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base">
-                ¡Sí! Por Q259 recibes los 3 conjuntos completos (Gris, Negro y Azul). Cada conjunto incluye buzo con zípper, camiseta y pantalón.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Puedo elegir tallas diferentes para cada conjunto?
-              </AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base">
-                ¡Sí! Puedes seleccionar una talla diferente para cada uno de los 3 conjuntos según tu preferencia.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿De qué material están hechos?
-              </AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base">
-                Están fabricados con material transpirable de alta calidad, con tecnología de secado rápido. Ideales para el gimnasio, correr o actividades al aire libre.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-4">
-              <AccordionTrigger className="text-left text-sm sm:text-base">
-                ¿Cuánto tarda en llegar?
-              </AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base">
-                Hacemos envíos a todos los departamentos de Guatemala en 3-5 días hábiles con envío completamente gratis. Pagas al recibir tu producto.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-10 sm:py-16 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
-        <div className="container mx-auto px-3 sm:px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            ¡Lleva los 3 conjuntos por solo Q259! 👟🇬🇹
-          </h2>
-          <p className="text-lg sm:text-xl mb-6 opacity-90">
-            Envío gratis + Pago contra entrega + 3 conjuntos completos
-          </p>
-          <Button
-            onClick={handleBuyClick}
-            size="lg"
-            className="text-base sm:text-lg font-bold py-5 sm:py-7 px-8 sm:px-12 bg-[#E31837] hover:bg-[#C41430] text-white hover:shadow-glow transition-all"
+      {/* FORM SECTION */}
+      {showForm && (
+        <section ref={formRef} className="relative z-10 max-w-3xl mx-auto px-4 pb-16">
+          <div
+            className="rounded-3xl p-4 sm:p-8 border backdrop-blur-md"
+            style={{
+              borderColor: `${NIKE_ORANGE}55`,
+              background: `linear-gradient(160deg, rgba(255,255,255,0.97), rgba(245,245,245,0.97))`,
+              boxShadow: `0 20px 60px -10px ${NIKE_ORANGE}88`,
+            }}
           >
-            <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-            PEDIR AHORA - Q259
-          </Button>
-        </div>
-      </section>
+            <div className="text-center mb-5">
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3"
+                style={{ background: `${NIKE_ORANGE}22`, border: `1px solid ${NIKE_ORANGE}55` }}
+              >
+                <span style={{ color: NIKE_RED }} className="text-xs font-bold tracking-widest">
+                  ✦ ÚLTIMO PASO ✦
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-black">Completa tus datos</h2>
+              <p className="text-sm text-black/60 mt-1">Tu pedido llegará en 3-5 días. Pagas al recibir.</p>
+            </div>
 
-      {/* UPSELL DIALOG */}
+            <CODFormGuatemala
+              productId={PRODUCT_ID}
+              productPrice={PRODUCT_PRICE}
+              productName={productName}
+              productDisplayName={productDisplayName}
+              productImage={underArmourMain}
+              tiktokPixelIds={tiktokPixelIds}
+              facebookPixelIds={facebookPixelIds}
+              sizeDetails={SETS.map((set, idx) => ({
+                name: set.name,
+                image: set.image,
+                topSize: topSizes[idx],
+                bottomSize: bottomSizes[idx],
+                topLabel: "Camiseta",
+                bottomLabel: "Pantalón",
+              }))}
+              includedItems={[
+                { id: "warranty", icon: "🛡️", title: "Garantía 1 Año", description: "Protección contra defectos" },
+                { id: "kit", icon: "👕", title: "3 Conjuntos Completos", description: "Gris + Negro + Azul" },
+                { id: "envio", icon: "🚚", title: "Envío Gratis", description: "A toda Guatemala" },
+                ...(addShirt
+                  ? [{ id: "upsell", icon: "🎁", title: `Camiseta Premium Talla ${shirtSize}`, description: "Bonus 100% GRATIS" }]
+                  : []),
+              ]}
+              onOrderComplete={() => {
+                setAddShirt(false);
+                toast.success("¡Pedido registrado exitosamente!");
+              }}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* UPSELL DIALOG - REGALO GRATIS */}
       <Dialog open={showUpsell} onOpenChange={(open) => { if (!open) handleUpsellClose(); }}>
-        <DialogContent className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0 bg-gradient-to-br from-gray-900 to-black [&>button:last-child]:hidden">
-          <div className="relative p-5 sm:p-6 border-t-4 border-[#E31837]">
-            <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 pointer-events-none bg-[#E31837]" />
+        <DialogContent
+          className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0 [&>button:last-child]:hidden"
+          style={{
+            background: `linear-gradient(160deg, ${NIKE_DARK}, ${NIKE_BLACK})`,
+            boxShadow: `0 30px 80px ${NIKE_ORANGE}55`,
+          }}
+        >
+          <div className="relative p-5 sm:p-6" style={{ borderTop: `3px solid ${NIKE_ORANGE}` }}>
+            <div
+              className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 pointer-events-none"
+              style={{ background: NIKE_ORANGE }}
+            />
 
             <button
               type="button"
               onClick={handleUpsellClose}
               aria-label="Cerrar"
-              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 bg-[#E31837] border-2 border-white shadow-lg"
+              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
+              style={{
+                background: `radial-gradient(circle, ${NIKE_ORANGE} 0%, ${NIKE_RED} 100%)`,
+                boxShadow: `0 0 16px ${NIKE_ORANGE}, 0 0 32px ${NIKE_ORANGE}99, 0 0 48px ${NIKE_RED}66, inset 0 0 8px rgba(255,255,255,0.3)`,
+                border: `2px solid ${NIKE_WHITE}`,
+              }}
             >
               <X className="w-5 h-5 text-white" strokeWidth={3} />
             </button>
 
             <DialogHeader className="relative z-10">
-              <div className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border border-[#E31837]/60 bg-[#E31837]/15">
-                <span className="text-[11px] font-black tracking-widest text-[#E31837]">
-                  🔥 OFERTA EXCLUSIVA
+              <div
+                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}
+              >
+                <Flame className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: NIKE_ORANGE }}>
+                  REGALO EXCLUSIVO
                 </span>
               </div>
               <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
-                ¡Espera! ¿Quieres llevar también esta Camiseta Premium{" "}
-                <span className="text-[#E31837]">100% GRATIS</span>?
+                ¡Espera! Llévate también esta Camiseta Premium{" "}
+                <span style={{ color: NIKE_ORANGE }}>100% GRATIS</span> 🎁
               </DialogTitle>
             </DialogHeader>
 
             <div className="relative z-10 mt-4">
-              <div className="rounded-2xl overflow-hidden border-2 border-[#E31837]/40 mb-4">
+              <div
+                className="rounded-2xl overflow-hidden border-2 mb-4"
+                style={{ borderColor: `${NIKE_ORANGE}33` }}
+              >
                 <div className="aspect-square relative bg-white">
                   <img
                     src={camisetaUpsell}
@@ -726,12 +662,18 @@ const UnderArmour = () => {
                     className="w-full h-full object-contain"
                     fetchPriority="high"
                   />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black bg-[#E31837] text-white">
-                    OFERTA ÚNICA
+                  <div
+                    className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
+                    style={{ background: NIKE_ORANGE, color: "#000" }}
+                  >
+                    🎁 REGALO
                   </div>
-                  <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md bg-black/70">
+                  <div
+                    className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
+                    style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
+                  >
                     <span className="text-white/50 line-through text-xs mr-1">Q90</span>
-                    <span className="text-[#E31837]">GRATIS</span>
+                    <span style={{ color: NIKE_ORANGE }}>GRATIS</span>
                   </div>
                 </div>
               </div>
@@ -747,11 +689,13 @@ const UnderArmour = () => {
                       <button
                         key={s}
                         onClick={() => setShirtSize(s)}
-                        className={`py-2 rounded-lg text-xs font-black transition-all border-2 ${
-                          active
-                            ? "border-[#E31837] bg-[#E31837] text-white shadow-lg"
-                            : "border-white/15 bg-transparent text-white"
-                        }`}
+                        className="py-2 rounded-lg text-xs font-black transition-all border-2"
+                        style={{
+                          borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.15)",
+                          background: active ? NIKE_ORANGE : "transparent",
+                          color: active ? "#000" : "#fff",
+                          boxShadow: active ? `0 0 12px ${NIKE_ORANGE}88` : "none",
+                        }}
                       >
                         {s}
                       </button>
@@ -763,10 +707,15 @@ const UnderArmour = () => {
               <div className="space-y-2">
                 <Button
                   onClick={() => handleUpsellDecision(true)}
-                  className="w-full font-black py-5 rounded-xl text-base bg-[#E31837] hover:bg-[#C41430] text-white shadow-lg"
+                  className="w-full font-black py-5 rounded-xl text-base"
+                  style={{
+                    background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                    color: "#fff",
+                    boxShadow: `0 8px 24px -4px ${NIKE_ORANGE}`,
+                  }}
                 >
                   <Check className="w-5 h-5 mr-2" />
-                  SÍ, AGREGAR GRATIS
+                  SÍ, AGREGAR GRATIS 🎁
                 </Button>
                 <button
                   onClick={() => handleUpsellDecision(false)}
@@ -781,17 +730,132 @@ const UnderArmour = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Disclaimer */}
-      <div className="bg-secondary/50 py-4">
-        <div className="container mx-auto px-3 sm:px-4 text-center">
-          <p className="text-xs text-muted-foreground">
-            Producto original importado. MAX Guatemala es distribuidor autorizado de productos deportivos de alta calidad.
-            Todos los derechos reservados.
-          </p>
-        </div>
-      </div>
+      {/* SIZE GUIDE DIALOG */}
+      <Dialog open={showSizeGuide} onOpenChange={setShowSizeGuide}>
+        <DialogContent
+          className="w-[calc(100vw-16px)] max-w-lg max-h-[90dvh] overflow-y-auto p-0 border-0 [&>button:last-child]:hidden"
+          style={{
+            background: `linear-gradient(160deg, ${NIKE_DARK}, ${NIKE_BLACK})`,
+            boxShadow: `0 30px 80px ${NIKE_ORANGE}55`,
+          }}
+        >
+          <div className="relative p-5 sm:p-6" style={{ borderTop: `3px solid ${NIKE_ORANGE}` }}>
+            <div
+              className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-25 pointer-events-none"
+              style={{ background: NIKE_ORANGE }}
+            />
 
-      <LegalFooter />
+            <button
+              type="button"
+              onClick={() => setShowSizeGuide(false)}
+              aria-label="Cerrar guía de tallas"
+              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
+              style={{
+                background: `radial-gradient(circle, ${NIKE_ORANGE} 0%, ${NIKE_RED} 100%)`,
+                boxShadow: `0 0 16px ${NIKE_ORANGE}, 0 0 32px ${NIKE_ORANGE}99, 0 0 48px ${NIKE_RED}66, inset 0 0 8px rgba(255,255,255,0.3)`,
+                border: `2px solid ${NIKE_WHITE}`,
+              }}
+            >
+              <X className="w-5 h-5 text-white" strokeWidth={3} />
+            </button>
+
+            <DialogHeader className="relative z-10">
+              <div
+                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}
+              >
+                <Ruler className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: NIKE_ORANGE }}>
+                  GUÍA DE TALLAS
+                </span>
+              </div>
+              <DialogTitle className="text-center text-white text-xl font-black">
+                Encuentra tu talla ideal
+              </DialogTitle>
+              <p className="text-center text-white/60 text-xs mt-1">
+                Medidas aproximadas en centímetros (cm)
+              </p>
+            </DialogHeader>
+
+            <div className="relative z-10 mt-5">
+              <div className="mb-5">
+                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: NIKE_ORANGE }}>
+                  📏 Conjunto Deportivo
+                </div>
+                <div className="rounded-xl overflow-hidden border" style={{ borderColor: `${NIKE_ORANGE}33` }}>
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr style={{ background: `${NIKE_ORANGE}22` }}>
+                        <th className="py-2 px-2 text-left text-white font-black">Talla</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Pecho</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Cintura</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Cadera</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {SET_SIZE_GUIDE.map((row, i) => (
+                        <tr key={row.size} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)" }}>
+                          <td className="py-2 px-2 font-black" style={{ color: NIKE_ORANGE }}>{row.size}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.pecho}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.cintura}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.cadera}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: NIKE_ORANGE }}>
+                  👕 Camiseta Premium
+                </div>
+                <div className="rounded-xl overflow-hidden border" style={{ borderColor: `${NIKE_ORANGE}33` }}>
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr style={{ background: `${NIKE_ORANGE}22` }}>
+                        <th className="py-2 px-2 text-left text-white font-black">Talla</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Pecho</th>
+                        <th className="py-2 px-2 text-center text-white font-black">Largo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {SHIRT_SIZE_GUIDE.map((row, i) => (
+                        <tr key={row.size} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)" }}>
+                          <td className="py-2 px-2 font-black" style={{ color: NIKE_ORANGE }}>{row.size}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.pecho}</td>
+                          <td className="py-2 px-2 text-center text-white/80">{row.largo}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="rounded-lg p-3 text-[11px] text-white/70 border" style={{ borderColor: `${NIKE_ORANGE}33`, background: `${NIKE_ORANGE}10` }}>
+                💡 <strong className="text-white">Tip:</strong> Si estás entre dos tallas, te recomendamos elegir la talla mayor para un fit más holgado.
+              </div>
+
+              <Button
+                onClick={() => setShowSizeGuide(false)}
+                className="w-full mt-4 font-black py-5 rounded-xl"
+                style={{
+                  background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                  color: "#fff",
+                  boxShadow: `0 8px 24px -4px ${NIKE_ORANGE}`,
+                }}
+              >
+                <Check className="w-5 h-5 mr-2" />
+                Entendido
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <div className="relative z-10 bg-background">
+        <LegalFooter />
+      </div>
     </div>
   );
 };
