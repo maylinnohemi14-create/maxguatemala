@@ -15,7 +15,7 @@ const products = [
     price: "Q299",
     originalPrice: "Q589",
     image: underArmourMain,
-    link: "/conjuntosfit",
+    link: "/conjuntos",
     badge: "MÁS VENDIDO",
   },
   {
@@ -91,7 +91,7 @@ const Index = () => {
               <Link to="/catalogo" className="text-sm text-white/70 hover:text-white transition-colors tracking-wider">
                 Catálogo
               </Link>
-              <Link to="/conjuntosfit" className="text-sm text-white/70 hover:text-white transition-colors tracking-wider">
+              <Link to="/conjuntos" className="text-sm text-white/70 hover:text-white transition-colors tracking-wider">
                 Conjuntos
               </Link>
               <Link to="/refletiva" className="text-sm text-white/70 hover:text-white transition-colors tracking-wider">
@@ -118,7 +118,7 @@ const Index = () => {
             <div className="px-6 py-6 space-y-4">
               {[
                 { to: "/catalogo", label: "Catálogo" },
-                { to: "/conjuntosfit", label: "Conjuntos" },
+                { to: "/conjuntos", label: "Conjuntos" },
                 { to: "/refletiva", label: "Reflectivas" },
                 { to: "/proyector", label: "Proyector" },
                 { to: "/contacto", label: "Contacto" },
@@ -179,7 +179,7 @@ const Index = () => {
                 <ChevronRight className="inline-block w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                to="/conjuntosfit"
+                to="/conjuntos"
                 className="px-8 sm:px-10 py-4 border border-white/20 text-white font-medium text-sm sm:text-base rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-500 tracking-wider"
               >
                 EXPLORAR COLECCIÓN

@@ -60,7 +60,7 @@ const UnderArmour = () => {
 
   const PRODUCT_ID = "UA-KIT3EN1-GT";
   const PRODUCT_PRICE = 299;
-  const PAGE_ROUTE = "/conjuntosfit";
+  const PAGE_ROUTE = "/conjuntos";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
