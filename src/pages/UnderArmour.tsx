@@ -4,7 +4,7 @@ import { CODFormGuatemala } from "@/components/CODFormGuatemala";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Check, Flame, Shield, Truck, Zap, Sparkles, X, Ruler } from "lucide-react";
+import { Check, Flame, Shield, Truck, Zap, Sparkles, X, Ruler, ShoppingCart, Gift } from "lucide-react";
 import { toast } from "sonner";
 
 import underArmourMain from "@/assets/under-armour-main.png";
@@ -379,6 +379,53 @@ const UnderArmour = () => {
                 <span className="text-base font-bold text-white/70">GTQ</span>
               </div>
               <div className="text-xs text-white/60 mt-2">Por los 3 conjuntos completos · Pago al recibir</div>
+            </div>
+
+            {/* DELIVERY TIMELINE - Fixed dates */}
+            <div
+              className="mb-6 p-4 rounded-2xl border"
+              style={{
+                borderColor: "rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.03)",
+              }}
+            >
+              <div className="text-[10px] uppercase tracking-widest text-white/50 font-bold mb-3 text-center">
+                ✦ Línea de tiempo de tu pedido
+              </div>
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex flex-col items-center text-center flex-1">
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center mb-1.5"
+                    style={{ background: `${NIKE_ORANGE}22`, border: `1.5px solid ${NIKE_ORANGE}` }}
+                  >
+                    <ShoppingCart className="w-4 h-4" style={{ color: NIKE_ORANGE }} />
+                  </div>
+                  <span className="font-black text-white text-[11px]">12 may</span>
+                  <span className="text-white/50 text-[10px]">Confirmada</span>
+                </div>
+                <div className="flex-1 h-0.5 mx-1" style={{ background: `linear-gradient(90deg, ${NIKE_ORANGE}, ${NIKE_RED})` }} />
+                <div className="flex flex-col items-center text-center flex-1">
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center mb-1.5"
+                    style={{ background: `${NIKE_RED}22`, border: `1.5px solid ${NIKE_RED}` }}
+                  >
+                    <Truck className="w-4 h-4" style={{ color: NIKE_RED }} />
+                  </div>
+                  <span className="font-black text-white text-[11px]">12 may</span>
+                  <span className="text-white/50 text-[10px]">Despachada</span>
+                </div>
+                <div className="flex-1 h-0.5 mx-1" style={{ background: `linear-gradient(90deg, ${NIKE_RED}, ${NIKE_ORANGE})` }} />
+                <div className="flex flex-col items-center text-center flex-1">
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center mb-1.5"
+                    style={{ background: `${NIKE_ORANGE}22`, border: `1.5px solid ${NIKE_ORANGE}` }}
+                  >
+                    <Gift className="w-4 h-4" style={{ color: NIKE_ORANGE }} />
+                  </div>
+                  <span className="font-black text-white text-[11px]">14 may</span>
+                  <span className="text-white/50 text-[10px]">Entregada</span>
+                </div>
+              </div>
             </div>
 
             {/* INCLUDED ITEMS */}
