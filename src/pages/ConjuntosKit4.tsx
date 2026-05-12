@@ -62,6 +62,23 @@ const SETS: SetItem[] = [
 
 const formatGTQ = (n: number) => `Q${n}`;
 
+const formatDateGT = (d: Date) => {
+  const day = d.getDate();
+  const month = d.toLocaleDateString("es-GT", { month: "short" }).replace(".", "").toLowerCase();
+  return `${day} ${month}`;
+};
+const getTimelineDates = () => {
+  const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "America/Guatemala" });
+  const today = new Date(`${todayStr}T00:00:00`);
+  const d1 = new Date(today); d1.setDate(today.getDate() + 1);
+  const d2 = new Date(today); d2.setDate(today.getDate() + 2);
+  return {
+    confirmed: formatDateGT(today),
+    dispatched: formatDateGT(today),
+    delivered: `${d1.getDate()}-${formatDateGT(d2)}`,
+  };
+};
+
 const ConjuntosKit4 = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
   const [selectedImage, setSelectedImage] = useState(0);
