@@ -60,6 +60,23 @@ const SETS: SetItem[] = [
 
 const formatGTQ = (n: number) => `Q${n}`;
 
+const formatDateGT = (d: Date) => {
+  const day = d.getDate();
+  const month = d.toLocaleDateString("es-GT", { month: "short" }).replace(".", "").toLowerCase();
+  return `${day} ${month}`;
+};
+const getTimelineDates = () => {
+  const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "America/Guatemala" });
+  const today = new Date(`${todayStr}T00:00:00`);
+  const d1 = new Date(today); d1.setDate(today.getDate() + 1);
+  const d2 = new Date(today); d2.setDate(today.getDate() + 2);
+  return {
+    confirmed: formatDateGT(today),
+    dispatched: formatDateGT(today),
+    delivered: `${d1.getDate()}-${formatDateGT(d2)}`,
+  };
+};
+
 const UnderArmour = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
   const [selectedImage, setSelectedImage] = useState(0);
@@ -73,6 +90,7 @@ const UnderArmour = () => {
   const formRef = useRef<HTMLDivElement>(null);
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
+  const timeline = useMemo(() => getTimelineDates(), []);
 
   const carouselImages = useMemo(
     () => [
@@ -400,7 +418,7 @@ const UnderArmour = () => {
                   >
                     <ShoppingCart className="w-4 h-4" style={{ color: NIKE_ORANGE }} />
                   </div>
-                  <span className="font-black text-white text-[11px]">12 may</span>
+                  <span className="font-black text-white text-[11px]">{timeline.confirmed}</span>
                   <span className="text-white/50 text-[10px]">Confirmada</span>
                 </div>
                 <div className="flex-1 h-0.5 mx-1" style={{ background: `linear-gradient(90deg, ${NIKE_ORANGE}, ${NIKE_RED})` }} />
@@ -411,7 +429,7 @@ const UnderArmour = () => {
                   >
                     <Truck className="w-4 h-4" style={{ color: NIKE_RED }} />
                   </div>
-                  <span className="font-black text-white text-[11px]">12 may</span>
+                  <span className="font-black text-white text-[11px]">{timeline.dispatched}</span>
                   <span className="text-white/50 text-[10px]">Despachada</span>
                 </div>
                 <div className="flex-1 h-0.5 mx-1" style={{ background: `linear-gradient(90deg, ${NIKE_RED}, ${NIKE_ORANGE})` }} />
@@ -422,7 +440,7 @@ const UnderArmour = () => {
                   >
                     <Gift className="w-4 h-4" style={{ color: NIKE_ORANGE }} />
                   </div>
-                  <span className="font-black text-white text-[11px]">13-14 may</span>
+                  <span className="font-black text-white text-[11px]">{timeline.delivered}</span>
                   <span className="text-white/50 text-[10px]">Entregada</span>
                 </div>
               </div>
