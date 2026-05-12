@@ -440,7 +440,7 @@ const UnderArmour = () => {
                   >
                     <Gift className="w-4 h-4" style={{ color: NIKE_ORANGE }} />
                   </div>
-                  <span className="font-black text-white text-[11px]">13-14 may</span>
+                  <span className="font-black text-white text-[11px]">{timeline.delivered}</span>
                   <span className="text-white/50 text-[10px]">Entregada</span>
                 </div>
               </div>
