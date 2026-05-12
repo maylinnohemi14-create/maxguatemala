@@ -29,12 +29,15 @@ import uaBlue from "@/assets/ua-blue.jpg";
 import uaBlack from "@/assets/ua-black.jpg";
 import uaGray from "@/assets/ua-gray.jpg";
 import maxHeader from "@/assets/max-header.png";
+import camisetaUpsell from "@/assets/upsell-camiseta-fit.png";
 import { CODFormGuatemala, IncludedItem } from "@/components/CODFormGuatemala";
 import { LegalFooter } from "@/components/LegalFooter";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { trackTikTokConversion, trackFacebookConversion, usePagePixels } from "@/hooks/useTrackingPixels";
-import { Ruler } from "lucide-react";
+import { Ruler, X } from "lucide-react";
+
+const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
