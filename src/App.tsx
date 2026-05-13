@@ -61,6 +61,7 @@ const App = () => (
         <TrackingPixels />
         <Routes>
           <Route path="/" element={<Proyector />} />
+          <Route path="/cinema" element={<Proyector />} />
           <Route path="/proyector" element={<Index />} />
           <Route path="/taladro" element={<Taladro />} />
           <Route path="/gafas" element={<Gafas />} />
