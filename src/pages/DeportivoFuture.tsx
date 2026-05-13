@@ -709,8 +709,8 @@ const DeportivoFuture = () => {
                 </span>
               </div>
               <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
-                ¡Espera! ¿Quieres llevar también esta Camiseta Premium por solo{" "}
-                <span style={{ color: NIKE_ORANGE }}>Q{SHIRT_PRICE}</span>?
+                ¡Espera! Llévate también esta Camiseta Premium{" "}
+                <span style={{ color: NIKE_ORANGE }}>100% GRATIS</span> 🎁
               </DialogTitle>
             </DialogHeader>
 
