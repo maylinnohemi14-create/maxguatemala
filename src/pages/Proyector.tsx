@@ -523,7 +523,7 @@ const Index = () => {
             boxShadow: "0 30px 80px rgba(255,107,0,0.45)",
           }}
         >
-          <div className="relative p-5 sm:p-6" style={{ borderTop: "3px solid #ff6b00" }}>
+          <div className="relative p-3 sm:p-5" style={{ borderTop: "3px solid #ff6b00" }}>
             <div
               className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 pointer-events-none"
               style={{ background: "#ff6b00" }}
@@ -533,97 +533,79 @@ const Index = () => {
               type="button"
               onClick={goFromUpsellToForm}
               aria-label="Cerrar"
-              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
+              className="absolute top-2 right-2 z-30 w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
               style={{
                 background: "radial-gradient(circle, #ff6b00 0%, #e63946 100%)",
-                boxShadow: "0 0 16px #ff6b00, 0 0 32px rgba(255,107,0,0.6), 0 0 48px rgba(230,57,70,0.4), inset 0 0 8px rgba(255,255,255,0.3)",
+                boxShadow: "0 0 12px #ff6b00, 0 0 24px rgba(255,107,0,0.6), inset 0 0 6px rgba(255,255,255,0.3)",
                 border: "2px solid #ffffff",
               }}
             >
-              <X className="w-5 h-5 text-white" strokeWidth={3} />
+              <X className="w-4 h-4 text-white" strokeWidth={3} />
             </button>
 
             <DialogHeader className="relative z-10">
               <div
-                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                className="inline-flex self-center items-center gap-1.5 px-2 py-0.5 rounded-full mb-1.5 border"
                 style={{ borderColor: "rgba(255,107,0,0.4)", background: "rgba(255,107,0,0.1)" }}
               >
-                <Flame className="w-3.5 h-3.5" style={{ color: "#ff6b00" }} />
-                <span className="text-[11px] font-black tracking-widest" style={{ color: "#ff6b00" }}>
+                <Flame className="w-3 h-3" style={{ color: "#ff6b00" }} />
+                <span className="text-[9px] font-black tracking-widest" style={{ color: "#ff6b00" }}>
                   REGALOS EXCLUSIVOS
                 </span>
               </div>
-              <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
-                ¡Espera! Llévate también estos 2 regalos{" "}
+              <DialogTitle className="text-center text-white text-sm sm:text-lg font-black leading-tight px-6">
+                ¡Espera! Llévate 2 regalos{" "}
                 <span style={{ color: "#ff6b00" }}>100% GRATIS</span> 🎁
               </DialogTitle>
             </DialogHeader>
 
-            <div className="relative z-10 mt-4 space-y-3">
+            <div className="relative z-10 mt-2 space-y-2">
               {/* GIFT 1 - PANTALLA */}
-              <div className="rounded-2xl overflow-hidden border-2" style={{ borderColor: "rgba(255,107,0,0.25)" }}>
-                <div className="aspect-[16/10] relative bg-white">
+              <div className="rounded-xl overflow-hidden border-2 flex" style={{ borderColor: "rgba(255,107,0,0.25)" }}>
+                <div className="w-20 h-20 relative bg-white shrink-0">
                   <img src={upsellPantalla} alt="Pantalla de Proyección" className="w-full h-full object-contain" />
-                  <div
-                    className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
-                    style={{ background: "#ff6b00", color: "#000" }}
-                  >
-                    🎁 REGALO
-                  </div>
-                  <div
-                    className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
-                    style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
-                  >
-                    <span className="text-white/50 line-through text-xs mr-1">Q250</span>
+                </div>
+                <div className="flex-1 p-2 bg-black/40 flex flex-col justify-center min-w-0">
+                  <div className="text-white font-black text-xs leading-tight">🖥️ Pantalla de Proyección</div>
+                  <div className="text-white/60 text-[10px]">La mejor experiencia visual</div>
+                  <div className="mt-0.5 text-[11px] font-black">
+                    <span className="text-white/50 line-through mr-1">Q250</span>
                     <span style={{ color: "#ff6b00" }}>GRATIS</span>
                   </div>
-                </div>
-                <div className="p-3 bg-black/40">
-                  <div className="text-white font-black text-sm">🖥️ Pantalla de Proyección</div>
-                  <div className="text-white/60 text-xs">La mejor experiencia visual</div>
                 </div>
               </div>
 
               {/* GIFT 2 - LIMPA LENTES */}
-              <div className="rounded-2xl overflow-hidden border-2" style={{ borderColor: "rgba(255,107,0,0.25)" }}>
-                <div className="aspect-[16/10] relative bg-white">
+              <div className="rounded-xl overflow-hidden border-2 flex" style={{ borderColor: "rgba(255,107,0,0.25)" }}>
+                <div className="w-20 h-20 relative bg-white shrink-0">
                   <img src={upsellLimpaLentes} alt="Kit Limpia Lentes" className="w-full h-full object-contain" />
-                  <div
-                    className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
-                    style={{ background: "#ff6b00", color: "#000" }}
-                  >
-                    🎁 REGALO
-                  </div>
-                  <div
-                    className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
-                    style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
-                  >
-                    <span className="text-white/50 line-through text-xs mr-1">Q120</span>
+                </div>
+                <div className="flex-1 p-2 bg-black/40 flex flex-col justify-center min-w-0">
+                  <div className="text-white font-black text-xs leading-tight">✨ Kit Limpia Lentes</div>
+                  <div className="text-white/60 text-[10px]">Mantén tu proyector siempre nítido</div>
+                  <div className="mt-0.5 text-[11px] font-black">
+                    <span className="text-white/50 line-through mr-1">Q120</span>
                     <span style={{ color: "#ff6b00" }}>GRATIS</span>
                   </div>
                 </div>
-                <div className="p-3 bg-black/40">
-                  <div className="text-white font-black text-sm">✨ Kit Limpia Lentes</div>
-                  <div className="text-white/60 text-xs">Mantén tu proyector siempre nítido</div>
-                </div>
               </div>
 
-              <div className="space-y-2 pt-2">
+              <div className="space-y-1 pt-1">
                 <Button
                   onClick={goFromUpsellToForm}
-                  className="w-full font-black py-5 rounded-xl text-base"
+                  className="w-full font-black py-3 rounded-xl text-sm"
                   style={{
                     background: "linear-gradient(135deg, #ff6b00, #e63946)",
                     color: "#fff",
-                    boxShadow: "0 8px 24px -4px rgba(255,107,0,0.7)",
+                    boxShadow: "0 6px 18px -4px rgba(255,107,0,0.7)",
                   }}
                 >
-                  <Check className="w-5 h-5 mr-2" />
+                  <Check className="w-4 h-4 mr-1.5" />
                   SÍ, AGREGAR GRATIS 🎁
                 </Button>
                 <button
                   onClick={goFromUpsellToForm}
-                  className="w-full text-white/50 hover:text-white/80 py-2 text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
+                  className="w-full text-white/50 hover:text-white/80 py-1 text-[11px] font-medium transition-colors"
                 >
                   Continuar al pedido
                 </button>
