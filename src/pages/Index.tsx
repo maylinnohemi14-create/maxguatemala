@@ -39,7 +39,7 @@ const products = [
   {
     title: "Proyector VEVSHAO A10",
     description: "Cine en casa — Compra 1 y Lleva 2",
-    price: "Q359",
+    price: "Q329",
     originalPrice: "Q899",
     image: projectorPromo,
     link: "/proyector",
