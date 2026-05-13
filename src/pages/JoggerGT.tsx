@@ -73,7 +73,7 @@ export { products as JOGGER_GT_PRODUCTS };
 
 const kits: JoggerKit[] = [
   {
-    id: "kit-negro-clasico", slug: "kit-negro-clasico", name: "Negro Clásico", price: 280, originalPrice: 747,
+    id: "kit-negro-clasico", slug: "kit-negro-clasico", name: "Negro Clásico", price: 259, originalPrice: 747,
     badge: "🔥 MÁS VENDIDO", category: "Kit",
     items: [
       { name: "Nike Tn Trackpants", image: products[0].image, color: "Negro" },
@@ -82,7 +82,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-retro-beige", slug: "kit-retro-beige", name: "Retro Beige", price: 280, originalPrice: 747,
+    id: "kit-retro-beige", slug: "kit-retro-beige", name: "Retro Beige", price: 259, originalPrice: 747,
     badge: "EXCLUSIVO", category: "Kit",
     items: [
       { name: "Nike Shox Trackpants", image: products[1].image, color: "Beige/Negro" },
@@ -91,7 +91,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-sport-mix", slug: "kit-sport-mix", name: "Sport Mix", price: 280, originalPrice: 747,
+    id: "kit-sport-mix", slug: "kit-sport-mix", name: "Sport Mix", price: 259, originalPrice: 747,
     category: "Kit",
     items: [
       { name: "Nike Windrunner Pants", image: products[5].image, color: "Negro" },
@@ -100,7 +100,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-blanco-negro", slug: "kit-blanco-negro", name: "Blanco & Negro", price: 280, originalPrice: 747,
+    id: "kit-blanco-negro", slug: "kit-blanco-negro", name: "Blanco & Negro", price: 259, originalPrice: 747,
     category: "Kit",
     items: [
       { name: "Nike Trackpants White", image: products[16].image, color: "Blanco" },
@@ -109,7 +109,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-azul-marino", slug: "kit-azul-marino", name: "Azul Marino", price: 280, originalPrice: 747,
+    id: "kit-azul-marino", slug: "kit-azul-marino", name: "Azul Marino", price: 259, originalPrice: 747,
     badge: "NUEVO", category: "Kit",
     items: [
       { name: "Nike PSG Trackpants", image: products[17].image, color: "Azul" },
@@ -118,7 +118,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-vintage-retro", slug: "kit-vintage-retro", name: "Vintage Retro", price: 280, originalPrice: 747,
+    id: "kit-vintage-retro", slug: "kit-vintage-retro", name: "Vintage Retro", price: 259, originalPrice: 747,
     category: "Kit",
     items: [
       { name: "Nike Heritage Pants", image: products[7].image, color: "Negro/Blanco" },
@@ -127,7 +127,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-urban-gris", slug: "kit-urban-gris", name: "Urban Gris", price: 280, originalPrice: 747,
+    id: "kit-urban-gris", slug: "kit-urban-gris", name: "Urban Gris", price: 259, originalPrice: 747,
     category: "Kit",
     items: [
       { name: "Nike Urban Pants", image: products[10].image, color: "Negro/Gris" },
@@ -136,7 +136,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-total-black", slug: "kit-total-black", name: "Total Black", price: 280, originalPrice: 747,
+    id: "kit-total-black", slug: "kit-total-black", name: "Total Black", price: 259, originalPrice: 747,
     category: "Kit",
     items: [
       { name: "Nike Zip Trackpants", image: products[8].image, color: "Negro" },
@@ -145,7 +145,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-mix-colores", slug: "kit-mix-colores", name: "Mix de Colores", price: 280, originalPrice: 747,
+    id: "kit-mix-colores", slug: "kit-mix-colores", name: "Mix de Colores", price: 259, originalPrice: 747,
     badge: "PREMIUM", category: "Kit",
     items: [
       { name: "Nike Trackpants Stripe", image: products[3].image, color: "Beige" },
@@ -154,7 +154,7 @@ const kits: JoggerKit[] = [
     ],
   },
   {
-    id: "kit-jogger-3en1", slug: "jogger-3en1", name: "Jogger 3 en 1", price: 280, originalPrice: 747,
+    id: "kit-jogger-3en1", slug: "jogger-3en1", name: "Jogger 3 en 1", price: 259, originalPrice: 747,
     badge: "⭐ 3 EN 1", category: "Kit",
     items: [
       { name: "Jogger Negro", image: joggerNegro, color: "Negro" },
