@@ -149,7 +149,7 @@ const DeportivoFuture = () => {
     }
     parts.push(`Tallas: ${setSizes.slice(0, selectedQty).join(", ")}`);
     if (addShirt) {
-      parts.push(`+ CAMISETA BLANCA Talla ${shirtSize} (Q${SHIRT_PRICE})`);
+      parts.push(`+ CAMISETA BLANCA Talla ${shirtSize} (GRATIS)`);
     }
     return parts.join(" | ");
   }, [selectedQty, selectedColors, setSizes, addShirt, shirtSize]);
