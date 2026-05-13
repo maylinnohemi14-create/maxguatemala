@@ -26,7 +26,7 @@ const NIKE_GRAY = "#1F1F1F";
 
 const PAGE_ROUTE = "/jogger";
 const PRODUCT_ID = "JOGGER-NIKE-GT";
-const JACKET_PRICE = 40;
+const JACKET_PRICE = 0;
 const PANT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 const JACKET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
 
@@ -79,15 +79,13 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 1, price: 249, label: "1 Pantalón Jogger", saving: 0 },
-  { qty: 2, price: 269, label: "2 Pantalones Jogger", saving: 229, highlight: true },
-  { qty: 3, price: 280, label: "3 Pantalones Jogger", saving: 467 },
+  { qty: 3, price: 259, label: "3 Pantalones Jogger", saving: 488, highlight: true },
 ];
 
 const Jogger = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(2);
-  const [selectedColors, setSelectedColors] = useState<string[]>(["negro", "azul-marino"]);
+  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(3);
+  const [selectedColors, setSelectedColors] = useState<string[]>(["negro", "azul-marino", "gris"]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -147,7 +145,7 @@ const Jogger = () => {
     }
     parts.push(`Tallas: ${pantSizes.slice(0, selectedQty).join(", ")}`);
     if (addJacket) {
-      parts.push(`+ CHAQUETA NIKE BLANCA Talla ${jacketSize} (Q${JACKET_PRICE})`);
+      parts.push(`+ CHAQUETA NIKE BLANCA Talla ${jacketSize} (GRATIS)`);
     }
     return parts.join(" | ");
   }, [selectedQty, selectedColors, pantSizes, addJacket, jacketSize]);
@@ -654,7 +652,7 @@ const Jogger = () => {
               tiktokPixelIds={tiktokPixelIds}
               facebookPixelIds={facebookPixelIds}
               extraNote={extraNote}
-              promoMessage={`¡PROMOCIÓN! ${selectedQty} Pantalón(es) Jogger Nike por solo Q${basePrice}${addJacket ? ` + Chaqueta Q${JACKET_PRICE}` : ""}.`}
+              promoMessage={`¡PROMOCIÓN! ${selectedQty} Pantalón(es) Jogger Nike por solo Q${basePrice}${addJacket ? ` + Chaqueta GRATIS` : ""}.`}
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
               ]}
@@ -710,8 +708,8 @@ const Jogger = () => {
                 </span>
               </div>
               <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
-                ¡Espera! ¿Quieres llevar también esta Jaqueta Nike por solo{" "}
-                <span style={{ color: NIKE_ORANGE }}>Q{JACKET_PRICE}</span>?
+                ¡Espera! ¿Quieres llevar también esta Jaqueta Nike{" "}
+                <span style={{ color: NIKE_ORANGE }}>GRATIS</span>?
               </DialogTitle>
             </DialogHeader>
 
@@ -737,7 +735,7 @@ const Jogger = () => {
                     style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
                   >
                     <span className="text-white/50 line-through text-xs mr-1">Q280</span>
-                    <span style={{ color: NIKE_ORANGE }}>Q{JACKET_PRICE}</span>
+                    <span style={{ color: NIKE_ORANGE }}>GRATIS</span>
                   </div>
                 </div>
               </div>
@@ -781,7 +779,7 @@ const Jogger = () => {
                   }}
                 >
                   <Check className="w-5 h-5 mr-2" />
-                  SÍ, AGREGAR POR Q{JACKET_PRICE}
+                  SÍ, AGREGAR GRATIS
                 </Button>
                 <button
                   onClick={() => handleUpsellDecision(false)}
