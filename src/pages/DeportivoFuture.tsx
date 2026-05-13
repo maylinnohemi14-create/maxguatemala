@@ -729,7 +729,7 @@ const DeportivoFuture = () => {
                     className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
                     style={{ background: NIKE_ORANGE, color: "#000" }}
                   >
-                    -85% OFF
+                    🎁 GRATIS
                   </div>
                   <div
                     className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
