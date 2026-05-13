@@ -45,7 +45,7 @@ const Index = () => {
   const [showCODForm, setShowCODForm] = useState(false);
   
   const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10-GT";
-  const PRODUCT_PRICE = 359;
+  const PRODUCT_PRICE = 329;
 
   // TikTok: LandingPageView + ViewContent on mount
   useEffect(() => {
@@ -213,7 +213,7 @@ const Index = () => {
 
             <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-xl bg-primary/5 border-2 border-primary/20">
             <div className="flex items-baseline gap-2 sm:gap-3 mb-2">
-                <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground animate-pulse-slow">Q359</span>
+                <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground animate-pulse-slow">Q329</span>
                 <span className="text-lg sm:text-xl lg:text-2xl text-muted-foreground line-through">Q899</span>
               </div>
               <div className="flex items-center gap-2 text-success animate-lightning">
