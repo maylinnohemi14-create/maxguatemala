@@ -654,7 +654,7 @@ const DeportivoFuture = () => {
               tiktokPixelIds={tiktokPixelIds}
               facebookPixelIds={facebookPixelIds}
               extraNote={extraNote}
-              promoMessage={`¡PROMOCIÓN! ${selectedQty} Conjunto(s) Ultra Dry por solo Q${basePrice}${addShirt ? ` + Camiseta Q${SHIRT_PRICE}` : ""}.`}
+              promoMessage={`¡PROMOCIÓN! ${selectedQty} Conjunto(s) Ultra Dry por solo Q${basePrice}${addShirt ? ` + Camiseta GRATIS` : ""}.`}
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
               ]}
