@@ -86,6 +86,21 @@ const Index = () => {
     setShowCODForm(open);
   };
 
+  const openUpsell = () => {
+    trackTikTokConversion('AddToCart', {
+      contents: [{ content_id: PRODUCT_ID, content_type: 'product', content_name: 'Proyector Vevshao A10' }],
+      value: PRODUCT_PRICE,
+      currency: 'GTQ'
+    });
+    trackFacebookConversion('AddToCart', { content_ids: [PRODUCT_ID], content_type: 'product', value: PRODUCT_PRICE, currency: 'GTQ' });
+    setShowUpsell(true);
+  };
+
+  const goFromUpsellToForm = () => {
+    setShowUpsell(false);
+    setTimeout(() => setShowCODForm(true), 150);
+  };
+
   const images = [projectorPromo, projectorMain, projectorLifestyle1, projectorLifestyle2, projectorDetail];
 
   const features = [
