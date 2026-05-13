@@ -313,34 +313,14 @@ const Index = () => {
 
             {/* CTA Buttons */}
             <div className="space-y-3 mb-6 sm:mb-8">
-              <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
-                <DialogTrigger asChild>
-                  <Button
-                    size="lg"
-                    className="w-full text-base sm:text-lg font-bold py-6 sm:py-8 bg-gradient-hero hover:shadow-glow transition-all"
-                  >
-                    <Gift className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                    COMPRAR AHORA - ¡LLEVA 2x1!
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
-                  <DialogHeader>
-                    <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
-                  </DialogHeader>
-                  {showCODForm && (
-                    <CODForm
-                      productId={PRODUCT_ID}
-                      productPrice={PRODUCT_PRICE * quantity}
-                      productName="Proyector Vevshao A10 - Compra 1 y Lleva 2"
-                      productImage={projectorPromo}
-                      onOrderComplete={() => {
-                        setShowCODForm(false);
-                        toast.success("¡Pedido registrado exitosamente!");
-                      }}
-                    />
-                  )}
-                </DialogContent>
-              </Dialog>
+              <Button
+                size="lg"
+                onClick={openUpsell}
+                className="w-full text-base sm:text-lg font-bold py-6 sm:py-8 bg-gradient-hero hover:shadow-glow transition-all"
+              >
+                <Gift className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+                COMPRAR AHORA - ¡LLEVA 2x1!
+              </Button>
             </div>
 
             {/* Trust Badges */}
