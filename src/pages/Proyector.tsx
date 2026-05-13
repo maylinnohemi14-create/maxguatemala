@@ -503,7 +503,7 @@ const Index = () => {
           </div>
           <Button
             size="lg"
-            onClick={() => handleDialogChange(true)}
+            onClick={openUpsell}
             className="bg-foreground text-background hover:bg-foreground/90 text-base sm:text-xl font-bold py-5 sm:py-8 px-8 sm:px-12 shadow-large w-full sm:w-auto"
           >
             ASEGURAR MI PROMOCIÓN AHORA
@@ -513,6 +513,146 @@ const Index = () => {
           </p>
         </div>
       </section>
+
+      {/* UPSELL DIALOG - REGALOS GRATIS */}
+      <Dialog open={showUpsell} onOpenChange={(open) => { if (!open) goFromUpsellToForm(); }}>
+        <DialogContent
+          className="w-[calc(100vw-16px)] max-w-md max-h-[92dvh] overflow-y-auto p-0 border-0"
+          style={{
+            background: "linear-gradient(160deg, #1a1a1a, #000000)",
+            boxShadow: "0 30px 80px rgba(255,107,0,0.45)",
+          }}
+        >
+          <div className="relative p-5 sm:p-6" style={{ borderTop: "3px solid #ff6b00" }}>
+            <div
+              className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 pointer-events-none"
+              style={{ background: "#ff6b00" }}
+            />
+
+            <button
+              type="button"
+              onClick={goFromUpsellToForm}
+              aria-label="Cerrar"
+              className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
+              style={{
+                background: "radial-gradient(circle, #ff6b00 0%, #e63946 100%)",
+                boxShadow: "0 0 16px #ff6b00, 0 0 32px rgba(255,107,0,0.6), 0 0 48px rgba(230,57,70,0.4), inset 0 0 8px rgba(255,255,255,0.3)",
+                border: "2px solid #ffffff",
+              }}
+            >
+              <X className="w-5 h-5 text-white" strokeWidth={3} />
+            </button>
+
+            <DialogHeader className="relative z-10">
+              <div
+                className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
+                style={{ borderColor: "rgba(255,107,0,0.4)", background: "rgba(255,107,0,0.1)" }}
+              >
+                <Flame className="w-3.5 h-3.5" style={{ color: "#ff6b00" }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: "#ff6b00" }}>
+                  REGALOS EXCLUSIVOS
+                </span>
+              </div>
+              <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
+                ¡Espera! Llévate también estos 2 regalos{" "}
+                <span style={{ color: "#ff6b00" }}>100% GRATIS</span> 🎁
+              </DialogTitle>
+            </DialogHeader>
+
+            <div className="relative z-10 mt-4 space-y-3">
+              {/* GIFT 1 - PANTALLA */}
+              <div className="rounded-2xl overflow-hidden border-2" style={{ borderColor: "rgba(255,107,0,0.25)" }}>
+                <div className="aspect-[16/10] relative bg-white">
+                  <img src={upsellPantalla} alt="Pantalla de Proyección" className="w-full h-full object-contain" />
+                  <div
+                    className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
+                    style={{ background: "#ff6b00", color: "#000" }}
+                  >
+                    🎁 REGALO
+                  </div>
+                  <div
+                    className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
+                    style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
+                  >
+                    <span className="text-white/50 line-through text-xs mr-1">Q250</span>
+                    <span style={{ color: "#ff6b00" }}>GRATIS</span>
+                  </div>
+                </div>
+                <div className="p-3 bg-black/40">
+                  <div className="text-white font-black text-sm">🖥️ Pantalla de Proyección</div>
+                  <div className="text-white/60 text-xs">La mejor experiencia visual</div>
+                </div>
+              </div>
+
+              {/* GIFT 2 - LIMPA LENTES */}
+              <div className="rounded-2xl overflow-hidden border-2" style={{ borderColor: "rgba(255,107,0,0.25)" }}>
+                <div className="aspect-[16/10] relative bg-white">
+                  <img src={upsellLimpaLentes} alt="Kit Limpia Lentes" className="w-full h-full object-contain" />
+                  <div
+                    className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
+                    style={{ background: "#ff6b00", color: "#000" }}
+                  >
+                    🎁 REGALO
+                  </div>
+                  <div
+                    className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
+                    style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
+                  >
+                    <span className="text-white/50 line-through text-xs mr-1">Q120</span>
+                    <span style={{ color: "#ff6b00" }}>GRATIS</span>
+                  </div>
+                </div>
+                <div className="p-3 bg-black/40">
+                  <div className="text-white font-black text-sm">✨ Kit Limpia Lentes</div>
+                  <div className="text-white/60 text-xs">Mantén tu proyector siempre nítido</div>
+                </div>
+              </div>
+
+              <div className="space-y-2 pt-2">
+                <Button
+                  onClick={goFromUpsellToForm}
+                  className="w-full font-black py-5 rounded-xl text-base"
+                  style={{
+                    background: "linear-gradient(135deg, #ff6b00, #e63946)",
+                    color: "#fff",
+                    boxShadow: "0 8px 24px -4px rgba(255,107,0,0.7)",
+                  }}
+                >
+                  <Check className="w-5 h-5 mr-2" />
+                  SÍ, AGREGAR GRATIS 🎁
+                </Button>
+                <button
+                  onClick={goFromUpsellToForm}
+                  className="w-full text-white/50 hover:text-white/80 py-2 text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
+                >
+                  Continuar al pedido
+                </button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* COD FORM DIALOG */}
+      <Dialog open={showCODForm} onOpenChange={handleDialogChange}>
+        <DialogContent className="w-[95vw] max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-base sm:text-lg">Formulario de Pedido - Pago Contra Entrega</DialogTitle>
+          </DialogHeader>
+          {showCODForm && (
+            <CODForm
+              productId={PRODUCT_ID}
+              productPrice={PRODUCT_PRICE * quantity}
+              productName="Proyector Vevshao A10 - Compra 1 y Lleva 2"
+              productImage={projectorPromo}
+              onOrderComplete={() => {
+                setShowCODForm(false);
+                toast.success("¡Pedido registrado exitosamente!");
+              }}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Footer */}
       <LegalFooter />
