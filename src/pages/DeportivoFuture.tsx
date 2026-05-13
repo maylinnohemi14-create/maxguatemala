@@ -24,7 +24,7 @@ const NIKE_GRAY = "#1F1F1F";
 
 const PAGE_ROUTE = "/deportivofuture";
 const PRODUCT_ID = "DEP-ULTRADRY-GT";
-const SHIRT_PRICE = 40;
+const SHIRT_PRICE = 0;
 const SET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
 
