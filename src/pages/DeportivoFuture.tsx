@@ -24,7 +24,7 @@ const NIKE_GRAY = "#1F1F1F";
 
 const PAGE_ROUTE = "/deportivofuture";
 const PRODUCT_ID = "DEP-ULTRADRY-GT";
-const SHIRT_PRICE = 40;
+const SHIRT_PRICE = 0;
 const SET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
 
@@ -73,15 +73,13 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 1, price: 240, label: "1 Conjunto Deportivo", saving: 0 },
-  { qty: 2, price: 279, label: "2 Conjuntos Deportivos", saving: 201, highlight: true },
-  { qty: 3, price: 299, label: "3 Conjuntos Deportivos", saving: 421 },
+  { qty: 3, price: 259, label: "3 Conjuntos Deportivos", saving: 461, highlight: true },
 ];
 
 const DeportivoFuture = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(2);
-  const [selectedColors, setSelectedColors] = useState<string[]>(["verde", "negro"]);
+  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(3);
+  const [selectedColors, setSelectedColors] = useState<string[]>(["verde", "negro", "azul-marino"]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -151,7 +149,7 @@ const DeportivoFuture = () => {
     }
     parts.push(`Tallas: ${setSizes.slice(0, selectedQty).join(", ")}`);
     if (addShirt) {
-      parts.push(`+ CAMISETA BLANCA Talla ${shirtSize} (Q${SHIRT_PRICE})`);
+      parts.push(`+ CAMISETA BLANCA Talla ${shirtSize} (GRATIS)`);
     }
     return parts.join(" | ");
   }, [selectedQty, selectedColors, setSizes, addShirt, shirtSize]);
@@ -656,7 +654,7 @@ const DeportivoFuture = () => {
               tiktokPixelIds={tiktokPixelIds}
               facebookPixelIds={facebookPixelIds}
               extraNote={extraNote}
-              promoMessage={`¡PROMOCIÓN! ${selectedQty} Conjunto(s) Ultra Dry por solo Q${basePrice}${addShirt ? ` + Camiseta Q${SHIRT_PRICE}` : ""}.`}
+              promoMessage={`¡PROMOCIÓN! ${selectedQty} Conjunto(s) Ultra Dry por solo Q${basePrice}${addShirt ? ` + Camiseta GRATIS` : ""}.`}
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
               ]}
@@ -711,8 +709,8 @@ const DeportivoFuture = () => {
                 </span>
               </div>
               <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
-                ¡Espera! ¿Quieres llevar también esta Camiseta Premium por solo{" "}
-                <span style={{ color: NIKE_ORANGE }}>Q{SHIRT_PRICE}</span>?
+                ¡Espera! Llévate también esta Camiseta Premium{" "}
+                <span style={{ color: NIKE_ORANGE }}>100% GRATIS</span> 🎁
               </DialogTitle>
             </DialogHeader>
 
@@ -731,14 +729,14 @@ const DeportivoFuture = () => {
                     className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
                     style={{ background: NIKE_ORANGE, color: "#000" }}
                   >
-                    -85% OFF
+                    🎁 GRATIS
                   </div>
                   <div
                     className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full text-sm font-black backdrop-blur-md"
                     style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
                   >
                     <span className="text-white/50 line-through text-xs mr-1">Q280</span>
-                    <span style={{ color: NIKE_ORANGE }}>Q{SHIRT_PRICE}</span>
+                    <span style={{ color: NIKE_ORANGE }}>GRATIS</span>
                   </div>
                 </div>
               </div>
@@ -782,7 +780,7 @@ const DeportivoFuture = () => {
                   }}
                 >
                   <Check className="w-5 h-5 mr-2" />
-                  SÍ, AGREGAR POR Q{SHIRT_PRICE}
+                  SÍ, AGREGAR GRATIS 🎁
                 </Button>
                 <button
                   onClick={() => handleUpsellDecision(false)}
