@@ -780,7 +780,7 @@ const DeportivoFuture = () => {
                   }}
                 >
                   <Check className="w-5 h-5 mr-2" />
-                  SÍ, AGREGAR POR Q{SHIRT_PRICE}
+                  SÍ, AGREGAR GRATIS 🎁
                 </Button>
                 <button
                   onClick={() => handleUpsellDecision(false)}
