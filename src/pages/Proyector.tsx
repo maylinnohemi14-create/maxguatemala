@@ -26,6 +26,8 @@ import {
   Gift,
   Clock,
   Users,
+  X,
+  Flame,
 } from "lucide-react";
 import projectorMain from "@/assets/projector-main.jpg";
 import projectorPromo from "@/assets/projector-promo.png";
@@ -33,6 +35,8 @@ import projectorLifestyle1 from "@/assets/projector-lifestyle-1.jpg";
 import projectorLifestyle2 from "@/assets/projector-lifestyle-2.jpg";
 import projectorDetail from "@/assets/projector-detail.jpg";
 import maxHeader from "@/assets/max-header.png";
+import upsellPantalla from "@/assets/upsell-pantalla-proyeccion.webp";
+import upsellLimpaLentes from "@/assets/upsell-limpa-lentes.jpg";
 import { CODForm } from "@/components/CODForm";
 import { trackTikTokConversion, trackFacebookConversion } from "@/hooks/useTrackingPixels";
 
