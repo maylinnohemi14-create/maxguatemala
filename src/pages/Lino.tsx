@@ -70,9 +70,7 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 1, price: 240, label: "1 Conjunto Premium", saving: 0 },
-  { qty: 2, price: 279, label: "2 Conjuntos Premium", saving: 201, highlight: true },
-  { qty: 3, price: 299, label: "3 Conjuntos Premium", saving: 421 },
+  { qty: 3, price: 259, label: "3 Conjuntos Premium", saving: 461, highlight: true },
 ];
 
 const Lino = () => {
