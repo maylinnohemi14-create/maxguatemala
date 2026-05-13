@@ -736,7 +736,7 @@ const DeportivoFuture = () => {
                     style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
                   >
                     <span className="text-white/50 line-through text-xs mr-1">Q280</span>
-                    <span style={{ color: NIKE_ORANGE }}>Q{SHIRT_PRICE}</span>
+                    <span style={{ color: NIKE_ORANGE }}>GRATIS</span>
                   </div>
                 </div>
               </div>
