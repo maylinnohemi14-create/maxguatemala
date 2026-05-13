@@ -47,6 +47,7 @@ const Index = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showCODForm, setShowCODForm] = useState(false);
+  const [showUpsell, setShowUpsell] = useState(false);
   
   const PRODUCT_ID = "PROYECTOR-VEVSHAO-A10-GT";
   const PRODUCT_PRICE = 329;
