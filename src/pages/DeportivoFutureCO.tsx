@@ -80,7 +80,7 @@ const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
 
 const DeportivoFutureCO = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(2);
+  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(3);
   const [selectedColors, setSelectedColors] = useState<string[]>(["verde", "negro"]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
