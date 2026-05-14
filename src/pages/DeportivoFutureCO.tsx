@@ -72,9 +72,8 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 1, price: 149000, label: "1 Conjunto Deportivo", saving: 0 },
-  { qty: 2, price: 179000, label: "2 Conjuntos Deportivos", saving: 119000, highlight: true },
-  { qty: 3, price: 199000, label: "3 Conjuntos Deportivos", saving: 248000 },
+  { qty: 2, price: 149000, label: "2 Conjuntos Deportivos", saving: 149000, highlight: true },
+  { qty: 3, price: 179000, label: "3 Conjuntos Deportivos", saving: 268000 },
 ];
 
 const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
