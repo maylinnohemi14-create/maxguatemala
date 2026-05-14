@@ -72,15 +72,15 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 2, price: 149000, label: "2 Conjuntos Deportivos", saving: 149000, highlight: true },
-  { qty: 3, price: 179000, label: "3 Conjuntos Deportivos", saving: 268000 },
+  { qty: 2, price: 149000, label: "2 Conjuntos Deportivos", saving: 149000 },
+  { qty: 3, price: 179000, label: "3 Conjuntos Deportivos", saving: 268000, highlight: true },
 ];
 
 const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
 
 const DeportivoFutureCO = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(2);
+  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(3);
   const [selectedColors, setSelectedColors] = useState<string[]>(["verde", "negro"]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
