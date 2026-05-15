@@ -44,6 +44,7 @@ import Lino from "./pages/Lino";
 import LinoCO from "./pages/LinoCO";
 import LinoCO2 from "./pages/LinoCO2";
 import LinoTest from "./pages/LinoTest";
+import LinoTest2 from "./pages/LinoTest2";
 import VestidosGT from "./pages/VestidosGT";
 import VestidoProductPage from "./pages/VestidoProductPage";
 import JoggerGT from "./pages/JoggerGT";
@@ -94,6 +95,7 @@ const App = () => (
           <Route path="/eleganciaco" element={<LinoCO />} />
           <Route path="/eleganciapro" element={<LinoCO2 />} />
           <Route path="/eleganciatest" element={<LinoTest />} />
+          <Route path="/guatemalaexpressteste" element={<LinoTest2 />} />
           <Route path="/vestidosgt" element={<VestidosGT />} />
           <Route path="/vestidosgt/:slug" element={<VestidoProductPage />} />
           <Route path="/joggergt" element={<JoggerGT />} />
