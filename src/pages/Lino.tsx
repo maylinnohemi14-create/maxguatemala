@@ -70,6 +70,7 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
+  { qty: 2, price: 249, label: "2 Conjuntos Premium", saving: 231 },
   { qty: 3, price: 259, label: "3 Conjuntos Premium", saving: 461, highlight: true },
 ];
 
