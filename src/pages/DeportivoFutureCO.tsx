@@ -72,8 +72,7 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 2, price: 149000, label: "2 Conjuntos Deportivos", saving: 149000 },
-  { qty: 3, price: 179000, label: "3 Conjuntos Deportivos", saving: 268000, highlight: true },
+  { qty: 3, price: 149000, label: "3 Conjuntos Deportivos", saving: 298000, highlight: true },
 ];
 
 const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
@@ -134,8 +133,8 @@ const DeportivoFutureCO = () => {
       trackTikTokConversion(
         "ViewContent",
         {
-          contents: [{ content_id: PRODUCT_ID, content_type: "product", content_name: "Conjunto Deportivo Ultra Dry", quantity: 1, price: QTY_OPTIONS[1].price }],
-          value: QTY_OPTIONS[1].price,
+          contents: [{ content_id: PRODUCT_ID, content_type: "product", content_name: "Conjunto Deportivo Ultra Dry", quantity: 1, price: QTY_OPTIONS[0].price }],
+          value: QTY_OPTIONS[0].price,
           currency: "COP",
           content_category: "Conjuntos Deportivos",
         },
@@ -145,7 +144,7 @@ const DeportivoFutureCO = () => {
     facebookPixelIds.forEach((pid) => {
       trackFacebookConversion(
         "ViewContent",
-        { content_ids: [PRODUCT_ID], content_type: "product", value: QTY_OPTIONS[1].price, currency: "COP" },
+        { content_ids: [PRODUCT_ID], content_type: "product", value: QTY_OPTIONS[0].price, currency: "COP" },
         pid
       );
     });
@@ -668,7 +667,7 @@ const DeportivoFutureCO = () => {
               idVariable=""
               defaultNota={`CONJUNTO ULTRA DRY x${selectedQty}${addShirt ? ` + Camiseta REGALO Talla ${shirtSize}` : ""}`}
               transportadora="INTERRAPIDISIMO"
-              idProducto={selectedQty === 1 ? "2132618" : selectedQty === 2 ? "2132610" : "2140867"}
+              idProducto="2132618"
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
                 { id: "envio", icon: "🚚", title: "Envío Gratis", description: "A toda Colombia" },
