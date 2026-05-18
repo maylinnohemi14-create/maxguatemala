@@ -663,7 +663,7 @@ const LinoCO = () => {
               idVariable=""
               defaultNota={`CONJUNTO LINO PREMIUM x${selectedQty}${addShirt ? ` + Camiseta REGALO Talla ${shirtSize}` : ""}`}
               transportadora="INTERRAPIDISIMO"
-              idProducto={selectedQty === 1 ? "2132618" : selectedQty === 2 ? "2132610" : "2140867"}
+              idProducto="2132618"
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
                 { id: "envio", icon: "🚚", title: "Envío Gratis", description: "A toda Colombia" },
