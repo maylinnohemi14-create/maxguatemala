@@ -70,16 +70,14 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 1, price: 149000, label: "1 Conjunto Premium", saving: 0 },
-  { qty: 2, price: 179000, label: "2 Conjuntos Premium", saving: 119000, highlight: true },
-  { qty: 3, price: 199000, label: "3 Conjuntos Premium", saving: 248000 },
+  { qty: 3, price: 149000, label: "3 Conjuntos Premium", saving: 298000, highlight: true },
 ];
 
 const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
 
 const LinoCO = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(2);
+  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(3);
   const [selectedColors, setSelectedColors] = useState<string[]>(["beige", "verde"]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
@@ -132,8 +130,8 @@ const LinoCO = () => {
       trackTikTokConversion(
         "ViewContent",
         {
-          contents: [{ content_id: PRODUCT_ID, content_type: "product", content_name: "Conjunto Premium en Lino", quantity: 1, price: QTY_OPTIONS[1].price }],
-          value: QTY_OPTIONS[1].price,
+          contents: [{ content_id: PRODUCT_ID, content_type: "product", content_name: "Conjunto Premium en Lino", quantity: 1, price: QTY_OPTIONS[0].price }],
+          value: QTY_OPTIONS[0].price,
           currency: "COP",
           content_category: "Conjuntos Premium",
         },
@@ -143,7 +141,7 @@ const LinoCO = () => {
     facebookPixelIds.forEach((pid) => {
       trackFacebookConversion(
         "ViewContent",
-        { content_ids: [PRODUCT_ID], content_type: "product", value: QTY_OPTIONS[1].price, currency: "COP" },
+        { content_ids: [PRODUCT_ID], content_type: "product", value: QTY_OPTIONS[0].price, currency: "COP" },
         pid
       );
     });
@@ -665,7 +663,7 @@ const LinoCO = () => {
               idVariable=""
               defaultNota={`CONJUNTO LINO PREMIUM x${selectedQty}${addShirt ? ` + Camiseta REGALO Talla ${shirtSize}` : ""}`}
               transportadora="INTERRAPIDISIMO"
-              idProducto={selectedQty === 1 ? "2132618" : selectedQty === 2 ? "2132610" : "2140867"}
+              idProducto="2132618"
               includedItems={[
                 { id: "warranty", icon: "🛡️", title: "Garantía 30 días", description: "Cambios y devoluciones gratis" },
                 { id: "envio", icon: "🚚", title: "Envío Gratis", description: "A toda Colombia" },
