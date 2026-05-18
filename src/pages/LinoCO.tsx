@@ -130,8 +130,8 @@ const LinoCO = () => {
       trackTikTokConversion(
         "ViewContent",
         {
-          contents: [{ content_id: PRODUCT_ID, content_type: "product", content_name: "Conjunto Premium en Lino", quantity: 1, price: QTY_OPTIONS[1].price }],
-          value: QTY_OPTIONS[1].price,
+          contents: [{ content_id: PRODUCT_ID, content_type: "product", content_name: "Conjunto Premium en Lino", quantity: 1, price: QTY_OPTIONS[0].price }],
+          value: QTY_OPTIONS[0].price,
           currency: "COP",
           content_category: "Conjuntos Premium",
         },
@@ -141,7 +141,7 @@ const LinoCO = () => {
     facebookPixelIds.forEach((pid) => {
       trackFacebookConversion(
         "ViewContent",
-        { content_ids: [PRODUCT_ID], content_type: "product", value: QTY_OPTIONS[1].price, currency: "COP" },
+        { content_ids: [PRODUCT_ID], content_type: "product", value: QTY_OPTIONS[0].price, currency: "COP" },
         pid
       );
     });
