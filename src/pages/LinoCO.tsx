@@ -11,14 +11,13 @@ import linoBeige from "@/assets/lino-beige.jpg";
 import linoVerde from "@/assets/lino-verde.jpg";
 import linoNegro from "@/assets/lino-negro.jpg";
 import camisetaLacoste from "@/assets/upsell-camiseta-lacoste.jpg";
-import bonusDeportivo from "@/assets/deportivo-verde-buzo.webp";
+import bonusDeportivoVerde from "@/assets/deportivo-verde-buzo.webp";
+import bonusDeportivoNegro from "@/assets/deportivo-negro-buzo.webp";
 
-const BONUS_PRODUCT = {
-  name: "Conjunto Deportivo Ultra Dry",
-  shortName: "Deportivo Ultra Dry",
-  color: "Verde",
-  image: bonusDeportivo,
-};
+const BONUS_PRODUCTS = [
+  { name: "Conjunto Deportivo Ultra Dry", shortName: "Deportivo Ultra Dry", color: "Verde", image: bonusDeportivoVerde },
+  { name: "Conjunto Deportivo Ultra Dry", shortName: "Deportivo Ultra Dry", color: "Negro", image: bonusDeportivoNegro },
+];
 
 // Sport-inspired palette (scoped tokens for this futuristic theme)
 const NIKE_BLACK = "#0A0A0A";
@@ -78,8 +77,8 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 3, price: 149000, label: "3 Conjuntos Premium", saving: 298000 },
-  { qty: 5, price: 179000, label: "5 Conjuntos · COMBO PREMIUM", saving: 566000, highlight: true },
+  { qty: 3, price: 149000, label: "3 Conjuntos Premium", saving: 298000, highlight: true },
+  { qty: 5, price: 179000, label: "5 Conjuntos · COMBO PREMIUM", saving: 566000 },
 ];
 
 const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
