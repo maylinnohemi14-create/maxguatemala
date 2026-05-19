@@ -521,6 +521,25 @@ const DeportivoFutureCO = () => {
                     </button>
                   );
                 })}
+                {bonusQty > 0 && Array.from({ length: bonusQty }).map((_, i) => (
+                  <div
+                    key={`bonus-${i}`}
+                    className="relative rounded-xl overflow-hidden border-2 aspect-square"
+                    style={{ borderColor: `${NIKE_ORANGE}88`, boxShadow: `0 0 12px ${NIKE_ORANGE}55` }}
+                  >
+                    <img src={BONUS_PRODUCT.image} alt={BONUS_PRODUCT.shortName} className="w-full h-full object-cover" loading="lazy" />
+                    <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, transparent 40%, #000000dd 100%)` }} />
+                    <div
+                      className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[8px] font-black tracking-wider"
+                      style={{ background: NIKE_ORANGE, color: "#000" }}
+                    >
+                      🎁 BONO
+                    </div>
+                    <div className="absolute bottom-1 left-1 right-1 text-[9px] font-bold text-white text-center leading-tight">
+                      {BONUS_PRODUCT.shortName}<br/>{BONUS_PRODUCT.color}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
