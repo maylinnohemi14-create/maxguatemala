@@ -14,14 +14,13 @@ import deportivoVerdePantalon from "@/assets/deportivo-verde-pantalon.webp";
 import deportivoNegroPantalon from "@/assets/deportivo-negro-pantalon.webp";
 import deportivoAzulPantalon from "@/assets/deportivo-azul-pantalon.webp";
 import camisetaLacoste from "@/assets/upsell-chaqueta-lacoste.jpg";
-import bonusLino from "@/assets/lino-beige.jpg";
+import bonusLinoBeige from "@/assets/lino-beige.jpg";
+import bonusLinoVerde from "@/assets/lino-verde.jpg";
 
-const BONUS_PRODUCT = {
-  name: "Conjunto Premium en Lino",
-  shortName: "Lino Premium",
-  color: "Beige",
-  image: bonusLino,
-};
+const BONUS_PRODUCTS = [
+  { name: "Conjunto Premium en Lino", shortName: "Lino Premium", color: "Beige", image: bonusLinoBeige },
+  { name: "Conjunto Premium en Lino", shortName: "Lino Premium", color: "Verde", image: bonusLinoVerde },
+];
 
 // Sport-inspired palette — Volt / Neon Mint (high-converting futuristic)
 const NIKE_BLACK = "#070D0A";
@@ -80,8 +79,8 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 3, price: 149000, label: "3 Conjuntos Deportivos", saving: 298000 },
-  { qty: 5, price: 179000, label: "5 Conjuntos · COMBO PREMIUM", saving: 566000, highlight: true },
+  { qty: 3, price: 149000, label: "3 Conjuntos Deportivos", saving: 298000, highlight: true },
+  { qty: 5, price: 179000, label: "5 Conjuntos · COMBO PREMIUM", saving: 566000 },
 ];
 
 const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
@@ -181,7 +180,7 @@ const DeportivoFutureCO = () => {
     }
     parts.push(`Tallas Deportivo: ${setSizes.slice(0, mainQty).join(", ")}`);
     if (bonusQty > 0) {
-      parts.push(`+ BONO ${BONUS_PRODUCT.name} x${bonusQty} (color ${BONUS_PRODUCT.color}) Tallas: ${setSizes.slice(mainQty, mainQty + bonusQty).join(", ")}`);
+      parts.push(`+ BONO ${BONUS_PRODUCTS[0].name} x${bonusQty} (colores ${BONUS_PRODUCTS.slice(0, bonusQty).map(b => b.color).join(", ")}) Tallas: ${setSizes.slice(mainQty, mainQty + bonusQty).join(", ")}`);
     }
     if (addShirt) {
       parts.push(`+ CAMISETA BLANCA Talla ${shirtSize} (REGALO GRATIS)`);
