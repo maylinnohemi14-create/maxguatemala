@@ -11,14 +11,13 @@ import linoBeige from "@/assets/lino-beige.jpg";
 import linoVerde from "@/assets/lino-verde.jpg";
 import linoNegro from "@/assets/lino-negro.jpg";
 import camisetaLacoste from "@/assets/upsell-camiseta-lacoste.jpg";
-import bonusDeportivo from "@/assets/deportivo-verde-buzo.webp";
+import bonusDeportivoVerde from "@/assets/deportivo-verde-buzo.webp";
+import bonusDeportivoNegro from "@/assets/deportivo-negro-buzo.webp";
 
-const BONUS_PRODUCT = {
-  name: "Conjunto Deportivo Ultra Dry",
-  shortName: "Deportivo Ultra Dry",
-  color: "Verde",
-  image: bonusDeportivo,
-};
+const BONUS_PRODUCTS = [
+  { name: "Conjunto Deportivo Ultra Dry", shortName: "Deportivo Ultra Dry", color: "Verde", image: bonusDeportivoVerde },
+  { name: "Conjunto Deportivo Ultra Dry", shortName: "Deportivo Ultra Dry", color: "Negro", image: bonusDeportivoNegro },
+];
 
 // Sport-inspired palette (scoped tokens for this futuristic theme)
 const NIKE_BLACK = "#0A0A0A";
@@ -78,8 +77,8 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 3, price: 149000, label: "3 Conjuntos Premium", saving: 298000 },
-  { qty: 5, price: 179000, label: "5 Conjuntos · COMBO PREMIUM", saving: 566000, highlight: true },
+  { qty: 3, price: 149000, label: "3 Conjuntos Premium", saving: 298000, highlight: true },
+  { qty: 5, price: 179000, label: "5 Conjuntos · COMBO PREMIUM", saving: 566000 },
 ];
 
 const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
@@ -178,7 +177,7 @@ const LinoCO = () => {
     }
     parts.push(`Tallas Lino: ${setSizes.slice(0, linoQty).join(", ")}`);
     if (bonusQty > 0) {
-      parts.push(`+ BONO ${BONUS_PRODUCT.name} x${bonusQty} (color ${BONUS_PRODUCT.color}) Tallas: ${setSizes.slice(linoQty, linoQty + bonusQty).join(", ")}`);
+      parts.push(`+ BONO ${BONUS_PRODUCTS[0].name} x${bonusQty} (colores ${BONUS_PRODUCTS.slice(0, bonusQty).map(b => b.color).join(", ")}) Tallas: ${setSizes.slice(linoQty, linoQty + bonusQty).join(", ")}`);
     }
     if (addShirt) {
       parts.push(`+ CAMISETA BLANCA Talla ${shirtSize} (REGALO GRATIS)`);
@@ -518,13 +517,15 @@ const LinoCO = () => {
                     </button>
                   );
                 })}
-                {bonusQty > 0 && Array.from({ length: bonusQty }).map((_, i) => (
+                {bonusQty > 0 && Array.from({ length: bonusQty }).map((_, i) => {
+                  const bp = BONUS_PRODUCTS[i];
+                  return (
                   <div
                     key={`bonus-${i}`}
                     className="relative rounded-xl overflow-hidden border-2 aspect-square"
                     style={{ borderColor: `${NIKE_ORANGE}88`, boxShadow: `0 0 12px ${NIKE_ORANGE}55` }}
                   >
-                    <img src={BONUS_PRODUCT.image} alt={BONUS_PRODUCT.shortName} className="w-full h-full object-cover" loading="lazy" />
+                    <img src={bp.image} alt={bp.shortName} className="w-full h-full object-cover" loading="lazy" />
                     <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, transparent 40%, #000000dd 100%)` }} />
                     <div
                       className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[8px] font-black tracking-wider"
@@ -533,10 +534,11 @@ const LinoCO = () => {
                       🎁 BONO
                     </div>
                     <div className="absolute bottom-1 left-1 right-1 text-[9px] font-bold text-white text-center leading-tight">
-                      {BONUS_PRODUCT.shortName}<br/>{BONUS_PRODUCT.color}
+                      {bp.shortName}<br/>{bp.color}
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
@@ -564,11 +566,12 @@ const LinoCO = () => {
               <div className="space-y-2">
                 {Array.from({ length: selectedQty }).map((_, idx) => {
                   const isBonus = idx >= linoQty;
+                  const bonusItem = isBonus ? BONUS_PRODUCTS[idx - linoQty] : null;
                   const colorId = selectedColors[idx];
                   const colorObj = COLORS.find((c) => c.id === colorId);
-                  const displayImg = isBonus ? BONUS_PRODUCT.image : colorObj?.image;
-                  const displayName = isBonus ? `${BONUS_PRODUCT.shortName} · ${BONUS_PRODUCT.color}` : (colorObj?.name || "Elige un color");
-                  const itemLabel = isBonus ? `🎁 BONO · ${BONUS_PRODUCT.shortName}` : `Conjunto ${idx + 1}`;
+                  const displayImg = bonusItem ? bonusItem.image : colorObj?.image;
+                  const displayName = bonusItem ? `${bonusItem.shortName} · ${bonusItem.color}` : (colorObj?.name || "Elige un color");
+                  const itemLabel = bonusItem ? `🎁 BONO · ${bonusItem.shortName}` : `Conjunto ${idx + 1}`;
                   return (
                     <div
                       key={idx}
