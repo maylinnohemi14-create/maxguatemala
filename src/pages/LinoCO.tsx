@@ -11,6 +11,14 @@ import linoBeige from "@/assets/lino-beige.jpg";
 import linoVerde from "@/assets/lino-verde.jpg";
 import linoNegro from "@/assets/lino-negro.jpg";
 import camisetaLacoste from "@/assets/upsell-camiseta-lacoste.jpg";
+import bonusDeportivo from "@/assets/deportivo-verde-buzo.webp";
+
+const BONUS_PRODUCT = {
+  name: "Conjunto Deportivo Ultra Dry",
+  shortName: "Deportivo Ultra Dry",
+  color: "Verde",
+  image: bonusDeportivo,
+};
 
 // Sport-inspired palette (scoped tokens for this futuristic theme)
 const NIKE_BLACK = "#0A0A0A";
@@ -62,7 +70,7 @@ const COLORS: Color[] = [
 ];
 
 type QtyOption = {
-  qty: 1 | 2 | 3;
+  qty: 1 | 2 | 3 | 5;
   price: number;
   label: string;
   highlight?: boolean;
@@ -70,14 +78,15 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 3, price: 149000, label: "3 Conjuntos Premium", saving: 298000, highlight: true },
+  { qty: 3, price: 149000, label: "3 Conjuntos Premium", saving: 298000 },
+  { qty: 5, price: 179000, label: "5 Conjuntos · COMBO PREMIUM", saving: 566000, highlight: true },
 ];
 
 const formatCOP = (n: number) => `$${n.toLocaleString("es-CO")}`;
 
 const LinoCO = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(3);
+  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3 | 5>(5);
   const [selectedColors, setSelectedColors] = useState<string[]>(["beige", "verde"]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
@@ -158,25 +167,32 @@ const LinoCO = () => {
     return `Conjunto Premium en Lino x${selectedQty} (${colorsTxt})`;
   }, [selectedQty, selectedColors]);
 
+  const linoQty = Math.min(selectedQty, 3);
+  const bonusQty = selectedQty === 5 ? 2 : 0;
+
   const extraNote = useMemo(() => {
     const parts: string[] = [];
-    parts.push(`CONJUNTO PREMIUM EN LINO x${selectedQty}`);
+    parts.push(`CONJUNTO PREMIUM EN LINO x${linoQty}`);
     if (selectedColors.length) {
       parts.push(`Colores: ${selectedColors.map((id) => COLORS.find((c) => c.id === id)?.name).filter(Boolean).join(", ")}`);
     }
-    parts.push(`Tallas: ${setSizes.slice(0, selectedQty).join(", ")}`);
+    parts.push(`Tallas Lino: ${setSizes.slice(0, linoQty).join(", ")}`);
+    if (bonusQty > 0) {
+      parts.push(`+ BONO ${BONUS_PRODUCT.name} x${bonusQty} (color ${BONUS_PRODUCT.color}) Tallas: ${setSizes.slice(linoQty, linoQty + bonusQty).join(", ")}`);
+    }
     if (addShirt) {
       parts.push(`+ CAMISETA BLANCA Talla ${shirtSize} (REGALO GRATIS)`);
     }
     return parts.join(" | ");
-  }, [selectedQty, selectedColors, setSizes, addShirt, shirtSize]);
+  }, [selectedQty, selectedColors, setSizes, addShirt, shirtSize, linoQty, bonusQty]);
 
   const toggleColor = (id: string) => {
+    const maxColors = Math.min(selectedQty, 3);
     setSelectedColors((prev) => {
       if (prev.includes(id)) {
         return prev.filter((c) => c !== id);
       }
-      if (prev.length >= selectedQty) {
+      if (prev.length >= maxColors) {
         return [...prev.slice(1), id];
       }
       return [...prev, id];
@@ -460,10 +476,10 @@ const LinoCO = () => {
             <div className="mb-6">
               <div className="flex items-center justify-between mb-3">
                 <div className="text-xs uppercase tracking-widest text-white/60 font-bold">
-                  ✦ Elige {selectedQty === 1 ? "tu color" : `tus ${selectedQty} colores`}
+                  ✦ Elige {linoQty === 1 ? "tu color" : `tus ${linoQty} colores`}{bonusQty > 0 ? " (Lino)" : ""}
                 </div>
                 <div className="text-[11px] text-white/50">
-                  {selectedColors.length}/{selectedQty}
+                  {selectedColors.length}/{linoQty}
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-2">
@@ -528,27 +544,31 @@ const LinoCO = () => {
 
               <div className="space-y-2">
                 {Array.from({ length: selectedQty }).map((_, idx) => {
+                  const isBonus = idx >= linoQty;
                   const colorId = selectedColors[idx];
                   const colorObj = COLORS.find((c) => c.id === colorId);
+                  const displayImg = isBonus ? BONUS_PRODUCT.image : colorObj?.image;
+                  const displayName = isBonus ? `${BONUS_PRODUCT.shortName} · ${BONUS_PRODUCT.color}` : (colorObj?.name || "Elige un color");
+                  const itemLabel = isBonus ? `🎁 BONO · ${BONUS_PRODUCT.shortName}` : `Conjunto ${idx + 1}`;
                   return (
                     <div
                       key={idx}
                       className="rounded-xl border p-2.5"
                       style={{
-                        borderColor: "rgba(255,255,255,0.1)",
-                        background: "rgba(255,255,255,0.03)",
+                        borderColor: isBonus ? `${NIKE_ORANGE}66` : "rgba(255,255,255,0.1)",
+                        background: isBonus ? `${NIKE_ORANGE}10` : "rgba(255,255,255,0.03)",
                       }}
                     >
                       <div className="flex items-center gap-2 mb-2">
-                        {colorObj ? (
-                          <img src={colorObj.image} alt={colorObj.name} className="w-8 h-8 rounded-md object-cover" />
+                        {displayImg ? (
+                          <img src={displayImg} alt={displayName} className="w-8 h-8 rounded-md object-cover" />
                         ) : (
                           <div className="w-8 h-8 rounded-md bg-white/10 flex items-center justify-center text-white/40 text-[10px]">?</div>
                         )}
                         <div className="flex-1 min-w-0">
-                          <div className="text-[10px] uppercase tracking-wider text-white/50">Conjunto {idx + 1}</div>
+                          <div className="text-[10px] uppercase tracking-wider text-white/50">{itemLabel}</div>
                           <div className="text-xs font-bold text-white truncate">
-                            {colorObj?.name || "Elige un color"}
+                            {displayName}
                           </div>
                         </div>
                         <div
@@ -661,7 +681,7 @@ const LinoCO = () => {
               tiktokPixelIds={tiktokPixelIds}
               facebookPixelIds={facebookPixelIds}
               idVariable=""
-              defaultNota={`CONJUNTO LINO PREMIUM x${selectedQty}${addShirt ? ` + Camiseta REGALO Talla ${shirtSize}` : ""}`}
+              defaultNota={extraNote}
               transportadora="INTERRAPIDISIMO"
               idProducto="2132618"
               includedItems={[
