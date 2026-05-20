@@ -39,6 +39,7 @@ import Deportivo from "./pages/Deportivo";
 import DeportivoCatalogo from "./pages/DeportivoCatalogo";
 import DeportivoFuture from "./pages/DeportivoFuture";
 import DeportivoFutureCO from "./pages/DeportivoFutureCO";
+import DeportivoFutureCO2 from "./pages/DeportivoFutureCO2";
 import Jogger from "./pages/Jogger";
 import Lino from "./pages/Lino";
 import LinoCO from "./pages/LinoCO";
