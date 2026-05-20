@@ -30,7 +30,7 @@ const NIKE_RED = "#00E5A8";    // Neon mint (secondary accent)
 const NIKE_WHITE = "#F2FFE8";
 const NIKE_GRAY = "#16221C";
 
-const PAGE_ROUTE = "/deportivofutureco";
+const PAGE_ROUTE = "/deportivofutureco2";
 const PRODUCT_ID = "DEP-ULTRADRY-CO";
 const SET_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 const SHIRT_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "XXXXL"];
