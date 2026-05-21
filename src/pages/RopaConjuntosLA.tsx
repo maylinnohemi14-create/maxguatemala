@@ -28,7 +28,7 @@ import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
 import deportivoNegroBuzo from "@/assets/deportivo-negro-buzo.webp";
 import deportivoAzulBuzo from "@/assets/deportivo-azul-buzo.webp";
 import maxHeader from "@/assets/max-header.png";
-import camisetaUpsell from "@/assets/upsell-camiseta-fit.png";
+import camisetaLacoste from "@/assets/upsell-chaqueta-lacoste.jpg";
 import { CODFormColombia } from "@/components/CODFormColombia";
 import { LegalFooter } from "@/components/LegalFooter";
 
@@ -102,7 +102,7 @@ const RopaConjuntosLA = () => {
   useEffect(() => {
     const img = new Image();
     img.fetchPriority = "high";
-    img.src = camisetaUpsell;
+    img.src = camisetaLacoste;
   }, []);
 
   const handleDialogChange = (open: boolean) => {
@@ -727,8 +727,8 @@ const RopaConjuntosLA = () => {
               <div className="rounded-2xl overflow-hidden border-2 border-[#E31837]/40 mb-4">
                 <div className="aspect-square relative bg-white">
                   <img
-                    src={camisetaUpsell}
-                    alt="Camiseta Premium Blanca"
+                    src={camisetaLacoste}
+                    alt="Camiseta Premium"
                     className="w-full h-full object-contain"
                     fetchPriority="high"
                   />
