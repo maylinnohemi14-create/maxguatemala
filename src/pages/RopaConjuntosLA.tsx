@@ -24,10 +24,9 @@ import {
   Zap,
   Shirt,
 } from "lucide-react";
-import underArmourMain from "@/assets/under-armour-main.png";
-import uaBlue from "@/assets/ua-blue.jpg";
-import uaBlack from "@/assets/ua-black.jpg";
-import uaGray from "@/assets/ua-gray.jpg";
+import deportivoVerdeBuzo from "@/assets/deportivo-verde-buzo.webp";
+import deportivoNegroBuzo from "@/assets/deportivo-negro-buzo.webp";
+import deportivoAzulBuzo from "@/assets/deportivo-azul-buzo.webp";
 import maxHeader from "@/assets/max-header.png";
 import camisetaUpsell from "@/assets/upsell-camiseta-fit.png";
 import { CODFormColombia } from "@/components/CODFormColombia";
@@ -43,12 +42,12 @@ const UPSELL_PRICE = 30000;
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const SETS = [
-  { name: "Conjunto Gris", image: uaGray, description: "Buzo Zípper + Camiseta + Pantalón" },
-  { name: "Conjunto Negro", image: uaBlack, description: "Buzo Zípper + Camiseta + Pantalón" },
-  { name: "Conjunto Azul", image: uaBlue, description: "Buzo Zípper + Camiseta + Pantalón" },
+  { name: "Conjunto Verde", image: deportivoVerdeBuzo, description: "Buzo Zípper + Pantalón Deportivo" },
+  { name: "Conjunto Negro", image: deportivoNegroBuzo, description: "Buzo Zípper + Pantalón Deportivo" },
+  { name: "Conjunto Azul Marino", image: deportivoAzulBuzo, description: "Buzo Zípper + Pantalón Deportivo" },
 ];
 
-const ConjuntosCO = () => {
+const RopaConjuntosLA = () => {
   const [selectedTopSizes, setSelectedTopSizes] = useState<Record<number, string>>({
     0: "M",
     1: "M",
@@ -65,13 +64,13 @@ const ConjuntosCO = () => {
   const [addShirt, setAddShirt] = useState(false);
   const [shirtSize, setShirtSize] = useState<string>("M");
 
-  const PRODUCT_ID = "UA-KIT3EN1-CO";
+  const PRODUCT_ID = "DEP-ULTRADRY-CO";
   const PRODUCT_PRICE = 149000;
-  const PAGE_ROUTE = "/ropaconjuntos";
+  const PAGE_ROUTE = "/ropaconjuntosla";
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
 
-  const productImages = [uaBlue, uaBlack, uaGray];
+  const productImages = [deportivoVerdeBuzo, deportivoNegroBuzo, deportivoAzulBuzo];
 
   useEffect(() => {
     const interval = setInterval(() => {
