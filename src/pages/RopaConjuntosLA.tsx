@@ -501,7 +501,7 @@ const RopaConjuntosLA = () => {
                       productPrice={PRODUCT_PRICE}
                       productName={`Conjuntos Deportivos Kit 3 en 1 (${sizesNote})`}
                       productDisplayName="Conjuntos Deportivos Kit 3 en 1"
-                      productImage={underArmourMain}
+                      productImage={deportivoVerdeBuzo}
                       tiktokPixelIds={tiktokPixelIds}
                       facebookPixelIds={facebookPixelIds}
                       idVariable=""
@@ -802,4 +802,4 @@ const RopaConjuntosLA = () => {
   );
 };
 
-export default ConjuntosCO;
+export default RopaConjuntosLA;
