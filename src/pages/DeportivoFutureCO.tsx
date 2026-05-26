@@ -23,12 +23,12 @@ const BONUS_PRODUCTS = [
 ];
 
 // Sport-inspired palette — Volt / Neon Mint (high-converting futuristic)
-const NIKE_BLACK = "#070D0A";
-const NIKE_DARK = "#0F1814";
-const NIKE_ORANGE = "#C6FF3D"; // Volt lime (primary accent)
-const NIKE_RED = "#00E5A8";    // Neon mint (secondary accent)
-const NIKE_WHITE = "#F2FFE8";
-const NIKE_GRAY = "#16221C";
+const SPORT_BLACK = "#070D0A";
+const SPORT_DARK = "#0F1814";
+const SPORT_ACCENT = "#C6FF3D"; // Volt lime (primary accent)
+const SPORT_SECONDARY = "#00E5A8";    // Neon mint (secondary accent)
+const SPORT_WHITE = "#F2FFE8";
+const SPORT_GRAY = "#16221C";
 
 const PAGE_ROUTE = "/deportivofutureco";
 const PRODUCT_ID = "DEP-ULTRADRY-CO";
@@ -251,7 +251,7 @@ const DeportivoFutureCO = () => {
       <div
         className="absolute inset-0 opacity-15 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(${NIKE_ORANGE}33 1px, transparent 1px), linear-gradient(90deg, ${NIKE_ORANGE}33 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(${SPORT_ACCENT}33 1px, transparent 1px), linear-gradient(90deg, ${SPORT_ACCENT}33 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
           maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
           WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
@@ -260,11 +260,11 @@ const DeportivoFutureCO = () => {
 
       <div
         className="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl opacity-30 pointer-events-none animate-pulse"
-        style={{ background: NIKE_ORANGE }}
+        style={{ background: SPORT_ACCENT }}
       />
       <div
         className="absolute top-1/2 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-20 pointer-events-none animate-pulse"
-        style={{ background: NIKE_RED, animationDelay: "1.5s" }}
+        style={{ background: SPORT_SECONDARY, animationDelay: "1.5s" }}
       />
 
       {/* HEADER */}
@@ -274,23 +274,21 @@ const DeportivoFutureCO = () => {
             <div
               className="w-11 h-11 rounded-xl flex items-center justify-center shadow-lg"
               style={{
-                background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
-                boxShadow: `0 0 20px ${NIKE_ORANGE}66`,
+                background: `linear-gradient(135deg, ${SPORT_ACCENT}, ${SPORT_SECONDARY})`,
+                boxShadow: `0 0 20px ${SPORT_ACCENT}66`,
               }}
             >
-              <svg viewBox="0 0 24 12" className="w-7 h-4" fill="white">
-                <path d="M24 1.5c-3 5-8.5 9-15 9-3.5 0-6-1-7-2.5C2.5 9 4 8.5 6 8c4-1 9-3 13-5.5 1.5-1 3-2 5-2.5z" />
-              </svg>
+              <Zap className="w-6 h-6 text-black" strokeWidth={3} />
             </div>
             <div>
               <div className="text-[10px] uppercase tracking-[0.3em] text-white/60">Sport Edition</div>
               <div className="text-lg sm:text-xl font-black tracking-tight text-white">
-                Conjunto Ultra Dry <span style={{ color: NIKE_ORANGE }}>·</span> PRO
+                Conjunto Ultra Dry <span style={{ color: SPORT_ACCENT }}>·</span> ELITE
               </div>
             </div>
           </div>
           <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur">
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: NIKE_ORANGE }} />
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: SPORT_ACCENT }} />
             <span className="text-xs text-white/80 font-medium">PAGO CONTRA ENTREGA</span>
           </div>
         </div>
@@ -303,16 +301,16 @@ const DeportivoFutureCO = () => {
             <div
               className="relative aspect-[4/5] rounded-3xl overflow-hidden border backdrop-blur-md"
               style={{
-                borderColor: `${NIKE_ORANGE}55`,
-                background: `linear-gradient(160deg, ${NIKE_GRAY}, #000)`,
-                boxShadow: `0 20px 60px -20px ${NIKE_ORANGE}aa`,
+                borderColor: `${SPORT_ACCENT}55`,
+                background: `linear-gradient(160deg, ${SPORT_GRAY}, #000)`,
+                boxShadow: `0 20px 60px -20px ${SPORT_ACCENT}aa`,
               }}
             >
               <div
                 className="absolute top-6 -right-12 z-20 w-48 text-center py-1.5 text-[11px] font-black tracking-widest text-white rotate-45"
                 style={{
-                  background: `linear-gradient(90deg, ${NIKE_RED}, ${NIKE_ORANGE})`,
-                  boxShadow: `0 4px 16px ${NIKE_RED}66`,
+                  background: `linear-gradient(90deg, ${SPORT_SECONDARY}, ${SPORT_ACCENT})`,
+                  boxShadow: `0 4px 16px ${SPORT_SECONDARY}66`,
                 }}
               >
                 💰 PAGO AL RECIBIR
@@ -341,7 +339,7 @@ const DeportivoFutureCO = () => {
                       aria-label={`Ver ${carouselImages[i].name}`}
                       className="w-2 h-2 rounded-full transition-all"
                       style={{
-                        background: i === selectedImage ? NIKE_ORANGE : "rgba(255,255,255,0.3)",
+                        background: i === selectedImage ? SPORT_ACCENT : "rgba(255,255,255,0.3)",
                         width: i === selectedImage ? "18px" : "8px",
                       }}
                     />
@@ -358,8 +356,8 @@ const DeportivoFutureCO = () => {
                   aria-label={c.name}
                   className="aspect-square rounded-lg overflow-hidden border-2 transition-all"
                   style={{
-                    borderColor: i === selectedImage ? NIKE_ORANGE : "rgba(255,255,255,0.1)",
-                    boxShadow: i === selectedImage ? `0 0 12px ${NIKE_ORANGE}88` : "none",
+                    borderColor: i === selectedImage ? SPORT_ACCENT : "rgba(255,255,255,0.1)",
+                    boxShadow: i === selectedImage ? `0 0 12px ${SPORT_ACCENT}88` : "none",
                   }}
                 >
                   <img src={c.src} alt={c.name} className="w-full h-full object-cover" loading="lazy" />
@@ -371,10 +369,10 @@ const DeportivoFutureCO = () => {
           <div className="text-white">
             <div
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 border backdrop-blur-md"
-              style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}
+              style={{ borderColor: `${SPORT_ACCENT}66`, background: `${SPORT_ACCENT}15` }}
             >
-              <Sparkles className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
-              <span className="text-[11px] font-bold tracking-widest" style={{ color: NIKE_ORANGE }}>
+              <Sparkles className="w-3.5 h-3.5" style={{ color: SPORT_ACCENT }} />
+              <span className="text-[11px] font-bold tracking-widest" style={{ color: SPORT_ACCENT }}>
                 COLECCIÓN PREMIUM 2026
               </span>
             </div>
@@ -384,7 +382,7 @@ const DeportivoFutureCO = () => {
               <br />
               <span
                 style={{
-                  background: `linear-gradient(135deg, ${NIKE_ORANGE} 0%, ${NIKE_RED} 100%)`,
+                  background: `linear-gradient(135deg, ${SPORT_ACCENT} 0%, ${SPORT_SECONDARY} 100%)`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -426,17 +424,17 @@ const DeportivoFutureCO = () => {
                       }}
                       className="relative text-left rounded-2xl p-4 border-2 transition-all overflow-hidden"
                       style={{
-                        borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.12)",
+                        borderColor: active ? SPORT_ACCENT : "rgba(255,255,255,0.12)",
                         background: active
-                          ? `linear-gradient(135deg, ${NIKE_ORANGE}22, ${NIKE_RED}11)`
+                          ? `linear-gradient(135deg, ${SPORT_ACCENT}22, ${SPORT_SECONDARY}11)`
                           : "rgba(255,255,255,0.03)",
-                        boxShadow: active ? `0 0 24px ${NIKE_ORANGE}44` : "none",
+                        boxShadow: active ? `0 0 24px ${SPORT_ACCENT}44` : "none",
                       }}
                     >
                       {opt.highlight && (
                         <div
                           className="absolute top-0 right-0 px-2.5 py-0.5 text-[10px] font-black tracking-wider rounded-bl-xl"
-                          style={{ background: NIKE_ORANGE, color: "#000" }}
+                          style={{ background: SPORT_ACCENT, color: "#000" }}
                         >
                           🔥 MÁS ELEGIDO
                         </div>
@@ -446,8 +444,8 @@ const DeportivoFutureCO = () => {
                           <div
                             className="w-6 h-6 rounded-full flex items-center justify-center border-2"
                             style={{
-                              borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.3)",
-                              background: active ? NIKE_ORANGE : "transparent",
+                              borderColor: active ? SPORT_ACCENT : "rgba(255,255,255,0.3)",
+                              background: active ? SPORT_ACCENT : "transparent",
                             }}
                           >
                             {active && <Check className="w-3.5 h-3.5 text-black" strokeWidth={3} />}
@@ -460,7 +458,7 @@ const DeportivoFutureCO = () => {
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-2xl font-black" style={{ color: active ? NIKE_ORANGE : "#fff" }}>
+                          <div className="text-2xl font-black" style={{ color: active ? SPORT_ACCENT : "#fff" }}>
                             {formatCOP(opt.price)}
                           </div>
                           <div className="text-[10px] text-white/50 uppercase tracking-wider">
@@ -493,8 +491,8 @@ const DeportivoFutureCO = () => {
                       onClick={() => toggleColor(c.id)}
                       className="relative rounded-xl overflow-hidden border-2 transition-all aspect-square group"
                       style={{
-                        borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.12)",
-                        boxShadow: active ? `0 0 16px ${NIKE_ORANGE}88` : "none",
+                        borderColor: active ? SPORT_ACCENT : "rgba(255,255,255,0.12)",
+                        boxShadow: active ? `0 0 16px ${SPORT_ACCENT}88` : "none",
                       }}
                     >
                       <img src={c.image} alt={c.name} className="w-full h-full object-cover" loading="lazy" />
@@ -502,7 +500,7 @@ const DeportivoFutureCO = () => {
                         className="absolute inset-0 transition-opacity"
                         style={{
                           background: active
-                            ? `linear-gradient(180deg, transparent 50%, ${NIKE_ORANGE}cc 100%)`
+                            ? `linear-gradient(180deg, transparent 50%, ${SPORT_ACCENT}cc 100%)`
                             : `linear-gradient(180deg, transparent 60%, #000000cc 100%)`,
                         }}
                       />
@@ -512,7 +510,7 @@ const DeportivoFutureCO = () => {
                       {active && (
                         <div
                           className="absolute top-1 right-1 w-5 h-5 rounded-full flex items-center justify-center"
-                          style={{ background: NIKE_ORANGE }}
+                          style={{ background: SPORT_ACCENT }}
                         >
                           <Check className="w-3 h-3 text-black" strokeWidth={3} />
                         </div>
@@ -526,13 +524,13 @@ const DeportivoFutureCO = () => {
                   <div
                     key={`bonus-${i}`}
                     className="relative rounded-xl overflow-hidden border-2 aspect-square"
-                    style={{ borderColor: `${NIKE_ORANGE}88`, boxShadow: `0 0 12px ${NIKE_ORANGE}55` }}
+                    style={{ borderColor: `${SPORT_ACCENT}88`, boxShadow: `0 0 12px ${SPORT_ACCENT}55` }}
                   >
                     <img src={bp.image} alt={bp.shortName} className="w-full h-full object-cover" loading="lazy" />
                     <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, transparent 40%, #000000dd 100%)` }} />
                     <div
                       className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[8px] font-black tracking-wider"
-                      style={{ background: NIKE_ORANGE, color: "#000" }}
+                      style={{ background: SPORT_ACCENT, color: "#000" }}
                     >
                       🎁 BONO
                     </div>
@@ -556,9 +554,9 @@ const DeportivoFutureCO = () => {
                   onClick={() => setShowSizeGuide(true)}
                   className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border transition-all hover:scale-105"
                   style={{
-                    borderColor: `${NIKE_ORANGE}88`,
-                    background: `${NIKE_ORANGE}15`,
-                    color: NIKE_ORANGE,
+                    borderColor: `${SPORT_ACCENT}88`,
+                    background: `${SPORT_ACCENT}15`,
+                    color: SPORT_ACCENT,
                   }}
                 >
                   <Ruler className="w-3 h-3" />
@@ -580,8 +578,8 @@ const DeportivoFutureCO = () => {
                       key={idx}
                       className="rounded-xl border p-2.5"
                       style={{
-                        borderColor: isBonus ? `${NIKE_ORANGE}66` : "rgba(255,255,255,0.1)",
-                        background: isBonus ? `${NIKE_ORANGE}10` : "rgba(255,255,255,0.03)",
+                        borderColor: isBonus ? `${SPORT_ACCENT}66` : "rgba(255,255,255,0.1)",
+                        background: isBonus ? `${SPORT_ACCENT}10` : "rgba(255,255,255,0.03)",
                       }}
                     >
                       <div className="flex items-center gap-2 mb-2">
@@ -598,7 +596,7 @@ const DeportivoFutureCO = () => {
                         </div>
                         <div
                           className="px-2 py-0.5 rounded-md text-xs font-black"
-                          style={{ background: NIKE_ORANGE, color: "#000" }}
+                          style={{ background: SPORT_ACCENT, color: "#000" }}
                         >
                           {setSizes[idx] || "M"}
                         </div>
@@ -620,10 +618,10 @@ const DeportivoFutureCO = () => {
                               }}
                               className="py-1.5 rounded-md text-[11px] font-black transition-all border"
                               style={{
-                                borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.12)",
-                                background: active ? NIKE_ORANGE : "transparent",
+                                borderColor: active ? SPORT_ACCENT : "rgba(255,255,255,0.12)",
+                                background: active ? SPORT_ACCENT : "transparent",
                                 color: active ? "#000" : "#fff",
-                                boxShadow: active ? `0 0 8px ${NIKE_ORANGE}88` : "none",
+                                boxShadow: active ? `0 0 8px ${SPORT_ACCENT}88` : "none",
                               }}
                             >
                               {s}
@@ -643,9 +641,9 @@ const DeportivoFutureCO = () => {
               size="lg"
               className="w-full text-base sm:text-lg font-black py-6 sm:py-7 rounded-2xl tracking-wider transition-all hover:scale-[1.02]"
               style={{
-                background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                background: `linear-gradient(135deg, ${SPORT_ACCENT}, ${SPORT_SECONDARY})`,
                 color: "#fff",
-                boxShadow: `0 12px 32px -8px ${NIKE_ORANGE}, inset 0 1px 0 ${NIKE_WHITE}33`,
+                boxShadow: `0 12px 32px -8px ${SPORT_ACCENT}, inset 0 1px 0 ${SPORT_WHITE}33`,
               }}
             >
               <Flame className="w-5 h-5 mr-2" />
@@ -662,7 +660,7 @@ const DeportivoFutureCO = () => {
                   key={i}
                   className="flex flex-col items-center gap-1 py-2.5 rounded-lg border border-white/10 bg-white/5"
                 >
-                  <span style={{ color: NIKE_ORANGE }}>{t.i}</span>
+                  <span style={{ color: SPORT_ACCENT }}>{t.i}</span>
                   <span className="text-[10px] text-white/70 font-medium">{t.t}</span>
                 </div>
               ))}
@@ -680,17 +678,17 @@ const DeportivoFutureCO = () => {
           <div
             className="rounded-3xl p-4 sm:p-8 border backdrop-blur-md"
             style={{
-              borderColor: `${NIKE_ORANGE}55`,
+              borderColor: `${SPORT_ACCENT}55`,
               background: `linear-gradient(160deg, rgba(255,255,255,0.97), rgba(245,245,245,0.97))`,
-              boxShadow: `0 20px 60px -10px ${NIKE_ORANGE}88`,
+              boxShadow: `0 20px 60px -10px ${SPORT_ACCENT}88`,
             }}
           >
             <div className="text-center mb-5">
               <div
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3"
-                style={{ background: `${NIKE_ORANGE}22`, border: `1px solid ${NIKE_ORANGE}55` }}
+                style={{ background: `${SPORT_ACCENT}22`, border: `1px solid ${SPORT_ACCENT}55` }}
               >
-                <span style={{ color: NIKE_RED }} className="text-xs font-bold tracking-widest">
+                <span style={{ color: SPORT_SECONDARY }} className="text-xs font-bold tracking-widest">
                   ✦ ÚLTIMO PASO ✦
                 </span>
               </div>
@@ -729,17 +727,17 @@ const DeportivoFutureCO = () => {
         <DialogContent
           className="w-[calc(100vw-16px)] max-w-md p-0 overflow-hidden border-0"
           style={{
-            background: `linear-gradient(160deg, ${NIKE_DARK}, ${NIKE_BLACK})`,
-            boxShadow: `0 30px 80px ${NIKE_ORANGE}55`,
+            background: `linear-gradient(160deg, ${SPORT_DARK}, ${SPORT_BLACK})`,
+            boxShadow: `0 30px 80px ${SPORT_ACCENT}55`,
           }}
         >
           <div
             className="relative p-5 sm:p-6"
-            style={{ borderTop: `3px solid ${NIKE_ORANGE}` }}
+            style={{ borderTop: `3px solid ${SPORT_ACCENT}` }}
           >
             <div
               className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 pointer-events-none"
-              style={{ background: NIKE_ORANGE }}
+              style={{ background: SPORT_ACCENT }}
             />
 
             <button
@@ -748,9 +746,9 @@ const DeportivoFutureCO = () => {
               aria-label="Cerrar"
               className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
               style={{
-                background: `radial-gradient(circle, ${NIKE_ORANGE} 0%, ${NIKE_RED} 100%)`,
-                boxShadow: `0 0 16px ${NIKE_ORANGE}, 0 0 32px ${NIKE_ORANGE}99, 0 0 48px ${NIKE_RED}66, inset 0 0 8px rgba(255,255,255,0.3)`,
-                border: `2px solid ${NIKE_WHITE}`,
+                background: `radial-gradient(circle, ${SPORT_ACCENT} 0%, ${SPORT_SECONDARY} 100%)`,
+                boxShadow: `0 0 16px ${SPORT_ACCENT}, 0 0 32px ${SPORT_ACCENT}99, 0 0 48px ${SPORT_SECONDARY}66, inset 0 0 8px rgba(255,255,255,0.3)`,
+                border: `2px solid ${SPORT_WHITE}`,
               }}
             >
               <X className="w-5 h-5 text-white" strokeWidth={3} />
@@ -759,23 +757,23 @@ const DeportivoFutureCO = () => {
             <DialogHeader className="relative z-10">
               <div
                 className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
-                style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}
+                style={{ borderColor: `${SPORT_ACCENT}66`, background: `${SPORT_ACCENT}15` }}
               >
-                <Flame className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
-                <span className="text-[11px] font-black tracking-widest" style={{ color: NIKE_ORANGE }}>
+                <Flame className="w-3.5 h-3.5" style={{ color: SPORT_ACCENT }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: SPORT_ACCENT }}>
                   REGALO EXCLUSIVO
                 </span>
               </div>
               <DialogTitle className="text-center text-white text-xl sm:text-2xl font-black leading-tight">
                 ¡Espera! Llévate también esta Camiseta Premium{" "}
-                <span style={{ color: NIKE_ORANGE }}>100% GRATIS</span> 🎁
+                <span style={{ color: SPORT_ACCENT }}>100% GRATIS</span> 🎁
               </DialogTitle>
             </DialogHeader>
 
             <div className="relative z-10 mt-4">
               <div
                 className="rounded-2xl overflow-hidden border-2 mb-4"
-                style={{ borderColor: `${NIKE_ORANGE}33` }}
+                style={{ borderColor: `${SPORT_ACCENT}33` }}
               >
                 <div className="aspect-square relative bg-white">
                   <img
@@ -785,7 +783,7 @@ const DeportivoFutureCO = () => {
                   />
                   <div
                     className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-black"
-                    style={{ background: NIKE_ORANGE, color: "#000" }}
+                    style={{ background: SPORT_ACCENT, color: "#000" }}
                   >
                     🎁 REGALO
                   </div>
@@ -794,7 +792,7 @@ const DeportivoFutureCO = () => {
                     style={{ background: "rgba(0,0,0,0.7)", color: "#fff" }}
                   >
                     <span className="text-white/50 line-through text-xs mr-1">$90.000</span>
-                    <span style={{ color: NIKE_ORANGE }}>GRATIS</span>
+                    <span style={{ color: SPORT_ACCENT }}>GRATIS</span>
                   </div>
                 </div>
               </div>
@@ -812,10 +810,10 @@ const DeportivoFutureCO = () => {
                         onClick={() => setShirtSize(s)}
                         className="py-2 rounded-lg text-xs font-black transition-all border-2"
                         style={{
-                          borderColor: active ? NIKE_ORANGE : "rgba(255,255,255,0.15)",
-                          background: active ? NIKE_ORANGE : "transparent",
+                          borderColor: active ? SPORT_ACCENT : "rgba(255,255,255,0.15)",
+                          background: active ? SPORT_ACCENT : "transparent",
                           color: active ? "#000" : "#fff",
-                          boxShadow: active ? `0 0 12px ${NIKE_ORANGE}88` : "none",
+                          boxShadow: active ? `0 0 12px ${SPORT_ACCENT}88` : "none",
                         }}
                       >
                         {s}
@@ -830,9 +828,9 @@ const DeportivoFutureCO = () => {
                   onClick={() => handleUpsellDecision(true)}
                   className="w-full font-black py-5 rounded-xl text-base"
                   style={{
-                    background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                    background: `linear-gradient(135deg, ${SPORT_ACCENT}, ${SPORT_SECONDARY})`,
                     color: "#fff",
-                    boxShadow: `0 8px 24px -4px ${NIKE_ORANGE}`,
+                    boxShadow: `0 8px 24px -4px ${SPORT_ACCENT}`,
                   }}
                 >
                   <Check className="w-5 h-5 mr-2" />
@@ -856,14 +854,14 @@ const DeportivoFutureCO = () => {
         <DialogContent
           className="w-[calc(100vw-16px)] max-w-lg max-h-[90dvh] overflow-y-auto p-0 border-0"
           style={{
-            background: `linear-gradient(160deg, ${NIKE_DARK}, ${NIKE_BLACK})`,
-            boxShadow: `0 30px 80px ${NIKE_ORANGE}55`,
+            background: `linear-gradient(160deg, ${SPORT_DARK}, ${SPORT_BLACK})`,
+            boxShadow: `0 30px 80px ${SPORT_ACCENT}55`,
           }}
         >
-          <div className="relative p-5 sm:p-6" style={{ borderTop: `3px solid ${NIKE_ORANGE}` }}>
+          <div className="relative p-5 sm:p-6" style={{ borderTop: `3px solid ${SPORT_ACCENT}` }}>
             <div
               className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-25 pointer-events-none"
-              style={{ background: NIKE_ORANGE }}
+              style={{ background: SPORT_ACCENT }}
             />
 
             <button
@@ -872,9 +870,9 @@ const DeportivoFutureCO = () => {
               aria-label="Cerrar guía de tallas"
               className="absolute top-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 animate-pulse"
               style={{
-                background: `radial-gradient(circle, ${NIKE_ORANGE} 0%, ${NIKE_RED} 100%)`,
-                boxShadow: `0 0 16px ${NIKE_ORANGE}, 0 0 32px ${NIKE_ORANGE}99, 0 0 48px ${NIKE_RED}66, inset 0 0 8px rgba(255,255,255,0.3)`,
-                border: `2px solid ${NIKE_WHITE}`,
+                background: `radial-gradient(circle, ${SPORT_ACCENT} 0%, ${SPORT_SECONDARY} 100%)`,
+                boxShadow: `0 0 16px ${SPORT_ACCENT}, 0 0 32px ${SPORT_ACCENT}99, 0 0 48px ${SPORT_SECONDARY}66, inset 0 0 8px rgba(255,255,255,0.3)`,
+                border: `2px solid ${SPORT_WHITE}`,
               }}
             >
               <X className="w-5 h-5 text-white" strokeWidth={3} />
@@ -883,10 +881,10 @@ const DeportivoFutureCO = () => {
             <DialogHeader className="relative z-10">
               <div
                 className="inline-flex self-center items-center gap-2 px-3 py-1 rounded-full mb-3 border"
-                style={{ borderColor: `${NIKE_ORANGE}66`, background: `${NIKE_ORANGE}15` }}
+                style={{ borderColor: `${SPORT_ACCENT}66`, background: `${SPORT_ACCENT}15` }}
               >
-                <Ruler className="w-3.5 h-3.5" style={{ color: NIKE_ORANGE }} />
-                <span className="text-[11px] font-black tracking-widest" style={{ color: NIKE_ORANGE }}>
+                <Ruler className="w-3.5 h-3.5" style={{ color: SPORT_ACCENT }} />
+                <span className="text-[11px] font-black tracking-widest" style={{ color: SPORT_ACCENT }}>
                   GUÍA DE TALLAS
                 </span>
               </div>
@@ -900,13 +898,13 @@ const DeportivoFutureCO = () => {
 
             <div className="relative z-10 mt-5">
               <div className="mb-5">
-                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: NIKE_ORANGE }}>
+                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: SPORT_ACCENT }}>
                   📏 Conjunto Deportivo
                 </div>
-                <div className="rounded-xl overflow-hidden border" style={{ borderColor: `${NIKE_ORANGE}33` }}>
+                <div className="rounded-xl overflow-hidden border" style={{ borderColor: `${SPORT_ACCENT}33` }}>
                   <table className="w-full text-xs">
                     <thead>
-                      <tr style={{ background: `${NIKE_ORANGE}22` }}>
+                      <tr style={{ background: `${SPORT_ACCENT}22` }}>
                         <th className="py-2 px-2 text-left text-white font-black">Talla</th>
                         <th className="py-2 px-2 text-center text-white font-black">Pecho</th>
                         <th className="py-2 px-2 text-center text-white font-black">Cintura</th>
@@ -916,7 +914,7 @@ const DeportivoFutureCO = () => {
                     <tbody>
                       {SET_SIZE_GUIDE.map((row, i) => (
                         <tr key={row.size} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)" }}>
-                          <td className="py-2 px-2 font-black" style={{ color: NIKE_ORANGE }}>{row.size}</td>
+                          <td className="py-2 px-2 font-black" style={{ color: SPORT_ACCENT }}>{row.size}</td>
                           <td className="py-2 px-2 text-center text-white/80">{row.pecho}</td>
                           <td className="py-2 px-2 text-center text-white/80">{row.cintura}</td>
                           <td className="py-2 px-2 text-center text-white/80">{row.cadera}</td>
@@ -928,13 +926,13 @@ const DeportivoFutureCO = () => {
               </div>
 
               <div className="mb-4">
-                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: NIKE_ORANGE }}>
+                <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: SPORT_ACCENT }}>
                   👕 Camiseta Premium
                 </div>
-                <div className="rounded-xl overflow-hidden border" style={{ borderColor: `${NIKE_ORANGE}33` }}>
+                <div className="rounded-xl overflow-hidden border" style={{ borderColor: `${SPORT_ACCENT}33` }}>
                   <table className="w-full text-xs">
                     <thead>
-                      <tr style={{ background: `${NIKE_ORANGE}22` }}>
+                      <tr style={{ background: `${SPORT_ACCENT}22` }}>
                         <th className="py-2 px-2 text-left text-white font-black">Talla</th>
                         <th className="py-2 px-2 text-center text-white font-black">Pecho</th>
                         <th className="py-2 px-2 text-center text-white font-black">Largo</th>
@@ -943,7 +941,7 @@ const DeportivoFutureCO = () => {
                     <tbody>
                       {SHIRT_SIZE_GUIDE.map((row, i) => (
                         <tr key={row.size} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)" }}>
-                          <td className="py-2 px-2 font-black" style={{ color: NIKE_ORANGE }}>{row.size}</td>
+                          <td className="py-2 px-2 font-black" style={{ color: SPORT_ACCENT }}>{row.size}</td>
                           <td className="py-2 px-2 text-center text-white/80">{row.pecho}</td>
                           <td className="py-2 px-2 text-center text-white/80">{row.largo}</td>
                         </tr>
@@ -953,7 +951,7 @@ const DeportivoFutureCO = () => {
                 </div>
               </div>
 
-              <div className="rounded-lg p-3 text-[11px] text-white/70 border" style={{ borderColor: `${NIKE_ORANGE}33`, background: `${NIKE_ORANGE}10` }}>
+              <div className="rounded-lg p-3 text-[11px] text-white/70 border" style={{ borderColor: `${SPORT_ACCENT}33`, background: `${SPORT_ACCENT}10` }}>
                 💡 <strong className="text-white">Tip:</strong> Si estás entre dos tallas, te recomendamos elegir la talla mayor para un fit más holgado.
               </div>
 
@@ -961,9 +959,9 @@ const DeportivoFutureCO = () => {
                 onClick={() => setShowSizeGuide(false)}
                 className="w-full mt-4 font-black py-5 rounded-xl"
                 style={{
-                  background: `linear-gradient(135deg, ${NIKE_ORANGE}, ${NIKE_RED})`,
+                  background: `linear-gradient(135deg, ${SPORT_ACCENT}, ${SPORT_SECONDARY})`,
                   color: "#fff",
-                  boxShadow: `0 8px 24px -4px ${NIKE_ORANGE}`,
+                  boxShadow: `0 8px 24px -4px ${SPORT_ACCENT}`,
                 }}
               >
                 <Check className="w-5 h-5 mr-2" />
