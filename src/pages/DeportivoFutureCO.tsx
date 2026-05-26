@@ -278,14 +278,12 @@ const DeportivoFutureCO = () => {
                 boxShadow: `0 0 20px ${NIKE_ORANGE}66`,
               }}
             >
-              <svg viewBox="0 0 24 12" className="w-7 h-4" fill="white">
-                <path d="M24 1.5c-3 5-8.5 9-15 9-3.5 0-6-1-7-2.5C2.5 9 4 8.5 6 8c4-1 9-3 13-5.5 1.5-1 3-2 5-2.5z" />
-              </svg>
+              <Zap className="w-6 h-6 text-black" strokeWidth={3} />
             </div>
             <div>
               <div className="text-[10px] uppercase tracking-[0.3em] text-white/60">Sport Edition</div>
               <div className="text-lg sm:text-xl font-black tracking-tight text-white">
-                Conjunto Ultra Dry <span style={{ color: NIKE_ORANGE }}>·</span> PRO
+                Conjunto Ultra Dry <span style={{ color: NIKE_ORANGE }}>·</span> ELITE
               </div>
             </div>
           </div>
