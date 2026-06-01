@@ -295,7 +295,7 @@ const JoggerColombia = () => {
                 alt={`Pantalón Jogger Nike ${COLORS[selectedImage].name}`}
                 className="w-full h-full object-cover transition-opacity duration-500"
                 loading="eager"
-                fetchPriority="high"
+                {...{ fetchpriority: "high" }}
               />
               <div
                 className="absolute inset-0 pointer-events-none"

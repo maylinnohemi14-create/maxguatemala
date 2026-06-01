@@ -175,7 +175,7 @@ const JoggerKitsProductPage = () => {
                 </div>
               )}
 
-              <img src={product.image} alt={product.name} className="w-full h-full object-cover" loading="eager" fetchPriority="high" />
+              <img src={product.image} alt={product.name} className="w-full h-full object-cover" loading="eager" {...{ fetchpriority: "high" }} />
               <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 60%, #000000cc 100%)" }} />
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                 <div className="px-3 py-1.5 rounded-full backdrop-blur-md bg-black/50 border border-white/20">
