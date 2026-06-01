@@ -318,6 +318,8 @@ const Admin = () => {
     { id: 'LINO-PREMIUM-GT', label: 'Lino', nota: 'KIT CONJUNTO LACOST LINO', idProducto: '4751', idVariable: '', transportadora: 'FORZA' },
     { id: 'LINO-PREMIUM-CO', label: '🇨🇴 Lino Colombia', nota: 'KIT LINO LACST', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
     { id: 'VESTIDOS-MADRES-GT', label: '🌸 Vestidos Día de las Madres', nota: 'VESTIDO DIA DE LA MADRE', idProducto: '6441', transportadora: 'FORZA', aliasIds: ['vestido-dulsura','vestido-mia','vestido-sara','vestido-imperial-scarlet','vestido-imperial','vestido-zera','vestido-aurora','vestido-fancy','vestido-elda-rosa','vestido-calma','vestido-ariana','vestido-petra','vestido-londres','vestido-delicadeza-rosa','conjunto-bordado-flora','vestido-mantequilla','vestido-delicadeza','vestido-rosas','vestido-primavera-encantada','vestido-encanto','vestido-oliva','vestido-ivory','vestido-terra'] },
+    { id: 'JOGGER-NIKE-CO', label: '🇨🇴 Jogger Colombia', nota: 'COMBO NIKE JOGGER', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO' },
+    { id: 'JOGGER-KITS-CO', label: '🇨🇴 Jogger Kits Colombia', nota: 'COMBO NIKE JOGGER', idProducto: '2132618', idVariable: '', transportadora: 'INTERRAPIDISIMO', aliasIds: ['JOGGER-VINTAGE-CO'] },
   ];
 
   const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');

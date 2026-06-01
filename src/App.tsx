@@ -52,6 +52,10 @@ import VestidoProductPage from "./pages/VestidoProductPage";
 import JoggerGT from "./pages/JoggerGT";
 import JoggerGTProductPage from "./pages/JoggerGTProductPage";
 import JoggerGTKitPage from "./pages/JoggerGTKitPage";
+import JoggerColombia from "./pages/JoggerColombia";
+import JoggerKits from "./pages/JoggerKits";
+import JoggerKitsProductPage from "./pages/JoggerKitsProductPage";
+import JoggerKitsKitPage from "./pages/JoggerKitsKitPage";
 
 const queryClient = new QueryClient();
 
@@ -105,6 +109,10 @@ const App = () => (
           <Route path="/joggergt" element={<JoggerGT />} />
           <Route path="/joggergt/kit/:slug" element={<JoggerGTKitPage />} />
           <Route path="/joggergt/:slug" element={<JoggerGTProductPage />} />
+          <Route path="/joggercolombia" element={<JoggerColombia />} />
+          <Route path="/joggerkits" element={<JoggerKits />} />
+          <Route path="/joggerkits/kit/:slug" element={<JoggerKitsKitPage />} />
+          <Route path="/joggerkits/:slug" element={<JoggerKitsProductPage />} />
           
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
