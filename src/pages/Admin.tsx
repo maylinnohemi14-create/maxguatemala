@@ -324,6 +324,29 @@ const Admin = () => {
 
   const normalizeOrderPrice = (price: string) => price.replace(/\D/g, '');
 
+  const COLOMBIA_PRICE_BASED_PRODUCT_IDS = [
+    'UA-KIT3EN1-CO',
+    'UA-KIT4EN1-CO',
+    'DEP-ULTRADRY-CO',
+    'LINO-PREMIUM-CO',
+    'JOGGER-NIKE-CO',
+    'JOGGER-KITS-CO',
+    'JOGGER-VINTAGE-CO',
+  ];
+
+  const getColombiaPriceBasedDropiId = (order: Order, product?: typeof PRODUCTS[number]) => {
+    const productIdsToCheck = [product?.id, order.id_producto].filter(Boolean) as string[];
+    const isTargetProduct = productIdsToCheck.some(id => COLOMBIA_PRICE_BASED_PRODUCT_IDS.includes(id));
+
+    if (!isTargetProduct) return null;
+
+    const normalizedPrice = normalizeOrderPrice(order.precio_total);
+    if (normalizedPrice === '179000') return '2167798';
+    if (normalizedPrice === '149000') return '2167803';
+
+    return null;
+  };
+
   const isLegacyColombiaOrder = (order: Order, productId: string) => {
     if (order.id_producto !== '2036237' && order.id_producto !== '2128752') return false;
 
@@ -393,30 +416,20 @@ const Admin = () => {
   const formatOrdersForExcel = (ordersToFormat: Order[], product?: typeof PRODUCTS[0]) => {
     return ordersToFormat.map((order) => {
       let idProducto = product?.idProducto || '179';
+      const colombiaPriceBasedDropiId = getColombiaPriceBasedDropiId(order, product);
+      if (colombiaPriceBasedDropiId) {
+        idProducto = colombiaPriceBasedDropiId;
+      }
       if (product?.id === 'LINO-PREMIUM-CO') {
         const normalizedPrice = normalizeOrderPrice(order.precio_total);
-        if (normalizedPrice === '179000') {
-          idProducto = '2132610';
-        } else if (normalizedPrice === '199000') {
+        if (normalizedPrice === '199000') {
           idProducto = '2140867';
         }
       }
       if (product?.id === 'DEP-ULTRADRY-CO') {
         const normalizedPrice = normalizeOrderPrice(order.precio_total);
-        if (normalizedPrice === '149000') {
-          idProducto = '2132618';
-        } else if (normalizedPrice === '179000') {
-          idProducto = '2132610';
-        } else if (normalizedPrice === '199000') {
+        if (normalizedPrice === '199000') {
           idProducto = '2140867';
-        }
-      }
-      if (product?.id === 'JOGGER-NIKE-CO' || product?.id === 'JOGGER-KITS-CO') {
-        const normalizedPrice = normalizeOrderPrice(order.precio_total);
-        if (normalizedPrice === '179000') {
-          idProducto = '2167798';
-        } else if (normalizedPrice === '149000') {
-          idProducto = '2167803';
         }
       }
       return {
