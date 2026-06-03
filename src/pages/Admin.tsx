@@ -411,6 +411,14 @@ const Admin = () => {
           idProducto = '2140867';
         }
       }
+      if (product?.id === 'JOGGER-NIKE-CO' || product?.id === 'JOGGER-KITS-CO') {
+        const normalizedPrice = normalizeOrderPrice(order.precio_total);
+        if (normalizedPrice === '179000') {
+          idProducto = '2167798';
+        } else if (normalizedPrice === '149000') {
+          idProducto = '2167803';
+        }
+      }
       return {
         'NOMBRES': order.nombres,
         'APELLIDOS': order.apellidos,
