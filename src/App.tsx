@@ -56,6 +56,7 @@ import JoggerColombia from "./pages/JoggerColombia";
 import JoggerKits from "./pages/JoggerKits";
 import JoggerKitsProductPage from "./pages/JoggerKitsProductPage";
 import JoggerKitsKitPage from "./pages/JoggerKitsKitPage";
+import ProyectorFormulario from "./pages/ProyectorFormulario";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Proyector />} />
           <Route path="/cinema" element={<Proyector />} />
+          <Route path="/formulario" element={<ProyectorFormulario />} />
           <Route path="/guatemalaexpress" element={<Proyector />} />
           <Route path="/proyector" element={<Index />} />
           <Route path="/taladro" element={<Taladro />} />
