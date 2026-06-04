@@ -56,6 +56,7 @@ import JoggerColombia from "./pages/JoggerColombia";
 import JoggerKits from "./pages/JoggerKits";
 import JoggerKitsProductPage from "./pages/JoggerKitsProductPage";
 import JoggerKitsKitPage from "./pages/JoggerKitsKitPage";
+import ProyectorFormulario from "./pages/ProyectorFormulario";
 
 const queryClient = new QueryClient();
 
