@@ -41,9 +41,12 @@ const ProyectorFormulario = () => {
 
       {/* Form Section */}
       <section className="container mx-auto px-3 sm:px-4 py-6 sm:py-10 max-w-2xl">
-        <h1 className="text-base sm:text-lg font-bold text-center mb-4 text-foreground">
+        <h1 className="text-base sm:text-lg font-bold text-center mb-2 text-foreground">
           Formulario de Pedido - Pago Contra Entrega
         </h1>
+        <p className="text-sm sm:text-base text-center text-muted-foreground mb-4 animate-pulse-slow">
+          Complete el siguiente formulario para realizar su pedido
+        </p>
         <div className="bg-card rounded-xl shadow-large p-3 sm:p-6">
           <CODForm
             productId={PRODUCT_ID}
