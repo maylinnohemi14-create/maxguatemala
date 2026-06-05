@@ -81,7 +81,7 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 3, price: 179000, label: "3 Pantalones Jogger", saving: 358000, highlight: true },
+  { qty: 3, price: 149000, label: "3 Pantalones Jogger", saving: 388000, highlight: true },
 ];
 
 const JoggerColombia = () => {
