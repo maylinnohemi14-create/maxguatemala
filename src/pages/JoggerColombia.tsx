@@ -73,7 +73,7 @@ const COLORS: Color[] = [
 ];
 
 type QtyOption = {
-  qty: 1 | 2 | 3;
+  qty: number;
   price: number;
   label: string;
   highlight?: boolean;
@@ -81,20 +81,20 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 3, price: 149000, label: "3 Pantalones Jogger", saving: 388000, highlight: true },
+  { qty: 4, price: 159000, label: "4 Pantalones Jogger", saving: 378000, highlight: true },
 ];
 
 const JoggerColombia = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(3);
-  const [selectedColors, setSelectedColors] = useState<string[]>(["negro", "azul-marino", "gris"]);
+  const [selectedQty, setSelectedQty] = useState<number>(4);
+  const [selectedColors, setSelectedColors] = useState<string[]>(["negro", "azul-marino", "gris", "celeste"]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [addJacket, setAddJacket] = useState(false);
   const [jacketSize, setJacketSize] = useState<string>("M");
-  const [pantSizes, setPantSizes] = useState<string[]>(["M", "M"]);
+  const [pantSizes, setPantSizes] = useState<string[]>(["M", "M", "M", "M"]);
   const formRef = useRef<HTMLDivElement>(null);
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
