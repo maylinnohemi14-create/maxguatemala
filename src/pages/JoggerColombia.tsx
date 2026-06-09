@@ -86,15 +86,15 @@ const QTY_OPTIONS: QtyOption[] = [
 
 const JoggerColombia = () => {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
-  const [selectedQty, setSelectedQty] = useState<1 | 2 | 3>(3);
-  const [selectedColors, setSelectedColors] = useState<string[]>(["negro", "azul-marino", "gris"]);
+  const [selectedQty, setSelectedQty] = useState<number>(4);
+  const [selectedColors, setSelectedColors] = useState<string[]>(["negro", "azul-marino", "gris", "celeste"]);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showUpsell, setShowUpsell] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [addJacket, setAddJacket] = useState(false);
   const [jacketSize, setJacketSize] = useState<string>("M");
-  const [pantSizes, setPantSizes] = useState<string[]>(["M", "M"]);
+  const [pantSizes, setPantSizes] = useState<string[]>(["M", "M", "M", "M"]);
   const formRef = useRef<HTMLDivElement>(null);
 
   const { tiktokPixelIds, facebookPixelIds } = usePagePixels(PAGE_ROUTE);
