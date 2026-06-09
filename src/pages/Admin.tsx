@@ -334,6 +334,12 @@ const Admin = () => {
     'JOGGER-VINTAGE-CO',
   ];
 
+  const COLOMBIA_JOGGER_PRODUCT_IDS = [
+    'JOGGER-NIKE-CO',
+    'JOGGER-KITS-CO',
+    'JOGGER-VINTAGE-CO',
+  ];
+
   const getColombiaPriceBasedDropiId = (order: Order, product?: typeof PRODUCTS[number]) => {
     const productIdsToCheck = [product?.id, order.id_producto].filter(Boolean) as string[];
     const isTargetProduct = productIdsToCheck.some(id => COLOMBIA_PRICE_BASED_PRODUCT_IDS.includes(id));
@@ -341,6 +347,10 @@ const Admin = () => {
     if (!isTargetProduct) return null;
 
     const normalizedPrice = normalizeOrderPrice(order.precio_total);
+    const isJogger = productIdsToCheck.some(id => COLOMBIA_JOGGER_PRODUCT_IDS.includes(id));
+
+    if (isJogger && normalizedPrice === '179000') return '2132610';
+
     if (normalizedPrice === '179000') return '2167798';
     if (normalizedPrice === '149000') return '2167803';
 
