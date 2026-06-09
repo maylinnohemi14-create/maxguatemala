@@ -73,7 +73,7 @@ const COLORS: Color[] = [
 ];
 
 type QtyOption = {
-  qty: 1 | 2 | 3;
+  qty: number;
   price: number;
   label: string;
   highlight?: boolean;
@@ -81,7 +81,7 @@ type QtyOption = {
 };
 
 const QTY_OPTIONS: QtyOption[] = [
-  { qty: 3, price: 149000, label: "3 Pantalones Jogger", saving: 388000, highlight: true },
+  { qty: 4, price: 159000, label: "4 Pantalones Jogger", saving: 378000, highlight: true },
 ];
 
 const JoggerColombia = () => {
